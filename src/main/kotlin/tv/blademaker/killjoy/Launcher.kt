@@ -5,6 +5,7 @@ import net.dv8tion.jda.api.sharding.ShardManager
 import net.hugebot.ratelimiter.RateLimiter
 import org.json.JSONArray
 import org.json.JSONObject
+import org.slf4j.LoggerFactory
 import tv.blademaker.killjoy.core.Agent
 import java.util.concurrent.TimeUnit
 
@@ -27,29 +28,10 @@ object Launcher {
     @JvmStatic
     fun main(args: Array<String>) {
 
-        agents = loadAgents()
+        agents = Loaders.loadAgents()
 
 
     }
 
-    private fun loadAgents(): List<Agent> {
-        val list = mutableListOf<Agent>()
-
-        val agentsIndex = this::class.java.getResource("/agents/agents.txt").readText().split("\n")
-
-        if (agentsIndex.isEmpty()) throw IllegalStateException("Agents Index cannot be empty or null")
-
-        for (agentName in agentsIndex) {
-            val file = this::class.java.getResource("/agents/${agentName.toLowerCase()}.json")
-                ?: throw IllegalStateException("$agentName.json is not present")
-
-            val fileContent = file.readText()
-
-            if (fileContent.isEmpty()) throw IllegalStateException("$agentName.json is empty")
-
-            list.add(Agent(JSONObject(fileContent)))
-        }
-
-        return list
-    }
+    private val log = LoggerFactory.getLogger(Launcher::class.java)
 }
