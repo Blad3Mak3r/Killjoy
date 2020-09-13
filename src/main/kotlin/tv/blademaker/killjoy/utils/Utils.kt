@@ -1,0 +1,116 @@
+/*
+ * Copyright (c) 2020.
+ * BladeMaker
+ */
+
+@file:Suppress("unused")
+
+package tv.blademaker.killjoy.utils
+
+import net.dv8tion.jda.api.entities.Guild
+import net.dv8tion.jda.api.entities.Role
+import tv.blademaker.killjoy.framework.CommandContext
+import tv.blademaker.killjoy.framework.abs.Command
+import tv.blademaker.killjoy.framework.abs.SubCommand
+import java.net.MalformedURLException
+import java.net.URL
+
+object Utils {
+
+    @JvmStatic
+    fun printBanner(): String {
+        return """
+            
+               _______   _ _   _  ____ _____ ____   ___ ___________  
+              / / / / | | | | | |/ ___| ____| __ ) / _ \_   _\ \ \ \ 
+             / / / /| |_| | | | | |  _|  _| |  _ \| | | || |  \ \ \ \
+             \ \ \ \|  _  | |_| | |_| | |___| |_) | |_| || |  / / / /
+              \_\_\_\_| |_|\___/ \____|_____|____/ \___/ |_| /_/_/_/
+
+
+        """.trimIndent()
+    }
+
+    @JvmStatic
+    fun isUrl(str: String): Boolean {
+        return try {
+            URL(str)
+            true
+        } catch (ignored: MalformedURLException) {
+            false
+        }
+    }
+
+    object Commands {
+
+        @JvmStatic
+        fun getSubCommand(invoke: String, subCommands: List<SubCommand>): SubCommand? {
+            if (subCommands.isNullOrEmpty()) return null
+
+            for (scmd in subCommands) {
+                if (scmd.meta.name == invoke.toLowerCase()) return scmd
+            }
+
+            return null
+        }
+
+        @JvmStatic
+        fun replyWrongUsage(ctx: CommandContext, command: SubCommand) {
+            ctx.send(Emojis.NoEntry, "This is not the correct way to use this command, use **joy help ${command.parent.meta.name}** for more information.").queue()
+        }
+
+        @JvmStatic
+        fun replyWrongUsage(ctx: CommandContext, command: Command) {
+            ctx.send(Emojis.NoEntry, "This is not the correct way to use this command, use **joy help ${command.meta.name}** for more information.").queue()
+        }
+    }
+
+    object JDA {
+        @JvmStatic
+        fun getGuildRole(guild: Guild, role: String): Role? {
+            return guild.getRolesByName(role, true).takeIf { it.isNotEmpty() }?.get(0)
+        }
+
+        @JvmStatic
+        fun getGuildRoles(guild: Guild, roles: Collection<String>) = roles
+            .filter { it.startsWith("<@&") }
+            .map { it.replace("<@&", "") }
+            .map { it.replace(">", "") }.mapNotNull { guild.getRoleById(it) }
+
+        @JvmStatic
+        fun getGuildRoles(guild: Guild, vararg roles: String) = getGuildRoles(guild, roles.toList())
+    }
+
+    object StringUtils {
+        @JvmStatic
+        fun capitalize(str: String) = str.capitalize()
+    }
+
+    object Validation {
+
+        @JvmStatic
+        fun startWith(str: String, vararg options: String): Boolean {
+            for (opt in options) {
+                if (str.startsWith(opt)) return true
+            }
+            return false
+        }
+
+        @JvmStatic
+        fun startWithInt(str: String) = isInt(str.split("")[0])
+
+        @JvmStatic
+        fun isInt(str: String): Boolean = try {
+            str.toInt()
+            true
+        } catch (ignored: NumberFormatException) {
+            false
+        }
+
+        @JvmStatic
+        fun isNull(str: String?) = str == null || str == "null"
+
+        @JvmStatic
+        fun validLength(str: String, max: Int) = str.length <= max
+    }
+}
