@@ -10,7 +10,7 @@
       "button": "q",
       "name": "UPDRAFT",
       "icon": "<:jett_updraft:754708212447707216>",
-      "iconUrl": "",
+      "iconUrl": "https://i.imgur.com/HFkRJSL.png",
       "info": "Propulsa INSTANTÁNEAMENTE a Jett a mucha altura hacia arriba.",
       "preview": ""
     },
@@ -18,7 +18,7 @@
       "button": "e",
       "name": "TAILWIND",
       "icon": "<:jett_tailwind:754708212191854713>",
-      "iconUrl": "",
+      "iconUrl": "https://i.imgur.com/yObh8n2.png",
       "info": "INSTANTLY propel Jett in the direction she is moving. If Jett is standing still, she will propel forward.",
       "preview": ""
     },
@@ -26,7 +26,7 @@
       "button": "c",
       "name": "CLOUDBURST",
       "icon": "<:jett_cloudburst:754708211973488711>",
-      "iconUrl": "",
+      "iconUrl": "https://i.imgur.com/LViadRc.png",
       "info": "INSTANTLY throw a projectile that expands into a brief vision-blocking cloud on impact with a surface. HOLD the ability key to curve the smoke in the direction of your crosshair.",
       "preview": ""
     },
@@ -34,7 +34,7 @@
       "button": "x",
       "name": "BLADE STORM",
       "icon": "<:jett_bladestorm:754708212384792647>",
-      "iconUrl": "",
+      "iconUrl": "https://i.imgur.com/Zp4WIKi.png",
       "info": "EQUIP a set of highly accurate knives that recharge on killing an opponent. FIRE to throw a single knife at your target. ALTERNATE FIRE to throw all remaining daggers at your target.",
       "preview": ""
     }

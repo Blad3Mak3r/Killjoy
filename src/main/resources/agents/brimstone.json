@@ -10,7 +10,7 @@
       "button": "q",
       "name": "INCENDIARY",
       "icon": "<:brimstone_incendiary:754718844018360421>",
-      "iconUrl": "",
+      "iconUrl": "https://i.imgur.com/otkT6QT.png",
       "info": "EQUIP an incendiary grenade launcher. FIRE to launch a grenade that detonates as it comes to a rest on the floor, creating a lingering fire zone that damages players within the zone.",
       "preview": ""
     },
@@ -18,7 +18,7 @@
       "button": "e",
       "name": "SKY SMOKE",
       "icon": "<:brimstone_skysmoke:754718843850588171>",
-      "iconUrl": "",
+      "iconUrl": "https://i.imgur.com/CVJ2sBF.png",
       "info": "EQUIP a tactical map. FIRE to set locations where Brimstone’s smoke clouds will land. ALTERNATE FIRE to confirm, launching long-lasting smoke clouds that block vision in the selected area.",
       "preview": ""
     },
@@ -26,7 +26,7 @@
       "button": "c",
       "name": "STIM BEACON",
       "icon": "<:brimstone_stimbeacon:754718844022554704>",
-      "iconUrl": "",
+      "iconUrl": "https://i.imgur.com/AgnF1um.png",
       "info": "EQUIP a stim beacon. FIRE to toss the stim beacon in front of Brimstone. Upon landing, the stim beacon will create a field that grants players RapidFire.",
       "preview": ""
     },
@@ -34,7 +34,7 @@
       "button": "x",
       "name": "ORBITAL STRIKE",
       "icon": "<:brimstone_orbitalstrike:754718843997257758>",
-      "iconUrl": "",
+      "iconUrl": "https://i.imgur.com/eAouY05.png",
       "info": "EQUIP a tactical map. FIRE to launch a lingering orbital strike laser at the selected location, dealing high damage-over-time to players caught in the selected area.",
       "preview": ""
     }

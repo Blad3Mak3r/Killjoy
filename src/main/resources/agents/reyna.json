@@ -10,7 +10,7 @@
       "button": "q",
       "name": "DEVOUR",
       "icon": "<:reyna_devour:754728262541770814>",
-      "iconUrl": "",
+      "iconUrl": "https://i.imgur.com/NNoIolp.png",
       "info": "Enemies killed by Reyna leave behind Soul Orbs that last 3 seconds. INSTANTLY consume a nearby soul orb, rapidly healing for a short duration. Health gained through this skill exceeding 100 will decay over time. If EMPRESS is active, this skill will automatically cast and not consume the orb.",
       "preview": ""
     },
@@ -18,7 +18,7 @@
       "button": "e",
       "name": "DISMISS",
       "icon": "<:reyna_dismiss:754728262109757611>",
-      "iconUrl": "",
+      "iconUrl": "https://i.imgur.com/mSXrrG6.png",
       "info": "INSTANTLY consume a nearby soul orb, becoming intangible for a short duration. If EMPRESS is active, also become invisible.",
       "preview": ""
     },
@@ -26,7 +26,7 @@
       "button": "c",
       "name": "LEER",
       "icon": "<:reyna_leer:754728262542032896>",
-      "iconUrl": "",
+      "iconUrl": "https://i.imgur.com/hFvNOek.png",
       "info": "EQUIP an ethereal destructible eye. ACTIVATE to cast the eye a short distance forward. The eye will Nearsight all enemies who look at it.",
       "preview": ""
     },
@@ -34,7 +34,7 @@
       "button": "x",
       "name": "EMPRESS",
       "icon": "<:reyna_empress:754728262516736141>",
-      "iconUrl": "",
+      "iconUrl": "https://i.imgur.com/vcM6tND.png",
       "info": "INSTANTLY enter a frenzy, increasing firing speed, equip and reload speed dramatically. Scoring a kill renews the duration.",
       "preview": ""
     }

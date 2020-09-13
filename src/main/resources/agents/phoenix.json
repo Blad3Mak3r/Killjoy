@@ -10,7 +10,7 @@
       "button": "q",
       "name": "CURVEBALL",
       "icon": "<:phoenix_curveball:754720429884571738>",
-      "iconUrl": "",
+      "iconUrl": "https://i.imgur.com/PADeR9B.png",
       "info": "EQUIP a flare orb that takes a curving path and detonates shortly after throwing. FIRE to curve the flare orb to the left, detonating and blinding any player who sees the orb. ALTERNATE FIRE to curve the flare orb to the right.",
       "preview": ""
     },
@@ -18,7 +18,7 @@
       "button": "e",
       "name": "HOT HANDS",
       "icon": "<:phoenix_hothands:754720430144880652>",
-      "iconUrl": "",
+      "iconUrl": "https://i.imgur.com/RDzBAfI.png",
       "info": "EQUIP a fireball. FIRE to throw a fireball that explodes after a set amount of time or upon hitting the ground, creating a lingering fire zone that damages enemies.",
       "preview": ""
     },
@@ -26,7 +26,7 @@
       "button": "c",
       "name": "BLAZE",
       "icon": "<:phoenix_blaze:754720429922320465>",
-      "iconUrl": "",
+      "iconUrl": "https://i.imgur.com/j9GTBxS.png",
       "info": "EQUIP a flame wall. FIRE to create a line of flame that moves forward, creating a wall of fire that blocks vision and damages players passing through it. HOLD FIRE to bend the wall in the direction of your crosshair.",
       "preview": ""
     },
@@ -34,7 +34,7 @@
       "button": "x",
       "name": "RUN IT BACK",
       "icon": "<:phoenix_runitback:754720429549289494>",
-      "iconUrl": "",
+      "iconUrl": "https://i.imgur.com/uaaSoI4.png",
       "info": "INSTANTLY place a marker at Phoenix’s location. While this ability is active, dying or allowing the timer to expire will end this ability and bring Phoenix back to this location with full health.",
       "preview": ""
     }
