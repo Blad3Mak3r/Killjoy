@@ -9,7 +9,7 @@
     {
       "button": "q",
       "name": "SLOW ORB",
-      "icon": "",
+      "icon": "<:sage_sloworb:754721918384603296>",
       "iconUrl": "",
       "info": "EQUIP a slowing orb. FIRE to throw a slowing orb forward that detonates upon landing, creating a lingering field that slows players caught inside of it.",
       "preview": ""
@@ -17,7 +17,7 @@
     {
       "button": "e",
       "name": "HEALING ORB",
-      "icon": "",
+      "icon": "<:sage_healingorb:754721918241865919>",
       "iconUrl": "",
       "info": "EQUIP a healing orb. FIRE with your crosshairs over a damaged ally to activate a heal-over-time on them. ALT FIRE while Sage is damaged to activate a self heal-over-time.",
       "preview": ""
@@ -25,7 +25,7 @@
     {
       "button": "c",
       "name": "BARRIER ORB",
-      "icon": "",
+      "icon": "<:sage_barrierorb:754721918208442479>",
       "iconUrl": "",
       "info": "EQUIP a barrier orb. FIRE places a solid wall. ALT FIRE rotates the targeter.",
       "preview": ""
@@ -33,7 +33,7 @@
     {
       "button": "x",
       "name": "RESURRECTION",
-      "icon": "",
+      "icon": "<:sage_resurrection:754721918401118379>",
       "iconUrl": "",
       "info": "EQUIP a resurrection ability. FIRE with your crosshairs placed over a dead ally to begin resurrecting them. After a brief channel, the ally will be brought back to life with full health.",
       "preview": ""
