@@ -12,7 +12,7 @@
       "icon": "<:sova_shockbolt:754723827665338368>",
       "iconUrl": "https://i.imgur.com/V1qj3FK.png",
       "info": "EQUIP a bow with a shock bolt. FIRE to send the explosive forward, detonating upon collision and damaging players nearby. HOLD FIRE to extend the range of the projectile. ALTERNATE FIRE to add up to two bounces to this arrow.",
-      "preview": ""
+      "preview": "https://i.imgur.com/pZVie9S.gif"
     },
     {
       "button": "e",
@@ -20,7 +20,7 @@
       "icon": "<:sova_reconbolt:754723827489046538>",
       "iconUrl": "https://i.imgur.com/U2rBNgS.png",
       "info": "EQUIP a bow with a recon bolt. FIRE to send the recon bolt forward, activating upon collision and revealing the location of nearby enemies caught in the line of sight of the bolt. HOLD FIRE to extend the range of the projectile. ALTERNATE FIRE to add up to two bounces to this arrow.",
-      "preview": ""
+      "preview": "https://i.imgur.com/ZpdJxI3.gif"
     },
     {
       "button": "c",
@@ -28,7 +28,7 @@
       "icon": "<:sova_owldrone:754723827501760564>",
       "iconUrl": "https://i.imgur.com/6uzrbL2.png",
       "info": "EQUIP an owl drone. FIRE to deploy and take control of movement of the drone. While in control of the drone, FIRE to shoot a marking dart. This dart will reveal the location of any player struck by the dart.",
-      "preview": ""
+      "preview": "https://i.imgur.com/0V6jTKr.gif"
     },
     {
       "button": "x",
@@ -36,7 +36,7 @@
       "icon": "<:sova_huntersfury:754723827522601060>",
       "iconUrl": "https://i.imgur.com/qiIJ2SM.png",
       "info": "EQUIP a bow with three long-range wall-piercing energy blasts. FIRE to release an energy blast in a line in front of Sova, dealing damage and revealing the location of enemies caught in the line. This ability can be RE-USED up to two more times while the ability timer is active.",
-      "preview": ""
+      "preview": "https://i.imgur.com/mGvxoOo.gif"
     }
   ]
 }
