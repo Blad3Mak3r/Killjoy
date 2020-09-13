@@ -9,7 +9,7 @@
     {
       "button": "q",
       "name": "BLAST PACK",
-      "icon": "",
+      "icon": "<:raze_blastpack:754711460931698780>",
       "iconUrl": "",
       "info": "INSTANTLY throw a Blast Pack that will stick to surfaces. RE-USE the ability after deployment to detonate, damaging and moving anything hit. Raze isn't damaged by this ability, but will still take fall damage if launched up far enough.",
       "preview": ""
@@ -17,7 +17,7 @@
     {
       "button": "e",
       "name": "PAINT SHELLS",
-      "icon": "",
+      "icon": "<:raze_paintshells:754711460764188726>",
       "iconUrl": "",
       "info": "EQUIP a cluster grenade. FIRE to throw the grenade, which does damage and creates sub-munitions, each doing damage to anyone in their range.",
       "preview": ""
@@ -25,7 +25,7 @@
     {
       "button": "c",
       "name": "BOOM BOT",
-      "icon": "",
+      "icon": "<:raze_boombot:754711460717920277>",
       "iconUrl": "",
       "info": "EQUIP a Boom Bot. FIRE will deploy the bot, causing it to travel in a straight line on the ground, bouncing off walls. The Boom Bot will lock on to any enemies in its frontal cone and chase them, exploding for heavy damage if it reaches them.",
       "preview": ""
@@ -33,7 +33,7 @@
     {
       "button": "x",
       "name": "SHOWSTOPPER",
-      "icon": "",
+      "icon": "<:raze_showstopper:754711461036556352>",
       "iconUrl": "",
       "info": "EQUIP a rocket launcher. FIRE shoots a rocket that does massive area damage on contact with anything.",
       "preview": ""
