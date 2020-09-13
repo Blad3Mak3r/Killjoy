@@ -81,6 +81,8 @@ object Launcher {
         return agents.filter { it.role === result.getOrNull()!! }
     }
 
+    fun getSkills() = agents.map { it.skills }.reduce { acc, list -> acc + list }
+
     fun getAgents() = agents
 
     private val log = LoggerFactory.getLogger(Launcher::class.java)
