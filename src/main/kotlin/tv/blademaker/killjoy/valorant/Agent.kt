@@ -1,14 +1,19 @@
-package tv.blademaker.killjoy.core
+@file:Suppress("unused")
 
+package tv.blademaker.killjoy.valorant
+
+import net.dv8tion.jda.api.EmbedBuilder
+import net.dv8tion.jda.api.entities.MessageEmbed
 import org.json.JSONArray
 import org.json.JSONObject
-import org.slf4j.LoggerFactory
+import tv.blademaker.killjoy.framework.ColorExtra
 
 data class Agent (
     val name: String,
     val bio: String,
     val role: Role,
     val avatar: String,
+    val thumbnail: String,
     val skills: List<Skill>
 ) {
 
@@ -17,16 +22,34 @@ data class Agent (
         json.getString("bio"),
         Role.of(json.getString("role")),
         json.getString("avatar"),
+        json.getString("thumbnail"),
         Skill.ofAll(json.getJSONArray("skills"))
     )
 
-    enum class Role(val icon: String) {
-        Controller(""),
-        Duelist(""),
-        Initiator(""),
-        Sentinel("");
-        
-        fun iconSnowflake() = icon.removeSuffix("<").removePrefix(">")
+    fun asEmbed(): EmbedBuilder {
+        return EmbedBuilder().apply {
+            setAuthor(role.name, null, role.iconUrl)
+            setTitle(name, "https://playvalorant.com/en-us/agents/${name.toLowerCase()}/")
+            setThumbnail(avatar)
+            //setImage(thumbnail)
+            setDescription(bio)
+            addField("Pick Rate", "Coming soon...", true)
+            addField("Win Rate", "Coming soon...", true)
+            addBlankField(false)
+            setColor(ColorExtra.VAL_RED)
+            for (skill in skills) {
+                addField("${skill.icon} ${skill.button.name.toUpperCase()} - ${skill.name}", skill.info, false)
+            }
+        }
+    }
+
+    enum class Role(val emoji: String, val iconUrl: String) {
+        Controller("<:controller:754676227809214485>", "https://i.imgur.com/V4Ci1Oh.png"),
+        Duelist("<:duelist:754676227952083025>", "https://i.imgur.com/rs0d2qx.png"),
+        Initiator("<:initiator:754676227582722062>", "https://i.imgur.com/hCVcqgf.png"),
+        Sentinel("<:sentinel:754676227994026044>", "https://i.imgur.com/ODX86kl.png");
+
+        fun iconSnowflake() = emoji.removeSuffix("<").removePrefix(">")
 
         companion object {
             fun of(str: String): Role {

@@ -1,15 +1,15 @@
-package tv.blademaker.killjoy
+package tv.blademaker.killjoy.utils
 
 import org.json.JSONObject
 import org.slf4j.LoggerFactory
-import tv.blademaker.killjoy.core.Agent
+import tv.blademaker.killjoy.valorant.Agent
 
 object Loaders {
 
     private val log = LoggerFactory.getLogger(Loaders::class.java)
 
-    fun loadAgents(): List<Agent> {
-        val list = mutableListOf<Agent>()
+    fun loadAgents(): Set<Agent> {
+        val list = mutableSetOf<Agent>()
 
         val agentsIndex = this::class.java.getResource("/agents/agents.txt").readText().split("\n")
 
