@@ -20,11 +20,13 @@ data class Agent (
         Skill.ofAll(json.getJSONArray("skills"))
     )
 
-    enum class Role {
-        Controller,
-        Duelist,
-        Initiator,
-        Sentinel;
+    enum class Role(val icon: String) {
+        Controller(""),
+        Duelist(""),
+        Initiator(""),
+        Sentinel("");
+        
+        fun iconSnowflake() = icon.removeSuffix("<").removePrefix(">")
 
         companion object {
             fun of(str: String): Role {
