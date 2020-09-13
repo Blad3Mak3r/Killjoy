@@ -49,7 +49,8 @@ data class Agent (
         Initiator("<:initiator:754676227582722062>", "https://i.imgur.com/hCVcqgf.png"),
         Sentinel("<:sentinel:754676227994026044>", "https://i.imgur.com/ODX86kl.png");
 
-        fun iconSnowflake() = emoji.removeSuffix("<").removePrefix(">")
+        val snowFlake: String
+            get() = emoji.removeSuffix("<").removePrefix(">")
 
         companion object {
             fun of(str: String): Role {
@@ -62,17 +63,27 @@ data class Agent (
         val button: Button,
         val name: String,
         val icon: String,
+        val iconUrl: String,
         val info: String,
-        val preview: String
+        val preview: String,
+        val cost: String = ""
     ) {
 
         constructor(json: JSONObject) : this(
             Button.of(json.getString("button")),
-            json.getString("name"),
-            json.getString("icon"),
-            json.getString("info"),
-            json.getString("preview")
+            json.getString("name").trim(),
+            json.getString("icon").trim(),
+            json.getString("iconUrl").trim(),
+            json.getString("info").trim(),
+            json.getString("preview").trim(),
+            kotlin.runCatching { json.getString("cost") }.getOrDefault("")
         )
+
+        val id: String
+            get() = name.toLowerCase()
+                .replace(" ", "")
+                .replace("’", "")
+                .replace("'", "")
 
         enum class Button {
             Q,
