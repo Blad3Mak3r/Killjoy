@@ -7,7 +7,7 @@ import tv.blademaker.killjoy.framework.abs.Command
 import tv.blademaker.killjoy.framework.annotations.CommandMeta
 import tv.blademaker.killjoy.utils.Emojis
 
-@CommandMeta("agents", Category.Information)
+@CommandMeta("agents", Category.Information, aliases = ["agent"])
 class AgentCommand : Command() {
     override fun handle(ctx: CommandContext) {
 
