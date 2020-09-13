@@ -9,7 +9,7 @@
     {
       "button": "q",
       "name": "POISON CLOUD",
-      "icon": "",
+      "icon": "<:viper_poisoncloud:754725144169283614>",
       "iconUrl": "",
       "info": "EQUIP a gas emitter. FIRE to throw the emitter that perpetually remains throughout the round. RE-USE the ability to create a toxic gas cloud at the cost of fuel. This ability can be RE-USED more than once and can be picked up to be REDEPLOYED.",
       "preview": ""
@@ -17,7 +17,7 @@
     {
       "button": "e",
       "name": "TOXIC SCREEN",
-      "icon": "",
+      "icon": "<:viper_toxicscreen:754725143971889154>",
       "iconUrl": "",
       "info": "EQUIP a gas emitter launcher. FIRE to deploy a long line of gas emitters. RE-USE the ability to create a tall wall of toxic gas at the cost of fuel. This ability can be RE-USED more than once.",
       "preview": ""
@@ -25,7 +25,7 @@
     {
       "button": "c",
       "name": "SNAKE BITE",
-      "icon": "",
+      "icon": "<:viper_snakebite:754725143955243070>",
       "iconUrl": "",
       "info": "EQUIP a chemical launcher. FIRE to launch a canister that shatters upon hitting the floor, creating a lingering chemical zone that damages and slows enemies.",
       "preview": ""
@@ -33,7 +33,7 @@
     {
       "button": "x",
       "name": "VIPER’S PIT",
-      "icon": "",
+      "icon": "<:viper_viperspit:754725143720493087>",
       "iconUrl": "",
       "info": "EQUIP a chemical sprayer. FIRE to spray a chemical cloud in all directions around Viper, creating a large cloud that reduces the vision range and maximum health of players inside of it.",
       "preview": ""
