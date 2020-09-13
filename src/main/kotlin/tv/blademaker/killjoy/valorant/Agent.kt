@@ -38,7 +38,7 @@ data class Agent (
             addBlankField(false)
             setColor(ColorExtra.VAL_RED)
             for (skill in skills) {
-                addField("${skill.icon} ${skill.button.name.toUpperCase()} - ${skill.name}", skill.info, false)
+                addField("${skill.icon} [`` ${skill.button.name.toUpperCase()} ``] - ${skill.name}", skill.info, false)
             }
         }
     }
