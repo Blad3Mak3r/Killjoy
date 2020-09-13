@@ -1,2 +1,12 @@
+breach
+brimstone
+cypher
 jett
 killjoy
+omen
+phoenix
+raze
+reyna
+sage
+sova
+viper

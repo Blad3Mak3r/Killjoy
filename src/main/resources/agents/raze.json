@@ -1,36 +1,36 @@
 {
   "name": "Raze",
-  "image": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/blt53405c26141beff8/5f21fda671ec397ef9bf0894/V_AGENTS_587x900_KillJoy_.png",
+  "image": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/blt6fef56a8182d0a81/5ebf2c2798f79d6925dbd6b4/V_AGENTS_587x900_ALL_Raze_2.png",
   "avatar": "",
-  "role": "Sentinel",
-  "bio": "The genius of Germany. Killjoy secures the battlefield with ease using her arsenal of inventions. If the damage from her gear doesn't stop her enemies, her robots' debuff will help make short work of them.",
+  "role": "Duelist",
+  "bio": "Raze explodes out of Brazil with her big personality and big guns. With her blunt-force-trauma playstyle, she excels at flushing entrenched enemies and clearing tight spaces with a generous dose of “boom.”",
   "skills": [
     {
       "button": "q",
-      "name": "ALARMBOT",
+      "name": "BLAST PACK",
       "icon": "",
-      "info": "EQUIP a covert Alarmbot. FIRE to deploy a bot that hunts down enemies that get in range. After reaching its target, the bot explodes, applying Vulernable. HOLD EQUIP to recall a deployed bot.",
+      "info": "INSTANTLY throw a Blast Pack that will stick to surfaces. RE-USE the ability after deployment to detonate, damaging and moving anything hit. Raze isn't damaged by this ability, but will still take fall damage if launched up far enough.",
       "preview": ""
     },
     {
       "button": "e",
-      "name": "TURRET",
+      "name": "PAINT SHELLS",
       "icon": "",
-      "info": "EQUIP a Turret. FIRE to deploy a turret that fires at enemies in a 180 degree cone. HOLD EQUIP to recall the deployed turret.",
+      "info": "EQUIP a cluster grenade. FIRE to throw the grenade, which does damage and creates sub-munitions, each doing damage to anyone in their range.",
       "preview": ""
     },
     {
       "button": "c",
-      "name": "NANOSWARM",
+      "name": "BOOM BOT",
       "icon": "",
-      "info": "EQUIP a Nanoswarm grenade. FIRE to throw the grenade. Upon landing, the Nanoswarm goes covert. ACTIVATE the Nanoswarm to deploy a damaging swarm of nanobots.",
+      "info": "EQUIP a Boom Bot. FIRE will deploy the bot, causing it to travel in a straight line on the ground, bouncing off walls. The Boom Bot will lock on to any enemies in its frontal cone and chase them, exploding for heavy damage if it reaches them.",
       "preview": ""
     },
     {
       "button": "x",
-      "name": "LOCKDOWN",
+      "name": "SHOWSTOPPER",
       "icon": "",
-      "info": "EQUIP the Lockdown device. FIRE to deploy the device. After a long windup, the device Detains all enemies caught in the radius. The device can be destroyed by enemies.",
+      "info": "EQUIP a rocket launcher. FIRE shoots a rocket that does massive area damage on contact with anything.",
       "preview": ""
     }
   ]

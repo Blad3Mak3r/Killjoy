@@ -1,0 +1,37 @@
+{
+  "name": "Phoenix",
+  "image": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/bltf0200e1821b5b39f/5eb7cdc144bf8261a04d87f9/V_AGENTS_587x900_Phx.png",
+  "avatar": "",
+  "role": "Duelist",
+  "bio": "Hailing from the U.K., Phoenix's star power shines through in his fighting style, igniting the battlefield with flash and flare. Whether he's got backup or not, he'll rush into a fight on his own terms.",
+  "skills": [
+    {
+      "button": "q",
+      "name": "CURVEBALL",
+      "icon": "",
+      "info": "EQUIP a flare orb that takes a curving path and detonates shortly after throwing. FIRE to curve the flare orb to the left, detonating and blinding any player who sees the orb. ALTERNATE FIRE to curve the flare orb to the right.",
+      "preview": ""
+    },
+    {
+      "button": "e",
+      "name": "HOT HANDS",
+      "icon": "",
+      "info": "EQUIP a fireball. FIRE to throw a fireball that explodes after a set amount of time or upon hitting the ground, creating a lingering fire zone that damages enemies.",
+      "preview": ""
+    },
+    {
+      "button": "c",
+      "name": "BLAZE",
+      "icon": "",
+      "info": "EQUIP a flame wall. FIRE to create a line of flame that moves forward, creating a wall of fire that blocks vision and damages players passing through it. HOLD FIRE to bend the wall in the direction of your crosshair.",
+      "preview": ""
+    },
+    {
+      "button": "x",
+      "name": "RUN IT BACK",
+      "icon": "",
+      "info": "INSTANTLY place a marker at Phoenix’s location. While this ability is active, dying or allowing the timer to expire will end this ability and bring Phoenix back to this location with full health.",
+      "preview": ""
+    }
+  ]
+}
