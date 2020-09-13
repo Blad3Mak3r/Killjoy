@@ -1,6 +1,7 @@
 {
   "name": "Breach",
   "image": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/blt100d13bfa8286a3d/5eb7cdc11ea0c32e33b95fa2/V_AGENTS_587x900_Breach.png",
+  "thumbnail": "https://i.imgur.com/cSds8iy.jpg",
   "avatar": "https://i.imgur.com/J4tVCo5.jpg",
   "role": "Initiator",
   "bio": "Breach, the bionic Swede, fires powerful, targeted kinetic blasts to aggressively clear a path through enemy ground. The damage and disruption he inflicts ensures no fight is ever fair.",
@@ -9,6 +10,7 @@
       "button": "q",
       "name": "FLASHPOINT",
       "icon": "",
+      "iconUrl": "",
       "info": "EQUIP a blinding charge. FIRE the charge to set fast-acting burst through the wall. The charge detonates to blind all players looking at it.",
       "preview": ""
     },
@@ -16,6 +18,7 @@
       "button": "e",
       "name": "FAULT LINE",
       "icon": "",
+      "iconUrl": "",
       "info": "EQUIP a seismic blast. HOLD FIRE to increase the distance. RELEASE to set off the quake, dazing all players in its zone and in a line up to the zone.",
       "preview": ""
     },
@@ -23,6 +26,7 @@
       "button": "c",
       "name": "AFTERSHOCK",
       "icon": "",
+      "iconUrl": "",
       "info": "EQUIP a fusion charge. FIRE the charge to set a slow-acting burst through the wall. The burst does heavy damage to anyone caught in its area.",
       "preview": ""
     },
@@ -30,6 +34,7 @@
       "button": "x",
       "name": "ROLLING THUNDER",
       "icon": "",
+      "iconUrl": "",
       "info": "EQUIP a seismic charge. FIRE to send a cascading quake through all terrain in a large cone. The quake dazes and knocks up anyone caught in it.",
       "preview": ""
     }

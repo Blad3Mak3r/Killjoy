@@ -1,6 +1,7 @@
 {
   "name": "Killjoy",
   "image": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/blt53405c26141beff8/5f21fda671ec397ef9bf0894/V_AGENTS_587x900_KillJoy_.png",
+  "thumbnail": "https://i.imgur.com/9ovFxL1.jpg",
   "avatar": "https://i.imgur.com/zGwli2z.jpg",
   "role": "Sentinel",
   "bio": "The genius of Germany. Killjoy secures the battlefield with ease using her arsenal of inventions. If the damage from her gear doesn't stop her enemies, her robots' debuff will help make short work of them.",
@@ -8,28 +9,32 @@
     {
       "button": "q",
       "name": "ALARMBOT",
-      "icon": "",
+      "icon": "<:killjoy_alarmbot:754679892129349682>",
+      "iconUrl": "",
       "info": "EQUIP a covert Alarmbot. FIRE to deploy a bot that hunts down enemies that get in range. After reaching its target, the bot explodes, applying Vulernable. HOLD EQUIP to recall a deployed bot.",
       "preview": ""
     },
     {
       "button": "e",
       "name": "TURRET",
-      "icon": "",
+      "icon": "<:killjoy_turret:754679892020559895>",
+      "iconUrl": "",
       "info": "EQUIP a Turret. FIRE to deploy a turret that fires at enemies in a 180 degree cone. HOLD EQUIP to recall the deployed turret.",
       "preview": ""
     },
     {
       "button": "c",
       "name": "NANOSWARM",
-      "icon": "",
+      "icon": "<:killjoy_nanoswarm:754679892276150273>",
+      "iconUrl": "",
       "info": "EQUIP a Nanoswarm grenade. FIRE to throw the grenade. Upon landing, the Nanoswarm goes covert. ACTIVATE the Nanoswarm to deploy a damaging swarm of nanobots.",
       "preview": ""
     },
     {
       "button": "x",
       "name": "LOCKDOWN",
-      "icon": "",
+      "icon": "<:killjoy_lockdown:754679892230013009>",
+      "iconUrl": "",
       "info": "EQUIP the Lockdown device. FIRE to deploy the device. After a long windup, the device Detains all enemies caught in the radius. The device can be destroyed by enemies.",
       "preview": ""
     }

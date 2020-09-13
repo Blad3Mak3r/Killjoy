@@ -1,6 +1,7 @@
 {
   "name": "Sage",
   "image": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/blt8a627ec10b57f4f2/5eb7cdc16509f3370a5a93b7/V_AGENTS_587x900_sage.png",
+  "thumbnail": "https://i.imgur.com/UYwqN6w.jpg",
   "avatar": "https://i.imgur.com/n7oZkvA.jpg",
   "role": "Sentinel",
   "bio": "The stronghold of China, Sage creates safety for herself and her team wherever she goes. Able to revive fallen friends and stave off aggressive pushes, she provides a calm center to a hellish fight.",
@@ -9,6 +10,7 @@
       "button": "q",
       "name": "SLOW ORB",
       "icon": "",
+      "iconUrl": "",
       "info": "EQUIP a slowing orb. FIRE to throw a slowing orb forward that detonates upon landing, creating a lingering field that slows players caught inside of it.",
       "preview": ""
     },
@@ -16,6 +18,7 @@
       "button": "e",
       "name": "HEALING ORB",
       "icon": "",
+      "iconUrl": "",
       "info": "EQUIP a healing orb. FIRE with your crosshairs over a damaged ally to activate a heal-over-time on them. ALT FIRE while Sage is damaged to activate a self heal-over-time.",
       "preview": ""
     },
@@ -23,6 +26,7 @@
       "button": "c",
       "name": "BARRIER ORB",
       "icon": "",
+      "iconUrl": "",
       "info": "EQUIP a barrier orb. FIRE places a solid wall. ALT FIRE rotates the targeter.",
       "preview": ""
     },
@@ -30,6 +34,7 @@
       "button": "x",
       "name": "RESURRECTION",
       "icon": "",
+      "iconUrl": "",
       "info": "EQUIP a resurrection ability. FIRE with your crosshairs placed over a dead ally to begin resurrecting them. After a brief channel, the ally will be brought back to life with full health.",
       "preview": ""
     }

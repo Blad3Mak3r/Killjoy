@@ -1,6 +1,7 @@
 {
   "name": "Raze",
   "image": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/blt6fef56a8182d0a81/5ebf2c2798f79d6925dbd6b4/V_AGENTS_587x900_ALL_Raze_2.png",
+  "thumbnail": "https://i.imgur.com/8Fc9Nt2.jpg",
   "avatar": "https://i.imgur.com/g3MxHqn.jpg",
   "role": "Duelist",
   "bio": "Raze explodes out of Brazil with her big personality and big guns. With her blunt-force-trauma playstyle, she excels at flushing entrenched enemies and clearing tight spaces with a generous dose of “boom.”",
@@ -9,6 +10,7 @@
       "button": "q",
       "name": "BLAST PACK",
       "icon": "",
+      "iconUrl": "",
       "info": "INSTANTLY throw a Blast Pack that will stick to surfaces. RE-USE the ability after deployment to detonate, damaging and moving anything hit. Raze isn't damaged by this ability, but will still take fall damage if launched up far enough.",
       "preview": ""
     },
@@ -16,6 +18,7 @@
       "button": "e",
       "name": "PAINT SHELLS",
       "icon": "",
+      "iconUrl": "",
       "info": "EQUIP a cluster grenade. FIRE to throw the grenade, which does damage and creates sub-munitions, each doing damage to anyone in their range.",
       "preview": ""
     },
@@ -23,6 +26,7 @@
       "button": "c",
       "name": "BOOM BOT",
       "icon": "",
+      "iconUrl": "",
       "info": "EQUIP a Boom Bot. FIRE will deploy the bot, causing it to travel in a straight line on the ground, bouncing off walls. The Boom Bot will lock on to any enemies in its frontal cone and chase them, exploding for heavy damage if it reaches them.",
       "preview": ""
     },
@@ -30,6 +34,7 @@
       "button": "x",
       "name": "SHOWSTOPPER",
       "icon": "",
+      "iconUrl": "",
       "info": "EQUIP a rocket launcher. FIRE shoots a rocket that does massive area damage on contact with anything.",
       "preview": ""
     }

@@ -1,6 +1,7 @@
 {
   "name": "Cypher",
   "image": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/blt158572ec37653cf3/5eb7cdc19df5cf37047009d1/V_AGENTS_587x900_Cypher.png",
+  "thumbnail": "https://i.imgur.com/Ti8aMxY.jpg",
   "avatar": "https://i.imgur.com/BTzJmHu.jpg",
   "role": "Sentinel",
   "bio": "The Moroccan information broker, Cypher is a one-man surveillance network who keeps tabs on the enemy's every move. No secret is safe. No maneuver goes unseen. Cypher is always watching.",
@@ -9,6 +10,7 @@
       "button": "q",
       "name": "CYBER CAGE",
       "icon": "",
+      "iconUrl": "",
       "info": "INSTANTLY toss the cyber cage in front of Cypher. Activate to create a zone that blocks vision and slows enemies who pass through it.",
       "preview": ""
     },
@@ -16,6 +18,7 @@
       "button": "e",
       "name": "SPYCAM",
       "icon": "",
+      "iconUrl": "",
       "info": "EQUIP a spycam. FIRE to place the spycam at the targeted location. RE-USE this ability to take control of the camera’s view. While in control of the camera, FIRE to shoot a marking dart. This dart will reveal the location of any player struck by the dart.",
       "preview": ""
     },
@@ -23,6 +26,7 @@
       "button": "c",
       "name": "TRAPWIRE",
       "icon": "",
+      "iconUrl": "",
       "info": "EQUIP a trapwire. FIRE to place a destructible and covert tripwire at the targeted location creating a line that spans between the placed location and the wall opposite. Enemy players who cross a tripwire will be tethered, revealed, and dazed after a short period if they do not destroy the device in time. This ability can be picked up to be REDEPLOYED.",
       "preview": ""
     },
@@ -30,6 +34,7 @@
       "button": "x",
       "name": "NEURAL THEFT",
       "icon": "",
+      "iconUrl": "",
       "info": "INSTANTLY use on a dead enemy player in your crosshairs to reveal the location of all living enemy players.",
       "preview": ""
     }

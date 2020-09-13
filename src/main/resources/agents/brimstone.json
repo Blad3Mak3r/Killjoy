@@ -1,6 +1,7 @@
 {
   "name": "Brimstone",
   "image": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/blt26fcf1b5752514ee/5eb7cdbfc1dc88298d5d3799/V_AGENTS_587x900_Brimstone.png",
+  "thumbnail": "https://i.imgur.com/rehNMvu.jpg",
   "avatar": "https://i.imgur.com/kww9EGa.jpg",
   "role": "Controller",
   "bio": "Joining from the USA, Brimstone's orbital arsenal ensures his squad always has the advantage. His ability to deliver utility precisely and from a distance make him an unmatched boots-on-the-ground commander.",
@@ -9,6 +10,7 @@
       "button": "q",
       "name": "INCENDIARY",
       "icon": "",
+      "iconUrl": "",
       "info": "EQUIP an incendiary grenade launcher. FIRE to launch a grenade that detonates as it comes to a rest on the floor, creating a lingering fire zone that damages players within the zone.",
       "preview": ""
     },
@@ -16,6 +18,7 @@
       "button": "e",
       "name": "SKY SMOKE",
       "icon": "",
+      "iconUrl": "",
       "info": "EQUIP a tactical map. FIRE to set locations where Brimstone’s smoke clouds will land. ALTERNATE FIRE to confirm, launching long-lasting smoke clouds that block vision in the selected area.",
       "preview": ""
     },
@@ -23,6 +26,7 @@
       "button": "c",
       "name": "STIM BEACON",
       "icon": "",
+      "iconUrl": "",
       "info": "EQUIP a stim beacon. FIRE to toss the stim beacon in front of Brimstone. Upon landing, the stim beacon will create a field that grants players RapidFire.",
       "preview": ""
     },
@@ -30,6 +34,7 @@
       "button": "x",
       "name": "ORBITAL STRIKE",
       "icon": "",
+      "iconUrl": "",
       "info": "EQUIP a tactical map. FIRE to launch a lingering orbital strike laser at the selected location, dealing high damage-over-time to players caught in the selected area.",
       "preview": ""
     }
