@@ -1,0 +1,37 @@
+{
+  "name": "Jett",
+  "image": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/bltceaa6cf20d328bd5/5eb7cdc1b1f2e27c950d2aaa/V_AGENTS_587x900_Jett.png",
+  "avatar": "",
+  "role": "Duelist",
+  "bio": "Representing her home country of South Korea, Jett's agile and evasive fighting style lets her take risks no one else can. She runs circles around every skirmish, cutting enemies before they even know what hit them.",
+  "skills": [
+    {
+      "button": "q",
+      "name": "UPDRAFT",
+      "icon": "",
+      "info": "Propulsa INSTANTÁNEAMENTE a Jett a mucha altura hacia arriba.",
+      "preview": ""
+    },
+    {
+      "button": "e",
+      "name": "TAILWIND",
+      "icon": "",
+      "info": "INSTANTLY propel Jett in the direction she is moving. If Jett is standing still, she will propel forward.",
+      "preview": ""
+    },
+    {
+      "button": "c",
+      "name": "CLOUDBURST",
+      "icon": "",
+      "info": "INSTANTLY throw a projectile that expands into a brief vision-blocking cloud on impact with a surface. HOLD the ability key to curve the smoke in the direction of your crosshair.",
+      "preview": ""
+    },
+    {
+      "button": "x",
+      "name": "BLADE STORM",
+      "icon": "",
+      "info": "EQUIP a set of highly accurate knives that recharge on killing an opponent. FIRE to throw a single knife at your target. ALTERNATE FIRE to throw all remaining daggers at your target.",
+      "preview": ""
+    }
+  ]
+}
