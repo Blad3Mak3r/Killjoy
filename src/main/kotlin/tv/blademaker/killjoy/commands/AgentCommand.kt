@@ -2,6 +2,7 @@ package tv.blademaker.killjoy.commands
 
 import tv.blademaker.killjoy.Launcher
 import tv.blademaker.killjoy.framework.Category
+import tv.blademaker.killjoy.framework.CommandArgument
 import tv.blademaker.killjoy.framework.CommandContext
 import tv.blademaker.killjoy.framework.abs.Command
 import tv.blademaker.killjoy.framework.annotations.CommandMeta
@@ -28,4 +29,9 @@ class AgentCommand : Command() {
             ctx.send(agent.asEmbed().build()).queue()
         }
     }
+
+    override val args: List<CommandArgument>
+        get() = listOf(
+            CommandArgument("agent_name", "An agent name [jett]", false)
+        )
 }
