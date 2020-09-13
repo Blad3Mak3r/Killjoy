@@ -25,7 +25,9 @@ data class Agent (
     )
 
     enum class Role {
+        Controller,
         Duelist,
+        Initiator,
         Sentinel;
 
         companion object {
