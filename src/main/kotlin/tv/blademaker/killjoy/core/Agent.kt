@@ -12,10 +12,6 @@ data class Agent (
     val skills: List<Skill>
 ) {
 
-    init {
-        log.info("Loaded agent \"$name\" successfully.")
-    }
-
     constructor(json: JSONObject) : this(
         json.getString("name"),
         json.getString("bio"),
@@ -69,9 +65,5 @@ data class Agent (
         companion object {
             fun ofAll(array: JSONArray) = array.map { it as JSONObject }.map { Skill(it) }
         }
-    }
-
-    companion object {
-        private val log = LoggerFactory.getLogger("AgentLoad")
     }
 }
