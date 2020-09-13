@@ -19,7 +19,7 @@ object Launcher {
     lateinit var info: ApplicationInfo
         private set
 
-    lateinit var agentsCollection: List<Agent>
+    lateinit var agents: List<Agent>
         private set
 
     val rateLimiter: RateLimiter = RateLimiter.Builder().setQuota(20).setExpirationTime(1, TimeUnit.MINUTES).build()
@@ -27,7 +27,7 @@ object Launcher {
     @JvmStatic
     fun main(args: Array<String>) {
 
-        agentsCollection = loadAgents()
+        agents = loadAgents()
 
 
     }
