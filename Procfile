@@ -1,1 +1,1 @@
-worker: java -jar build/libs/KilljoyAI.jar
+worker: java -jar target/KilljoyAI.jar
