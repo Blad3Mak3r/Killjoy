@@ -20,6 +20,7 @@ import tv.blademaker.killjoy.framework.annotations.CommandMeta
 import tv.blademaker.killjoy.framework.annotations.SubCommandMeta
 import tv.blademaker.killjoy.Launcher
 import tv.blademaker.killjoy.commands.AgentCommand
+import tv.blademaker.killjoy.commands.ArsenalCommand
 import tv.blademaker.killjoy.commands.HelpCommand
 import tv.blademaker.killjoy.commands.SkillCommand
 import tv.blademaker.killjoy.utils.Emojis
@@ -46,6 +47,7 @@ class CommandRegistry : ListenerAdapter() {
         })
         addCommands(
                 AgentCommand(),
+                ArsenalCommand(),
                 HelpCommand(),
                 SkillCommand()
         )
@@ -140,7 +142,6 @@ class CommandRegistry : ListenerAdapter() {
 
     private fun analiceMessage(event: GuildMessageReceivedEvent, prefix: String) {
         val channel = event.channel
-        val author = event.author
         val bot = event.guild.selfMember
 
         if (!bot.hasPermission(channel, Permission.MESSAGE_WRITE))
