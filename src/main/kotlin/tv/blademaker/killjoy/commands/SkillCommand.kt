@@ -18,7 +18,7 @@ class SkillCommand : Command() {
         val skill = Launcher.getSkills().find { it.id.equals(ctx.args[0], true) }
             ?: return ctx.send(Emojis.NoEntry, "I have not been able to find that skill...").queue()
 
-        val agent = Launcher.getAgents().find { it.skills.any { s -> s === skill } }!!
+        val agent = Launcher.agents.find { it.skills.any { s -> s === skill } }!!
 
         ctx.embed {
             setAuthor(agent.name, null, agent.avatar)
