@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory
 import tv.blademaker.killjoy.framework.CommandRegistry
 import tv.blademaker.killjoy.utils.Loaders
 import tv.blademaker.killjoy.valorant.Agent
+import tv.blademaker.killjoy.valorant.Weapon
 import java.rmi.registry.LocateRegistry
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
@@ -33,7 +34,8 @@ object Launcher {
     lateinit var commandRegistry: CommandRegistry
         private set
 
-    private lateinit var agents: Set<Agent>
+    lateinit var agents: List<Agent>
+    lateinit var arsenal: List<Weapon>
 
     val rateLimiter: RateLimiter = RateLimiter.Builder().setQuota(20).setExpirationTime(1, TimeUnit.MINUTES).build()
 
@@ -42,7 +44,9 @@ object Launcher {
 
         try {
             agents = Loaders.loadAgents()
+            arsenal = Loaders.loadArsenal()
         } catch (e: Throwable) {
+            e.printStackTrace()
             exitProcess(0)
         }
 
@@ -75,6 +79,10 @@ object Launcher {
 
     fun getAgent(name: String) = agents.find { it.name.equals(name, true) }
 
+    fun getWeapon(name: String) = arsenal.find { it.name.equals(name, true) }
+
+    fun getWeaponById(id: String) = arsenal.find { it.id.equals(id, true) }
+
     fun getAgentsByRole(name: String): List<Agent>? {
         val result = kotlin.runCatching { Agent.Role.of(name) }
         if (result.isFailure) return null
@@ -82,8 +90,6 @@ object Launcher {
     }
 
     fun getSkills() = agents.map { it.skills }.reduce { acc, list -> acc + list }
-
-    fun getAgents() = agents
 
     private val log = LoggerFactory.getLogger(Launcher::class.java)
 }
