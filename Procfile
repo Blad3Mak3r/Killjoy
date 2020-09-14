@@ -1,0 +1,1 @@
+worker: java -jar build/libs/KilljoyAI.jar

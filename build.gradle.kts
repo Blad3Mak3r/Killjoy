@@ -10,6 +10,10 @@ plugins {
 
 val jdaVersion = "4.2.0_204"
 
+application {
+    mainClassName = "tv.blademaker.killjoy.Launcher"
+}
+
 group = "tv.blademaker"
 version = "1.0-SNAPSHOT"
 
@@ -52,4 +56,17 @@ tasks.withType<ShadowJar> {
     archiveBaseName.set("KilljoyAI")
     archiveClassifier.set("")
     archiveVersion.set("")
+}
+
+tasks.withType<Jar> {
+    manifest {
+        attributes["Main-Class"] = "tv.blademaker.killjoy.Launcher"
+    }
+
+    from(sourceSets.main.get().output)
+
+    dependsOn(configurations.runtimeClasspath)
+    from({
+        configurations.runtimeClasspath.get().filter { it.name.endsWith("jar") }.map { zipTree(it) }
+    })
 }
