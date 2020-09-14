@@ -18,7 +18,7 @@ class AgentCommand : Command() {
     override fun handle(ctx: CommandContext) {
 
         if (ctx.args.isEmpty()) {
-            val agents = Launcher.getAgents()
+            val agents = Launcher.agents
 
             ctx.embed {
                 setTitle("Valorant Agents")
