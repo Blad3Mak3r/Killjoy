@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit
 class InviteCommand : Command() {
 
     override fun handle(ctx: CommandContext) {
-        ctx.send(Emojis.ArrowRight, "Here is the invitation link to invite me tu your servers:\n$INVITE\n`` This message will be deleted in 1 min. ``")
+        ctx.send(Emojis.ArrowRight, "Here is the invitation link to invite me to your servers:\n$INVITE\n`` This message will be deleted in 1 min. ``")
             .delay(1, TimeUnit.MINUTES)
             .flatMap {
                 it.delete()
