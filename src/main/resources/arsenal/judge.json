@@ -1,0 +1,10 @@
+{
+  "name": "Judge",
+  "short": "Automatic, rapid fire shotgun that provides sustained high damage.",
+  "type": "Shotguns",
+  "descriptions": [
+    "The Judge is stable at the stand but volatile when fired rapidly.",
+    "Primary fire hammers short range targets and you’ll need to be steady to nail anything beyond an arm's-length."
+  ],
+  "thumbnail": "https://i.imgur.com/hZuCs0m.jpg"
+}

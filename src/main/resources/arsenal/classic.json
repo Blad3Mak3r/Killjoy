@@ -1,0 +1,9 @@
+{
+  "name": "Classic",
+  "short": "Lightweight and versatile, the default weapon for all is an instant classic.",
+  "type": "Sidearms",
+  "descriptions": [
+    "Primary fire lands precise shots when still, and is equipped with an alternate burst-firing mode for close encounters."
+  ],
+  "thumbnail": "https://i.imgur.com/exUFQs4.jpg"
+}

@@ -1,0 +1,9 @@
+{
+  "name": "Guardian",
+  "short": "Shines in the hands of a patient shooter.",
+  "type": "Rifles",
+  "descriptions": [
+    "The designated marksman rifle. Heavier and less mobile relative to other rifles but precise and powerful. Headhunt when enemies appear at medium to long distances."
+  ],
+  "thumbnail": "https://i.imgur.com/nT12CWl.jpg"
+}
