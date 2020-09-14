@@ -10,7 +10,7 @@ import tv.blademaker.killjoy.framework.annotations.CommandMeta
 import tv.blademaker.killjoy.utils.Emojis
 import tv.blademaker.killjoy.utils.Utils
 
-@CommandMeta("skills", Category.Basic, aliases = ["skill"])
+@CommandMeta("skills", Category.Game, aliases = ["skill"])
 class SkillCommand : Command() {
     override fun handle(ctx: CommandContext) {
         if (ctx.args.isEmpty()) return Utils.Commands.replyWrongUsage(ctx, this)
@@ -36,4 +36,6 @@ class SkillCommand : Command() {
         get() = listOf(
             CommandArgument("skill_name", "A Skill name [shock-bolt]", true)
         )
+
+
 }
