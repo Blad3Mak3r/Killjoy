@@ -72,10 +72,7 @@ tasks.withType<Jar> {
 }
 
 tasks.register("stage") {
-    dependsOn("shadowJar")
-    copy {
-        from("build/libs/KilljoyAI.jar")
-        into("target/")
-    }
     dependsOn("clean")
+    dependsOn("shadowJar")
+
 }

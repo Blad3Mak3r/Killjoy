@@ -1,5 +1,4 @@
 *.psd
 *.jpg
-/build
-/src
+*.json
 /assets
