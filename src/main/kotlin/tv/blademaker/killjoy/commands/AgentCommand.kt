@@ -9,8 +9,12 @@ import tv.blademaker.killjoy.framework.abs.Command
 import tv.blademaker.killjoy.framework.annotations.CommandMeta
 import tv.blademaker.killjoy.utils.Emojis
 
-@CommandMeta("agents", Category.Basic, aliases = ["agent"])
+@CommandMeta("agents", Category.Game, aliases = ["agent"])
 class AgentCommand : Command() {
+
+    override val help: String
+        get() = HELP
+
     override fun handle(ctx: CommandContext) {
 
         if (ctx.args.isEmpty()) {
@@ -48,8 +52,13 @@ class AgentCommand : Command() {
     }
 
     override val args: List<CommandArgument>
-        get() = listOf(
-            CommandArgument("agent_name", "An agent name [jett]", false),
-            CommandArgument("skill_button", "The button used to use this skill [q]", false)
+        get() = ARGS
+
+    companion object {
+        private const val HELP = "Get information and statistics about a Valorant agent"
+        private val ARGS = listOf(
+                CommandArgument("agent_name", "An agent name [jett]", false),
+                CommandArgument("skill_button", "The button used to use this skill [q]", false)
         )
+    }
 }
