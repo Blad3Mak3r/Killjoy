@@ -1,4 +1,4 @@
-package tv.blademaker.killjoy.commands
+package tv.blademaker.killjoy.commands.games
 
 import tv.blademaker.killjoy.Launcher
 import tv.blademaker.killjoy.framework.Category

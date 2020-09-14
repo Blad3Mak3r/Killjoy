@@ -19,10 +19,11 @@ import tv.blademaker.killjoy.framework.abs.SubCommand
 import tv.blademaker.killjoy.framework.annotations.CommandMeta
 import tv.blademaker.killjoy.framework.annotations.SubCommandMeta
 import tv.blademaker.killjoy.Launcher
-import tv.blademaker.killjoy.commands.AgentCommand
-import tv.blademaker.killjoy.commands.ArsenalCommand
-import tv.blademaker.killjoy.commands.HelpCommand
-import tv.blademaker.killjoy.commands.SkillCommand
+import tv.blademaker.killjoy.commands.games.AgentCommand
+import tv.blademaker.killjoy.commands.games.ArsenalCommand
+import tv.blademaker.killjoy.commands.info.HelpCommand
+import tv.blademaker.killjoy.commands.games.SkillCommand
+import tv.blademaker.killjoy.commands.info.InviteCommand
 import tv.blademaker.killjoy.utils.Emojis
 import tv.blademaker.killjoy.utils.SentryUtils
 import tv.blademaker.killjoy.utils.Utils
@@ -46,10 +47,11 @@ class CommandRegistry : ListenerAdapter() {
             executor.shutdown()
         })
         addCommands(
-                AgentCommand(),
-                ArsenalCommand(),
-                HelpCommand(),
-                SkillCommand()
+            AgentCommand(),
+            ArsenalCommand(),
+            HelpCommand(),
+            InviteCommand(),
+            SkillCommand()
         )
     }
 
