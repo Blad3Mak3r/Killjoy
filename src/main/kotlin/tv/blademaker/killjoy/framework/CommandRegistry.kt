@@ -20,6 +20,7 @@ import tv.blademaker.killjoy.framework.annotations.CommandMeta
 import tv.blademaker.killjoy.framework.annotations.SubCommandMeta
 import tv.blademaker.killjoy.Launcher
 import tv.blademaker.killjoy.commands.AgentCommand
+import tv.blademaker.killjoy.commands.HelpCommand
 import tv.blademaker.killjoy.commands.SkillCommand
 import tv.blademaker.killjoy.utils.Emojis
 import tv.blademaker.killjoy.utils.SentryUtils
@@ -44,8 +45,9 @@ class CommandRegistry : ListenerAdapter() {
             executor.shutdown()
         })
         addCommands(
-            AgentCommand(),
-            SkillCommand()
+                AgentCommand(),
+                HelpCommand(),
+                SkillCommand()
         )
     }
 
