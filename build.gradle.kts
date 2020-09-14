@@ -70,3 +70,8 @@ tasks.withType<Jar> {
         configurations.runtimeClasspath.get().filter { it.name.endsWith("jar") }.map { zipTree(it) }
     })
 }
+
+tasks.register("stage") {
+    dependsOn("clean")
+    dependsOn("shadowJar")
+}
