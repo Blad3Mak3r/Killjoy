@@ -16,11 +16,11 @@ class HelpCommand : Command() {
                 setColor(ColorExtra.VAL_BLUE)
                 setTitle("Killjoy help")
 
-                addField("Command Usage", "Killjoy is a very easy to use bot, the prefix is ** joy ** and you can execute a command simply using **joy command**," +
-                        " for example **joy agents** and you can also further explore the possibilities of that command by adding arguments as," +
-                        " **joy agents killjoy** that will show you the information of the Valorant agent that you want.", true)
+                addField("Command Usage", "Killjoy is a very easy to use bot, the prefix is **`` joy ``** and you can execute a command simply using **`` joy command ``**," +
+                        " for example **`` joy agents ``** and you can also further explore the possibilities of that command by adding arguments as," +
+                        " **`` joy agents killjoy ``** that will show you the information of the Valorant agent that you want.", true)
                 addField("Commands with arguments", "In case you need specific information about a command," +
-                        " you can use this command adding the name of the command behind as an argument **joy help command_name** for example **joy help skills**", false)
+                        " you can use this command adding the name of the command behind as an argument **`` joy help command_name ``** for example **`` joy help skills ``**", false)
 
                 addBlankField(false)
                 for (category in Category.values()) {
