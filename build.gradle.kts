@@ -74,4 +74,5 @@ tasks.withType<Jar> {
 tasks.register("stage") {
     dependsOn("clean")
     dependsOn("shadowJar")
+    dependsOn("clean")
 }
