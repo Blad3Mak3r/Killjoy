@@ -1,0 +1,5 @@
+*.psd
+*.jpg
+/build
+/src
+/assets
