@@ -5,5 +5,8 @@
   "descriptions": [
     "Go full auto for anyone who tests you up close and short controlled bursts scramble enemies from anywhere. Best when fired while stationary."
   ],
-  "thumbnail": "https://i.imgur.com/KZ7nWmq.jpg"
+  "thumbnail": "https://i.imgur.com/KZ7nWmq.jpg",
+  "cost": 2900,
+  "magazine": 30,
+  "wall_penetration": "Medium"
 }

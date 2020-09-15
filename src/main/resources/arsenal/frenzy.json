@@ -5,5 +5,8 @@
   "descriptions": [
     "Lightweight machine pistol that excels at firing on the move. It’s high rate-of-fire can be difficult to control, so try short bursts at medium ranges."
   ],
-  "thumbnail": "https://i.imgur.com/uIghW1N.jpg"
+  "thumbnail": "https://i.imgur.com/uIghW1N.jpg",
+  "cost": 400,
+  "magazine": 13,
+  "wall_penetration": "Low"
 }

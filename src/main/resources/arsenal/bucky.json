@@ -5,5 +5,8 @@
   "descriptions": [
     "Heavy but stable, Bucky’s primary fire is for holding tight corners or charging close quarters. Alternate fire strikes targets at medium range."
   ],
-  "thumbnail": "https://i.imgur.com/KBTTRcx.jpg"
+  "thumbnail": "https://i.imgur.com/KBTTRcx.jpg",
+  "cost": 600,
+  "magazine": 5,
+  "wall_penetration": "Low"
 }

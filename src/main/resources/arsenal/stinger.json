@@ -6,5 +6,8 @@
     "This SMG is more potent at medium to long range than its counterparts, but at the cost of firing rate and mobility.",
     "The 20-round mag gets wasted in recoil-filled sprays, but lands lethal blows at medium distances with ADS and controlled fire."
   ],
-  "thumbnail": "https://i.imgur.com/mU31Egf.jpg"
+  "thumbnail": "https://i.imgur.com/mU31Egf.jpg",
+  "cost": 1000,
+  "magazine": 20,
+  "wall_penetration": "Low"
 }

@@ -5,5 +5,8 @@
   "descriptions": [
     "Primary fire lands precise shots when still, and is equipped with an alternate burst-firing mode for close encounters."
   ],
-  "thumbnail": "https://i.imgur.com/exUFQs4.jpg"
+  "thumbnail": "https://i.imgur.com/exUFQs4.jpg",
+  "cost": 0,
+  "magazine": 12,
+  "wall_penetration": "Low"
 }

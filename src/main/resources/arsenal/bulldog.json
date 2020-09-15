@@ -5,5 +5,8 @@
   "descriptions": [
     "A surefire beast when you can pick your shots. Alt. fire let’s you ADS and spew accurate, short bursts at anyone who tries you from medium to long-range."
   ],
-  "thumbnail": "https://i.imgur.com/NkGyYlz.jpg"
+  "thumbnail": "https://i.imgur.com/NkGyYlz.jpg",
+  "cost": 2100,
+  "magazine": 24,
+  "wall_penetration": "Medium"
 }

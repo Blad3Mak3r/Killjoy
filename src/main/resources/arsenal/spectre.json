@@ -6,5 +6,8 @@
     "A jack-of-all-trades weapon with a great balance of damage, fire rate, and accuracy—at both short and mid range.",
     "It haunts the corners of every map and requires only steady aim to drop foes at long distance."
   ],
-  "thumbnail": "https://i.imgur.com/U2cY14b.jpg"
+  "thumbnail": "https://i.imgur.com/U2cY14b.jpg",
+  "cost": 1600,
+  "magazine": 30,
+  "wall_penetration": "Medium"
 }

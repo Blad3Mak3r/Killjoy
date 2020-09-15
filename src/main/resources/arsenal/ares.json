@@ -5,5 +5,8 @@
   "descriptions": [
     "The Ares’ large magazine means it excels at suppressive fire or dealing heavy damage to clustered groups."
   ],
-  "thumbnail": "https://i.imgur.com/irgdbZ5.jpg"
+  "thumbnail": "https://i.imgur.com/irgdbZ5.jpg",
+  "cost": 1600,
+  "magazine": 50,
+  "wall_penetration": "High"
 }
