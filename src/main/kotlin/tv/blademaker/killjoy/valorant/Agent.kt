@@ -11,6 +11,7 @@ import tv.blademaker.killjoy.framework.ColorExtra
 data class Agent (
     val name: String,
     val bio: String,
+    val origin: String,
     val role: Role,
     val avatar: String,
     val thumbnail: String,
@@ -20,6 +21,7 @@ data class Agent (
     constructor(json: JSONObject) : this(
         json.getString("name"),
         json.getString("bio"),
+        json.getString("origin"),
         Role.of(json.getString("role")),
         json.getString("avatar"),
         json.getString("thumbnail"),
@@ -33,6 +35,7 @@ data class Agent (
             setThumbnail(avatar)
             //setImage(thumbnail)
             setDescription(bio)
+            addField("Origin", origin, true)
             addField("Pick Rate", "Coming soon...", true)
             addField("Win Rate", "Coming soon...", true)
             addBlankField(false)
