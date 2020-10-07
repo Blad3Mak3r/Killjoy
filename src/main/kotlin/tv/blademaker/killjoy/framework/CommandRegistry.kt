@@ -62,31 +62,13 @@ class CommandRegistry : ListenerAdapter() {
 
         if (Launcher.rateLimiter.isExceeded(user.idLong)) return
 
-        try {
+        val mention = "<@!${event.jda.selfUser.id}> "
+        val raw = event.message.contentRaw.trim()
+        val prefix = "joy "
 
-            val mention = "<@!${event.jda.selfUser.id}> "
-            val raw = event.message.contentRaw.trim()
-            val prefix = "joy "
-
-
-            when {
-                raw.startsWith(prefix) -> executor.execute { analiceMessage(event, prefix) }
-                raw.startsWith(mention) -> executor.execute { analiceMessage(event, mention) }
-            }
-
-        } catch (ex: Exception) {
-            Sentry.capture(EventBuilder()
-                    .withMessage("Cannot get config for Guild " + event.guild.name + " (" + event.guild.id + ")")
-                    .withLevel(Event.Level.ERROR)
-                    .withTag("Guild", "${event.guild.name}(${event.guild.id})")
-                    .withTag("Text Channel", "${event.channel.name}(${event.channel.id})")
-                    .withTag("Author", "${event.author.name}(${event.author.id})")
-                    .withSentryInterface(StackTraceInterface(ex.stackTrace))
-                    .withTimestamp(Date.from(Instant.now())))
-
-            ex.printStackTrace()
-
-            log.error("No se ha podido obtener información o crear el Guild " + event.guild.id + "\n" + ex)
+        when {
+            raw.startsWith(prefix) -> executor.execute { analiceMessage(event, prefix) }
+            raw.startsWith(mention) -> executor.execute { analiceMessage(event, mention) }
         }
     }
 
@@ -154,8 +136,6 @@ class CommandRegistry : ListenerAdapter() {
                 .split(" ")
 
         val invoke = split[0].toLowerCase()
-        // val isAdmin = huge.configuration.owners.contains(author.idLong)
-        // val isAdmin = Config.owners.any { it == author.id }
 
         val command = getCommand(invoke) ?: return
 
@@ -173,9 +153,6 @@ class CommandRegistry : ListenerAdapter() {
 
         if (Launcher.rateLimiter.isRateLimited(member.idLong))
             return context.reply(Emojis.Outage, "You are getting rate limited.").queue()
-
-        /*if (huge.cooldownUtils.inCooldown(context, command))
-            return context.message.addReaction(EMOJI_COOLDOWN).queue()*/
 
         val userPermissions = command.userPermissions.filter { !it.isVoice }.toSet()
         val botPermissions = command.botPermissions.filter { !it.isVoice }.toSet()
@@ -232,7 +209,6 @@ class CommandRegistry : ListenerAdapter() {
             try {
                 context.args = context.args.subList(1, context.args.size)
                 command.execute(context)
-                //command.execute(CommandContext(context.event, context.args.subList(1, context.args.size), context.config))
             } catch (ex: Exception) {
                 SentryUtils.sendCommandException(context, command, ex)
             }
@@ -241,6 +217,5 @@ class CommandRegistry : ListenerAdapter() {
 
     companion object {
         private val log = LoggerFactory.getLogger(CommandRegistry::class.java)
-        private const val EMOJI_COOLDOWN = "⌚"
     }
 }
