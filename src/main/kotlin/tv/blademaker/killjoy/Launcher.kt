@@ -13,6 +13,7 @@ import tv.blademaker.killjoy.framework.CommandRegistry
 import tv.blademaker.killjoy.utils.Loaders
 import tv.blademaker.killjoy.valorant.Agent
 import tv.blademaker.killjoy.valorant.Weapon
+import java.lang.management.ManagementFactory
 import java.rmi.registry.LocateRegistry
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
@@ -41,6 +42,8 @@ object Launcher {
 
     @JvmStatic
     fun main(args: Array<String>) {
+
+        log.info("Starting with PID: ${ManagementFactory.getRuntimeMXBean().pid}")
 
         try {
             agents = Loaders.loadAgents()
@@ -71,7 +74,8 @@ object Launcher {
             .disableCache(
                 CacheFlag.VOICE_STATE,
                 CacheFlag.ACTIVITY,
-                CacheFlag.EMOTE
+                CacheFlag.EMOTE,
+                CacheFlag.CLIENT_STATUS
             )
             .build()
 

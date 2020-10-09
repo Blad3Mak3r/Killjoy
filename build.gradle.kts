@@ -15,7 +15,7 @@ application {
 }
 
 group = "tv.blademaker"
-version = "1.0-SNAPSHOT"
+version = "0.2.1"
 
 repositories {
     mavenCentral()
@@ -56,19 +56,6 @@ tasks.withType<ShadowJar> {
     archiveBaseName.set("KilljoyAI")
     archiveClassifier.set("")
     archiveVersion.set("")
-}
-
-tasks.withType<Jar> {
-    manifest {
-        attributes["Main-Class"] = "tv.blademaker.killjoy.Launcher"
-    }
-
-    from(sourceSets.main.get().output)
-
-    dependsOn(configurations.runtimeClasspath)
-    from({
-        configurations.runtimeClasspath.get().filter { it.name.endsWith("jar") }.map { zipTree(it) }
-    })
 }
 
 tasks.register("stage") {
