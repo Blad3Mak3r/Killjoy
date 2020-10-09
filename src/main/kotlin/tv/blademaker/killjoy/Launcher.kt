@@ -17,6 +17,7 @@ import java.lang.management.ManagementFactory
 import java.rmi.registry.LocateRegistry
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
+import kotlin.properties.Delegates
 import kotlin.system.exitProcess
 
 object Launcher {
@@ -24,6 +25,9 @@ object Launcher {
     val scheduler = Executors.newSingleThreadScheduledExecutor()
 
     lateinit var shardManager: ShardManager
+        private set
+
+    var pid by Delegates.notNull<Long>()
         private set
 
     lateinit var config: Any
@@ -43,7 +47,9 @@ object Launcher {
     @JvmStatic
     fun main(args: Array<String>) {
 
-        log.info("Starting with PID: ${ManagementFactory.getRuntimeMXBean().pid}")
+        pid = ProcessHandle.current().pid()
+
+        log.info("Starting with PID: $pid")
 
         try {
             agents = Loaders.loadAgents()
@@ -56,6 +62,7 @@ object Launcher {
         commandRegistry = CommandRegistry()
 
         shardManager = DefaultShardManagerBuilder.createLight(System.getenv("TOKEN"))
+            .setShardsTotal(-1)
             .setActivity(Activity.playing("Valorant | joy help"))
             .setEnableShutdownHook(false)
             .addEventListeners(commandRegistry)
