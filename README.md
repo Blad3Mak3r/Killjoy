@@ -8,9 +8,9 @@ At the moment the bot is pretty straightforward but we have great ideas for it, 
 
 
 ## Current existing commands
-##### [] == Optional command arguments.
-##### () == Required command arguments.
-##### <> == Valid aliases for the command.
+``[]``: Optional command arguments.
+``()``: Required command arguments.
+``<>``: Valid aliases for the command.
 
 - ``joy help`` The basic help command.
 - ``joy help [command]`` Help about the usage of a command.
