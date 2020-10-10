@@ -21,6 +21,7 @@ At the moment the bot is pretty straightforward but we have great ideas for it, 
 - ``joy skills (skill_name)`` Get information adn statistics about the agent's skill you selected.
 - ``joy invite`` Creates a Bot invite url.
 
-<img align="center" style="margin-top: 50px; margin-bottom: 25px" src="/Branding/examples/commands_agents.png" width="80%">
-
-<img align="center" style="margin-top: 25px; margin-bottom: 50px" src="/Branding/examples/commands_arsenal.png" width="80%">
+<div style="width: 100%; display: block; text-align: center;">
+ <img align="center" style="margin: 0 auto;" src="/Branding/examples/commands_agents.png" width="80%">
+ <img align="center" style="margin-top: 25px; margin-bottom: 50px" src="/Branding/examples/commands_arsenal.png" width="80%">
+</div>
