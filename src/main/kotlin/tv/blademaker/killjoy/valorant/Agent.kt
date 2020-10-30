@@ -7,6 +7,7 @@ import net.dv8tion.jda.api.entities.MessageEmbed
 import org.json.JSONArray
 import org.json.JSONObject
 import tv.blademaker.killjoy.framework.ColorExtra
+import tv.blademaker.killjoy.utils.extensions.isUrl
 
 data class Agent (
     val name: String,
@@ -19,14 +20,18 @@ data class Agent (
 ) {
 
     constructor(json: JSONObject) : this(
-        json.getString("name"),
-        json.getString("bio"),
-        json.getString("origin"),
+        json.getString("name").trim(),
+        json.getString("bio").trim(),
+        json.getString("origin").trim(),
         Role.of(json.getString("role")),
         json.getString("avatar"),
         json.getString("thumbnail"),
         Skill.ofAll(json.getJSONArray("skills"))
     )
+
+    init {
+        check(this.avatar.isUrl()) { "avatar is not a valid url (Agent ${this.name}) [${this.avatar}]" }
+    }
 
     fun asEmbed(): EmbedBuilder {
         return EmbedBuilder().apply {
@@ -80,11 +85,13 @@ data class Agent (
             kotlin.runCatching { json.getString("cost") }.getOrDefault("")
         )
 
+        init {
+            check(this.iconUrl.isUrl()) { "iconUrl is not a valid URL. (Skill $name) [${this.iconUrl}]" }
+            check(this.preview.isUrl()) { "preview is not a valid URL. (Skill $name) [${this.preview}]" }
+        }
+
         val id: String
-            get() = name.toLowerCase()
-                .replace(" ", "")
-                .replace("’", "")
-                .replace("'", "")
+            get() = buildIdentifier(name)
 
         enum class Button {
             Q,
@@ -101,6 +108,10 @@ data class Agent (
 
         companion object {
             fun ofAll(array: JSONArray) = array.map { it as JSONObject }.map { Skill(it) }
+
+            private fun buildIdentifier(str: String): String {
+                return str.trim().toLowerCase().replace(" ", "").replace("’", "").replace("'", "").replace("\"", "")
+            }
         }
     }
 }
