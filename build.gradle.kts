@@ -8,14 +8,12 @@ plugins {
     application
 }
 
-val jdaVersion = "4.2.0_204"
-
 application {
     mainClassName = "tv.blademaker.killjoy.Launcher"
 }
 
 group = "tv.blademaker"
-version = "0.2.1"
+version = "0.3.1"
 
 repositories {
     mavenCentral()
@@ -32,7 +30,7 @@ dependencies {
     implementation("net.hugebot:RateLimiter:v1.0.0")
 
     //  Discord Required
-    implementation("net.dv8tion:JDA:$jdaVersion") { exclude(module = "opus-java") }
+    implementation("net.dv8tion:JDA:4.2.0_+") { exclude(module = "opus-java") }
     implementation("com.jagrosh:jda-utilities:3.0.4")
 
     //  Logging
