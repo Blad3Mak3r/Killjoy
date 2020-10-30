@@ -27,6 +27,7 @@ import tv.blademaker.killjoy.commands.games.ArsenalCommand
 import tv.blademaker.killjoy.commands.info.HelpCommand
 import tv.blademaker.killjoy.commands.games.SkillCommand
 import tv.blademaker.killjoy.commands.info.InviteCommand
+import tv.blademaker.killjoy.commands.info.PingCommand
 import tv.blademaker.killjoy.utils.Emojis
 import tv.blademaker.killjoy.utils.SentryUtils
 import tv.blademaker.killjoy.utils.Utils
@@ -55,6 +56,7 @@ class CommandRegistry : ListenerAdapter() {
             ArsenalCommand(),
             HelpCommand(),
             InviteCommand(),
+            PingCommand(),
             SkillCommand()
         )
     }
