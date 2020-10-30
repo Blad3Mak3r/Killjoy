@@ -41,7 +41,7 @@ data class Agent (
             addBlankField(false)
             setColor(ColorExtra.VAL_RED)
             for (skill in skills) {
-                addField("${skill.icon} [`` ${skill.button.name.toUpperCase()} ``] - ${skill.name}", skill.info, false)
+                addField("`` ${skill.button.name.toUpperCase()} `` - ${skill.name}", skill.info, false)
             }
         }
     }
@@ -65,7 +65,6 @@ data class Agent (
     data class Skill(
         val button: Button,
         val name: String,
-        val icon: String,
         val iconUrl: String,
         val info: String,
         val preview: String,
@@ -75,7 +74,6 @@ data class Agent (
         constructor(json: JSONObject) : this(
             Button.of(json.getString("button")),
             json.getString("name").trim(),
-            json.getString("icon").trim(),
             json.getString("iconUrl").trim(),
             json.getString("info").trim(),
             json.getString("preview").trim(),

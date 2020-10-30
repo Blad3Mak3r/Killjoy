@@ -10,7 +10,6 @@
     {
       "button": "q",
       "name": "CYBER CAGE",
-      "icon": "<:cypher_cybercage:754726771676676219>",
       "iconUrl": "https://i.imgur.com/NH4o6Dc.png",
       "info": "INSTANTLY toss the cyber cage in front of Cypher. Activate to create a zone that blocks vision and slows enemies who pass through it.",
       "preview": "https://i.imgur.com/Apw5dqW.gif",
@@ -19,7 +18,6 @@
     {
       "button": "e",
       "name": "SPYCAM",
-      "icon": "<:cypher_spycam:754726771592790036>",
       "iconUrl": "https://i.imgur.com/TZ7QwE0.png",
       "info": "EQUIP a spycam. FIRE to place the spycam at the targeted location. RE-USE this ability to take control of the camera’s view. While in control of the camera, FIRE to shoot a marking dart. This dart will reveal the location of any player struck by the dart.",
       "preview": "https://i.imgur.com/ffizAhY.gif",
@@ -28,7 +26,6 @@
     {
       "button": "c",
       "name": "TRAPWIRE",
-      "icon": "<:cypher_trapwire:754726771529744434>",
       "iconUrl": "https://i.imgur.com/JWvlhyU.png",
       "info": "EQUIP a trapwire. FIRE to place a destructible and covert tripwire at the targeted location creating a line that spans between the placed location and the wall opposite. Enemy players who cross a tripwire will be tethered, revealed, and dazed after a short period if they do not destroy the device in time. This ability can be picked up to be REDEPLOYED.",
       "preview": "https://i.imgur.com/2Fj8JuQ.gif",
@@ -37,7 +34,6 @@
     {
       "button": "x",
       "name": "NEURAL THEFT",
-      "icon": "<:cypher_neuraltheft:754726771487670322>",
       "iconUrl": "https://i.imgur.com/5htVVDl.png",
       "info": "INSTANTLY use on a dead enemy player in your crosshairs to reveal the location of all living enemy players.",
       "preview": "https://i.imgur.com/75RAgLO.gif",

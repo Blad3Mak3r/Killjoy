@@ -10,7 +10,6 @@
     {
       "button": "q",
       "name": "ALARMBOT",
-      "icon": "<:killjoy_alarmbot:754679892129349682>",
       "iconUrl": "https://i.imgur.com/zjHG8fV.png",
       "info": "EQUIP a covert Alarmbot. FIRE to deploy a bot that hunts down enemies that get in range. After reaching its target, the bot explodes, applying Vulernable. HOLD EQUIP to recall a deployed bot.",
       "preview": "https://i.imgur.com/mH3QegZ.gif",
@@ -19,7 +18,6 @@
     {
       "button": "e",
       "name": "TURRET",
-      "icon": "<:killjoy_turret:754679892020559895>",
       "iconUrl": "https://i.imgur.com/igHkbSQ.png",
       "info": "EQUIP a Turret. FIRE to deploy a turret that fires at enemies in a 180 degree cone. HOLD EQUIP to recall the deployed turret.",
       "preview": "https://i.imgur.com/LJCabgf.gif",
@@ -28,7 +26,6 @@
     {
       "button": "c",
       "name": "NANOSWARM",
-      "icon": "<:killjoy_nanoswarm:754679892276150273>",
       "iconUrl": "https://i.imgur.com/HVrJZbT.png",
       "info": "EQUIP a Nanoswarm grenade. FIRE to throw the grenade. Upon landing, the Nanoswarm goes covert. ACTIVATE the Nanoswarm to deploy a damaging swarm of nanobots.",
       "preview": "https://i.imgur.com/rg87btl.gif",
@@ -37,7 +34,6 @@
     {
       "button": "x",
       "name": "LOCKDOWN",
-      "icon": "<:killjoy_lockdown:754679892230013009>",
       "iconUrl": "https://i.imgur.com/CLpyOPK.png",
       "info": "EQUIP the Lockdown device. FIRE to deploy the device. After a long windup, the device Detains all enemies caught in the radius. The device can be destroyed by enemies.",
       "preview": "https://i.imgur.com/7fiHtro.gif",

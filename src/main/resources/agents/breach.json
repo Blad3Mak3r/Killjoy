@@ -10,7 +10,6 @@
     {
       "button": "q",
       "name": "FLASHPOINT",
-      "icon": "<:breach_flashpoint:754714142845173801>",
       "iconUrl": "https://i.imgur.com/hrBpskk.png",
       "info": "EQUIP a blinding charge. FIRE the charge to set fast-acting burst through the wall. The charge detonates to blind all players looking at it.",
       "preview": "https://i.imgur.com/uWDrgP4.gif",
@@ -19,7 +18,6 @@
     {
       "button": "e",
       "name": "FAULT LINE",
-      "icon": "<:breach_faultline:754714143042568252>",
       "iconUrl": "https://i.imgur.com/X43pgOy.png",
       "info": "EQUIP a seismic blast. HOLD FIRE to increase the distance. RELEASE to set off the quake, dazing all players in its zone and in a line up to the zone.",
       "preview": "https://i.imgur.com/mIFpQyW.gif",
@@ -28,7 +26,6 @@
     {
       "button": "c",
       "name": "AFTERSHOCK",
-      "icon": "<:breach_aftershock:754714143038373929>",
       "iconUrl": "https://i.imgur.com/xkDbjyM.png",
       "info": "EQUIP a fusion charge. FIRE the charge to set a slow-acting burst through the wall. The burst does heavy damage to anyone caught in its area.",
       "preview": "https://i.imgur.com/ZnTMU2s.gif",
@@ -37,7 +34,6 @@
     {
       "button": "x",
       "name": "ROLLING THUNDER",
-      "icon": "<:breach_rollingthunder:754714143193432094>",
       "iconUrl": "https://i.imgur.com/kLonqor.png",
       "info": "EQUIP a seismic charge. FIRE to send a cascading quake through all terrain in a large cone. The quake dazes and knocks up anyone caught in it.",
       "preview": "https://i.imgur.com/YQauYNU.gif",

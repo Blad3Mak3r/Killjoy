@@ -10,7 +10,6 @@
     {
       "button": "q",
       "name": "PARANOIA",
-      "icon": "<:omen_paranoia:754716078978105345>",
       "iconUrl": "https://i.imgur.com/jRLpluH.png",
       "info": "INSTANTLY fire a shadow projectile forward, briefly reducing the vision range of all players it touches. This projectile can pass straight through walls.",
       "preview": "https://i.imgur.com/wPpJObt.gif",
@@ -19,7 +18,6 @@
     {
       "button": "e",
       "name": "DARK COVER",
-      "icon": "<:omen_darkcover:754716079024111626>",
       "iconUrl": "https://i.imgur.com/UL6imyE.png",
       "info": "EQUIP a shadow orb and see its range indicator. FIRE to throw the shadow orb to the marked location, creating a long-lasting shadow sphere that blocks vision. HOLD ALTERNATE FIRE while targeting to move the marker further away. HOLD the ability key with targeting to move the market closer.",
       "preview": "https://i.imgur.com/TTvhYlL.gif",
@@ -28,7 +26,6 @@
     {
       "button": "c",
       "name": "SHROUDED STEP",
-      "icon": "<:omen_shroudedstep:754716079041020015>",
       "iconUrl": "https://i.imgur.com/v09gtWO.png",
       "info": "EQUIP a shadow walk ability and see its range indicator. FIRE to begin a brief channel, then teleport to the marked location.",
       "preview": "https://i.imgur.com/6vADqCY.gif",
@@ -37,7 +34,6 @@
     {
       "button": "x",
       "name": "FROM THE SHADOWS",
-      "icon": "<:omen_fromtheshadows:754716079028174909>",
       "iconUrl": "https://i.imgur.com/6UQkwaZ.png",
       "info": "EQUIP a tactical map. FIRE to begin teleporting to the selected location. While teleporting, Omen will appear as a Shade that can be destroyed by an enemy to cancel his teleport.",
       "preview": "https://i.imgur.com/yJzIGaW.gif",
