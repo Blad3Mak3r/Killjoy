@@ -8,5 +8,6 @@ phoenix
 raze
 reyna
 sage
+skye
 sova
 viper
