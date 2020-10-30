@@ -15,7 +15,7 @@ class AgentCommand : Command() {
     override val help: String
         get() = HELP
 
-    override fun handle(ctx: CommandContext) {
+    override suspend fun handle(ctx: CommandContext) {
 
         if (ctx.args.isEmpty()) {
             val agents = Launcher.agents

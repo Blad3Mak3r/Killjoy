@@ -17,7 +17,7 @@ abstract class Command {
     private val hits = AtomicInteger(0)
 
     @Throws(Exception::class)
-    fun execute(ctx: CommandContext) {
+    suspend fun execute(ctx: CommandContext) {
         hits.incrementAndGet()
         /*if (this.javaClass.isAnnotationPresent(PremiumCommand::class.java)) {
             //val lvlRequired = this.javaClass.getAnnotation(PremiumCommand::class.java).value
@@ -33,12 +33,12 @@ abstract class Command {
         if (checks(ctx)) handle(ctx)
     }
 
-    protected open fun checks(ctx: CommandContext): Boolean {
+    protected open suspend fun checks(ctx: CommandContext): Boolean {
         return true
     }
 
     @Throws(Exception::class)
-    protected abstract fun handle(ctx: CommandContext)
+    protected abstract suspend fun handle(ctx: CommandContext)
 
     open val help: String
         get() = "Not help provided for this command."

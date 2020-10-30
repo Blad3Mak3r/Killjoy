@@ -10,6 +10,9 @@ import io.sentry.Sentry
 import io.sentry.event.Event
 import io.sentry.event.EventBuilder
 import io.sentry.event.interfaces.StackTraceInterface
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.asCoroutineDispatcher
+import kotlinx.coroutines.launch
 import net.dv8tion.jda.api.Permission
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
 import net.dv8tion.jda.api.hooks.ListenerAdapter
@@ -36,8 +39,9 @@ import kotlin.collections.HashMap
 
 class CommandRegistry : ListenerAdapter() {
 
-    private val executor = Executors.newCachedThreadPool(
-            ThreadFactoryBuilder().setNameFormat("CommandExecutor #%d").build())
+    private val executor = Executors.newCachedThreadPool(ThreadFactoryBuilder().setNameFormat("command-worker-%d").build())
+    private val dispatcher = executor.asCoroutineDispatcher()
+    private val commandsScope = CoroutineScope(dispatcher)
 
     private val commands: HashMap<String, Command> = HashMap()
 
@@ -67,8 +71,8 @@ class CommandRegistry : ListenerAdapter() {
         val prefix = "joy "
 
         when {
-            raw.startsWith(prefix) -> executor.execute { analiceMessage(event, prefix) }
-            raw.startsWith(mention) -> executor.execute { analiceMessage(event, mention) }
+            raw.startsWith(prefix) -> commandsScope.launch { analiceMessage(event, prefix) }
+            raw.startsWith(mention) -> commandsScope.launch { analiceMessage(event, mention) }
         }
     }
 
@@ -124,7 +128,7 @@ class CommandRegistry : ListenerAdapter() {
         }
     }
 
-    private fun analiceMessage(event: GuildMessageReceivedEvent, prefix: String) {
+    private suspend fun analiceMessage(event: GuildMessageReceivedEvent, prefix: String) {
         val channel = event.channel
         val bot = event.guild.selfMember
 
@@ -145,7 +149,7 @@ class CommandRegistry : ListenerAdapter() {
         handleCommand(CommandContext(event, split.subList(1, split.size)), command)
     }
 
-    private fun handleCommand(context: CommandContext, command: Command) {
+    private suspend fun handleCommand(context: CommandContext, command: Command) {
         log.info("[${context.guild.name}] ${context.author.name} used \"${command.meta.name} ${context.args}\" command in channel ${context.channel.name}")
 
         val channel = context.channel
@@ -170,7 +174,7 @@ class CommandRegistry : ListenerAdapter() {
         handleExecutor(context, command)
     }
 
-    private fun handleExecutor(context: CommandContext, command: Command) {
+    private suspend fun handleExecutor(context: CommandContext, command: Command) {
         if (context.args.isNotEmpty()) {
             val invoke = context.args[0]
             val subCommands = command.subCommands
@@ -190,7 +194,7 @@ class CommandRegistry : ListenerAdapter() {
         } else runCommand(context, command)
     }
 
-    private fun runCommand(context: CommandContext, command: Command) {
+    private suspend fun runCommand(context: CommandContext, command: Command) {
         if (command.meta.isNsfw && !context.channel.isNSFW)
             context.send(Emojis.Nsfw, "You cannot use this command on a **non-NSFW** channel.").queue()
         else {
@@ -202,7 +206,7 @@ class CommandRegistry : ListenerAdapter() {
         }
     }
 
-    private fun runSubCommand(context: CommandContext, command: SubCommand) {
+    private suspend fun runSubCommand(context: CommandContext, command: SubCommand) {
         if (command.meta.isNsfw && !context.channel.isNSFW)
             context.send(Emojis.Nsfw, "You cannot use this command on a **non-NSFW** channel.").queue()
         else {

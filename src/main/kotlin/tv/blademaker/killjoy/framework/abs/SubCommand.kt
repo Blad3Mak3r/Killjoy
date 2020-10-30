@@ -23,14 +23,14 @@ abstract class SubCommand(@JvmField val parent: Command) {
         get() = listOf()
 
     @Throws(Exception::class)
-    fun execute(ctx: CommandContext) {
+    suspend fun execute(ctx: CommandContext) {
         hits.incrementAndGet()
         if (checks(ctx)) handle(ctx)
     }
 
-    internal open fun checks(ctx: CommandContext): Boolean = true
+    internal open suspend fun checks(ctx: CommandContext): Boolean = true
 
     @Throws(Exception::class)
-    protected abstract fun handle(ctx: CommandContext)
+    protected abstract suspend fun handle(ctx: CommandContext)
 
 }

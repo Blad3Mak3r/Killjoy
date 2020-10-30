@@ -10,7 +10,7 @@ import tv.blademaker.killjoy.framework.annotations.CommandMeta
 
 @CommandMeta("help", Category.Information)
 class HelpCommand : Command() {
-    override fun handle(ctx: CommandContext) {
+    override suspend fun handle(ctx: CommandContext) {
         if (ctx.args.isEmpty()) {
             ctx.embed {
                 setColor(ColorExtra.VAL_BLUE)

@@ -12,7 +12,7 @@ import tv.blademaker.killjoy.utils.Utils
 
 @CommandMeta("skills", Category.Game, aliases = ["skill"])
 class SkillCommand : Command() {
-    override fun handle(ctx: CommandContext) {
+    override suspend fun handle(ctx: CommandContext) {
         if (ctx.args.isEmpty()) return Utils.Commands.replyWrongUsage(ctx, this)
 
         val skill = Launcher.getSkills().find { it.id.equals(ctx.args[0], true) }

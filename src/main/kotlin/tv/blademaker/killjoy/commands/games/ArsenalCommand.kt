@@ -10,7 +10,7 @@ import tv.blademaker.killjoy.utils.Emojis
 
 @CommandMeta("arsenal", Category.Game, aliases = ["weapons", "weapon"])
 class ArsenalCommand : Command() {
-    override fun handle(ctx: CommandContext) {
+    override suspend fun handle(ctx: CommandContext) {
         if (ctx.args.isEmpty()) {
             val arsenal = Launcher.arsenal
 
