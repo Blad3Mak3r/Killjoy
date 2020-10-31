@@ -8,6 +8,7 @@ import net.dv8tion.jda.api.sharding.ShardManager
 import net.dv8tion.jda.api.utils.Compression
 import net.dv8tion.jda.api.utils.cache.CacheFlag
 import net.hugebot.ratelimiter.RateLimiter
+import okhttp3.OkHttpClient
 import org.slf4j.LoggerFactory
 import tv.blademaker.killjoy.framework.CommandRegistry
 import tv.blademaker.killjoy.utils.Loaders
@@ -23,6 +24,8 @@ import kotlin.system.exitProcess
 object Launcher {
 
     val scheduler = Executors.newSingleThreadScheduledExecutor()
+
+    val httpClient: OkHttpClient = OkHttpClient()
 
     lateinit var shardManager: ShardManager
         private set

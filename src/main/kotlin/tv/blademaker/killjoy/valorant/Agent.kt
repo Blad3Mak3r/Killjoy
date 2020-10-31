@@ -4,12 +4,22 @@ package tv.blademaker.killjoy.valorant
 
 import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.entities.MessageEmbed
+import okhttp3.Call
+import okhttp3.Callback
+import okhttp3.Request
+import okhttp3.Response
 import org.json.JSONArray
 import org.json.JSONObject
+import org.slf4j.LoggerFactory
+import tv.blademaker.killjoy.Launcher
 import tv.blademaker.killjoy.framework.ColorExtra
 import tv.blademaker.killjoy.utils.extensions.isUrl
+import java.io.IOException
+import java.util.concurrent.TimeUnit
+import java.util.concurrent.atomic.AtomicLong
 
 data class Agent (
+    private val apiName: String,
     val name: String,
     val bio: String,
     val origin: String,
@@ -20,6 +30,7 @@ data class Agent (
 ) {
 
     constructor(json: JSONObject) : this(
+        json.getString("api_name").trim(),
         json.getString("name").trim(),
         json.getString("bio").trim(),
         json.getString("origin").trim(),
@@ -41,8 +52,8 @@ data class Agent (
             //setImage(thumbnail)
             setDescription(bio)
             addField("Origin", origin, true)
-            addField("Pick Rate", "Coming soon...", true)
-            addField("Win Rate", "Coming soon...", true)
+            addField("Win Ratio", String.format("%.2f", Stats[this@Agent.name].first), true)
+            addField("KDA Ratio", String.format("%.2f", Stats[this@Agent.name].second), true)
             addBlankField(false)
             setColor(ColorExtra.VAL_RED)
             for (skill in skills) {
@@ -112,6 +123,56 @@ data class Agent (
             private fun buildIdentifier(str: String): String {
                 return str.trim().toLowerCase().replace(" ", "").replace("’", "").replace("'", "").replace("\"", "")
             }
+        }
+    }
+
+    object Stats {
+        private val statsMap: HashMap<String, Pair<Double, Double>> = hashMapOf()
+        private var lastCheck: AtomicLong = AtomicLong(0L)
+        private const val url = "https://valorantics-ow.kda.gg/tierlist/agent"
+        private val logger = LoggerFactory.getLogger(Stats::class.java)
+
+        operator fun get(agent: String): Pair<Double, Double> {
+            if (lastCheck.get() == 0L || lastCheck.get() < System.currentTimeMillis()) doUpdate()
+
+            return statsMap.getOrDefault(agent, Pair(00.00, 00.00))
+        }
+
+        fun doUpdate() {
+            val r = Request.Builder().apply {
+                url(url)
+                addHeader("User-Agent", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36")
+            }.build()
+            Launcher.httpClient.newCall(r).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+                    logger.warn("Cannot update stats")
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+                    lastCheck.set(System.currentTimeMillis() + TimeUnit.MINUTES.toMillis(30))
+
+                    logger.info("Last check was ${lastCheck.get()}")
+
+                    val content = response.body()?.string() ?: return logger.warn("Cannot update stats [Empty body]")
+                    val obj = JSONObject(content)
+
+                    val stats = obj.getJSONObject("by_agents")
+
+                    Launcher.agents.forEach {
+                        try {
+                            val apiName = it.apiName
+                            val agentStats = stats.getJSONArray("${apiName}_pc_c").getJSONObject(0)
+
+                            statsMap[it.name] = Pair(agentStats.getDouble("win_ratio"), agentStats.getDouble("kda_ratio"))
+                        } catch (e: Throwable) {
+                            logger.error("Cannot update agent stats => ${it.name}\n${e.stackTraceToString()}")
+                        }
+                    }
+
+                    logger.info("Loaded ${statsMap.size} stats for agents.")
+                }
+
+            })
         }
     }
 }
