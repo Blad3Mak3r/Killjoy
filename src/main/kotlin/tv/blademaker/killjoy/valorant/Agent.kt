@@ -146,6 +146,7 @@ data class Agent (
             Launcher.httpClient.newCall(r).enqueue(object : Callback {
                 override fun onFailure(call: Call, e: IOException) {
                     logger.warn("Cannot update stats")
+                    lastCheck.set(System.currentTimeMillis() + TimeUnit.MINUTES.toMillis(2))
                 }
 
                 override fun onResponse(call: Call, response: Response) {
