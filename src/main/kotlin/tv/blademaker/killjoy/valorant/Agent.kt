@@ -155,14 +155,11 @@ data class Agent (
                     logger.info("Last check was ${lastCheck.get()}")
 
                     val content = response.body()?.string() ?: return logger.warn("Cannot update stats [Empty body]")
-                    val obj = JSONObject(content)
-
-                    val stats = obj.getJSONObject("by_agents")
+                    val stats = JSONObject(content).getJSONObject("by_agents")
 
                     Launcher.agents.forEach {
                         try {
-                            val apiName = it.apiName
-                            val agentStats = stats.getJSONArray("${apiName}_pc_c").getJSONObject(0)
+                            val agentStats = stats.getJSONArray("${it.apiName}_pc_c").getJSONObject(0)
 
                             statsMap[it.name] = Pair(agentStats.getDouble("win_ratio"), agentStats.getDouble("kda_ratio"))
                         } catch (e: Throwable) {
