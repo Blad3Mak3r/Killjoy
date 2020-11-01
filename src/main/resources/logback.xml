@@ -11,7 +11,7 @@
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>logs/killjoy.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>logs/hugebot.%d{yyyyMMdd}.log</fileNamePattern>
+            <fileNamePattern>logs/killjoy.%d{yyyyMMdd}.log</fileNamePattern>
             <maxHistory>14</maxHistory>
         </rollingPolicy>
         <encoder>
