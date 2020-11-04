@@ -1,6 +1,10 @@
 <img align="right" src="/assets/img/avatar.jpg" height="200" width="200">
 
 # KilljoyAI
+![Discord](https://img.shields.io/discord/425661010662260736?logo=discord)
+![Docker Image Version (latest by date)](https://img.shields.io/docker/v/blademaker/killjoy?logo=docker&sort=date)
+![Docker Image Size (latest by date)](https://img.shields.io/docker/image-size/blademaker/killjoy?logo=docker&sort=date)
+![Docker Pulls](https://img.shields.io/docker/pulls/blademaker/killjoy?logo=docker)
  
 **Killjoy** is an open source Discord bot focused on **Valorant**.
 
@@ -28,3 +32,80 @@ At the moment the bot is pretty straightforward but we have great ideas for it, 
 <p align="center">
  <img src="/Branding/examples/commands_arsenal.png" width="400px">
 </p>
+
+# Self hosting
+
+**Prerequisites:**
+- Java JRE 11
+- Docker (optional)
+
+To make KillJOY connect to discord you need your Discord app login token, you can get it [here][devs_application] by creating a new Bot Application.
+
+This token has to be passed to KILLJOY through an environment variable called TOKEN.
+
+**Windows**
+```shell
+set TOKEN=YOUR_DISCORD_TOKEN && java -jar KilljoyAI.jar
+```
+
+**Unix/Mac**
+```shell
+export TOKEN="YOUR_DISCORD_TOKEN" && java -jar KilljoyAI.jar
+```
+
+### As a service
+
+**Docker**
+```shell
+docker run -it -d \
+  --name=killjoy \
+  --restart=always \
+  --env TOKEN=YOUR_DISCORD_TOKEN \
+  blademaker/killjoy:0.3.2_1
+```
+
+**SystemD (Linux)**
+
+Create **Killjoy** user and download **KilljoyAI.jar**.
+```shell
+$ adduser killjoy
+$ mkdir /opt/killjoy
+$ chown killjoy:killjoy /opt/killjoy
+$ cd /opt/killjoy
+$ wget https://github.com/Blad3Mak3r/KILLJOY/releases/download/v0.3.2_1/KilljoyAI.jar
+```
+
+Create a ``killjoy.service`` file in ``/etc/systemd/system``
+```shell
+$ nano /etc/systemd/system/killjoy.service
+```
+```shell
+[Unit]
+Description=KilljoyAI Service
+After=network.target
+
+[Service]
+Type=simple
+
+User=killjoy
+Group=killjoy
+
+WorkingDirectory=/opt/killjoy
+ExecStart=/usr/bin/java -jar KilljoyAI.jar
+
+TimeoutStopSec=10
+Restart=always
+RestartSec=5
+
+Environment=TOKEN=YOUR_DISCORD_TOKEN
+
+[Install]
+WantedBy=multi-user.target
+```
+
+```shell
+$ systemctl start killjoy.service
+$ systemctl enable killjoy.service
+```
+
+[devs_application]: https://discord.com/developers/applications
