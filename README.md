@@ -72,7 +72,7 @@ $ adduser killjoy
 $ mkdir /opt/killjoy
 $ chown killjoy:killjoy /opt/killjoy
 $ cd /opt/killjoy
-$ wget https://github.com/Blad3Mak3r/KILLJOY/releases/download/v0.3.2_1/KilljoyAI.jar
+$ wget https://github.com/Blad3Mak3r/KILLJOY/releases/download/v0.3.2/KilljoyAI.jar
 ```
 
 Create a ``killjoy.service`` file in ``/etc/systemd/system``
