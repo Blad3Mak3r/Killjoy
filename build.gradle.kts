@@ -13,7 +13,7 @@ application {
 }
 
 group = "tv.blademaker"
-version = "0.3.1"
+version = "0.3.2_1"
 
 repositories {
     mavenCentral()
@@ -45,21 +45,27 @@ java {
     targetCompatibility = JavaVersion.VERSION_11
 }
 
-tasks.withType<KotlinCompile> {
-    kotlinOptions.jvmTarget = "11"
-}
-
-tasks.withType<ShadowJar> {
-    manifest {
-        attributes["Main-Class"] = "tv.blademaker.killjoy.Launcher"
+tasks {
+    named<ShadowJar>("shadowJar") {
+        manifest {
+            attributes["Main-Class"] = "tv.blademaker.killjoy.Launcher"
+        }
+        archiveBaseName.set("KilljoyAI")
+        archiveClassifier.set("")
+        archiveVersion.set("")
     }
-    archiveBaseName.set("KilljoyAI")
-    archiveClassifier.set("")
-    archiveVersion.set("")
-}
 
-tasks.register("stage") {
-    dependsOn("clean")
-    dependsOn("shadowJar")
+    named("build") {
+        dependsOn("shadowJar")
+    }
 
+    named<KotlinCompile>("compileKotlin") {
+        kotlinOptions.jvmTarget = "11"
+    }
+
+    register("stage") {
+        dependsOn("clean")
+        dependsOn("shadowJar")
+
+    }
 }
