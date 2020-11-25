@@ -1,0 +1,12 @@
+{
+  "name": "Shorty",
+  "short": "Surprise your enemy up close for max effectiveness.",
+  "type": "Sidearms",
+  "descriptions": [
+    "A nimble, short barrel shotgun that is deadly at close range but can only fire twice before needing to reload. Pairs well with long range weapons."
+  ],
+  "thumbnail": "https://i.imgur.com/ElljOQq.jpg",
+  "cost": 200,
+  "magazine": 2,
+  "wall_penetration": "Low"
+}

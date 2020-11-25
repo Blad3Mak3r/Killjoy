@@ -1,0 +1,12 @@
+{
+  "name": "Operator",
+  "short": "Get cozy and you can control important ground.",
+  "type": "Snipers",
+  "descriptions": [
+    "A fierce bolt-action sniper rifle with high-powered dual zoom. Extremely immobile but fires an incredibly powerful round that can devastate a team with one shot."
+  ],
+  "thumbnail": "https://i.imgur.com/RRMiRsR.jpg",
+  "cost": 4500,
+  "magazine": 5,
+  "wall_penetration": "High"
+}

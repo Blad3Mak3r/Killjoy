@@ -1,0 +1,44 @@
+{
+  "name": "Jett",
+  "api_name": "wushu",
+  "origin": ":flag_kr: Shout Korea",
+  "image": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/bltceaa6cf20d328bd5/5eb7cdc1b1f2e27c950d2aaa/V_AGENTS_587x900_Jett.png",
+  "thumbnail": "https://i.imgur.com/BKsH2Mk.jpg",
+  "avatar": "https://i.imgur.com/ePEFhEH.jpg",
+  "role": "Duelist",
+  "bio": "Representing her home country of South Korea, Jett's agile and evasive fighting style lets her take risks no one else can. She runs circles around every skirmish, cutting enemies before they even know what hit them.",
+  "skills": [
+    {
+      "button": "q",
+      "name": "UPDRAFT",
+      "iconUrl": "https://i.imgur.com/HFkRJSL.png",
+      "info": "INSTANTLY propel Jett high into the air.",
+      "preview": "https://i.imgur.com/SavOZ7d.gif",
+      "cost": "100"
+    },
+    {
+      "button": "e",
+      "name": "TAILWIND",
+      "iconUrl": "https://i.imgur.com/yObh8n2.png",
+      "info": "INSTANTLY propel Jett in the direction she is moving. If Jett is standing still, she will propel forward.",
+      "preview": "https://i.imgur.com/OgRvGEs.gif",
+      "cost": "2 Kills"
+    },
+    {
+      "button": "c",
+      "name": "CLOUDBURST",
+      "iconUrl": "https://i.imgur.com/LViadRc.png",
+      "info": "INSTANTLY throw a projectile that expands into a brief vision-blocking cloud on impact with a surface. HOLD the ability key to curve the smoke in the direction of your crosshair.",
+      "preview": "https://i.imgur.com/C7JgXOV.gif",
+      "cost": "100"
+    },
+    {
+      "button": "x",
+      "name": "BLADE STORM",
+      "iconUrl": "https://i.imgur.com/Zp4WIKi.png",
+      "info": "EQUIP a set of highly accurate knives that recharge on killing an opponent. FIRE to throw a single knife at your target. ALTERNATE FIRE to throw all remaining daggers at your target.",
+      "preview": "https://i.imgur.com/7Wuenma.gif",
+      "cost": "••••••• 7 Points"
+    }
+  ]
+}

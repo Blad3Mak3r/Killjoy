@@ -1,0 +1,44 @@
+{
+  "name": "Viper",
+  "api_name": "pandemic",
+  "origin": ":flag_us: United States",
+  "image": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/bltc825c6589eda7717/5eb7cdc6ee88132a6f6cfc25/V_AGENTS_587x900_Viper.png",
+  "thumbnail": "https://i.imgur.com/tpvmL6Z.jpg",
+  "avatar": "https://i.imgur.com/PSqfir0.jpg",
+  "role": "Controller",
+  "bio": "The American chemist, Viper deploys an array of poisonous chemical devices to control the battlefield and cripple the enemy's vision. If the toxins don't kill her prey, her mind games surely will.",
+  "skills": [
+    {
+      "button": "q",
+      "name": "POISON CLOUD",
+      "iconUrl": "https://i.imgur.com/7Ija5oh.png",
+      "info": "EQUIP a gas emitter. FIRE to throw the emitter that perpetually remains throughout the round. RE-USE the ability to create a toxic gas cloud at the cost of fuel. This ability can be RE-USED more than once and can be picked up to be REDEPLOYED.",
+      "preview": "https://i.imgur.com/2Ju4c8K.gif",
+      "cost": "200"
+    },
+    {
+      "button": "e",
+      "name": "TOXIC SCREEN",
+      "iconUrl": "https://i.imgur.com/8Iw1LKo.png",
+      "info": "EQUIP a gas emitter launcher. FIRE to deploy a long line of gas emitters. RE-USE the ability to create a tall wall of toxic gas at the cost of fuel. This ability can be RE-USED more than once.",
+      "preview": "https://i.imgur.com/pnUW3uh.gif",
+      "cost": "Reusable"
+    },
+    {
+      "button": "c",
+      "name": "SNAKE BITE",
+      "iconUrl": "https://i.imgur.com/Lgfelyp.png",
+      "info": "EQUIP a chemical launcher. FIRE to launch a canister that shatters upon hitting the floor, creating a lingering chemical zone that damages and slows enemies.",
+      "preview": "https://i.imgur.com/Ueyki4M.gif",
+      "cost": "100"
+    },
+    {
+      "button": "x",
+      "name": "VIPER’S PIT",
+      "iconUrl": "https://i.imgur.com/o8bWXui.png",
+      "info": "EQUIP a chemical sprayer. FIRE to spray a chemical cloud in all directions around Viper, creating a large cloud that reduces the vision range and maximum health of players inside of it.",
+      "preview": "https://i.imgur.com/3h9lH4q.gif",
+      "cost": "••••••• 7 Points"
+    }
+  ]
+}

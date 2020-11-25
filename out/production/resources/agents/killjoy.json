@@ -1,0 +1,44 @@
+{
+  "name": "Killjoy",
+  "api_name": "killjoy",
+  "origin": ":flag_de: Germany",
+  "image": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/blt53405c26141beff8/5f21fda671ec397ef9bf0894/V_AGENTS_587x900_KillJoy_.png",
+  "thumbnail": "https://i.imgur.com/9ovFxL1.jpg",
+  "avatar": "https://i.imgur.com/zGwli2z.jpg",
+  "role": "Sentinel",
+  "bio": "The genius of Germany. Killjoy secures the battlefield with ease using her arsenal of inventions. If the damage from her gear doesn't stop her enemies, her robots' debuff will help make short work of them.",
+  "skills": [
+    {
+      "button": "q",
+      "name": "ALARMBOT",
+      "iconUrl": "https://i.imgur.com/zjHG8fV.png",
+      "info": "EQUIP a covert Alarmbot. FIRE to deploy a bot that hunts down enemies that get in range. After reaching its target, the bot explodes, applying Vulernable. HOLD EQUIP to recall a deployed bot.",
+      "preview": "https://i.imgur.com/mH3QegZ.gif",
+      "cost": "200"
+    },
+    {
+      "button": "e",
+      "name": "TURRET",
+      "iconUrl": "https://i.imgur.com/igHkbSQ.png",
+      "info": "EQUIP a Turret. FIRE to deploy a turret that fires at enemies in a 180 degree cone. HOLD EQUIP to recall the deployed turret.",
+      "preview": "https://i.imgur.com/LJCabgf.gif",
+      "cost": "Reusable"
+    },
+    {
+      "button": "c",
+      "name": "NANOSWARM",
+      "iconUrl": "https://i.imgur.com/HVrJZbT.png",
+      "info": "EQUIP a Nanoswarm grenade. FIRE to throw the grenade. Upon landing, the Nanoswarm goes covert. ACTIVATE the Nanoswarm to deploy a damaging swarm of nanobots.",
+      "preview": "https://i.imgur.com/rg87btl.gif",
+      "cost": "200"
+    },
+    {
+      "button": "x",
+      "name": "LOCKDOWN",
+      "iconUrl": "https://i.imgur.com/CLpyOPK.png",
+      "info": "EQUIP the Lockdown device. FIRE to deploy the device. After a long windup, the device Detains all enemies caught in the radius. The device can be destroyed by enemies.",
+      "preview": "https://i.imgur.com/7fiHtro.gif",
+      "cost": "••••••• 7 Points"
+    }
+  ]
+}

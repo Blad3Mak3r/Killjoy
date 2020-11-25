@@ -1,0 +1,44 @@
+{
+  "name": "Sova",
+  "api_name": "hunter",
+  "origin": ":flag_ru: Russia",
+  "image": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/bltf11234f4775729b7/5ebf2c275e73766852c8d5d4/V_AGENTS_587x900_ALL_Sova_2.png",
+  "thumbnail": "https://i.imgur.com/CklXkWG.jpg",
+  "avatar": "https://i.imgur.com/SF0eH7j.jpg",
+  "role": "Initiator",
+  "bio": "Born from the eternal winter of Russia's tundra, Sova tracks, finds, and eliminates enemies with ruthless efficiency and precision. His custom bow and incredible scouting abilities ensure that even if you run, you cannot hide.",
+  "skills": [
+    {
+      "button": "q",
+      "name": "SHOCK BOLT",
+      "iconUrl": "https://i.imgur.com/V1qj3FK.png",
+      "info": "EQUIP a bow with a shock bolt. FIRE to send the explosive forward, detonating upon collision and damaging players nearby. HOLD FIRE to extend the range of the projectile. ALTERNATE FIRE to add up to two bounces to this arrow.",
+      "preview": "https://i.imgur.com/pZVie9S.gif",
+      "cost": "300"
+    },
+    {
+      "button": "e",
+      "name": "RECON BOLT",
+      "iconUrl": "https://i.imgur.com/U2rBNgS.png",
+      "info": "EQUIP a bow with a recon bolt. FIRE to send the recon bolt forward, activating upon collision and revealing the location of nearby enemies caught in the line of sight of the bolt. HOLD FIRE to extend the range of the projectile. ALTERNATE FIRE to add up to two bounces to this arrow.",
+      "preview": "https://i.imgur.com/ZpdJxI3.gif",
+      "cost": "35s Cooldown"
+    },
+    {
+      "button": "c",
+      "name": "OWL DRONE",
+      "iconUrl": "https://i.imgur.com/6uzrbL2.png",
+      "info": "EQUIP an owl drone. FIRE to deploy and take control of movement of the drone. While in control of the drone, FIRE to shoot a marking dart. This dart will reveal the location of any player struck by the dart.",
+      "preview": "https://i.imgur.com/0V6jTKr.gif",
+      "cost": "300"
+    },
+    {
+      "button": "x",
+      "name": "HUNTER’S FURY",
+      "iconUrl": "https://i.imgur.com/qiIJ2SM.png",
+      "info": "EQUIP a bow with three long-range wall-piercing energy blasts. FIRE to release an energy blast in a line in front of Sova, dealing damage and revealing the location of enemies caught in the line. This ability can be RE-USED up to two more times while the ability timer is active.",
+      "preview": "https://i.imgur.com/mGvxoOo.gif",
+      "cost": "••••••• 7 Points"
+    }
+  ]
+}

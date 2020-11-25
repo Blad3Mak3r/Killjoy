@@ -1,0 +1,12 @@
+{
+  "name": "Odin",
+  "short": "Wielding this hammer of a machine threatens glory for the holder and ruin for the foe.",
+  "type": "Heavies",
+  "descriptions": [
+    "Suppressive, high damage fire with surprising stability. Spray enemies at short range and use alt. fire to make yourself a living turret."
+  ],
+  "thumbnail": "https://i.imgur.com/EdUUvPH.jpg",
+  "cost": 3200,
+  "magazine": 100,
+  "wall_penetration": "High"
+}
