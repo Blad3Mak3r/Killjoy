@@ -13,7 +13,7 @@ application {
 }
 
 group = "tv.blademaker"
-version = "0.3.2_1"
+version = "0.3.3"
 
 repositories {
     mavenCentral()
@@ -21,23 +21,31 @@ repositories {
     maven("https://jitpack.io")
 }
 
+val ktorVersion = "1.4.2"
+val coroutinesVersion = "1.4.1"
+
 dependencies {
     implementation(kotlin("stdlib"))
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.4.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:$coroutinesVersion")
 
     //  HugeBot dependencies
     implementation("net.hugebot:RateLimiter:v1.0.0")
 
     //  Discord Required
     implementation("net.dv8tion:JDA:4.2.0_+") { exclude(module = "opus-java") }
-    implementation("com.jagrosh:jda-utilities:3.0.4")
+    implementation("com.jagrosh:jda-utilities:3.0.5")
 
     //  Logging
     implementation("ch.qos.logback:logback-classic:1.2.3")
 
     implementation("io.sentry:sentry:1.7.30")
-    implementation("com.google.guava:guava:29.0-jre")
+    implementation("com.google.guava:guava:30.0-jre")
+
+    //  Ktor HTTP Client
+    implementation("io.ktor:ktor-client-core:$ktorVersion")
+    implementation("io.ktor:ktor-client-cio:$ktorVersion")
+    implementation("io.ktor:ktor-client-jackson:$ktorVersion")
 }
 
 java {

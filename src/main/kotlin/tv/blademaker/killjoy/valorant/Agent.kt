@@ -155,15 +155,18 @@ data class Agent (
                     logger.info("Last check was ${lastCheck.get()}")
 
                     val content = response.body()?.string() ?: return logger.warn("Cannot update stats [Empty body]")
-                    val stats = JSONObject(content).getJSONObject("by_agents")
+                    val stats = JSONObject(content).getJSONArray("all")
 
-                    Launcher.agents.forEach {
+                    Launcher.agents.forEach { agent ->
                         try {
-                            val agentStats = stats.getJSONArray("${it.apiName}_pc_c").getJSONObject(0)
+                            val agentStats = stats.find {
+                                val jsonAgent = it as JSONObject
+                                jsonAgent.getString("name") == "${agent.apiName}_pc_c"
+                            } as JSONObject
 
-                            statsMap[it.name] = Pair(agentStats.getDouble("win_ratio"), agentStats.getDouble("kda_ratio"))
+                            statsMap[agent.name] = Pair(agentStats.getDouble("win_ratio"), agentStats.getDouble("kda_ratio"))
                         } catch (e: Throwable) {
-                            logger.error("Cannot update agent stats => ${it.name}\n${e.stackTraceToString()}")
+                            logger.error("Cannot update agent stats => ${agent.name}\n${e.stackTraceToString()}")
                         }
                     }
 
