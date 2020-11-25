@@ -4,6 +4,7 @@ config.properties
 /.idea/
 /logs/
 /target/
+/out/
 
 # Ignore Gradle GUI config
 gradle-app.setting
