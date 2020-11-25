@@ -21,6 +21,9 @@ repositories {
     maven("https://jitpack.io")
 }
 
+val ktorVersion = "1.4.2"
+val coroutinesVersion = "1.4.1"
+
 dependencies {
     implementation(kotlin("stdlib"))
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
@@ -37,7 +40,12 @@ dependencies {
     implementation("ch.qos.logback:logback-classic:1.2.3")
 
     implementation("io.sentry:sentry:1.7.30")
-    implementation("com.google.guava:guava:29.0-jre")
+    implementation("com.google.guava:guava:30.0-jre")
+
+    //  Ktor HTTP Client
+    implementation("io.ktor:ktor-client-core:$ktorVersion")
+    implementation("io.ktor:ktor-client-cio:$ktorVersion")
+    implementation("io.ktor:ktor-client-jackson:$ktorVersion")
 }
 
 java {

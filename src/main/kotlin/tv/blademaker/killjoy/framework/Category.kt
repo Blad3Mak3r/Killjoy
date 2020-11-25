@@ -42,6 +42,16 @@ enum class Category(
                     Permission.MESSAGE_EMBED_LINKS,
                     Permission.MESSAGE_EXT_EMOJI
             )
+    ),
+    Misc(
+            "",
+            true,
+            true,
+            hashSetOf(),
+            hashSetOf(
+                    Permission.MESSAGE_EMBED_LINKS,
+                    Permission.MESSAGE_EXT_EMOJI
+            )
     );
 
 
