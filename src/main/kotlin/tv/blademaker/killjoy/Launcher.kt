@@ -1,5 +1,6 @@
 package tv.blademaker.killjoy
 
+import com.typesafe.config.ConfigException
 import net.dv8tion.jda.api.entities.Activity
 import net.dv8tion.jda.api.entities.ApplicationInfo
 import net.dv8tion.jda.api.requests.GatewayIntent
@@ -18,6 +19,7 @@ import java.lang.management.ManagementFactory
 import java.rmi.registry.LocateRegistry
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
+import javax.security.auth.login.LoginException
 import kotlin.properties.Delegates
 import kotlin.system.exitProcess
 
@@ -48,6 +50,7 @@ object Launcher {
     val rateLimiter: RateLimiter = RateLimiter.Builder().setQuota(20).setExpirationTime(1, TimeUnit.MINUTES).build()
 
     @JvmStatic
+    @Throws(LoginException::class, ConfigException::class)
     fun main(args: Array<String>) {
 
         pid = ProcessHandle.current().pid()
@@ -64,7 +67,7 @@ object Launcher {
 
         commandRegistry = CommandRegistry()
 
-        shardManager = DefaultShardManagerBuilder.createLight(System.getenv("TOKEN"))
+        shardManager = DefaultShardManagerBuilder.createLight(BotConfig.token)
             .setShardsTotal(-1)
             .setActivity(Activity.playing("Valorant | joy help"))
             .setEnableShutdownHook(false)

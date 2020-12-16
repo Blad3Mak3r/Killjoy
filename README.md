@@ -41,16 +41,10 @@ At the moment the bot is pretty straightforward but we have great ideas for it, 
 
 To make KillJOY connect to discord you need your Discord app login token, you can get it [here][devs_application] by creating a new Bot Application.
 
-This token has to be passed to KILLJOY through an environment variable called TOKEN.
+This token has to be passed to KILLJOY through a configuration file called [**killjoy.conf**](/killjoy.conf.example).
 
-**Windows**
 ```shell
-set TOKEN=YOUR_DISCORD_TOKEN && java -jar KilljoyAI.jar
-```
-
-**Unix/Mac**
-```shell
-export TOKEN="YOUR_DISCORD_TOKEN" && java -jar KilljoyAI.jar
+java -jar KilljoyAI.jar
 ```
 
 ### As a service
