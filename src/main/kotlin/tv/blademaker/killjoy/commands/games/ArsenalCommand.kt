@@ -7,6 +7,7 @@ import tv.blademaker.killjoy.framework.CommandContext
 import tv.blademaker.killjoy.framework.abs.Command
 import tv.blademaker.killjoy.framework.annotations.CommandMeta
 import tv.blademaker.killjoy.utils.Emojis
+import tv.blademaker.killjoy.valorant.Weapon
 
 @CommandMeta("arsenal", Category.Game, aliases = ["weapons", "weapon"])
 class ArsenalCommand : Command() {
@@ -23,7 +24,9 @@ class ArsenalCommand : Command() {
             }.queue()
 
         } else {
-            val weapon = Launcher.getWeaponById(ctx.args[0]) ?: return ctx.send(Emojis.NoEntry, "That weapon does not exists...").queue()
+            val weapon = Launcher.getWeapon(ctx.args.joinToString(" "))
+                ?: Launcher.getWeaponById(ctx.args[0])
+                ?: return ctx.send(Emojis.NoEntry, "That weapon does not exists...").queue()
 
             ctx.send(weapon.asEmbed().build()).queue()
         }
