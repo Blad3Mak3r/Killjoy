@@ -29,27 +29,26 @@ class StatsPosting private constructor(
         task = threadPoolExecutor.scheduleAtFixedRate(schedule(), initialDelay, period, timeUnit)
     }
 
-    private fun schedule(): Runnable {
-        return Runnable {
-            try {
-                val botId = getBotId(shardManager)
-                val guildCount = getShardGuildSize(shardManager)
+    private fun schedule() = Runnable {
+        try {
+            val botId = getBotId(shardManager)
+            val guildCount = getShardGuildSize(shardManager)
 
-                if (lastGuildCount.get() == guildCount) return@Runnable
+            if (lastGuildCount.get() == guildCount) return@Runnable
 
-                for (website in websites) {
-                    try {
-                        website.postStats(httpClient, botId, guildCount)
-                    } catch (e: Exception) {
-                        logger.error("Cannot post stats for ${website.id}", e)
-                    }
+            for (website in websites) {
+                try {
+                    website.postStats(httpClient, botId, guildCount)
+                } catch (e: Exception) {
+                    logger.error("Cannot post stats for ${website.id}", e)
                 }
-                lastGuildCount.set(guildCount)
-            } catch (e: Exception) {
-                logger.error("Error executing schedule.", e)
             }
+            lastGuildCount.set(guildCount)
+        } catch (e: Exception) {
+            logger.error("Error executing schedule.", e)
         }
     }
+
 
     private fun getBotId(shardManager: ShardManager): String {
         return shardManager.shards.first().selfUser.id
