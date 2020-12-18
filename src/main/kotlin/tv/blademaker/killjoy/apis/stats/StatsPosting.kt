@@ -7,16 +7,20 @@ import java.lang.Exception
 import java.lang.IllegalArgumentException
 import java.lang.IllegalStateException
 import java.util.concurrent.*
+import java.util.concurrent.atomic.AtomicInteger
 
+@Suppress("unused")
 class StatsPosting private constructor(
     private val shardManager: ShardManager,
-    internal val httpClient: OkHttpClient,
+    private val httpClient: OkHttpClient,
     private val threadPoolExecutor: ScheduledExecutorService,
     private val websites: List<Website>,
-    private val initialDelay: Long,
-    private val period: Long,
-    private val timeUnit: TimeUnit
+    initialDelay: Long,
+    period: Long,
+    timeUnit: TimeUnit
 ) {
+
+    private var lastGuildCount = AtomicInteger(0)
 
     private val task: ScheduledFuture<*>
 
@@ -28,17 +32,31 @@ class StatsPosting private constructor(
     private fun schedule(): Runnable {
         return Runnable {
             try {
+                val botId = getBotId(shardManager)
+                val guildCount = getShardGuildSize(shardManager)
+
+                if (lastGuildCount.get() == guildCount) return@Runnable
+
                 for (website in websites) {
                     try {
-                        website.postStats(httpClient, shardManager)
+                        website.postStats(httpClient, botId, guildCount)
                     } catch (e: Exception) {
                         logger.error("Cannot post stats for ${website.id}", e)
                     }
                 }
+                lastGuildCount.set(guildCount)
             } catch (e: Exception) {
                 logger.error("Error executing schedule.", e)
             }
         }
+    }
+
+    private fun getBotId(shardManager: ShardManager): String {
+        return shardManager.shards.first().selfUser.id
+    }
+
+    private fun getShardGuildSize(shardManager: ShardManager): Int {
+        return shardManager.shards.map { it.guildCache.size().toInt() }.reduce { acc, i -> acc + i }
     }
 
     fun shutdown() {

@@ -14,17 +14,7 @@ class Website(
     private val entityName: String = "server_count"
 ) {
 
-    internal fun postStats(httpClient: OkHttpClient, jda: JDA) {
-        val guildCount = getShardGuildSize(jda)
-        val botId = getBotId(jda)
-
-        doRequest(httpClient, buildRequest(botId, guildCount))
-    }
-
-    internal fun postStats(httpClient: OkHttpClient, shardManager: ShardManager) {
-        val guildCount = getShardGuildSize(shardManager)
-        val botId = getBotId(shardManager)
-
+    internal fun postStats(httpClient: OkHttpClient, botId: String, guildCount: Int) {
         doRequest(httpClient, buildRequest(botId, guildCount))
     }
 
@@ -47,22 +37,6 @@ class Website(
         .build()
 
     private fun buildBody(entityName: String, guildCount: Int) = "{\"$entityName\": $guildCount}".toRequestBody(MEDIA_TYPE)
-
-    private fun getBotId(jda: JDA): String {
-        return jda.selfUser.id
-    }
-
-    private fun getBotId(shardManager: ShardManager): String {
-        return shardManager.shards.first().selfUser.id
-    }
-
-    private fun getShardGuildSize(jda: JDA): Int {
-        return jda.guildCache.size().toInt()
-    }
-
-    private fun getShardGuildSize(shardManager: ShardManager): Int {
-        return shardManager.shards.map { it.guildCache.size().toInt() }.reduce { acc, i -> acc + i }
-    }
 
     companion object {
         private val MEDIA_TYPE = "application/json; charset=utf-8".toMediaType()
