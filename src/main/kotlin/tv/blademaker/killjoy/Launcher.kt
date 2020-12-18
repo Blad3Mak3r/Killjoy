@@ -11,12 +11,12 @@ import net.dv8tion.jda.api.utils.cache.CacheFlag
 import net.hugebot.ratelimiter.RateLimiter
 import okhttp3.OkHttpClient
 import org.slf4j.LoggerFactory
+import tv.blademaker.killjoy.apis.stats.StatsPosting
+import tv.blademaker.killjoy.apis.stats.Website
 import tv.blademaker.killjoy.framework.CommandRegistry
 import tv.blademaker.killjoy.utils.Loaders
 import tv.blademaker.killjoy.valorant.Agent
 import tv.blademaker.killjoy.valorant.Weapon
-import java.lang.management.ManagementFactory
-import java.rmi.registry.LocateRegistry
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 import javax.security.auth.login.LoginException
@@ -92,6 +92,20 @@ object Launcher {
             )
             .build()
 
+
+
+        val statsPosting = StatsPosting.Builder()
+            .withShardManager(shardManager)
+            .apply {
+                val topgg = BotConfig.getOrNull<String>("stats.topgg.token")
+                if (topgg != null)
+                    addWebsite(Website("top.gg", "https://top.gg/api/bots/%s/stats", topgg))
+
+            }
+            .withInitialDelay(1)
+            .withRepetitionPeriod(30)
+            .withTimeUnit(TimeUnit.MINUTES)
+            .build()
     }
 
     fun getAgent(name: String) = agents.find { it.name.equals(name, true) }

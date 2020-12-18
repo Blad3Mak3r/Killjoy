@@ -48,6 +48,8 @@ dependencies {
     implementation("io.ktor:ktor-client-cio:$ktorVersion")
     implementation("io.ktor:ktor-client-jackson:$ktorVersion")
 
+    implementation("com.squareup.okhttp3:okhttp:4.9.0")
+
     // Config
     implementation("com.typesafe:config:1.4.1")
     implementation("org.json:json:20201115")
