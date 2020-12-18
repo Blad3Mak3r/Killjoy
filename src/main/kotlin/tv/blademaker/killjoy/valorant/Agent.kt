@@ -154,7 +154,7 @@ data class Agent (
 
                     logger.info("Last check was ${lastCheck.get()}")
 
-                    val content = response.body()?.string() ?: return logger.warn("Cannot update stats [Empty body]")
+                    val content = response.body?.string() ?: return logger.warn("Cannot update stats [Empty body]")
                     val stats = JSONObject(content).getJSONArray("all")
 
                     Launcher.agents.forEach { agent ->
