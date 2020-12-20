@@ -1,6 +1,6 @@
 <img align="right" src="/assets/img/avatar.jpg" height="200" width="200">
 
-# KilljoyAI ([Invite][invitation]))
+# KILLJOY ([Invite][invitation])
 ![Discord](https://img.shields.io/discord/425661010662260736?logo=discord)
 ![Docker Image Version (latest by date)](https://img.shields.io/docker/v/blademaker/killjoy?logo=docker&sort=date)
 ![Docker Image Size (latest by date)](https://img.shields.io/docker/image-size/blademaker/killjoy?logo=docker&sort=date)
