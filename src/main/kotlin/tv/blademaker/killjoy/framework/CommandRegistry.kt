@@ -6,10 +6,6 @@
 package tv.blademaker.killjoy.framework
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder
-import io.sentry.Sentry
-import io.sentry.event.Event
-import io.sentry.event.EventBuilder
-import io.sentry.event.interfaces.StackTraceInterface
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.asCoroutineDispatcher
 import kotlinx.coroutines.launch
