@@ -124,8 +124,12 @@ class StatsPosting private constructor(
         }
 
         fun build(): StatsPosting {
-            if (this.shardManager == null) throw IllegalStateException("ShardManager must to be defined.")
-            if (this.websites.isEmpty()) throw IllegalStateException("Websites cannot be null.")
+            checkNotNull(this.shardManager) {
+                "ShardManager must to be defined."
+            }
+            check(this.websites.isNotEmpty()) {
+                "Websites cannot be null."
+            }
             return StatsPosting(
                 this.shardManager!!,
                 this.okHttpClient,
