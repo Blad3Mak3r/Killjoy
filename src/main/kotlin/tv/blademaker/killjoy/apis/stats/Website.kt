@@ -41,6 +41,7 @@ class Website(
 
             override fun onResponse(call: Call, response: Response) {
                 StatsPosting.logger.info("Stats for $id posted with response: [${response.code}] ${response.message}!")
+                response.body?.close()
             }
         })
     }
