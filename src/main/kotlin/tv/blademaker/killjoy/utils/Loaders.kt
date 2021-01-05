@@ -34,7 +34,13 @@ object Loaders {
                 ?: throw IllegalStateException("$agentName.json is not present")
             val fileContent = file.readText()
             if (fileContent.isEmpty()) throw IllegalStateException("$agentName.json is empty")
-            list.add(Agent(JSONObject(fileContent)))
+
+            val agent = Agent(JSONObject(fileContent))
+
+            if (list.any { it.id == agent.id || it.name.equals(agent.name, true) })
+                throw IllegalStateException("Agent with id ${agent.id} or name ${agent.name} is already present.")
+
+            list.add(agent)
         }
 
         log.info("Loaded ${list.size} agents!! [${list.joinToString(", ") { it.name }}]")

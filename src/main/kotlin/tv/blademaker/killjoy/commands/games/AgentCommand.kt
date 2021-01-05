@@ -23,6 +23,7 @@ import tv.blademaker.killjoy.framework.CommandContext
 import tv.blademaker.killjoy.framework.abs.Command
 import tv.blademaker.killjoy.framework.annotations.CommandMeta
 import tv.blademaker.killjoy.utils.Emojis
+import tv.blademaker.killjoy.utils.extensions.isInt
 
 @CommandMeta("agents", Category.Game, aliases = ["agent"])
 class AgentCommand : Command() {
@@ -44,11 +45,21 @@ class AgentCommand : Command() {
             }.queue()
 
         } else if (ctx.args.size == 1) {
-            val agent = Launcher.getAgent(ctx.args[0]) ?: return ctx.send(Emojis.NoEntry, "That agent does not exists...").queue()
+            val input = ctx.args[0]
+            val isInt = input.isInt()
+
+            val agent = Launcher.retrieveAgentByInput(input)
+                ?: return if (isInt) ctx.send(Emojis.NoEntry, "Agent with id ``$input`` does not exists...").queue()
+                else ctx.send(Emojis.NoEntry, "Agent with name ``${input.capitalize()}`` does not exists...").queue()
 
             ctx.send(agent.asEmbed().build()).queue()
         } else {
-            val agent = Launcher.getAgent(ctx.args[0]) ?: return ctx.send(Emojis.NoEntry, "That agent does not exists...").queue()
+            val input = ctx.args[0]
+            val isInt = input.isInt()
+
+            val agent = Launcher.retrieveAgentByInput(input)
+                ?: return if (isInt) ctx.send(Emojis.NoEntry, "Agent with id ``$input`` does not exists...").queue()
+                else ctx.send(Emojis.NoEntry, "Agent with name ``${input.capitalize()}`` does not exists...").queue()
 
             val skill = agent.skills.find { it.button.name.equals(ctx.args[1], true) }
                 ?: return ctx.send(Emojis.NoEntry, "I have not been able to find that skill...").queue()
@@ -70,9 +81,9 @@ class AgentCommand : Command() {
         get() = ARGS
 
     companion object {
-        private const val HELP = "Get information and statistics about a Valorant agent"
+        private const val HELP = "Get information and statistics about a Valorant agent."
         private val ARGS = listOf(
-                CommandArgument("agent_name", "An agent name [jett]", false),
+                CommandArgument("agent_name:agent_id", "An agent name [jett] or agent id [1-13]", false),
                 CommandArgument("skill_button", "The button used to use this skill [q]", false)
         )
     }
