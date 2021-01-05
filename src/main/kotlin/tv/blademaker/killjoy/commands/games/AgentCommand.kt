@@ -48,26 +48,18 @@ class AgentCommand : Command() {
             val input = ctx.args[0]
             val isInt = input.isInt()
 
-            val agent = if (isInt) Launcher.getAgent(input.toInt())
-            else Launcher.getAgent(input)
-
-            if (agent == null) {
-                return if (isInt) ctx.send(Emojis.NoEntry, "Agent with id ``$input`` does not exists...").queue()
+            val agent = Launcher.retrieveAgentByInput(input)
+                ?: return if (isInt) ctx.send(Emojis.NoEntry, "Agent with id ``$input`` does not exists...").queue()
                 else ctx.send(Emojis.NoEntry, "Agent with name ``${input.capitalize()}`` does not exists...").queue()
-            }
 
             ctx.send(agent.asEmbed().build()).queue()
         } else {
             val input = ctx.args[0]
             val isInt = input.isInt()
 
-            val agent = if (isInt) Launcher.getAgent(input.toInt())
-            else Launcher.getAgent(input)
-
-            if (agent == null) {
-                return if (isInt) ctx.send(Emojis.NoEntry, "Agent with id ``$input`` does not exists...").queue()
+            val agent = Launcher.retrieveAgentByInput(input)
+                ?: return if (isInt) ctx.send(Emojis.NoEntry, "Agent with id ``$input`` does not exists...").queue()
                 else ctx.send(Emojis.NoEntry, "Agent with name ``${input.capitalize()}`` does not exists...").queue()
-            }
 
             val skill = agent.skills.find { it.button.name.equals(ctx.args[1], true) }
                 ?: return ctx.send(Emojis.NoEntry, "I have not been able to find that skill...").queue()

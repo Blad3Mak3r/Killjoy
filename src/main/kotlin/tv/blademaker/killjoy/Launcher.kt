@@ -30,6 +30,7 @@ import tv.blademaker.killjoy.apis.stats.StatsPosting
 import tv.blademaker.killjoy.apis.stats.Website
 import tv.blademaker.killjoy.framework.CommandRegistry
 import tv.blademaker.killjoy.utils.Loaders
+import tv.blademaker.killjoy.utils.extensions.isInt
 import tv.blademaker.killjoy.valorant.Agent
 import tv.blademaker.killjoy.valorant.Weapon
 import java.util.concurrent.Executors
@@ -121,6 +122,11 @@ object Launcher {
             .withRepetitionPeriod(30)
             .withTimeUnit(TimeUnit.MINUTES)
             .build()
+    }
+
+    fun retrieveAgentByInput(input: String): Agent? {
+        return if (input.isInt()) getAgent(input.toInt())
+        else getAgent(input)
     }
 
     fun getAgent(id: Int) = agents.find { it.id == id }
