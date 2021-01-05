@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020. Blademaker
+ * Copyright (c) 2021. Blademaker
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
 
 package tv.blademaker.killjoy
 
-import com.typesafe.config.Config
 import com.typesafe.config.ConfigFactory
 import java.io.File
 import java.lang.IllegalStateException
