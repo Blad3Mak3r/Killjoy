@@ -33,15 +33,12 @@ import tv.blademaker.killjoy.utils.Loaders
 import tv.blademaker.killjoy.utils.extensions.isInt
 import tv.blademaker.killjoy.valorant.Agent
 import tv.blademaker.killjoy.valorant.Weapon
-import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 import javax.security.auth.login.LoginException
 import kotlin.properties.Delegates
 import kotlin.system.exitProcess
 
 object Launcher {
-
-    val scheduler = Executors.newSingleThreadScheduledExecutor()
 
     val httpClient: OkHttpClient = OkHttpClient()
 
@@ -110,7 +107,7 @@ object Launcher {
 
 
 
-        val statsPosting = StatsPosting.Builder()
+        StatsPosting.Builder()
             .withShardManager(shardManager)
             .apply {
                 val topgg = BotConfig.getOrNull<String>("stats.topgg.token")
