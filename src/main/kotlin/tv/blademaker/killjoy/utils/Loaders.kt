@@ -44,7 +44,7 @@ object Loaders {
         }
 
         log.info("Loaded ${list.size} agents!! [${list.joinToString(", ") { it.name }}]")
-        Agent.Stats.doUpdate()
+        Agent.StatsMapper.doUpdate()
         return list
     }
 
