@@ -44,6 +44,7 @@ To make KillJOY connect to discord you need your Discord app login token, you ca
 
 This token has to be passed to KILLJOY through a configuration file called [**killjoy.conf**](/killjoy.conf.example).
 
+Copy the content of [``killjoy.conf.example``](killjoy.conf.example) to ``killjoy.conf`` where the Killjoy executable is placed.
 ```shell
 java -jar KilljoyAI.jar
 ```
@@ -55,8 +56,8 @@ java -jar KilljoyAI.jar
 docker run -it -d \
   --name=killjoy \
   --restart=always \
-  --env TOKEN=YOUR_DISCORD_TOKEN \
-  blademaker/killjoy:0.3.2_1
+  --volume killjoy.conf/app/killjoy.conf \
+  blademaker/killjoy:0.3.3
 ```
 
 **SystemD (Linux)**
@@ -67,7 +68,7 @@ $ adduser killjoy
 $ mkdir /opt/killjoy
 $ chown killjoy:killjoy /opt/killjoy
 $ cd /opt/killjoy
-$ wget https://github.com/Blad3Mak3r/KILLJOY/releases/download/v0.3.2/KilljoyAI.jar
+$ wget https://github.com/Blad3Mak3r/KILLJOY/releases/download/v0.3.3/KilljoyAI.jar
 ```
 
 Create a ``killjoy.service`` file in ``/etc/systemd/system``
@@ -92,11 +93,11 @@ TimeoutStopSec=10
 Restart=always
 RestartSec=5
 
-Environment=TOKEN=YOUR_DISCORD_TOKEN
-
 [Install]
 WantedBy=multi-user.target
 ```
+
+Copy the content of [``killjoy.conf.example``](killjoy.conf.example) to ``killjoy.conf`` where the Killjoy executable is placed.
 
 ```shell
 $ systemctl start killjoy.service
