@@ -37,7 +37,7 @@ object Loaders {
 
             val agent = Agent(JSONObject(fileContent))
 
-            if (list.any { it.id == agent.id || it.name.equals(agent.name, true) })
+            if (list.any { it.id == agent.id || it.name.equals(agent.name, true) || it.number == agent.number })
                 throw IllegalStateException("Agent with id ${agent.id} or name ${agent.name} is already present.")
 
             list.add(agent)
