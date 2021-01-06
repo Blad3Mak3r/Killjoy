@@ -34,7 +34,10 @@ repositories {
 
 dependencies {
     implementation(kotlin("stdlib"))
+    implementation(kotlin("serialization"))
+    implementation(kotlin("reflect"))
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:$coroutinesVersion")
 
     //  HugeBot dependencies
     implementation("net.hugebot:RateLimiter:v1.0.0")
@@ -59,6 +62,8 @@ dependencies {
     // Config
     implementation("com.typesafe:config:1.4.1")
     implementation("org.json:json:20201115")
+
+    implementation("org.jsoup:jsoup:1.13.1")
 }
 
 java {
