@@ -30,6 +30,7 @@ import tv.blademaker.killjoy.framework.annotations.SubCommandMeta
 import tv.blademaker.killjoy.Launcher
 import tv.blademaker.killjoy.commands.games.AgentCommand
 import tv.blademaker.killjoy.commands.games.ArsenalCommand
+import tv.blademaker.killjoy.commands.games.NewsCommand
 import tv.blademaker.killjoy.commands.info.HelpCommand
 import tv.blademaker.killjoy.commands.games.SkillCommand
 import tv.blademaker.killjoy.commands.info.InviteCommand
@@ -64,6 +65,7 @@ class CommandRegistry : ListenerAdapter() {
             HelpCommand(),
             InviteCommand(),
             MemeCommand(),
+            NewsCommand(),
             PingCommand(),
             SkillCommand()
         )
