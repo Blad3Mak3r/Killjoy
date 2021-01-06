@@ -48,7 +48,7 @@ object NewsRetriever {
                 .get()
 
             //val featuredNews = document.select("div.news-card > a")
-            val latestNews = document.select("div.NewsArchive-module--content--_kqJU > div > div > a")
+            val latestNews = document.select("div[class~=NewsArchive-module--content--(?i)] > div > div > a")
             val mappedResults = latestNews.mapNotNull(ValorantNew::buildFromElement)
 
             if (mappedResults.isNotEmpty()) {
@@ -86,11 +86,11 @@ object NewsRetriever {
 
                 try {
                     val elHref = el.attr("href")
-                    val elDate = el.selectFirst("div > p.NewsCard-module--published--37jmR").text()
-                    val elTitle = el.selectFirst("div > h5.NewsCard-module--title--1MoLu").text()
-                    val elDesc = el.selectFirst("div > p.NewsCard-module--description--3sFiD").text()
+                    val elDate = el.selectFirst("div > p[class~=NewsCard-module--published--(?i)]").text()
+                    val elTitle = el.selectFirst("div > h5[class~=NewsCard-module--title--(?i)]").text()
+                    val elDesc = el.selectFirst("div > p[class~=NewsCard-module--description--(?i)]").text()
 
-                    val elImageSpan = el.selectFirst("div > span.NewsCard-module--image--2sGrc")
+                    val elImageSpan = el.selectFirst("div > span[class~=NewsCard-module--image--(?i)]")
                         .attr("style")
 
                     val elImageUrl = elImageSpan.substring(elImageSpan.indexOf("https://"), elImageSpan.indexOf(")"))
