@@ -56,7 +56,7 @@ java -jar KilljoyAI.jar
 docker run -it -d \
   --name=killjoy \
   --restart=always \
-  --volume killjoy.conf/app/killjoy.conf \
+  --volume killjoy.conf:/app/killjoy.conf \
   blademaker/killjoy:0.3.3
 ```
 
