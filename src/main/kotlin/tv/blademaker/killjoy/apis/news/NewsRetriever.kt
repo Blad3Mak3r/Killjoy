@@ -40,8 +40,7 @@ object NewsRetriever {
         }
     }
 
-    private fun retrieveValorantNews(): CompletableFuture<List<ValorantNew>> {
-        val future = CompletableFuture<List<ValorantNew>>()
+    private fun retrieveValorantNews(): CompletableFuture<List<ValorantNew>> = CompletableFuture.supplyAsync {
         logger.info("Retrieving new valorant news...")
         
         try {
@@ -58,13 +57,11 @@ object NewsRetriever {
             }
 
             logger.info("Successfully retrieved valorant news.")
-            future.complete(mappedResults)
+            mappedResults
         } catch (e: Exception) {
             logger.error("Error retrieving valorant news...", e)
-            future.completeExceptionally(e)
+            throw e
         }
-
-        return future
     }
 
     data class ValorantNew(
