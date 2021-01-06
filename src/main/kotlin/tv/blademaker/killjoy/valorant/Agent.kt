@@ -34,7 +34,8 @@ import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicLong
 
 data class Agent (
-    val id: Int,
+    val id: String,
+    val number: Int,
     private val apiName: String,
     val name: String,
     val bio: String,
@@ -46,7 +47,8 @@ data class Agent (
 ) {
 
     constructor(json: JSONObject) : this(
-        json.getInt("id"),
+        json.getString("id"),
+        json.getInt("number"),
         json.getString("api_name").trim(),
         json.getString("name").trim(),
         json.getString("bio").trim(),
