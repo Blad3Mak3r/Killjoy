@@ -126,7 +126,7 @@ object Launcher {
         else getAgent(input)
     }
 
-    fun getAgent(id: Int) = agents.find { it.id == id }
+    fun getAgent(number: Int) = agents.find { it.number == number }
     fun getAgent(name: String) = agents.find { it.name.equals(name, true) }
 
     fun getWeapon(name: String) = arsenal.find { it.name.equals(name, true) }

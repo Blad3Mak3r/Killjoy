@@ -32,8 +32,9 @@ import java.io.IOException
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicLong
 
-class Agent (
-    val id: Int,
+data class Agent (
+    val id: String,
+    val number: Int,
     private val apiName: String,
     val name: String,
     val bio: String,
@@ -53,7 +54,8 @@ class Agent (
     }
 
     constructor(json: JSONObject) : this(
-        json.getInt("id"),
+        json.getString("id"),
+        json.getInt("number"),
         json.getString("api_name").trim(),
         json.getString("name").trim(),
         json.getString("bio").trim(),
