@@ -22,8 +22,9 @@ At the moment the bot is pretty straightforward but we have great ideas for it, 
 - ``joy <agents|agent> [agent_name]`` Show a detailed information about the agent you selected (``joy agent killjoy``).
 - ``joy <agents|agent> [agent_name] (q|e|c|x)`` Show a detailed information about the agent's skill you selected (``joy agent sage x``).
 - ``joy arsenal [weapon]`` Get information and statistics about a Valorant weapon or the entire aresenal.
-- ``joy skills (skill_name)`` Get information adn statistics about the agent's skill you selected.
+- ``joy skills (skill_name)`` Get information and statistics about the agent's skill you selected.
 - ``joy invite`` Creates a Bot invite url.
+- ``joy news`` Get the latest news from [Valorant Official Website](https://playvalorant.com)
 
 <p align="center">
  <img src="/Branding/examples/commands_agents.png" width="400px">
