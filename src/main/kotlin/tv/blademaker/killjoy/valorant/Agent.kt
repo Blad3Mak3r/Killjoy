@@ -18,7 +18,6 @@
 package tv.blademaker.killjoy.valorant
 
 import net.dv8tion.jda.api.EmbedBuilder
-import net.dv8tion.jda.api.entities.MessageEmbed
 import okhttp3.Call
 import okhttp3.Callback
 import okhttp3.Request
@@ -46,6 +45,14 @@ data class Agent (
     val skills: List<Skill>
 ) {
 
+    private var stats: Stats? = null
+
+    fun getStats(): Stats {
+        if (StatsMapper.lastCheck.get() == 0L || StatsMapper.lastCheck.get() < System.currentTimeMillis()) StatsMapper.doUpdate()
+
+        return stats ?: Stats.default()
+    }
+
     constructor(json: JSONObject) : this(
         json.getString("id"),
         json.getInt("number"),
@@ -71,8 +78,11 @@ data class Agent (
             //setImage(thumbnail)
             setDescription(bio)
             addField("Origin", origin, true)
-            addField("Win Ratio", String.format("%.2f", Stats[this@Agent.name].first), true)
-            addField("KDA Ratio", String.format("%.2f", Stats[this@Agent.name].second), true)
+            addField("Win Ratio", String.format("%.2f", getStats().winRatio), true)
+            addField("KDA Ratio", String.format("%.2f", getStats().kdaRatio), true)
+            addField("AVG Damage", String.format("%.2f", getStats().avgDamage), true)
+            addField("AVG Kills", String.format("%.2f", getStats().avgKills), true)
+            addField("AVG Assists", String.format("%.2f", getStats().avgAssists), true)
             addBlankField(false)
             setColor(ColorExtra.VAL_RED)
             for (skill in skills) {
@@ -94,6 +104,27 @@ data class Agent (
             fun of(str: String): Role {
                 return values().find { it.name.equals(str, true) } ?: throw IllegalArgumentException("$str is not a valid role name.")
             }
+        }
+    }
+
+    data class Stats(
+        val avgDamage: Double,
+        val avgKills: Double,
+        val avgAssists: Double,
+        val winRatio: Double,
+        val kdaRatio: Double
+    ) {
+
+        constructor(json: JSONObject) : this(
+            json.getDouble("average_damage"),
+            json.getDouble("average_kills"),
+            json.getDouble("average_assists"),
+            json.getDouble("win_ratio"),
+            json.getDouble("kda_ratio")
+        )
+
+        companion object {
+            fun default() = Stats(00.00, 00.00, 00.00, 00.00, 00.00)
         }
     }
 
@@ -145,17 +176,10 @@ data class Agent (
         }
     }
 
-    object Stats {
-        private val statsMap: HashMap<String, Pair<Double, Double>> = hashMapOf()
-        private var lastCheck: AtomicLong = AtomicLong(0L)
+    object StatsMapper {
+        var lastCheck: AtomicLong = AtomicLong(0L)
         private const val url = "https://valorantics-ow.kda.gg/tierlist/agent"
-        private val logger = LoggerFactory.getLogger(Stats::class.java)
-
-        operator fun get(agent: String): Pair<Double, Double> {
-            if (lastCheck.get() == 0L || lastCheck.get() < System.currentTimeMillis()) doUpdate()
-
-            return statsMap.getOrDefault(agent, Pair(00.00, 00.00))
-        }
+        private val logger = LoggerFactory.getLogger(StatsMapper::class.java)
 
         fun doUpdate() {
             val r = Request.Builder().apply {
@@ -169,6 +193,7 @@ data class Agent (
                 }
 
                 override fun onResponse(call: Call, response: Response) {
+                    var count = 0
                     lastCheck.set(System.currentTimeMillis() + TimeUnit.MINUTES.toMillis(30))
 
                     logger.info("Last check was ${lastCheck.get()}")
@@ -183,13 +208,16 @@ data class Agent (
                                 jsonAgent.getString("name") == "${agent.apiName}_pc_c"
                             } as JSONObject
 
-                            statsMap[agent.name] = Pair(agentStats.getDouble("win_ratio"), agentStats.getDouble("kda_ratio"))
+                            agent.stats = Stats(agentStats)
+                            count++
                         } catch (e: Throwable) {
                             logger.error("Cannot update agent stats => ${agent.name}\n${e.stackTraceToString()}")
                         }
                     }
 
-                    logger.info("Loaded ${statsMap.size} stats for agents.")
+                    response.close()
+
+                    logger.info("Loaded $count stats for agents.")
                 }
 
             })
