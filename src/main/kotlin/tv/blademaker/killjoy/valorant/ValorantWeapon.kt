@@ -21,6 +21,7 @@ import net.dv8tion.jda.api.EmbedBuilder
 import org.json.JSONObject
 import tv.blademaker.killjoy.framework.ColorExtra
 
+@Suppress("unused")
 data class ValorantWeapon(
     override val name: String,
     val short: String,

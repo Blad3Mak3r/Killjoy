@@ -17,6 +17,7 @@ package tv.blademaker.killjoy.valorant
 
 import org.json.JSONObject
 
+@Suppress("unused")
 data class ValorantMap(
     override val name: String,
     val description: String,

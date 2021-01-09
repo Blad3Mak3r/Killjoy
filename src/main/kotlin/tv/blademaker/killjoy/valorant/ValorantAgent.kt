@@ -32,6 +32,7 @@ import java.io.IOException
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicLong
 
+@Suppress("unused")
 data class ValorantAgent (
     val id: String,
     val number: Int,
