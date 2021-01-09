@@ -35,7 +35,7 @@ class SkillCommand : Command() {
 
         val agent = Launcher.agents.find { it.skills.any { s -> s === skill } }!!
 
-        ctx.embed {
+        ctx.replyEmbed {
             setAuthor(agent.name, null, agent.avatar)
             setTitle(skill.name)
             setDescription(skill.info)
@@ -47,10 +47,11 @@ class SkillCommand : Command() {
         }.queue()
     }
 
-    override val args: List<CommandArgument>
-        get() = listOf(
-            CommandArgument("skill_name", "A Skill name [shock-bolt]", true)
-        )
+    override val args: List<CommandArgument> = listOf(
+        CommandArgument("skill_name", "A Skill name [shock-bolt]", true)
+    )
+
+    override val help: String = "Get information about a skill from a Valorant agent"
 
 
 }

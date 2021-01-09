@@ -29,7 +29,7 @@ class NewsCommand : Command() {
     override suspend fun handle(ctx: CommandContext) {
         val latestNews = NewsRetriever.lastNews(10)
 
-        ctx.embed {
+        ctx.replyEmbed {
             setTitle("Latest Valorant news")
             setDescription("This articles are from the official PlayValorant website.")
 
