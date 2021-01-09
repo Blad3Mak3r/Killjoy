@@ -110,8 +110,9 @@ object Launcher {
     fun getAgent(name: String) = agents.find { it.name.equals(name, true) }
 
     fun getWeapon(name: String) = arsenal.find { it.name.equals(name, true) }
-
     fun getWeaponById(id: String) = arsenal.find { it.id.equals(id, true) }
+
+    fun getMap(name: String) = maps.find { it.name.equals(name, true) }
 
     fun getAgentsByRole(name: String): List<ValorantAgent>? {
         val result = kotlin.runCatching { ValorantAgent.Role.of(name) }
