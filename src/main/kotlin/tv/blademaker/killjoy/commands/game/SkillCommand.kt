@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and limitations under the License.
  ******************************************************************************/
 
-package tv.blademaker.killjoy.commands.games
+package tv.blademaker.killjoy.commands.game
 
 import tv.blademaker.killjoy.Launcher
 import tv.blademaker.killjoy.framework.Category

@@ -28,11 +28,11 @@ import tv.blademaker.killjoy.framework.abs.SubCommand
 import tv.blademaker.killjoy.framework.annotations.CommandMeta
 import tv.blademaker.killjoy.framework.annotations.SubCommandMeta
 import tv.blademaker.killjoy.Launcher
-import tv.blademaker.killjoy.commands.games.AgentCommand
-import tv.blademaker.killjoy.commands.games.ArsenalCommand
-import tv.blademaker.killjoy.commands.games.NewsCommand
+import tv.blademaker.killjoy.commands.game.AgentCommand
+import tv.blademaker.killjoy.commands.game.ArsenalCommand
+import tv.blademaker.killjoy.commands.game.NewsCommand
 import tv.blademaker.killjoy.commands.info.HelpCommand
-import tv.blademaker.killjoy.commands.games.SkillCommand
+import tv.blademaker.killjoy.commands.game.SkillCommand
 import tv.blademaker.killjoy.commands.info.InviteCommand
 import tv.blademaker.killjoy.commands.info.PingCommand
 import tv.blademaker.killjoy.commands.misc.MemeCommand

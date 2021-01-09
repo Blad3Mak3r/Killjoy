@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and limitations under the License.
  ******************************************************************************/
 
-package tv.blademaker.killjoy.commands.games
+package tv.blademaker.killjoy.commands.game
 
 import tv.blademaker.killjoy.Launcher
 import tv.blademaker.killjoy.framework.Category
@@ -22,7 +22,6 @@ import tv.blademaker.killjoy.framework.CommandContext
 import tv.blademaker.killjoy.framework.abs.Command
 import tv.blademaker.killjoy.framework.annotations.CommandMeta
 import tv.blademaker.killjoy.utils.Emojis
-import tv.blademaker.killjoy.valorant.Weapon
 
 @CommandMeta("arsenal", Category.Game, aliases = ["weapons", "weapon"])
 class ArsenalCommand : Command() {
