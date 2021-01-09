@@ -105,20 +105,7 @@ object Launcher {
             )
             .build()
 
-
-
-        StatsPosting.Builder()
-            .withShardManager(shardManager)
-            .apply {
-                val topgg = BotConfig.getOrNull<String>("stats.topgg.token")
-                if (topgg != null)
-                    addWebsite(Website("top.gg", "https://top.gg/api/bots/%s/stats", topgg))
-
-            }
-            .withInitialDelay(1)
-            .withRepetitionPeriod(30)
-            .withTimeUnit(TimeUnit.MINUTES)
-            .build()
+        enableListing()
     }
 
     fun retrieveAgentByInput(input: String): Agent? {
@@ -140,6 +127,39 @@ object Launcher {
     }
 
     fun getSkills() = agents.map { it.skills }.reduce { acc, list -> acc + list }
+
+    private fun enableListing() {
+        val websites = mutableListOf<Website>()
+        BotConfig.getOrNull<String>("listing.topgg")?.let {
+            val website = Website("top.gg", "https://top.gg/api/bots/%s/stats", it)
+            websites.add(website)
+        }
+        BotConfig.getOrNull<String>("listing.dbotsgg")?.let {
+            val website = Website("discord.bots.gg", "https://discord.bots.gg/api/v1/bots/%s/stats", it, "guildCount")
+            websites.add(website)
+        }
+        BotConfig.getOrNull<String>("listing.botsfordiscord")?.let {
+            val website = Website("botsfordiscord.com", "https://botsfordiscord.com/api/bot/%s", it)
+            websites.add(website)
+        }
+        BotConfig.getOrNull<String>("listing.dboats")?.let {
+            val website = Website("discord.boats", "https://discord.boats/api/bot/%s", it)
+            websites.add(website)
+        }
+
+        if (websites.isEmpty()) {
+            log.info("Listing is not enabled.")
+            return
+        }
+
+        StatsPosting.Builder()
+            .withShardManager(shardManager)
+            .addWebsites(websites)
+            .withInitialDelay(1)
+            .withRepetitionPeriod(30)
+            .withTimeUnit(TimeUnit.MINUTES)
+            .build()
+    }
 
     private val log = LoggerFactory.getLogger(Launcher::class.java)
 }

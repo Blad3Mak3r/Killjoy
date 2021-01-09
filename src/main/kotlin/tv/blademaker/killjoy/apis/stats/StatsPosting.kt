@@ -108,7 +108,7 @@ class StatsPosting private constructor(
 
         fun addWebsites(websites: Iterable<Website>): Builder {
             for (website in websites) {
-                if (websites.any { it.id == website.id || it.urlRegex == website.urlRegex })
+                if (this.websites.any { it.id == website.id || it.urlRegex == website.urlRegex })
                     throw IllegalArgumentException("Website with id ${website.id} is already registered.")
 
                 this.websites.add(website)
