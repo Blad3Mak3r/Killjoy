@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and limitations under the License.
  ******************************************************************************/
 
-package tv.blademaker.killjoy.commands.games
+package tv.blademaker.killjoy.commands.game
 
 import tv.blademaker.killjoy.apis.news.NewsRetriever
 import tv.blademaker.killjoy.framework.Category
@@ -29,7 +29,7 @@ class NewsCommand : Command() {
     override suspend fun handle(ctx: CommandContext) {
         val latestNews = NewsRetriever.lastNews(10)
 
-        ctx.embed {
+        ctx.replyEmbed {
             setTitle("Latest Valorant news")
             setDescription("This articles are from the official PlayValorant website.")
 

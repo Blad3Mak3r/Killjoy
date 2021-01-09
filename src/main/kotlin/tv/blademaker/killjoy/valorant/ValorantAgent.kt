@@ -32,18 +32,19 @@ import java.io.IOException
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicLong
 
-data class Agent (
+@Suppress("unused")
+data class ValorantAgent (
     val id: String,
     val number: Int,
     private val apiName: String,
-    val name: String,
+    override val name: String,
     val bio: String,
     val origin: String,
     val role: Role,
     val avatar: String,
     val thumbnail: String,
     val skills: List<Skill>
-) {
+) : ValorantEntity {
 
     private var stats: Stats? = null
 
@@ -67,7 +68,7 @@ data class Agent (
     )
 
     init {
-        check(this.avatar.isUrl()) { "avatar is not a valid url (Agent ${this.name}) [${this.avatar}]" }
+        check(this.avatar.isUrl()) { "avatar is not a valid url (ValorantAgent ${this.name}) [${this.avatar}]" }
     }
 
     fun asEmbed(): EmbedBuilder {
@@ -184,7 +185,7 @@ data class Agent (
         fun doUpdate() {
             val r = Request.Builder().apply {
                 url(url)
-                addHeader("User-Agent", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36")
+                addHeader("User-ValorantAgent", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36")
             }.build()
             Launcher.httpClient.newCall(r).enqueue(object : Callback {
                 override fun onFailure(call: Call, e: IOException) {

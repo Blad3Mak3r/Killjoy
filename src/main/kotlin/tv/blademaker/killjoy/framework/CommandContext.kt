@@ -71,35 +71,24 @@ class CommandContext(
         return this
     }
 
-    fun reply(message: String) = channel.sendMessage {
-        append(author.asMention)
-        append(", ")
-        append(message)
-    }
+    fun reply(msg: String) = message.reply(msg)
 
     fun reply(embed: MessageEmbed): MessageAction {
-        return channel.sendMessage {
-            append(author.asMention)
-            setEmbed(embed)
-        }
+        return message.reply(embed)
     }
 
     fun reply(emoji: Emojis, msg: String): MessageAction {
-        return channel.sendMessage {
+        return message.reply(MessageBuilder().apply {
             append(emoji.getCode(this@CommandContext))
             append(" ")
-            append(author.asMention)
-            append(", ")
             append(msg)
-        }
+        }.build())
     }
 
     fun reply(emoji: Emojis, embed: MessageEmbed): MessageAction {
-        return channel.sendMessage {
-            append(emoji.getCode(this@CommandContext))
-            append(" ")
-            setEmbed(embed)
-        }
+        return message.reply(MessageBuilder()
+            .append(emoji.getCode(this@CommandContext))
+            .setEmbed(embed).build())
     }
 
     fun replyError(error: Throwable): MessageAction {
@@ -117,10 +106,7 @@ class CommandContext(
                 .setAuthor("An unexpected exception occurred.")
                 .setDescription("```\n$error\n```").setColor(Color.RED).build()
 
-        return channel.sendMessage {
-            append(author.asMention)
-            setEmbed(embed)
-        }
+        return message.reply(embed)
     }
 
     fun send(emoji: Emojis, msg: String): MessageAction {
@@ -155,6 +141,12 @@ class CommandContext(
                     .setColor(getEmbedColor(selfMember))
                     .apply(embed)
                     .build())
+
+    inline fun replyEmbed(embed: EmbedBuilder.() -> Unit) =
+        message.reply(EmbedBuilder()
+            .setColor(getEmbedColor(selfMember))
+            .apply(embed)
+            .build())
 
     fun sendError(error: String?) = channel.sendMessage {
         appendCodeBlock(error ?: "Unknown error received", "css")

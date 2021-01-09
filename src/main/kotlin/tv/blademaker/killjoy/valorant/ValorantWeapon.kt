@@ -21,16 +21,17 @@ import net.dv8tion.jda.api.EmbedBuilder
 import org.json.JSONObject
 import tv.blademaker.killjoy.framework.ColorExtra
 
-data class Weapon(
-        val name: String,
-        val short: String,
-        val type: Type,
-        val descriptions: List<String>,
-        val thumbnail: String,
-        val cost: Int,
-        val magazine: Int?,
-        val wallPenetration: String?
-) {
+@Suppress("unused")
+data class ValorantWeapon(
+    override val name: String,
+    val short: String,
+    val type: Type,
+    val descriptions: List<String>,
+    val thumbnail: String,
+    val cost: Int,
+    val magazine: Int?,
+    val wallPenetration: String?
+) : ValorantEntity {
 
     val id: String
         get() = name.toLowerCase().replace(" ", "").replace("-", "")

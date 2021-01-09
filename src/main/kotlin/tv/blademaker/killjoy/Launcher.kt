@@ -31,12 +31,12 @@ import tv.blademaker.killjoy.apis.stats.Website
 import tv.blademaker.killjoy.framework.CommandRegistry
 import tv.blademaker.killjoy.utils.Loaders
 import tv.blademaker.killjoy.utils.extensions.isInt
-import tv.blademaker.killjoy.valorant.Agent
-import tv.blademaker.killjoy.valorant.Weapon
+import tv.blademaker.killjoy.valorant.ValorantAgent
+import tv.blademaker.killjoy.valorant.ValorantMap
+import tv.blademaker.killjoy.valorant.ValorantWeapon
 import java.util.concurrent.TimeUnit
 import javax.security.auth.login.LoginException
 import kotlin.properties.Delegates
-import kotlin.system.exitProcess
 
 object Launcher {
 
@@ -57,8 +57,9 @@ object Launcher {
     lateinit var commandRegistry: CommandRegistry
         private set
 
-    lateinit var agents: List<Agent>
-    lateinit var arsenal: List<Weapon>
+    val agents: List<ValorantAgent> = Loaders.loadAgents()
+    val arsenal: List<ValorantWeapon> = Loaders.loadArsenal()
+    val maps: List<ValorantMap> = Loaders.loadMaps()
 
     val rateLimiter: RateLimiter = RateLimiter.Builder().setQuota(20).setExpirationTime(1, TimeUnit.MINUTES).build()
 
@@ -69,14 +70,6 @@ object Launcher {
         pid = ProcessHandle.current().pid()
 
         log.info("Starting with PID: $pid")
-
-        try {
-            agents = Loaders.loadAgents()
-            arsenal = Loaders.loadArsenal()
-        } catch (e: Throwable) {
-            e.printStackTrace()
-            exitProcess(0)
-        }
 
         commandRegistry = CommandRegistry()
 
@@ -108,7 +101,7 @@ object Launcher {
         enableListing()
     }
 
-    fun retrieveAgentByInput(input: String): Agent? {
+    fun retrieveAgentByInput(input: String): ValorantAgent? {
         return if (input.isInt()) getAgent(input.toInt())
         else getAgent(input)
     }
@@ -117,11 +110,12 @@ object Launcher {
     fun getAgent(name: String) = agents.find { it.name.equals(name, true) }
 
     fun getWeapon(name: String) = arsenal.find { it.name.equals(name, true) }
-
     fun getWeaponById(id: String) = arsenal.find { it.id.equals(id, true) }
 
-    fun getAgentsByRole(name: String): List<Agent>? {
-        val result = kotlin.runCatching { Agent.Role.of(name) }
+    fun getMap(name: String) = maps.find { it.name.equals(name, true) }
+
+    fun getAgentsByRole(name: String): List<ValorantAgent>? {
+        val result = kotlin.runCatching { ValorantAgent.Role.of(name) }
         if (result.isFailure) return null
         return agents.filter { it.role === result.getOrNull()!! }
     }

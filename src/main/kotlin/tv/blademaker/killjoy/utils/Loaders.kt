@@ -17,51 +17,44 @@ package tv.blademaker.killjoy.utils
 
 import org.json.JSONObject
 import org.slf4j.LoggerFactory
-import tv.blademaker.killjoy.valorant.Agent
-import tv.blademaker.killjoy.valorant.Weapon
+import tv.blademaker.killjoy.valorant.ValorantAgent
+import tv.blademaker.killjoy.valorant.ValorantEntity
+import tv.blademaker.killjoy.valorant.ValorantMap
+import tv.blademaker.killjoy.valorant.ValorantWeapon
+import kotlin.jvm.Throws
 
 object Loaders {
 
     private val log = LoggerFactory.getLogger(Loaders::class.java)
 
-    fun loadAgents(): List<Agent> {
-        val list = mutableListOf<Agent>()
-        val agentsIndex = this::class.java.getResource("/agents/agents.txt").readText().split("\n")
-        if (agentsIndex.isEmpty()) throw IllegalStateException("Agents Index cannot be empty or null")
+    fun loadAgents(): List<ValorantAgent> = loadValorantEntities(ValorantAgent::class.java, "agents")
+    fun loadArsenal(): List<ValorantWeapon> = loadValorantEntities(ValorantWeapon::class.java, "arsenal")
+    fun loadMaps(): List<ValorantMap> = loadValorantEntities(ValorantMap::class.java, "maps")
 
-        for (agentName in agentsIndex) {
-            val file = this::class.java.getResource("/agents/${agentName.toLowerCase()}.json")
-                ?: throw IllegalStateException("$agentName.json is not present")
+    /**
+     * Load a list of provided [ValorantEntity] based class.
+     *
+     * @param clazz a class extending the interface [ValorantEntity]
+     * @param resourcePath the path to the resource (maps, agents, arsenal)
+     *
+     * @return a list of the given valorant entity [ValorantEntity]
+     */
+    @Throws(IllegalStateException::class)
+    private fun <T : ValorantEntity> loadValorantEntities(clazz: Class<T>, resourcePath: String): List<T> {
+        val list = mutableListOf<T>()
+        val index = this::class.java.getResource("/$resourcePath/index.txt").readText().split("\n")
+        check(index.isNotEmpty()) { "${resourcePath.capitalize()} index cannot be empty or null." }
+
+        for (entityName in index) {
+            val file = this::class.java.getResource("/$resourcePath/${entityName.toLowerCase()}.json")
+                ?: throw IllegalStateException("/$resourcePath/$entityName.json is not present")
+
             val fileContent = file.readText()
-            if (fileContent.isEmpty()) throw IllegalStateException("$agentName.json is empty")
-
-            val agent = Agent(JSONObject(fileContent))
-
-            if (list.any { it.id == agent.id || it.name.equals(agent.name, true) || it.number == agent.number })
-                throw IllegalStateException("Agent with id ${agent.id} or name ${agent.name} is already present.")
-
-            list.add(agent)
+            if (fileContent.isEmpty()) throw IllegalStateException("/$resourcePath/$entityName.json is empty")
+            list.add(clazz.getConstructor(JSONObject::class.java).newInstance(JSONObject(fileContent)))
         }
 
-        log.info("Loaded ${list.size} agents!! [${list.joinToString(", ") { it.name }}]")
-        Agent.StatsMapper.doUpdate()
-        return list
-    }
-
-    fun loadArsenal(): List<Weapon> {
-        val list = mutableListOf<Weapon>()
-        val arsenalIndex = this::class.java.getResource("/arsenal/arsenal.txt").readText().split("\n")
-        if (arsenalIndex.isEmpty()) throw IllegalStateException("Arsenal Index cannot be empty or null")
-
-        for (weaponName in arsenalIndex) {
-            val file = this::class.java.getResource("/arsenal/${weaponName.toLowerCase()}.json")
-                    ?: throw IllegalStateException("$weaponName.json is not present")
-            val fileContent = file.readText()
-            if (fileContent.isEmpty()) throw IllegalStateException("$weaponName.json is empty")
-            list.add(Weapon(JSONObject(fileContent)))
-        }
-
-        log.info("Loaded ${list.size} weapons from arsenal!! [${list.joinToString(", ") { it.name }}]")
+        log.info("Loaded ${list.size} ${clazz.simpleName} entities!! [${list.joinToString(", ") { it.name }}]")
         return list
     }
 }

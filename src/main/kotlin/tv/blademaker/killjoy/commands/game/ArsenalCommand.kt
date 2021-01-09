@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and limitations under the License.
  ******************************************************************************/
 
-package tv.blademaker.killjoy.commands.games
+package tv.blademaker.killjoy.commands.game
 
 import tv.blademaker.killjoy.Launcher
 import tv.blademaker.killjoy.framework.Category
@@ -22,7 +22,6 @@ import tv.blademaker.killjoy.framework.CommandContext
 import tv.blademaker.killjoy.framework.abs.Command
 import tv.blademaker.killjoy.framework.annotations.CommandMeta
 import tv.blademaker.killjoy.utils.Emojis
-import tv.blademaker.killjoy.valorant.Weapon
 
 @CommandMeta("arsenal", Category.Game, aliases = ["weapons", "weapon"])
 class ArsenalCommand : Command() {
@@ -30,7 +29,7 @@ class ArsenalCommand : Command() {
         if (ctx.args.isEmpty()) {
             val arsenal = Launcher.arsenal
 
-            ctx.embed {
+            ctx.replyEmbed {
                 setTitle("Valorant Arsenal")
                 for (weapon in arsenal) {
                     addField("${weapon.name} //${weapon.type.name.toUpperCase()}", weapon.short, true)
@@ -43,20 +42,13 @@ class ArsenalCommand : Command() {
                 ?: Launcher.getWeaponById(ctx.args[0])
                 ?: return ctx.send(Emojis.NoEntry, "That weapon does not exists...").queue()
 
-            ctx.send(weapon.asEmbed().build()).queue()
+            ctx.reply(weapon.asEmbed().build()).queue()
         }
     }
 
-    override val help: String
-        get() = HELP
+    override val help: String = "Get information and statistics about a Valorant weapon or the entire aresenal."
 
-    override val args: List<CommandArgument>
-        get() = ARGS
-
-    companion object {
-        private const val HELP = "Get information and statistics about a Valorant weapon or the entire aresenal."
-        private val ARGS = listOf(
-                CommandArgument("weapon", "A valid Valorant weapon name [tacticalknife]", false)
-        )
-    }
+    override val args: List<CommandArgument> = listOf(
+        CommandArgument("weapon", "A valid Valorant weapon name [tacticalknife]", false)
+    )
 }
