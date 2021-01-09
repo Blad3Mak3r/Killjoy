@@ -1,2 +1,2 @@
 docker:
-	docker build -t blademaker/killjot:latest -t blademaker/killjoy:$(version) .
+	docker build -t blademaker/killjoy:latest -t blademaker/killjoy:$(version) .
