@@ -43,7 +43,7 @@ dependencies {
     implementation("net.hugebot:RateLimiter:v1.0.0")
 
     //  Discord Required
-    implementation("net.dv8tion:JDA:4.2.0_+") { exclude(module = "opus-java") }
+    implementation("net.dv8tion:JDA:4.2.0_227") { exclude(module = "opus-java") }
     implementation("com.jagrosh:jda-utilities:3.0.5")
 
     //  Logging
