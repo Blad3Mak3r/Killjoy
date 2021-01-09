@@ -21,11 +21,13 @@ import org.json.JSONObject
 data class ValorantMap(
     override val name: String,
     val description: String,
+    val minimap: String,
     val imageUrl: String
 ) : ValorantEntity {
     constructor(jsonObject: JSONObject) : this(
         jsonObject.getString("name"),
         jsonObject.getString("description"),
+        jsonObject.getString("minimap"),
         jsonObject.getString("image_url")
     )
 }
