@@ -42,7 +42,7 @@ object Loaders {
     @Throws(IllegalStateException::class)
     private fun <T : ValorantEntity> loadValorantEntities(clazz: Class<T>, resourcePath: String): List<T> {
         val list = mutableListOf<T>()
-        val index = this::class.java.getResource("/$resourcePath/index.txt").readText().split("\n")
+        val index = this::class.java.getResource("/$resourcePath/index.txt").readText().split("\\r?\\n".toRegex())
         check(index.isNotEmpty()) { "${resourcePath.capitalize()} index cannot be empty or null." }
 
         for (entityName in index) {
