@@ -156,6 +156,12 @@ class CommandContext(
                     .apply(embed)
                     .build())
 
+    inline fun replyEmbed(embed: EmbedBuilder.() -> Unit) =
+        message.reply(EmbedBuilder()
+            .setColor(getEmbedColor(selfMember))
+            .apply(embed)
+            .build())
+
     fun sendError(error: String?) = channel.sendMessage {
         appendCodeBlock(error ?: "Unknown error received", "css")
     }
