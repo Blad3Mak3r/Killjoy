@@ -174,12 +174,12 @@ class CommandRegistry : ListenerAdapter() {
         val botPermissions = command.botPermissions.filter { !it.isVoice }.toSet()
 
         if (!member.hasPermission(channel, userPermissions))
-            return context.reply("""
+            return context.send("""
                     you do not have the necessary permissions to perform this action... ${userPermissions.joinToString(", ") { "***${it.getName()}***" }}
                 """.trimIndent()).queue()
 
         if (!context.selfMember.hasPermission(channel, botPermissions))
-            return context.reply("""
+            return context.send("""
                     I do not have the necessary permissions to perform this action... ${botPermissions.joinToString(", ") { "***${it.getName()}***" }}
                 """.trimIndent()).queue()
 
