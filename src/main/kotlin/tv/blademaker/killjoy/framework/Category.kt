@@ -29,6 +29,7 @@ enum class Category(
             false,
             hashSetOf(),
             hashSetOf(
+                    Permission.MESSAGE_HISTORY,
                     Permission.MESSAGE_EMBED_LINKS,
                     Permission.MESSAGE_EXT_EMOJI
             )
@@ -39,6 +40,7 @@ enum class Category(
             true,
             hashSetOf(),
             hashSetOf(
+                    Permission.MESSAGE_HISTORY,
                     Permission.MESSAGE_EMBED_LINKS,
                     Permission.MESSAGE_EXT_EMOJI
             )
@@ -49,6 +51,7 @@ enum class Category(
             true,
             hashSetOf(),
             hashSetOf(
+                    Permission.MESSAGE_HISTORY,
                     Permission.MESSAGE_EMBED_LINKS,
                     Permission.MESSAGE_EXT_EMOJI
             )
@@ -59,6 +62,7 @@ enum class Category(
             true,
             hashSetOf(),
             hashSetOf(
+                    Permission.MESSAGE_HISTORY,
                     Permission.MESSAGE_EMBED_LINKS,
                     Permission.MESSAGE_EXT_EMOJI
             )

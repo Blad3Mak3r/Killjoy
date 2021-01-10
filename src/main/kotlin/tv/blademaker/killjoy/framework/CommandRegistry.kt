@@ -16,11 +16,13 @@
 package tv.blademaker.killjoy.framework
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder
+import io.sentry.Sentry
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.asCoroutineDispatcher
 import kotlinx.coroutines.launch
 import net.dv8tion.jda.api.Permission
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
+import net.dv8tion.jda.api.exceptions.InsufficientPermissionException
 import net.dv8tion.jda.api.hooks.ListenerAdapter
 import org.slf4j.LoggerFactory
 import tv.blademaker.killjoy.framework.abs.Command
@@ -181,7 +183,15 @@ class CommandRegistry : ListenerAdapter() {
                     I do not have the necessary permissions to perform this action... ${botPermissions.joinToString(", ") { "***${it.getName()}***" }}
                 """.trimIndent()).queue()
 
-        handleExecutor(context, command)
+        try {
+            handleExecutor(context, command)
+        } catch (ex: InsufficientPermissionException) {
+            val msg = String.format("Cannot perform action due to a lack of Permission. **Missing permission: %s**", ex.permission.getName())
+            context.send(msg).queue()
+            Sentry.captureException(ex)
+        } catch (ex: Throwable) {
+            SentryUtils.sendCommandException(context, command, ex)
+        }
     }
 
     private suspend fun handleExecutor(context: CommandContext, command: Command) {
@@ -208,11 +218,7 @@ class CommandRegistry : ListenerAdapter() {
         if (command.meta.isNsfw && !context.channel.isNSFW)
             context.send(Emojis.Nsfw, "You cannot use this command on a **non-NSFW** channel.").queue()
         else {
-            try {
-                command.execute(context)
-            } catch (ex: Throwable) {
-                SentryUtils.sendCommandException(context, command, ex)
-            }
+            command.execute(context)
         }
     }
 
@@ -220,12 +226,8 @@ class CommandRegistry : ListenerAdapter() {
         if (command.meta.isNsfw && !context.channel.isNSFW)
             context.send(Emojis.Nsfw, "You cannot use this command on a **non-NSFW** channel.").queue()
         else {
-            try {
-                context.args = context.args.subList(1, context.args.size)
-                command.execute(context)
-            } catch (ex: Exception) {
-                SentryUtils.sendCommandException(context, command, ex)
-            }
+            context.args = context.args.subList(1, context.args.size)
+            command.execute(context)
         }
     }
 
