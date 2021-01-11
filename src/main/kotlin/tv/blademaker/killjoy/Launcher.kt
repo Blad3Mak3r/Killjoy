@@ -82,8 +82,7 @@ object Launcher {
             .enableIntents(
                 GatewayIntent.GUILD_MESSAGES,
                 GatewayIntent.GUILD_MESSAGE_REACTIONS,
-                GatewayIntent.DIRECT_MESSAGES,
-                GatewayIntent.GUILD_MEMBERS,
+                GatewayIntent.DIRECT_MESSAGES
             )
             .disableIntents(
                 GatewayIntent.GUILD_VOICE_STATES,
