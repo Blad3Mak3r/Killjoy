@@ -1,0 +1,8 @@
+/assets/*
+/Branding/*
+/logs/*
+/.idea/*
+/.github/*
+*.conf
+Makefile
+README.md
