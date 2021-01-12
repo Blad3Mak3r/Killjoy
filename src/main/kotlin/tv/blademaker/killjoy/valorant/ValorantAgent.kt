@@ -31,6 +31,8 @@ import tv.blademaker.killjoy.utils.extensions.isUrl
 import java.io.IOException
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicLong
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 
 @Suppress("unused")
 data class ValorantAgent (
@@ -48,7 +50,7 @@ data class ValorantAgent (
 
     private var stats: Stats? = null
 
-    fun getStats(): Stats {
+    private suspend fun getStats(): Stats {
         if (StatsMapper.lastCheck.get() == 0L || StatsMapper.lastCheck.get() < System.currentTimeMillis()) StatsMapper.doUpdate()
 
         return stats ?: Stats.default()
@@ -71,7 +73,8 @@ data class ValorantAgent (
         check(this.avatar.isUrl()) { "avatar is not a valid url (ValorantAgent ${this.name}) [${this.avatar}]" }
     }
 
-    fun asEmbed(): EmbedBuilder {
+    suspend fun asEmbed(): EmbedBuilder {
+        val stats = getStats()
         return EmbedBuilder().apply {
             setAuthor(role.name, null, role.iconUrl)
             setTitle(name, "https://playvalorant.com/en-us/agents/${name.toLowerCase()}/")
@@ -79,11 +82,11 @@ data class ValorantAgent (
             //setImage(thumbnail)
             setDescription(bio)
             addField("Origin", origin, true)
-            addField("Win Ratio", String.format("%.2f", getStats().winRatio), true)
-            addField("KDA Ratio", String.format("%.2f", getStats().kdaRatio), true)
-            addField("AVG Damage", String.format("%.2f", getStats().avgDamage), true)
-            addField("AVG Kills", String.format("%.2f", getStats().avgKills), true)
-            addField("AVG Assists", String.format("%.2f", getStats().avgAssists), true)
+            addField("Win Ratio", String.format("%.2f", stats.winRatio), true)
+            addField("KDA Ratio", String.format("%.2f", stats.kdaRatio), true)
+            addField("AVG Damage", String.format("%.2f", stats.avgDamage), true)
+            addField("AVG Kills", String.format("%.2f", stats.avgKills), true)
+            addField("AVG Assists", String.format("%.2f", stats.avgAssists), true)
             addBlankField(false)
             setColor(ColorExtra.VAL_RED)
             for (skill in skills) {
@@ -182,7 +185,8 @@ data class ValorantAgent (
         private const val url = "https://valorantics-ow.kda.gg/tierlist/agent"
         private val logger = LoggerFactory.getLogger(StatsMapper::class.java)
 
-        fun doUpdate() {
+        suspend fun doUpdate() = suspendCoroutine<Boolean> { cont ->
+            logger.info("Running agent stats update...")
             val r = Request.Builder().apply {
                 url(url)
                 addHeader("User-ValorantAgent", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36")
@@ -191,6 +195,7 @@ data class ValorantAgent (
                 override fun onFailure(call: Call, e: IOException) {
                     logger.warn("Cannot update stats")
                     lastCheck.set(System.currentTimeMillis() + TimeUnit.MINUTES.toMillis(2))
+                    cont.resume(false)
                 }
 
                 override fun onResponse(call: Call, response: Response) {
@@ -207,10 +212,12 @@ data class ValorantAgent (
                             val agentStats = stats.find {
                                 val jsonAgent = it as JSONObject
                                 jsonAgent.getString("name") == "${agent.apiName}_pc_c"
-                            } as JSONObject
+                            }
 
-                            agent.stats = Stats(agentStats)
-                            count++
+                            if (agentStats != null) {
+                                agent.stats = Stats(agentStats as JSONObject)
+                                count++
+                            }
                         } catch (e: Throwable) {
                             logger.error("Cannot update agent stats => ${agent.name}\n${e.stackTraceToString()}")
                         }
@@ -219,6 +226,8 @@ data class ValorantAgent (
                     response.close()
 
                     logger.info("Loaded $count stats for agents.")
+
+                    cont.resume(true)
                 }
 
             })
