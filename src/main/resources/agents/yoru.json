@@ -1,0 +1,46 @@
+{
+  "id": "",
+  "number": 14,
+  "name": "Yoru",
+  "api_name": "",
+  "origin": ":flag_jp: Japan",
+  "image": "https://i.imgur.com/VMX7srT.png",
+  "thumbnail": "https://i.imgur.com/XoQolni.jpg",
+  "avatar": "https://i.imgur.com/ervI0dM.jpg",
+  "role": "Duelist",
+  "bio": "Japanese native Yoru rips holes straight through reality to infiltrate enemy lines unseen. Using deception and aggression in equal measure, he gets the drop on each target before they know where to look.",
+  "skills": [
+    {
+      "button": "q",
+      "name": "BLINDSIDE",
+      "iconUrl": "https://i.imgur.com/ewDaXpP.png",
+      "info": "EQUIP to rip an unstable dimensional fragment from reality. FIRE to throw the fragment, activating a flash that winds up once it collides with a hard surface in world.",
+      "preview": "https://i.imgur.com/AJSx3L7.gif",
+      "cost": "200"
+    },
+    {
+      "button": "e",
+      "name": "GATECRASH",
+      "iconUrl": "https://i.imgur.com/B9whdpz.png",
+      "info": "EQUIP to harness a rift tether FIRE to send the tether out moving forward ALT FIRE to place a tether in place ACTIVATE to teleport to the tether's location.",
+      "preview": "https://i.imgur.com/QRzktKZ.gif",
+      "cost": "Free"
+    },
+    {
+      "button": "c",
+      "name": "FAKEOUT",
+      "iconUrl": "https://i.imgur.com/PZfcIRv.png",
+      "info": "EQUIP an echo that mimics footsteps when activated FIRE to activate and send the echo forward ALT FIRE to place an echo in place USE the inactive echo to send it forward.",
+      "preview": "https://i.imgur.com/QLSCDmh.gif",
+      "cost": "100"
+    },
+    {
+      "button": "x",
+      "name": "DIMENSIONAL DRIFT",
+      "iconUrl": "https://i.imgur.com/N7V6okx.png",
+      "info": "EQUIP a mask that can see between dimensions FIRE to drift into Yoru's dimension, unable to be affected or seen by enemies from the outside.",
+      "preview": "https://i.imgur.com/f5bocHi.gif",
+      "cost": "••••••• 7 Points"
+    }
+  ]
+}
