@@ -34,9 +34,9 @@ import java.util.concurrent.atomic.AtomicLong
 
 @Suppress("unused")
 data class ValorantAgent (
-    val id: String,
+    val id: String? = null,
     val number: Int,
-    private val apiName: String,
+    private val apiName: String? = null,
     override val name: String,
     val bio: String,
     val origin: String,
@@ -55,9 +55,9 @@ data class ValorantAgent (
     }
 
     constructor(json: JSONObject) : this(
-        json.getString("id"),
+        json.getString("id").takeIf { it.isNotEmpty() },
         json.getInt("number"),
-        json.getString("api_name").trim(),
+        json.optString("api_name").trim().takeIf { it.isNotEmpty() },
         json.getString("name").trim(),
         json.getString("bio").trim(),
         json.getString("origin").trim(),
