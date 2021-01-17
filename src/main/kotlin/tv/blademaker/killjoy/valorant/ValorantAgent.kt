@@ -189,7 +189,7 @@ data class ValorantAgent (
             logger.info("Running agent stats update...")
             val r = Request.Builder().apply {
                 url(url)
-                addHeader("User-ValorantAgent", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36")
+                addHeader("User-Agent", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36")
             }.build()
             Launcher.httpClient.newCall(r).enqueue(object : Callback {
                 override fun onFailure(call: Call, e: IOException) {
