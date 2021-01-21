@@ -75,7 +75,7 @@ object Launcher {
 
         shardManager = DefaultShardManagerBuilder.createLight(BotConfig.token)
             .setShardsTotal(-1)
-            .setActivity(Activity.playing("Valorant | joy help"))
+            .setActivity(Activity.competing("Valorant | joy help"))
             .setEnableShutdownHook(false)
             .addEventListeners(commandRegistry)
             .setCompression(Compression.ZLIB)
