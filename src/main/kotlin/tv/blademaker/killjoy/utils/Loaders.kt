@@ -21,7 +21,11 @@ import tv.blademaker.killjoy.valorant.ValorantAgent
 import tv.blademaker.killjoy.valorant.ValorantEntity
 import tv.blademaker.killjoy.valorant.ValorantMap
 import tv.blademaker.killjoy.valorant.ValorantWeapon
+import java.io.InputStream
 import kotlin.jvm.Throws
+import java.io.BufferedReader
+import java.io.InputStreamReader
+
 
 object Loaders {
 
@@ -42,19 +46,44 @@ object Loaders {
     @Throws(IllegalStateException::class)
     private fun <T : ValorantEntity> loadValorantEntities(clazz: Class<T>, resourcePath: String): List<T> {
         val list = mutableListOf<T>()
-        val index = this::class.java.getResource("/$resourcePath/index.txt").readText().split("\\r?\\n".toRegex())
+        val index = getResourceFiles(resourcePath)
         check(index.isNotEmpty()) { "${resourcePath.capitalize()} index cannot be empty or null." }
 
         for (entityName in index) {
-            val file = this::class.java.getResource("/$resourcePath/${entityName.toLowerCase()}.json")
-                ?: throw IllegalStateException("/$resourcePath/$entityName.json is not present")
+            val file = this::class.java.getResource("/$resourcePath/$entityName")
+                ?: throw IllegalStateException("/$resourcePath/$entityName is not present")
 
             val fileContent = file.readText()
-            if (fileContent.isEmpty()) throw IllegalStateException("/$resourcePath/$entityName.json is empty")
+            if (fileContent.isEmpty()) throw IllegalStateException("$resourcePath/$entityName is empty")
             list.add(clazz.getConstructor(JSONObject::class.java).newInstance(JSONObject(fileContent)))
         }
 
         log.info("Loaded ${list.size} ${clazz.simpleName} entities!! [${list.joinToString(", ") { it.name }}]")
         return list
+    }
+
+    private fun getResourceFiles(path: String): List<String> {
+        val fileNames = mutableListOf<String>()
+
+        getResourceAsStream(path).use { inputStream ->
+            BufferedReader(InputStreamReader(inputStream)).use { br ->
+                var resource: String?
+                while (br.readLine().also { resource = it } != null) {
+                    if (resource != null && resource!!.endsWith(".json")) fileNames.add(resource!!)
+                }
+            }
+        }
+
+        return fileNames
+    }
+
+    private fun getResourceAsStream(resource: String): InputStream {
+        val inputStream = getContextClassLoader().getResourceAsStream(resource)
+
+        return inputStream ?: this::class.java.getResourceAsStream(resource)
+    }
+
+    private fun getContextClassLoader(): ClassLoader {
+        return Thread.currentThread().contextClassLoader
     }
 }
