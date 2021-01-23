@@ -24,6 +24,7 @@ import tv.blademaker.killjoy.valorant.ValorantWeapon
 import java.io.InputStream
 import kotlin.jvm.Throws
 import java.io.BufferedReader
+import java.io.IOException
 import java.io.InputStreamReader
 
 
@@ -62,6 +63,7 @@ object Loaders {
         return list
     }
 
+    @Throws(IOException::class)
     private fun getResourceFiles(path: String): List<String> {
         val fileNames = mutableListOf<String>()
 
