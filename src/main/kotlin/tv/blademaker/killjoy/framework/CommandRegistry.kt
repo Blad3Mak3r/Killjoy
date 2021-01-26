@@ -67,7 +67,8 @@ class CommandRegistry : ListenerAdapter() {
             MemeCommand(),
             NewsCommand(),
             PingCommand(),
-            SkillCommand()
+            SkillCommand(),
+            TopCommand()
         )
     }
 

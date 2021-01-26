@@ -20,7 +20,6 @@ import okhttp3.OkHttpClient
 import org.slf4j.LoggerFactory
 import java.lang.Exception
 import java.lang.IllegalArgumentException
-import java.lang.IllegalStateException
 import java.util.concurrent.*
 import java.util.concurrent.atomic.AtomicInteger
 
@@ -30,18 +29,26 @@ class StatsPosting private constructor(
     private val httpClient: OkHttpClient,
     private val threadPoolExecutor: ScheduledExecutorService,
     private val websites: List<Website>,
-    initialDelay: Long,
-    period: Long,
-    timeUnit: TimeUnit
+    private val initialDelay: Long,
+    private val period: Long,
+    private val timeUnit: TimeUnit
 ) {
 
     private var lastGuildCount = AtomicInteger(0)
 
-    private val task: ScheduledFuture<*>
+    internal var task: ScheduledFuture<*>? = null
+
+    private val totalShards = shardManager.shardsTotal
 
     init {
         logger.info("Enabled guild count for ${websites.joinToString(", ") { it.id }}!")
-        task = threadPoolExecutor.scheduleAtFixedRate(schedule(), initialDelay, period, timeUnit)
+
+        shardManager.addEventListener(ReadyListener(shardManager, this))
+    }
+
+    internal fun createTask(): ScheduledFuture<*> {
+        logger.info("Scheduling stats posting!")
+        return threadPoolExecutor.scheduleAtFixedRate(schedule(), initialDelay, period, timeUnit)
     }
 
     private fun schedule() = Runnable {
@@ -74,7 +81,7 @@ class StatsPosting private constructor(
     }
 
     fun shutdown() {
-        task.cancel(false)
+        task?.cancel(false)
         threadPoolExecutor.shutdown()
     }
 

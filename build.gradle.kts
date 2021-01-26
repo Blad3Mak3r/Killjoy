@@ -52,12 +52,14 @@ dependencies {
     implementation("io.sentry:sentry:3.2.0")
     implementation("com.google.guava:guava:30.0-jre")
 
-    //  Ktor HTTP Client
+    //  HTTP Client
     implementation("io.ktor:ktor-client-core:$ktorVersion")
     implementation("io.ktor:ktor-client-cio:$ktorVersion")
     implementation("io.ktor:ktor-client-jackson:$ktorVersion")
 
     implementation("com.squareup.okhttp3:okhttp:4.9.0")
+
+    implementation("com.konghq:unirest-java:3.11.10")
 
     // Config
     implementation("com.typesafe:config:1.4.1")

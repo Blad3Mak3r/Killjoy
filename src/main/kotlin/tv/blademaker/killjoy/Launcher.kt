@@ -26,6 +26,7 @@ import net.dv8tion.jda.api.utils.cache.CacheFlag
 import net.hugebot.ratelimiter.RateLimiter
 import okhttp3.OkHttpClient
 import org.slf4j.LoggerFactory
+import tv.blademaker.killjoy.apis.riot.RiotAPI
 import tv.blademaker.killjoy.apis.stats.StatsPosting
 import tv.blademaker.killjoy.apis.stats.Website
 import tv.blademaker.killjoy.framework.CommandRegistry
@@ -60,6 +61,7 @@ object Launcher {
     val agents: List<ValorantAgent> = Loaders.loadAgents()
     val arsenal: List<ValorantWeapon> = Loaders.loadArsenal()
     val maps: List<ValorantMap> = Loaders.loadMaps()
+    val leaderboards = Loaders.loadLeaderboards()
 
     val rateLimiter: RateLimiter = RateLimiter.Builder().setQuota(20).setExpirationTime(1, TimeUnit.MINUTES).build()
 
@@ -70,6 +72,9 @@ object Launcher {
         pid = ProcessHandle.current().pid()
 
         log.info("Starting with PID: $pid")
+
+        //Waiting for Riot approval
+        // - RiotAPI.init(BotConfig.getOrNull<String>("riot.api_key"))
 
         commandRegistry = CommandRegistry()
 
