@@ -25,9 +25,9 @@ import tv.blademaker.killjoy.valorant.ValorantMap
 import tv.blademaker.killjoy.valorant.ValorantWeapon
 import java.io.InputStream
 import kotlin.jvm.Throws
-import java.io.BufferedReader
 import java.io.IOException
-import java.io.InputStreamReader
+import java.nio.file.Files
+import java.nio.file.Paths
 
 
 object Loaders {
@@ -106,23 +106,21 @@ object Loaders {
     private fun getResourceFiles(path: String): List<String> {
         val fileNames = mutableListOf<String>()
 
-        getResourceAsStream(path).use { inputStream ->
+        /*getResourceAsStream(path).use { inputStream ->
             BufferedReader(InputStreamReader(inputStream)).use { br ->
                 var resource: String?
                 while (br.readLine().also { resource = it } != null) {
                     if (resource != null && resource!!.endsWith(".json")) fileNames.add(resource!!)
                 }
             }
-        }
+        }*/
+        val absPath = Paths.get("").toAbsolutePath().toString()
+        val resourcesPath = Paths.get(absPath, "src/main/resources/${path.removePrefix("/")}")
+
+        Files.walk(resourcesPath)
+            .filter { item -> item.toString().endsWith(".json") }
+            .forEach { item -> fileNames.add(item.toFile().name) }
 
         return fileNames
-    }
-
-    private fun getResourceAsStream(resource: String): InputStream {
-        return this::class.java.getResourceAsStream(resource)
-    }
-
-    private fun getContextClassLoader(): ClassLoader {
-        return Thread.currentThread().contextClassLoader
     }
 }

@@ -84,6 +84,7 @@ object Launcher {
             .setEnableShutdownHook(false)
             .addEventListeners(commandRegistry)
             .setCompression(Compression.ZLIB)
+            .setEnableShutdownHook(true)
             .enableIntents(
                 GatewayIntent.GUILD_MESSAGES,
                 GatewayIntent.GUILD_MESSAGE_REACTIONS,
