@@ -28,6 +28,7 @@ import kotlin.jvm.Throws
 import java.io.IOException
 import java.nio.file.Files
 import java.nio.file.Paths
+import kotlin.io.path.Path
 
 
 object Loaders {
@@ -114,8 +115,7 @@ object Loaders {
                 }
             }
         }*/
-        val absPath = Paths.get("").toAbsolutePath().toString()
-        val resourcesPath = Paths.get(absPath, "src/main/resources/${path.removePrefix("/")}")
+        val resourcesPath = Paths.get(this::class.java.getResource("/$path").toURI())
 
         Files.walk(resourcesPath)
             .filter { item -> item.toString().endsWith(".json") }
