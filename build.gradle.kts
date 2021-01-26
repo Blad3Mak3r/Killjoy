@@ -23,7 +23,7 @@ application {
 }
 
 group = "tv.blademaker"
-version = "0.5"
+version = "0.6"
 
 repositories {
     mavenCentral()
