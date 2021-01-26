@@ -119,9 +119,7 @@ object Loaders {
     }
 
     private fun getResourceAsStream(resource: String): InputStream {
-        val inputStream = getContextClassLoader().getResourceAsStream(resource)
-
-        return inputStream ?: this::class.java.getResourceAsStream(resource)
+        return this::class.java.getResourceAsStream(resource)
     }
 
     private fun getContextClassLoader(): ClassLoader {
