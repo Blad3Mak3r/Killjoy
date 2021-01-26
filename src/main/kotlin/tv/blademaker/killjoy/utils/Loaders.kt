@@ -43,12 +43,12 @@ object Loaders {
         val map = mutableMapOf<String, List<RankedPlayer>>()
 
         val path = "leaderboards"
-        val index = getResourceFiles(path)
+        val index = this::class.java.getResource("/$path/index").readText().split("\\r?\\n".toRegex())
 
         check(index.isNotEmpty()) { "LEADERBOARDS index cannot be empty or null." }
 
         for (fileName in index) {
-            val file = this::class.java.getResource("/$path/$fileName")
+            val file = this::class.java.getResource("/$path/$fileName.json")
                 ?: throw IllegalStateException("/$path/$fileName is not present")
 
             val fileContent = file.readText()
@@ -87,40 +87,19 @@ object Loaders {
     @Throws(IllegalStateException::class)
     private fun <T : ValorantEntity> loadValorantEntities(clazz: Class<T>, resourcePath: String): List<T> {
         val list = mutableListOf<T>()
-        val index = getResourceFiles(resourcePath)
+        val index = this::class.java.getResource("/$resourcePath/index").readText().split("\\r?\\n".toRegex())
         check(index.isNotEmpty()) { "${resourcePath.capitalize()} index cannot be empty or null." }
 
         for (entityName in index) {
-            val file = this::class.java.getResource("/$resourcePath/$entityName")
-                ?: throw IllegalStateException("/$resourcePath/$entityName is not present")
+            val file = this::class.java.getResource("/$resourcePath/${entityName.toLowerCase()}.json")
+                ?: throw IllegalStateException("/$resourcePath/$entityName.json is not present")
 
             val fileContent = file.readText()
-            if (fileContent.isEmpty()) throw IllegalStateException("$resourcePath/$entityName is empty")
+            if (fileContent.isEmpty()) throw IllegalStateException("/$resourcePath/$entityName.json is empty")
             list.add(clazz.getConstructor(JSONObject::class.java).newInstance(JSONObject(fileContent)))
         }
 
         log.info("Loaded ${list.size} ${clazz.simpleName} entities!! [${list.joinToString(", ") { it.name }}]")
         return list
-    }
-
-    @Throws(IOException::class)
-    private fun getResourceFiles(path: String): List<String> {
-        val fileNames = mutableListOf<String>()
-
-        /*getResourceAsStream(path).use { inputStream ->
-            BufferedReader(InputStreamReader(inputStream)).use { br ->
-                var resource: String?
-                while (br.readLine().also { resource = it } != null) {
-                    if (resource != null && resource!!.endsWith(".json")) fileNames.add(resource!!)
-                }
-            }
-        }*/
-        val resourcesPath = Paths.get(this::class.java.getResource("/$path").toURI())
-
-        Files.walk(resourcesPath)
-            .filter { item -> item.toString().endsWith(".json") }
-            .forEach { item -> fileNames.add(item.toFile().name) }
-
-        return fileNames
     }
 }
