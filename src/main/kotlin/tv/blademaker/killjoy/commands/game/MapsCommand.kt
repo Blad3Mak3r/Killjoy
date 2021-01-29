@@ -20,9 +20,9 @@ import tv.blademaker.killjoy.framework.Category
 import tv.blademaker.killjoy.framework.CommandArgument
 import tv.blademaker.killjoy.framework.CommandContext
 import tv.blademaker.killjoy.framework.abs.Command
-import tv.blademaker.killjoy.framework.annotations.CommandMeta
+import tv.blademaker.killjoy.framework.annotations.CommandProperties
 
-@CommandMeta("maps", Category.Game, aliases = ["map"])
+@CommandProperties("maps", Category.Game, aliases = ["map"])
 class MapsCommand : Command() {
     override suspend fun handle(ctx: CommandContext) {
         if (ctx.args.isEmpty()) {

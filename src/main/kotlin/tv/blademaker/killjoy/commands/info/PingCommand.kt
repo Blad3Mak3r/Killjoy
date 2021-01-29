@@ -19,9 +19,9 @@ import net.hugebot.extensions.jda.await
 import tv.blademaker.killjoy.framework.Category
 import tv.blademaker.killjoy.framework.CommandContext
 import tv.blademaker.killjoy.framework.abs.Command
-import tv.blademaker.killjoy.framework.annotations.CommandMeta
+import tv.blademaker.killjoy.framework.annotations.CommandProperties
 
-@CommandMeta("ping", Category.Information)
+@CommandProperties("ping", Category.Information)
 class PingCommand : Command() {
     override suspend fun handle(ctx: CommandContext) {
         val msg = ctx.channel.sendMessage("Fetching...").await()

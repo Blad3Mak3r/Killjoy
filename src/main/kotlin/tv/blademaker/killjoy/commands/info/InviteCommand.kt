@@ -18,11 +18,11 @@ package tv.blademaker.killjoy.commands.info
 import tv.blademaker.killjoy.framework.Category
 import tv.blademaker.killjoy.framework.CommandContext
 import tv.blademaker.killjoy.framework.abs.Command
-import tv.blademaker.killjoy.framework.annotations.CommandMeta
+import tv.blademaker.killjoy.framework.annotations.CommandProperties
 import tv.blademaker.killjoy.utils.Emojis
 import java.util.concurrent.TimeUnit
 
-@CommandMeta("invite", Category.Information)
+@CommandProperties("invite", Category.Information)
 class InviteCommand : Command() {
 
     override suspend fun handle(ctx: CommandContext) {

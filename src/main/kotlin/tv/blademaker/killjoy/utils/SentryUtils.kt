@@ -30,7 +30,7 @@ object SentryUtils {
 
         Sentry.captureEvent(SentryEvent().apply {
             this.message = Message().apply {
-                message = "Exception executing command ${command.meta.name} ${ctx.args}"
+                message = "Exception executing command ${command.props.name} ${ctx.args}"
             }
             level = SentryLevel.ERROR
             setTag("Guild", "${ctx.guild.name}(${ctx.guild.id})")
@@ -45,7 +45,7 @@ object SentryUtils {
         Sentry.captureEvent(SentryEvent().apply {
             this.message = Message().apply {
                 message =
-                    "Exception executing command ${subCommand.parent.meta.name} ${subCommand.meta.name} ${ctx.args}"
+                    "Exception executing command ${subCommand.parent.props.name} ${subCommand.props.name} ${ctx.args}"
             }
             level = SentryLevel.ERROR
             setTag("Guild", "${ctx.guild.name}(${ctx.guild.id})")

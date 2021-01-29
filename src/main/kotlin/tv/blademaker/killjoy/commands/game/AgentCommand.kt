@@ -21,11 +21,11 @@ import tv.blademaker.killjoy.framework.ColorExtra
 import tv.blademaker.killjoy.framework.CommandArgument
 import tv.blademaker.killjoy.framework.CommandContext
 import tv.blademaker.killjoy.framework.abs.Command
-import tv.blademaker.killjoy.framework.annotations.CommandMeta
+import tv.blademaker.killjoy.framework.annotations.CommandProperties
 import tv.blademaker.killjoy.utils.Emojis
 import tv.blademaker.killjoy.utils.extensions.isInt
 
-@CommandMeta("agents", Category.Game, aliases = ["agent"])
+@CommandProperties("agents", Category.Game, aliases = ["agent"])
 class AgentCommand : Command() {
 
     override val help: String = "Get information and statistics about a Valorant agent."

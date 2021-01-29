@@ -17,13 +17,13 @@ package tv.blademaker.killjoy.framework.abs
 
 import tv.blademaker.killjoy.framework.CommandArgument
 import tv.blademaker.killjoy.framework.CommandContext
-import tv.blademaker.killjoy.framework.annotations.SubCommandMeta
+import tv.blademaker.killjoy.framework.annotations.SubCommandProperties
 import java.util.concurrent.atomic.AtomicInteger
 
 abstract class SubCommand(@JvmField val parent: Command) {
 
     @JvmField
-    val meta: SubCommandMeta = this::class.java.getAnnotation(SubCommandMeta::class.java)
+    val props: SubCommandProperties = this::class.java.getAnnotation(SubCommandProperties::class.java)
     val hits = AtomicInteger(0)
 
     open val help: String

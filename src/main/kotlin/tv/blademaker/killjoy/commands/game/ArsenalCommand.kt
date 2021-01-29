@@ -20,10 +20,10 @@ import tv.blademaker.killjoy.framework.Category
 import tv.blademaker.killjoy.framework.CommandArgument
 import tv.blademaker.killjoy.framework.CommandContext
 import tv.blademaker.killjoy.framework.abs.Command
-import tv.blademaker.killjoy.framework.annotations.CommandMeta
+import tv.blademaker.killjoy.framework.annotations.CommandProperties
 import tv.blademaker.killjoy.utils.Emojis
 
-@CommandMeta("arsenal", Category.Game, aliases = ["weapons", "weapon"])
+@CommandProperties("arsenal", Category.Game, aliases = ["weapons", "weapon"])
 class ArsenalCommand : Command() {
     override suspend fun handle(ctx: CommandContext) {
         if (ctx.args.isEmpty()) {

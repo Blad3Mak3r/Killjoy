@@ -30,6 +30,7 @@ import tv.blademaker.killjoy.apis.riot.RiotAPI
 import tv.blademaker.killjoy.apis.stats.StatsPosting
 import tv.blademaker.killjoy.apis.stats.Website
 import tv.blademaker.killjoy.framework.CommandRegistry
+import tv.blademaker.killjoy.utils.CooldownManager
 import tv.blademaker.killjoy.utils.Loaders
 import tv.blademaker.killjoy.utils.extensions.isInt
 import tv.blademaker.killjoy.valorant.ValorantAgent
@@ -58,6 +59,9 @@ object Launcher {
     lateinit var commandRegistry: CommandRegistry
         private set
 
+    lateinit var cooldownManager: CooldownManager
+        private set
+
     val agents: List<ValorantAgent> = Loaders.loadAgents()
     val arsenal: List<ValorantWeapon> = Loaders.loadArsenal()
     val maps: List<ValorantMap> = Loaders.loadMaps()
@@ -77,6 +81,8 @@ object Launcher {
         // - RiotAPI.init(BotConfig.getOrNull<String>("riot.api_key"))
 
         commandRegistry = CommandRegistry()
+
+        cooldownManager = CooldownManager(15, TimeUnit.SECONDS)
 
         shardManager = DefaultShardManagerBuilder.createLight(BotConfig.token)
             .setShardsTotal(-1)

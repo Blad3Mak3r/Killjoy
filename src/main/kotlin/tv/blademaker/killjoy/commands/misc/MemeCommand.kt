@@ -21,10 +21,10 @@ import tv.blademaker.killjoy.framework.Category
 import tv.blademaker.killjoy.framework.ColorExtra
 import tv.blademaker.killjoy.framework.CommandContext
 import tv.blademaker.killjoy.framework.abs.Command
-import tv.blademaker.killjoy.framework.annotations.CommandMeta
+import tv.blademaker.killjoy.framework.annotations.CommandProperties
 import tv.blademaker.killjoy.utils.Emojis
 
-@CommandMeta("meme", Category.Misc)
+@CommandProperties("meme", Category.Misc)
 class MemeCommand : Command() {
 
     override suspend fun handle(ctx: CommandContext) {

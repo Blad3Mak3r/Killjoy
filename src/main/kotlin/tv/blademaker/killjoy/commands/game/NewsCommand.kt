@@ -19,9 +19,9 @@ import tv.blademaker.killjoy.apis.news.NewsRetriever
 import tv.blademaker.killjoy.framework.Category
 import tv.blademaker.killjoy.framework.CommandContext
 import tv.blademaker.killjoy.framework.abs.Command
-import tv.blademaker.killjoy.framework.annotations.CommandMeta
+import tv.blademaker.killjoy.framework.annotations.CommandProperties
 
-@CommandMeta(
+@CommandProperties(
     name = "news",
     category = Category.Game
 )

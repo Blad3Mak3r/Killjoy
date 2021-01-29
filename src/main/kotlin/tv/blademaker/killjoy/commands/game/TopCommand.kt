@@ -16,15 +16,14 @@
 package tv.blademaker.killjoy.commands.game
 
 import tv.blademaker.killjoy.Launcher
-import tv.blademaker.killjoy.apis.riot.RiotAPI
 import tv.blademaker.killjoy.apis.riot.entities.Region
 import tv.blademaker.killjoy.framework.Category
 import tv.blademaker.killjoy.framework.CommandArgument
 import tv.blademaker.killjoy.framework.CommandContext
 import tv.blademaker.killjoy.framework.abs.Command
-import tv.blademaker.killjoy.framework.annotations.CommandMeta
+import tv.blademaker.killjoy.framework.annotations.CommandProperties
 
-@CommandMeta("top", Category.Game)
+@CommandProperties("top", Category.Game)
 class TopCommand : Command() {
     override suspend fun handle(ctx: CommandContext) {
         if (ctx.args.isEmpty()) return ctx.reply("Specifies the game region. ${Region.values().map { it.name.toLowerCase() }}").queue()

@@ -17,12 +17,12 @@ package tv.blademaker.killjoy.framework.abs
 import net.dv8tion.jda.api.Permission
 import tv.blademaker.killjoy.framework.CommandArgument
 import tv.blademaker.killjoy.framework.CommandContext
-import tv.blademaker.killjoy.framework.annotations.CommandMeta
+import tv.blademaker.killjoy.framework.annotations.CommandProperties
 import java.util.concurrent.atomic.AtomicInteger
 
 abstract class Command {
     @JvmField
-    val meta: CommandMeta = this.javaClass.getAnnotation(CommandMeta::class.java)
+    val props: CommandProperties = this.javaClass.getAnnotation(CommandProperties::class.java)
 
     private val hits = AtomicInteger(0)
 
@@ -56,18 +56,25 @@ abstract class Command {
     open val args: List<CommandArgument>
         get() = listOf()
 
-    open val subCommands: List<SubCommand>
-        get() = listOf()
+    private val subCommands: MutableList<SubCommand> = mutableListOf()
+    fun getSubCommands(): List<SubCommand> = subCommands
+    internal fun registerSubCommand(subCommand: SubCommand) {
+        check(!(subCommands.any { it.props.name == subCommand.props.name })) {
+            "Sub-command with name ${subCommand.props.name} is already registered in command ${props.name}"
+        }
+
+        subCommands.add(subCommand)
+    }
 
     private fun userPermissions(): Set<Permission> {
-        val permissions = hashSetOf(*meta.userPermissions)
-        permissions.addAll(meta.category.permissions)
+        val permissions = hashSetOf(*props.userPermissions)
+        permissions.addAll(props.category.permissions)
         return permissions
     }
 
     private fun botPermissions(): Set<Permission> {
-        val permissions = hashSetOf(*meta.botPermissions)
-        permissions.addAll(meta.category.botPermissions)
+        val permissions = hashSetOf(*props.botPermissions)
+        permissions.addAll(props.category.botPermissions)
         return permissions
     }
 

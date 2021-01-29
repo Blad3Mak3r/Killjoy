@@ -19,7 +19,7 @@ import tv.blademaker.killjoy.framework.Category
 
 @Target(AnnotationTarget.ANNOTATION_CLASS, AnnotationTarget.CLASS)
 @Retention(AnnotationRetention.RUNTIME)
-annotation class CommandMeta(
+annotation class CommandProperties(
         val name: String,
         val category: Category,
         val isNsfw: Boolean = false,

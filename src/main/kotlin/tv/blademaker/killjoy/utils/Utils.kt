@@ -58,7 +58,7 @@ object Utils {
             if (subCommands.isNullOrEmpty()) return null
 
             for (scmd in subCommands) {
-                if (scmd.meta.name == invoke.toLowerCase()) return scmd
+                if (scmd.props.name == invoke.toLowerCase()) return scmd
             }
 
             return null
@@ -66,12 +66,12 @@ object Utils {
 
         @JvmStatic
         fun replyWrongUsage(ctx: CommandContext, command: SubCommand) {
-            ctx.send(Emojis.NoEntry, "This is not the correct way to use this command, use **joy help ${command.parent.meta.name}** for more information.").queue()
+            ctx.send(Emojis.NoEntry, "This is not the correct way to use this command, use **joy help ${command.parent.props.name}** for more information.").queue()
         }
 
         @JvmStatic
         fun replyWrongUsage(ctx: CommandContext, command: Command) {
-            ctx.send(Emojis.NoEntry, "This is not the correct way to use this command, use **joy help ${command.meta.name}** for more information.").queue()
+            ctx.send(Emojis.NoEntry, "This is not the correct way to use this command, use **joy help ${command.props.name}** for more information.").queue()
         }
     }
 

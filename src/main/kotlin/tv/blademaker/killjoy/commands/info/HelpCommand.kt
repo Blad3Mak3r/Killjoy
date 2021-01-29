@@ -21,9 +21,9 @@ import tv.blademaker.killjoy.framework.ColorExtra
 import tv.blademaker.killjoy.framework.CommandArgument
 import tv.blademaker.killjoy.framework.CommandContext
 import tv.blademaker.killjoy.framework.abs.Command
-import tv.blademaker.killjoy.framework.annotations.CommandMeta
+import tv.blademaker.killjoy.framework.annotations.CommandProperties
 
-@CommandMeta("help", Category.Information)
+@CommandProperties("help", Category.Information)
 class HelpCommand : Command() {
     override suspend fun handle(ctx: CommandContext) {
         if (ctx.args.isEmpty()) {
@@ -42,7 +42,7 @@ class HelpCommand : Command() {
                     if (!category.isPublic || !category.isEnabled) continue
                     addField(
                             category.name,
-                            Launcher.commandRegistry.getCommands(category).joinToString(" ") { "``${it.meta.name}``" },
+                            Launcher.commandRegistry.getCommands(category).joinToString(" ") { "``${it.props.name}``" },
                             true)
                 }
             }.queue()
@@ -53,10 +53,10 @@ class HelpCommand : Command() {
             ctx.embed {
                 setColor(ColorExtra.VAL_BLUE)
                 setAuthor("Killjoy Help")
-                setTitle(cmd.meta.name.toUpperCase())
+                setTitle(cmd.props.name.toUpperCase())
                 setDescription(cmd.help)
                 addField("Usage", buildString {
-                    appendLine("joy **${cmd.meta.name}** ${buildString { 
+                    appendLine("joy **${cmd.props.name}** ${buildString { 
                         for (arg in cmd.args) {
                             append(if (arg.isRequired) "(``" else "[``")
                             append(arg.name)
