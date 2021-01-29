@@ -154,7 +154,7 @@ class CommandRegistry : ListenerAdapter() {
             return context.reply(Emojis.Outage, "You are getting rate limited.").queue()
 
         val cdBucket = Launcher.cooldownManager.check(context, command)
-        if (cdBucket != null && !cdBucket.announced) return context.reply("This command is un cooldown... you have to wait **${cdBucket.restInSeconds}** seconds.").queue()
+        if (cdBucket != null && !cdBucket.announced) return context.reply("This command is in cooldown... you have to wait **${cdBucket.restInSeconds}** seconds.").queue()
         else if (cdBucket != null && cdBucket.announced) return
 
         val userPermissions = command.userPermissions.filter { !it.isVoice }.toSet()
