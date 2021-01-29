@@ -27,6 +27,7 @@ At the moment the bot is pretty straightforward but we have great ideas for it, 
 - ``joy news`` Get the latest news from [Valorant Official Website](https://playvalorant.com)
 - ``joy <maps|map>`` Show the map list (``joy maps`` or ``joy map``)
 - ``joy <maps|map> [map_name]`` Show a detailed information about the map you selected (``joy map ascent``)
+- ``joy top (region)`` Retrieve the TOP10 players of a region (``joy top eu``)
 
 <p align="center">
  <img src="/Branding/examples/commands_agents.png" width="400px">
