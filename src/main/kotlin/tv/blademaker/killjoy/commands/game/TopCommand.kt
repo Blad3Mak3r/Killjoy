@@ -16,26 +16,29 @@
 package tv.blademaker.killjoy.commands.game
 
 import tv.blademaker.killjoy.Launcher
+import tv.blademaker.killjoy.apis.riot.RiotAPI
 import tv.blademaker.killjoy.apis.riot.entities.Region
 import tv.blademaker.killjoy.framework.Category
 import tv.blademaker.killjoy.framework.CommandArgument
 import tv.blademaker.killjoy.framework.CommandContext
 import tv.blademaker.killjoy.framework.abs.Command
 import tv.blademaker.killjoy.framework.annotations.CommandProperties
+import tv.blademaker.killjoy.utils.Emojis
 
 @CommandProperties("top", Category.Game)
 class TopCommand : Command() {
     override suspend fun handle(ctx: CommandContext) {
         if (ctx.args.isEmpty()) return ctx.reply("Specifies the game region. ${Region.values().map { it.name.toLowerCase() }}").queue()
 
-        val region = ctx.args.first().toUpperCase()
+        val arg = ctx.args.first().toUpperCase()
 
-        val players = Launcher.leaderboards[region]
-            ?: return ctx.reply("` $region ` is not a valid region.").queue()
+        val region = Region.values().firstOrNull { it.name.equals(arg, true) }
+            ?: return ctx.reply(Emojis.NoEntry, "` $arg ` is not a valid region. Valid regions: ${Region.values().joinToString(", ") { "**${it.name}**"}}").queue()
+
+        val players = RiotAPI.getCurrentTop20(region)
 
         ctx.replyEmbed {
-            setTitle("Top 10 players of $region")
-            setDescription("This leaderboard is from Episode 1")
+            setTitle("Current Top 10 players of $region")
             setThumbnail("https://i.imgur.com/G6wcDZB.png")
             for (player in players.take(10)) {
                 addField("` Top ${player.leaderboardRank} ` ${player.fullNameTag}", buildString {

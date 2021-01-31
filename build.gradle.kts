@@ -66,6 +66,9 @@ dependencies {
     implementation("org.json:json:20201115")
 
     implementation("org.jsoup:jsoup:1.13.1")
+
+    //Cache
+    implementation("com.github.ben-manes.caffeine:caffeine:2.8.8")
 }
 
 java {

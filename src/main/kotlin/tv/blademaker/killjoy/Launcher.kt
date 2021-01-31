@@ -65,7 +65,7 @@ object Launcher {
     val agents: List<ValorantAgent> = Loaders.loadAgents()
     val arsenal: List<ValorantWeapon> = Loaders.loadArsenal()
     val maps: List<ValorantMap> = Loaders.loadMaps()
-    val leaderboards = Loaders.loadLeaderboards()
+    //val leaderboards = Loaders.loadLeaderboards()
 
     val rateLimiter: RateLimiter = RateLimiter.Builder().setQuota(20).setExpirationTime(1, TimeUnit.MINUTES).build()
 
