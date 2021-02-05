@@ -5,7 +5,7 @@ val ktorVersion = "1.5.0"
 val coroutinesVersion = "1.4.2-native-mt"
 
 plugins {
-    kotlin("jvm") version "1.4.21"
+    kotlin("jvm") version "1.4.30"
     id("com.github.johnrengelman.shadow") version "6.1.0"
 
     application
