@@ -92,6 +92,7 @@ tasks {
 
     named<KotlinCompile>("compileKotlin") {
         kotlinOptions.jvmTarget = "11"
+        kotlinOptions.useIR = true
     }
 
     register("stage") {
