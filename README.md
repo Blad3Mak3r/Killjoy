@@ -1,6 +1,7 @@
 <img align="right" src="/assets/img/avatar.jpg" height="200" width="200">
 
 # KILLJOY ([Invite][invitation])
+[![Gradle Check](https://github.com/Blad3Mak3r/Killjoy/actions/workflows/gradle.yml/badge.svg)](https://github.com/Blad3Mak3r/Killjoy/actions/workflows/gradle.yml)
 ![Discord](https://img.shields.io/discord/425661010662260736?logo=discord)
 ![Docker Image Version (latest by date)](https://img.shields.io/docker/v/blademaker/killjoy?logo=docker&sort=date)
 ![Docker Image Size (latest by date)](https://img.shields.io/docker/image-size/blademaker/killjoy?logo=docker&sort=date)
