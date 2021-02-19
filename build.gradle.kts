@@ -40,7 +40,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:$coroutinesVersion")
 
     //  HugeBot dependencies
-    implementation("net.hugebot:RateLimiter:v1.0.0")
+    implementation("net.hugebot:RateLimiter:1.1")
 
     //  Discord Required
     implementation("net.dv8tion:JDA:4.2.0_228") { exclude(module = "opus-java") }
