@@ -12,9 +12,11 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and limitations under the License.
  ******************************************************************************/
-package tv.blademaker.killjoy.framework
+package tv.blademaker.killjoy.framework.annotations
 
-data class CommandArgument(
+@Target(AnnotationTarget.ANNOTATION_CLASS)
+@Retention(AnnotationRetention.RUNTIME)
+annotation class CommandArgument(
         val name: String,
         val info: String,
         val isRequired: Boolean = false

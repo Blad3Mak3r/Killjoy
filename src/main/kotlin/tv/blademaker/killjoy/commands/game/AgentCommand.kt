@@ -18,14 +18,22 @@ package tv.blademaker.killjoy.commands.game
 import tv.blademaker.killjoy.Launcher
 import tv.blademaker.killjoy.framework.Category
 import tv.blademaker.killjoy.framework.ColorExtra
-import tv.blademaker.killjoy.framework.CommandArgument
 import tv.blademaker.killjoy.framework.CommandContext
 import tv.blademaker.killjoy.framework.abs.Command
+import tv.blademaker.killjoy.framework.annotations.CommandArgument
 import tv.blademaker.killjoy.framework.annotations.CommandProperties
 import tv.blademaker.killjoy.utils.Emojis
 import tv.blademaker.killjoy.utils.extensions.isInt
 
-@CommandProperties("agents", Category.Game, aliases = ["agent"])
+@CommandProperties(
+    name = "agents",
+    category = Category.Game,
+    aliases = ["agent"],
+    arguments = [
+        CommandArgument("agent_name:agent_id", "An agent name [jett] or agent id [1-13]", false),
+        CommandArgument("skill_button", "The button used to use this skill [q]", false)
+    ]
+)
 class AgentCommand : Command() {
 
     override val help: String = "Get information and statistics about a Valorant agent."
@@ -75,9 +83,4 @@ class AgentCommand : Command() {
             }.queue()
         }
     }
-
-    override val args: List<CommandArgument> = listOf(
-        CommandArgument("agent_name:agent_id", "An agent name [jett] or agent id [1-13]", false),
-        CommandArgument("skill_button", "The button used to use this skill [q]", false)
-    )
 }

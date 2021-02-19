@@ -18,12 +18,17 @@ package tv.blademaker.killjoy.commands.info
 import tv.blademaker.killjoy.Launcher
 import tv.blademaker.killjoy.framework.Category
 import tv.blademaker.killjoy.framework.ColorExtra
-import tv.blademaker.killjoy.framework.CommandArgument
+import tv.blademaker.killjoy.framework.annotations.CommandArgument
 import tv.blademaker.killjoy.framework.CommandContext
 import tv.blademaker.killjoy.framework.abs.Command
 import tv.blademaker.killjoy.framework.annotations.CommandProperties
 
-@CommandProperties("help", Category.Information)
+@CommandProperties(
+    name = "help",
+    category = Category.Information,
+    arguments = [
+        CommandArgument("command", "The command you want to get information from.", false)
+    ])
 class HelpCommand : Command() {
     override suspend fun handle(ctx: CommandContext) {
         if (ctx.args.isEmpty()) {

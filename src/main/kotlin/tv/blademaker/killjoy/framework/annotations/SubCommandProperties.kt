@@ -18,5 +18,6 @@ package tv.blademaker.killjoy.framework.annotations
 @Retention(AnnotationRetention.RUNTIME)
 annotation class SubCommandProperties(
         val name: String,
-        val isNsfw: Boolean = false
+        val isNsfw: Boolean = false,
+        val arguments: Array<CommandArgument> = []
 )
