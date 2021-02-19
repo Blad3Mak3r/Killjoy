@@ -31,4 +31,6 @@ class PingCommand : Command() {
                 "\uD83C\uDF10 Rest: `` %d ``\n\uD83D\uDDE8️ Gateway: `` %d ``",
                 ping, ctx.jda.gatewayPing)).await()
     }
+
+    override val help = "Pong!"
 }

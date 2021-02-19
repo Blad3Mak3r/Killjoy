@@ -15,17 +15,21 @@
 
 package tv.blademaker.killjoy.commands.game
 
-import tv.blademaker.killjoy.Launcher
 import tv.blademaker.killjoy.apis.riot.RiotAPI
 import tv.blademaker.killjoy.apis.riot.entities.Region
 import tv.blademaker.killjoy.framework.Category
-import tv.blademaker.killjoy.framework.CommandArgument
+import tv.blademaker.killjoy.framework.annotations.CommandArgument
 import tv.blademaker.killjoy.framework.CommandContext
 import tv.blademaker.killjoy.framework.abs.Command
 import tv.blademaker.killjoy.framework.annotations.CommandProperties
 import tv.blademaker.killjoy.utils.Emojis
 
-@CommandProperties("top", Category.Game)
+@CommandProperties(
+    name = "top",
+    category = Category.Game,
+    arguments = [
+        CommandArgument("AP, BR, EU, KR, LATAM, NA", "Game region", true)
+    ])
 class TopCommand : Command() {
     override suspend fun handle(ctx: CommandContext) {
         if (ctx.args.isEmpty()) return ctx.reply("Specifies the game region. ${Region.values().map { it.name.toLowerCase() }}").queue()
@@ -48,10 +52,6 @@ class TopCommand : Command() {
             }
         }.queue()
     }
-
-    override val args = listOf(
-        CommandArgument(Region.values().joinToString(":") { it.name.toLowerCase() }, "Game region", true)
-    )
 
     override val help = "Retrieve the TOP 10 players by region."
 }

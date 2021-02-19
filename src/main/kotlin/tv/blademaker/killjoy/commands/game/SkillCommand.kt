@@ -18,14 +18,20 @@ package tv.blademaker.killjoy.commands.game
 import tv.blademaker.killjoy.Launcher
 import tv.blademaker.killjoy.framework.Category
 import tv.blademaker.killjoy.framework.ColorExtra
-import tv.blademaker.killjoy.framework.CommandArgument
 import tv.blademaker.killjoy.framework.CommandContext
 import tv.blademaker.killjoy.framework.abs.Command
+import tv.blademaker.killjoy.framework.annotations.CommandArgument
 import tv.blademaker.killjoy.framework.annotations.CommandProperties
 import tv.blademaker.killjoy.utils.Emojis
 import tv.blademaker.killjoy.utils.Utils
 
-@CommandProperties("skills", Category.Game, aliases = ["skill"])
+@CommandProperties(
+    name = "skills",
+    category = Category.Game,
+    aliases = ["skill"],
+    arguments = [
+        CommandArgument("skill_name", "A Skill name [shock-bolt]", true)
+    ])
 class SkillCommand : Command() {
     override suspend fun handle(ctx: CommandContext) {
         if (ctx.args.isEmpty()) return Utils.Commands.replyWrongUsage(ctx, this)
@@ -47,11 +53,5 @@ class SkillCommand : Command() {
         }.queue()
     }
 
-    override val args: List<CommandArgument> = listOf(
-        CommandArgument("skill_name", "A Skill name [shock-bolt]", true)
-    )
-
     override val help: String = "Get information about a skill from a Valorant agent"
-
-
 }

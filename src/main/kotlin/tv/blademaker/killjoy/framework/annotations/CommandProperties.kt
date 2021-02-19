@@ -24,6 +24,7 @@ annotation class CommandProperties(
         val category: Category,
         val isNsfw: Boolean = false,
         val aliases: Array<String> = [],
+        val arguments: Array<CommandArgument> = [],
         val cooldown: Cooldown = Cooldown(3),
         val userPermissions: Array<Permission> = [],
         val botPermissions: Array<Permission> = []

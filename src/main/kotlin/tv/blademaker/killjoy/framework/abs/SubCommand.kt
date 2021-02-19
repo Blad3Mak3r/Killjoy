@@ -15,7 +15,7 @@
 
 package tv.blademaker.killjoy.framework.abs
 
-import tv.blademaker.killjoy.framework.CommandArgument
+import tv.blademaker.killjoy.framework.annotations.CommandArgument
 import tv.blademaker.killjoy.framework.CommandContext
 import tv.blademaker.killjoy.framework.annotations.SubCommandProperties
 import java.util.concurrent.atomic.AtomicInteger
@@ -29,8 +29,8 @@ abstract class SubCommand(@JvmField val parent: Command) {
     open val help: String
         get() = "No help provided for this sub-command"
 
-    open val args: List<CommandArgument>
-        get() = listOf()
+    open val args: Array<CommandArgument>
+        get() = props.arguments
 
     @Throws(Exception::class)
     suspend fun execute(ctx: CommandContext) {

@@ -17,12 +17,18 @@ package tv.blademaker.killjoy.commands.game
 
 import tv.blademaker.killjoy.Launcher
 import tv.blademaker.killjoy.framework.Category
-import tv.blademaker.killjoy.framework.CommandArgument
+import tv.blademaker.killjoy.framework.annotations.CommandArgument
 import tv.blademaker.killjoy.framework.CommandContext
 import tv.blademaker.killjoy.framework.abs.Command
 import tv.blademaker.killjoy.framework.annotations.CommandProperties
 
-@CommandProperties("maps", Category.Game, aliases = ["map"])
+@CommandProperties(
+    name = "maps",
+    category = Category.Game,
+    aliases = ["map"],
+    arguments = [
+        CommandArgument("name", "Map name", false)
+    ])
 class MapsCommand : Command() {
     override suspend fun handle(ctx: CommandContext) {
         if (ctx.args.isEmpty()) {
@@ -45,8 +51,6 @@ class MapsCommand : Command() {
             }.queue()
         }
     }
-
-    override val args: List<CommandArgument> = listOf(CommandArgument("name", "Map name", false))
 
     override val help: String = "Get a list of maps or information about a specific map from Valorant"
 

@@ -17,13 +17,20 @@ package tv.blademaker.killjoy.commands.game
 
 import tv.blademaker.killjoy.Launcher
 import tv.blademaker.killjoy.framework.Category
-import tv.blademaker.killjoy.framework.CommandArgument
 import tv.blademaker.killjoy.framework.CommandContext
 import tv.blademaker.killjoy.framework.abs.Command
+import tv.blademaker.killjoy.framework.annotations.CommandArgument
 import tv.blademaker.killjoy.framework.annotations.CommandProperties
 import tv.blademaker.killjoy.utils.Emojis
 
-@CommandProperties("arsenal", Category.Game, aliases = ["weapons", "weapon"])
+@CommandProperties(
+    name = "arsenal",
+    category = Category.Game,
+    aliases = ["weapons", "weapon"],
+    arguments = [
+        CommandArgument("weapon", "A valid Valorant weapon name [tacticalknife]", false)
+    ]
+)
 class ArsenalCommand : Command() {
     override suspend fun handle(ctx: CommandContext) {
         if (ctx.args.isEmpty()) {
@@ -47,8 +54,4 @@ class ArsenalCommand : Command() {
     }
 
     override val help: String = "Get information and statistics about a Valorant weapon or the entire aresenal."
-
-    override val args: List<CommandArgument> = listOf(
-        CommandArgument("weapon", "A valid Valorant weapon name [tacticalknife]", false)
-    )
 }

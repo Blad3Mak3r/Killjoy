@@ -15,7 +15,7 @@
 package tv.blademaker.killjoy.framework.abs
 
 import net.dv8tion.jda.api.Permission
-import tv.blademaker.killjoy.framework.CommandArgument
+import tv.blademaker.killjoy.framework.annotations.CommandArgument
 import tv.blademaker.killjoy.framework.CommandContext
 import tv.blademaker.killjoy.framework.annotations.CommandProperties
 import java.util.concurrent.atomic.AtomicInteger
@@ -53,8 +53,8 @@ abstract class Command {
     open val help: String
         get() = "Not help provided for this command."
 
-    open val args: List<CommandArgument>
-        get() = listOf()
+    open val args: Array<CommandArgument>
+        get() = props.arguments
 
     private val subCommands: MutableList<SubCommand> = mutableListOf()
     fun getSubCommands(): List<SubCommand> = subCommands

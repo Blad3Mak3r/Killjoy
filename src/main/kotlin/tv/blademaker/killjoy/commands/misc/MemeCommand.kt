@@ -39,6 +39,5 @@ class MemeCommand : Command() {
         }.queue()
     }
 
-    override val help: String
-        get() = "Just Valorant related memes."
+    override val help = "Just Valorant related memes."
 }
