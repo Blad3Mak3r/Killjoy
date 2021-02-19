@@ -73,16 +73,5 @@ class HelpCommand : Command() {
         }
     }
 
-    override val help: String
-        get() = HELP
-
-    override val args: List<CommandArgument>
-        get() = ARGS
-
-    companion object {
-        private const val HELP = "Get help on using the Killjoy commands"
-        private val ARGS = listOf(
-                CommandArgument("command", "The command you want to get information from.", false)
-        )
-    }
+    override val help = "Get help on using the Killjoy commands"
 }

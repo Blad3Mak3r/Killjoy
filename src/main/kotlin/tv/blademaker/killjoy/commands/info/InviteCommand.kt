@@ -33,11 +33,9 @@ class InviteCommand : Command() {
             }.queue()
     }
 
-    override val help: String
-        get() = HELP
+    override val help = "Generate a invitation link for invite Killjoy to your servers."
 
     companion object {
-        const val HELP = "Generate a invitation link for invite Killjoy to your servers."
         const val INVITE = "https://discord.com/api/oauth2/authorize?client_id=706887214088323092&permissions=321600&scope=bot"
     }
 }
