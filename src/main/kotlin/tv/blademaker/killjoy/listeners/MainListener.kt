@@ -30,7 +30,7 @@ import java.time.OffsetDateTime
 import java.util.concurrent.*
 
 class MainListener : EventListener {
-    override fun onEvent(event: GenericEvent) = handleEvent {
+    override fun onEvent(event: GenericEvent) {
         when (event) {
             is GuildJoinEvent -> onGuildJoin(event)
             is GuildLeaveEvent -> onGuildLeave(event)
@@ -52,22 +52,22 @@ class MainListener : EventListener {
      * Guild events
      */
 
-    private fun onGuildJoin(event: GuildJoinEvent) {
+    private fun onGuildJoin(event: GuildJoinEvent) = handleEvent {
         if (event.guild.selfMember.timeJoined.isBefore(OffsetDateTime.now().minusSeconds(30)))
-            return
+            return@handleEvent
 
         logger.info("Joined Guild: ${event.guild.name}::${event.guild.id} with a total of ${event.guild.memberCount} members.")
 
         Metrics.updateShardStats(event.jda)
     }
 
-    private fun onGuildLeave(event: GuildLeaveEvent) {
+    private fun onGuildLeave(event: GuildLeaveEvent) = handleEvent {
         logger.info("Left Guild: ${event.guild.name}::${event.guild.id}.")
 
         Metrics.updateShardStats(event.jda)
     }
 
-    private fun onGuildMessageReceived(event: GuildMessageReceivedEvent) {
+    private fun onGuildMessageReceived(event: GuildMessageReceivedEvent) = handleEvent {
         Launcher.commandRegistry.onGuildMessageReceived(event)
         Metrics.increaseMessageEvents(event.jda)
     }
@@ -76,7 +76,7 @@ class MainListener : EventListener {
      * Shards events
      */
 
-    private fun onReady(event: ReadyEvent) {
+    private fun onReady(event: ReadyEvent) = handleEvent {
         logger.info("JDA Shard#${event.jda.shardInfo.shardId} ready with ${event.guildAvailableCount} guilds available(s) of ${event.guildTotalCount}.")
 
         Metrics.updateShardStats(event.jda)
