@@ -24,6 +24,7 @@ object Metrics {
 
     private val COMMANDS_COUNTER: Gauge = Gauge.build()
         .name("killjoy_commands_counter")
+        .help("Command ran by name")
         .labelNames("name")
         .register()
 
