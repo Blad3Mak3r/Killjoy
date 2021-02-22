@@ -30,6 +30,7 @@ import tv.blademaker.killjoy.apis.riot.RiotAPI
 import tv.blademaker.killjoy.apis.stats.StatsPosting
 import tv.blademaker.killjoy.apis.stats.Website
 import tv.blademaker.killjoy.framework.CommandRegistry
+import tv.blademaker.killjoy.prometheus.Prometheus
 import tv.blademaker.killjoy.utils.CooldownManager
 import tv.blademaker.killjoy.utils.Loaders
 import tv.blademaker.killjoy.utils.extensions.isInt
@@ -83,6 +84,10 @@ object Launcher {
         commandRegistry = CommandRegistry()
 
         cooldownManager = CooldownManager(15, TimeUnit.SECONDS)
+
+        if (BotConfig.getOrDefault("prometheus.enabled", false)) {
+            Prometheus()
+        }
 
         shardManager = DefaultShardManagerBuilder.createLight(BotConfig.token)
             .setShardsTotal(-1)
