@@ -15,10 +15,7 @@
 
 package tv.blademaker.killjoy.commands.info
 
-import tv.blademaker.killjoy.INVITE_URL
-import tv.blademaker.killjoy.Launcher
-import tv.blademaker.killjoy.REPOSITORY_URL
-import tv.blademaker.killjoy.WEBSITE_URL
+import tv.blademaker.killjoy.*
 import tv.blademaker.killjoy.framework.Category
 import tv.blademaker.killjoy.framework.ColorExtra
 import tv.blademaker.killjoy.framework.annotations.CommandArgument
@@ -54,7 +51,7 @@ class HelpCommand : Command() {
                             true)
                 }
                 addBlankField(false)
-                addField("Useful links", "[Add Bot]($INVITE_URL) | [Repository]($REPOSITORY_URL) | [Website]($WEBSITE_URL)", false)
+                addField("Useful links", "[Add Bot]($INVITE_URL) | [Website]($WEBSITE_URL) | [Repository]($REPOSITORY_URL) | [Report a bug]($BUG_REPORT_URL)", false)
             }.queue()
         } else {
             val invoke = ctx.args[0]
