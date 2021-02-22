@@ -15,6 +15,7 @@
 
 package tv.blademaker.killjoy.commands.info
 
+import tv.blademaker.killjoy.INVITE_URL
 import tv.blademaker.killjoy.framework.Category
 import tv.blademaker.killjoy.framework.CommandContext
 import tv.blademaker.killjoy.framework.abs.Command
@@ -26,7 +27,7 @@ import java.util.concurrent.TimeUnit
 class InviteCommand : Command() {
 
     override suspend fun handle(ctx: CommandContext) {
-        ctx.send(Emojis.ArrowRight, "Here is the invitation link to invite me to your servers:\n$INVITE\n`` This message will be deleted in 1 min. ``")
+        ctx.send(Emojis.ArrowRight, "Here is the invitation link to invite me to your servers:\n$INVITE_URL\n`` This message will be deleted in 1 min. ``")
             .delay(1, TimeUnit.MINUTES)
             .flatMap {
                 it.delete()
@@ -34,8 +35,4 @@ class InviteCommand : Command() {
     }
 
     override val help = "Generate a invitation link for invite Killjoy to your servers."
-
-    companion object {
-        const val INVITE = "https://discord.com/api/oauth2/authorize?client_id=706887214088323092&permissions=321600&scope=bot"
-    }
 }

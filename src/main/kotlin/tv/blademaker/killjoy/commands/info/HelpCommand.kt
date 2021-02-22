@@ -15,7 +15,7 @@
 
 package tv.blademaker.killjoy.commands.info
 
-import tv.blademaker.killjoy.Launcher
+import tv.blademaker.killjoy.*
 import tv.blademaker.killjoy.framework.Category
 import tv.blademaker.killjoy.framework.ColorExtra
 import tv.blademaker.killjoy.framework.annotations.CommandArgument
@@ -36,11 +36,11 @@ class HelpCommand : Command() {
                 setColor(ColorExtra.VAL_BLUE)
                 setTitle("Killjoy help")
 
-                addField("Command Usage", "Killjoy is a very easy to use bot, the prefix is **``joy``** and you can execute a command simply using **``joy command``**," +
-                        " for example **``joy agents``** and you can also further explore the possibilities of that command by adding arguments as," +
-                        " **``joy agents killjoy``** that will show you the information of the Valorant agent that you want.", true)
+                addField("Command Usage", "Killjoy is a very easy to use bot, the prefix is __**joy**__ and you can execute a command simply using __**joy commandname**__," +
+                        " for example __**joy agents**__ and you can also further explore the possibilities of that command by adding arguments as," +
+                        " __**joy agents jett**__ that will show you the information of the Valorant agent that you want.", true)
                 addField("Commands with arguments", "In case you need specific information about a command," +
-                        " you can use this command adding the name of the command behind as an argument **``joy help command_name``** for example **``joy help skills``**", false)
+                        " you can use this command adding the name of the command behind as an argument __**joy help commandname**__ for example __**joy help agents**__", false)
 
                 addBlankField(false)
                 for (category in Category.values()) {
@@ -50,6 +50,8 @@ class HelpCommand : Command() {
                             Launcher.commandRegistry.getCommands(category).joinToString(" ") { "``${it.props.name}``" },
                             true)
                 }
+                addBlankField(false)
+                addField("Useful links", "[Add Bot]($INVITE_URL) | [Website]($WEBSITE_URL) | [Repository]($REPOSITORY_URL) | [Report a bug]($BUG_REPORT_URL)", false)
             }.queue()
         } else {
             val invoke = ctx.args[0]
