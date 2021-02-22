@@ -23,7 +23,7 @@ application {
     mainClassName = "tv.blademaker.killjoy.Launcher"
 }
 
-group = "tv.blademaker"
+group = "tv.blademaker.killjoy"
 version = "0.6.3"
 
 repositories {
