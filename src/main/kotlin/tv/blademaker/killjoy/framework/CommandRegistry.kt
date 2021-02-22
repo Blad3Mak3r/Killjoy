@@ -57,16 +57,21 @@ class CommandRegistry : ListenerAdapter() {
             executor.shutdown()
         })
         addCommands(
-            AgentCommand(),
-            ArsenalCommand(),
+            //Information commands
             HelpCommand(),
             InviteCommand(),
-            MapsCommand(),
-            MemeCommand(),
             NewsCommand(),
             PingCommand(),
+
+            //Game commands
+            AgentCommand(),
+            ArsenalCommand(),
+            MapsCommand(),
             SkillCommand(),
-            TopCommand()
+            TopCommand(),
+
+            //Misc
+            MemeCommand(),
         )
     }
 
