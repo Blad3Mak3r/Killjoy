@@ -15,7 +15,6 @@
 
 package tv.blademaker.killjoy.framework
 
-import com.google.common.util.concurrent.ThreadFactoryBuilder
 import io.sentry.Sentry
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.asCoroutineDispatcher
@@ -23,7 +22,6 @@ import kotlinx.coroutines.launch
 import net.dv8tion.jda.api.Permission
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
 import net.dv8tion.jda.api.exceptions.InsufficientPermissionException
-import net.dv8tion.jda.api.hooks.ListenerAdapter
 import org.slf4j.LoggerFactory
 import tv.blademaker.killjoy.framework.abs.Command
 import tv.blademaker.killjoy.framework.abs.SubCommand
@@ -39,13 +37,11 @@ import tv.blademaker.killjoy.utils.Emojis
 import tv.blademaker.killjoy.utils.SentryUtils
 import tv.blademaker.killjoy.utils.Utils
 import java.lang.annotation.IncompleteAnnotationException
-import java.util.concurrent.Executors
-import java.util.concurrent.atomic.AtomicInteger
 import kotlin.collections.HashMap
 
-class CommandRegistry : ListenerAdapter() {
+class CommandRegistry {
 
-    private val executor = Executors.newCachedThreadPool(ThreadFactoryBuilder().setNameFormat("command-worker-%d").build())
+    private val executor = Utils.newThreadFactory("command-pool-worker-%d", 6, 20)
     private val dispatcher = executor.asCoroutineDispatcher()
     private val commandsScope = CoroutineScope(dispatcher)
 
@@ -70,7 +66,7 @@ class CommandRegistry : ListenerAdapter() {
         )
     }
 
-    override fun onGuildMessageReceived(event: GuildMessageReceivedEvent) {
+    fun onGuildMessageReceived(event: GuildMessageReceivedEvent) {
         val user = event.author
         if (user.idLong == event.guild.selfMember.user.idLong || user.isBot || event.isWebhookMessage)
             return

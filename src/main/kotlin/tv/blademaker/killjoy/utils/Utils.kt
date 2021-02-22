@@ -17,6 +17,7 @@
 
 package tv.blademaker.killjoy.utils
 
+import com.google.common.util.concurrent.ThreadFactoryBuilder
 import net.dv8tion.jda.api.entities.Guild
 import net.dv8tion.jda.api.entities.Role
 import tv.blademaker.killjoy.framework.CommandContext
@@ -24,6 +25,9 @@ import tv.blademaker.killjoy.framework.abs.Command
 import tv.blademaker.killjoy.framework.abs.SubCommand
 import java.net.MalformedURLException
 import java.net.URL
+import java.util.concurrent.LinkedBlockingQueue
+import java.util.concurrent.ThreadPoolExecutor
+import java.util.concurrent.TimeUnit
 
 object Utils {
 
@@ -39,6 +43,20 @@ object Utils {
 
 
         """.trimIndent()
+    }
+
+    fun newThreadFactory(name: String,
+                         corePoolSize: Int,
+                         maximumPoolSize: Int,
+                         keepAliveTime: Long = 5L,
+                         unit: TimeUnit = TimeUnit.MINUTES,
+                         daemon: Boolean = true
+    ): ThreadPoolExecutor {
+        return ThreadPoolExecutor(
+            corePoolSize, maximumPoolSize,
+            keepAliveTime, unit,
+            LinkedBlockingQueue(),
+            ThreadFactoryBuilder().setNameFormat(name).setDaemon(daemon).build())
     }
 
     @JvmStatic
