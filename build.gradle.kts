@@ -3,6 +3,7 @@ import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
 val ktorVersion = "1.5.1"
 val coroutinesVersion = "1.4.2-native-mt"
+val prometheusVersion = "0.10.0"
 
 plugins {
     kotlin("jvm") version "1.4.30"
@@ -33,35 +34,40 @@ repositories {
 }
 
 dependencies {
+    //Kotlin
     implementation(kotlin("stdlib"))
     implementation(kotlin("serialization"))
     implementation(kotlin("reflect"))
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:$coroutinesVersion")
 
-    //  HugeBot dependencies
+    //HugeBot dependencies
     implementation("net.hugebot:RateLimiter:1.1")
 
-    //  Discord Required
+    //Common
     implementation("net.dv8tion:JDA:4.2.0_228") { exclude(module = "opus-java") }
     implementation("com.jagrosh:jda-utilities:3.0.5")
 
-    //  Logging
+    //Logging
     implementation("ch.qos.logback:logback-classic:1.2.3")
 
     implementation("io.sentry:sentry:4.1.0")
     implementation("com.google.guava:guava:30.0-jre")
 
-    //  HTTP Client
+    //HTTP Clients
     implementation("io.ktor:ktor-client-core:$ktorVersion")
     implementation("io.ktor:ktor-client-cio:$ktorVersion")
     implementation("io.ktor:ktor-client-jackson:$ktorVersion")
-
     implementation("com.squareup.okhttp3:okhttp:4.9.1")
-
     implementation("com.konghq:unirest-java:3.11.10")
 
-    // Config
+    //Prometheus
+    implementation("io.ktor:ktor-server-netty:$ktorVersion")
+    implementation("io.prometheus:simpleclient:$prometheusVersion")
+    implementation("io.prometheus:simpleclient_hotspot:$prometheusVersion")
+    implementation("io.prometheus:simpleclient_common:$prometheusVersion")
+
+    //Config
     implementation("com.typesafe:config:1.4.1")
     implementation("org.json:json:20201115")
 
