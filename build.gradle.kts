@@ -77,11 +77,6 @@ dependencies {
     implementation("com.github.ben-manes.caffeine:caffeine:2.8.8")
 }
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
-}
-
 tasks {
     named<ShadowJar>("shadowJar") {
         manifest {
@@ -90,10 +85,6 @@ tasks {
         archiveBaseName.set("KilljoyAI")
         archiveClassifier.set("")
         archiveVersion.set("")
-    }
-
-    named("build") {
-        dependsOn("shadowJar")
     }
 
     named<KotlinCompile>("compileKotlin") {
