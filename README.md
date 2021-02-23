@@ -61,7 +61,7 @@ docker run -it -d \
   --name=killjoy \
   --restart=always \
   --volume killjoy.conf:/app/killjoy.conf \
-  blademaker/killjoy:0.5
+  blademaker/killjoy:0.7
 ```
 
 **SystemD (Linux)**
@@ -72,7 +72,7 @@ $ adduser killjoy
 $ mkdir /opt/killjoy
 $ chown killjoy:killjoy /opt/killjoy
 $ cd /opt/killjoy
-$ wget https://github.com/Blad3Mak3r/KILLJOY/releases/download/v0.5/KilljoyAI.jar
+$ wget https://github.com/Blad3Mak3r/KILLJOY/releases/download/v0.7/KilljoyAI.jar
 ```
 
 Create a ``killjoy.service`` file in ``/etc/systemd/system``
