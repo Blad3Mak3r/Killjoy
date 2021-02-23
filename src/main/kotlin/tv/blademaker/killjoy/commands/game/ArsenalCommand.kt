@@ -53,5 +53,5 @@ class ArsenalCommand : Command() {
         }
     }
 
-    override val help: String = "Get information and statistics about a Valorant weapon or the entire aresenal."
+    override val help: String = "Get information and statistics about a Valorant weapon or the entire arsenal."
 }
