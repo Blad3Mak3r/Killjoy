@@ -62,6 +62,7 @@ class HelpCommand : Command() {
                 setAuthor("Killjoy Help")
                 setTitle(cmd.props.name.toUpperCase())
                 setDescription(cmd.help)
+                appendDescription(" [[Read more](${WEBSITE_URL}/commands?command=${cmd.props.name.toLowerCase()})]")
                 addField("Usage", buildString {
                     appendLine("joy **${cmd.props.name}** ${buildString { 
                         for (arg in cmd.args) {
