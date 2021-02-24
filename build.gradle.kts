@@ -43,6 +43,7 @@ dependencies {
 
     //HugeBot dependencies
     implementation("net.hugebot:RateLimiter:1.1")
+    implementation("com.github.killjoybot:Valorant.API:0.1")
 
     //Common
     implementation("net.dv8tion:JDA:4.2.0_228") { exclude(module = "opus-java") }
