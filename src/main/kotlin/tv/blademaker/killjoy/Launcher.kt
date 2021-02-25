@@ -76,7 +76,7 @@ object Launcher {
 
         pid = ProcessHandle.current().pid()
 
-        log.info("Starting with PID: $pid")
+        Utils.printBanner(log, isMaster, pid)
 
         //Waiting for Riot approval
         // - RiotAPI.init(BotConfig.getOrNull<String>("riot.api_key"))
