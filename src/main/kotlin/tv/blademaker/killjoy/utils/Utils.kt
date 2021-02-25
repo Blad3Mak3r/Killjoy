@@ -20,6 +20,7 @@ package tv.blademaker.killjoy.utils
 import com.google.common.util.concurrent.ThreadFactoryBuilder
 import net.dv8tion.jda.api.entities.Guild
 import net.dv8tion.jda.api.entities.Role
+import org.slf4j.Logger
 import tv.blademaker.killjoy.framework.CommandContext
 import tv.blademaker.killjoy.framework.abs.Command
 import tv.blademaker.killjoy.framework.abs.SubCommand

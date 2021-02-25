@@ -26,13 +26,12 @@ import net.dv8tion.jda.api.utils.cache.CacheFlag
 import net.hugebot.ratelimiter.RateLimiter
 import okhttp3.OkHttpClient
 import org.slf4j.LoggerFactory
-import tv.blademaker.killjoy.apis.stats.StatsPosting
-import tv.blademaker.killjoy.apis.stats.Website
 import tv.blademaker.killjoy.framework.CommandRegistry
 import tv.blademaker.killjoy.listeners.MainListener
-import tv.blademaker.killjoy.prometheus.Prometheus
 import tv.blademaker.killjoy.utils.CooldownManager
 import tv.blademaker.killjoy.utils.Loaders
+import tv.blademaker.killjoy.utils.Services
+import tv.blademaker.killjoy.utils.Utils
 import tv.blademaker.killjoy.utils.extensions.isInt
 import tv.blademaker.killjoy.valorant.ValorantAgent
 import tv.blademaker.killjoy.valorant.ValorantMap
@@ -44,6 +43,9 @@ import kotlin.properties.Delegates
 object Launcher {
 
     val httpClient: OkHttpClient = OkHttpClient()
+
+    var isMaster by Delegates.notNull<Boolean>()
+        private set
 
     lateinit var shardManager: ShardManager
         private set
@@ -77,7 +79,7 @@ object Launcher {
     @JvmStatic
     @Throws(LoginException::class, ConfigException::class)
     fun main(args: Array<String>) {
-
+        isMaster = args.any { it == "--master" }
         pid = ProcessHandle.current().pid()
 
         Utils.printBanner(log, isMaster, pid)
@@ -93,10 +95,6 @@ object Launcher {
         commandRegistry = CommandRegistry()
 
         cooldownManager = CooldownManager(15, TimeUnit.SECONDS)
-
-        if (BotConfig.getOrDefault("prometheus.enabled", false)) {
-            Prometheus()
-        }
 
         shardManager = DefaultShardManagerBuilder.createLight(BotConfig.token)
             .setShardsTotal(-1)
@@ -123,7 +121,13 @@ object Launcher {
             )
             .build()
 
-        enableListing()
+        Services.enableMetrics()
+
+        if (isMaster) enableMasterServices()
+    }
+
+    private fun enableMasterServices() {
+        Services.enableListing()
     }
 
     fun retrieveAgentByInput(input: String): ValorantAgent? {
@@ -146,39 +150,6 @@ object Launcher {
     }
 
     fun getSkills() = agents.map { it.skills }.reduce { acc, list -> acc + list }
-
-    private fun enableListing() {
-        val websites = mutableListOf<Website>()
-        BotConfig.getOrNull<String>("listing.topgg")?.let {
-            val website = Website("top.gg", "https://top.gg/api/bots/%s/stats", it)
-            websites.add(website)
-        }
-        BotConfig.getOrNull<String>("listing.dbotsgg")?.let {
-            val website = Website("discord.bots.gg", "https://discord.bots.gg/api/v1/bots/%s/stats", it, "guildCount")
-            websites.add(website)
-        }
-        BotConfig.getOrNull<String>("listing.botsfordiscord")?.let {
-            val website = Website("botsfordiscord.com", "https://botsfordiscord.com/api/bot/%s", it)
-            websites.add(website)
-        }
-        BotConfig.getOrNull<String>("listing.dboats")?.let {
-            val website = Website("discord.boats", "https://discord.boats/api/bot/%s", it)
-            websites.add(website)
-        }
-
-        if (websites.isEmpty()) {
-            log.info("Listing is not enabled.")
-            return
-        }
-
-        StatsPosting.Builder()
-            .withShardManager(shardManager)
-            .addWebsites(websites)
-            .withInitialDelay(1)
-            .withRepetitionPeriod(30)
-            .withTimeUnit(TimeUnit.MINUTES)
-            .build()
-    }
 
     private val log = LoggerFactory.getLogger(Launcher::class.java)
 }

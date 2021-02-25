@@ -15,10 +15,12 @@
 
 package tv.blademaker.killjoy.utils
 
+import org.slf4j.LoggerFactory
 import tv.blademaker.killjoy.BotConfig
 import tv.blademaker.killjoy.Launcher
 import tv.blademaker.killjoy.apis.stats.StatsPosting
 import tv.blademaker.killjoy.apis.stats.Website
+import tv.blademaker.killjoy.prometheus.Prometheus
 import java.util.concurrent.TimeUnit
 
 object Services {
@@ -43,7 +45,7 @@ object Services {
         }
 
         if (websites.isEmpty()) {
-            Utils.logger.info("Listing is not enabled.")
+            logger.info("Listing is not enabled.")
             return
         }
 
@@ -55,5 +57,15 @@ object Services {
             .withTimeUnit(TimeUnit.MINUTES)
             .build()
     }
+
+    fun enableMetrics() {
+        if(BotConfig.getOrDefault("prometheus.enabled", false)) {
+            Prometheus()
+        } else {
+            logger.info("Metrics not enabled.")
+        }
+    }
+
+    private val logger = LoggerFactory.getLogger(Services::class.java)
 
 }
