@@ -63,10 +63,14 @@ object Launcher {
     lateinit var cooldownManager: CooldownManager
         private set
 
-    val agents: List<ValorantAgent> = Loaders.loadAgents()
-    val arsenal: List<ValorantWeapon> = Loaders.loadArsenal()
-    val maps: List<ValorantMap> = Loaders.loadMaps()
-    //val leaderboards = Loaders.loadLeaderboards()
+    lateinit var agents: List<ValorantAgent>
+        private set
+
+    lateinit var arsenal: List<ValorantWeapon>
+        private set
+
+    lateinit var maps: List<ValorantMap>
+        private set
 
     val rateLimiter: RateLimiter = RateLimiter.Builder().setQuota(20).setExpirationTime(1, TimeUnit.MINUTES).build()
 
@@ -77,6 +81,11 @@ object Launcher {
         pid = ProcessHandle.current().pid()
 
         Utils.printBanner(log, isMaster, pid)
+
+        //Load Valorant entities
+        agents = Loaders.loadAgents()
+        arsenal = Loaders.loadArsenal()
+        maps = Loaders.loadMaps()
 
         //Waiting for Riot approval
         // - RiotAPI.init(BotConfig.getOrNull<String>("riot.api_key"))
