@@ -15,8 +15,10 @@
 
 package tv.blademaker.killjoy.commands.info
 
+import net.dv8tion.jda.api.EmbedBuilder
 import net.hugebot.extensions.jda.await
 import tv.blademaker.killjoy.framework.Category
+import tv.blademaker.killjoy.framework.ColorExtra
 import tv.blademaker.killjoy.framework.CommandContext
 import tv.blademaker.killjoy.framework.abs.Command
 import tv.blademaker.killjoy.framework.annotations.CommandProperties
@@ -24,12 +26,12 @@ import tv.blademaker.killjoy.framework.annotations.CommandProperties
 @CommandProperties("ping", Category.Information)
 class PingCommand : Command() {
     override suspend fun handle(ctx: CommandContext) {
-        val msg = ctx.channel.sendMessage("Fetching...").await()
-        val ping = ctx.jda.restPing.await()
+        val msg = ctx.embed { setDescription("Fetching...") } .await()
+        val rest = ctx.jda.restPing.await()
+        val gateway = ctx.jda.gatewayPing
 
-        msg.editMessage(String.format(
-                "\uD83C\uDF10 Rest: `` %d ``\n\uD83D\uDDE8️ Gateway: `` %d ``",
-                ping, ctx.jda.gatewayPing)).await()
+        val content = String.format("\uD83C\uDF10 Rest: `` %d ``\n\n\uD83D\uDDE8️ Gateway: `` %d ``", rest, gateway)
+        msg.editMessage(EmbedBuilder().setDescription(content).setColor(ColorExtra.VAL_RED).build()).queue()
     }
 
     override val help = "Pong!"
