@@ -15,7 +15,8 @@
 
 package tv.blademaker.killjoy.apis.news
 
-import kotlinx.coroutines.async
+import kong.unirest.Unirest
+import kong.unirest.json.JSONObject
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.future.await
 import org.jsoup.Jsoup
@@ -24,6 +25,7 @@ import org.slf4j.LoggerFactory
 import tv.blademaker.killjoy.utils.extensions.isUrl
 import java.lang.Exception
 import java.text.SimpleDateFormat
+import java.util.*
 import java.util.concurrent.*
 import java.util.concurrent.atomic.AtomicReference
 
@@ -34,18 +36,44 @@ object NewsRetriever {
 
     suspend fun lastNews(limit: Int = 10): List<ValorantNew> = coroutineScope {
         if (cachedNews.get() == null || cachedNewsTimestamp < System.currentTimeMillis()) {
-            retrieveValorantNews().await().take(limit)
+            retrieveExperimentalValorantNews().await().take(limit)
         } else {
             cachedNews.get()!!.take(limit)
         }
     }
 
+    private fun retrieveExperimentalValorantNews(): CompletableFuture<List<ValorantNew>> = CompletableFuture.supplyAsync {
+        logger.info("Retrieving fresh Valorant news from experimentat data api...")
+
+        val response = Unirest.get("https://playvalorant.com/page-data/en-us/news/page-data.json").asJson()
+
+        if (!response.isSuccess) throw IllegalStateException("Non-successful status code: ${response.status}")
+
+        val contentArray = response.body.`object`
+            .getJSONObject("result")
+            .getJSONObject("data")
+            .getJSONObject("allContentstackArticles")
+            .getJSONArray("nodes")
+            .toList()
+            .map { it as JSONObject }
+
+        val mappedResults = contentArray.mapNotNull(ValorantNew::buildFromExperimentalApi)
+
+        if (mappedResults.isNotEmpty()) {
+            cachedNews.set(mappedResults)
+            cachedNewsTimestamp = System.currentTimeMillis() + TimeUnit.HOURS.toMillis(1)
+        }
+
+        logger.info("Successfully retrieved valorant news.")
+        mappedResults
+    }
+
+    @Deprecated("Replace with retrieveExperimentalValorantNews()")
     private fun retrieveValorantNews(): CompletableFuture<List<ValorantNew>> = CompletableFuture.supplyAsync {
         logger.info("Retrieving new valorant news...")
         
         try {
-            val document = Jsoup.connect("https://playvalorant.com/en-us/news/")
-                .get()
+            val document = Jsoup.connect("https://playvalorant.com/en-us/news/").get()
 
             //val featuredNews = document.select("div.news-card > a")
             val latestNews = document.select("div[class~=NewsArchive-module--content--(?i)] > div > div > a")
@@ -81,7 +109,36 @@ object NewsRetriever {
 
         companion object {
             private val dateFormat = SimpleDateFormat("MM/dd/yy")
+            private val newDateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ENGLISH)
 
+            fun buildFromExperimentalApi(json: JSONObject): ValorantNew? {
+                //
+
+                try {
+                    val title = json.getString("title")
+                    val description = json.getString("description")
+
+                    val banner = json.getJSONObject("banner").getString("url")
+
+                    val externalLink = json.optString("external_link").takeIf { it.isNotEmpty() }
+                    val url = json.getJSONObject("url").getString("url")
+
+                    val date = json.getString("date")
+
+                    return ValorantNew(
+                        title = title,
+                        url = externalLink ?: "https://playvalorant.com$url",
+                        timestamp = newDateFormat.parse(date).time,
+                        description = description,
+                        image = banner
+                    )
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    return null
+                }
+            }
+
+            @Deprecated("Deprecated")
             fun buildFromElement(el: Element): ValorantNew? {
 
                 try {
