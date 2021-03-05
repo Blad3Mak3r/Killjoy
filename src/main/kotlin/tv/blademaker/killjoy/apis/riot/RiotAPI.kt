@@ -51,7 +51,7 @@ object RiotAPI {
 
         logger.info("Retrieving fresh leaderboards for ${region.name.toUpperCase()}")
 
-        val url = "https://dgxfkpkb4zk5c.cloudfront.net/leaderboards/affinity/${region.name.toUpperCase()}/queue/competitive/act/97b6e739-44cc-ffa7-49ad-398ba502ceb0?startIndex=0&size=10"
+        val url = "https://dgxfkpkb4zk5c.cloudfront.net/leaderboards/affinity/${region.name.toUpperCase()}/queue/competitive/act/$CURRENT_ACT_ID?startIndex=0&size=10"
         val r = Unirest.get(url).asJsonAsync().await()
 
         check(r.isSuccess) { "Not success status: ${r.status}" }
@@ -98,7 +98,7 @@ object RiotAPI {
     }
 
 
-    private const val CURRENT_ACT_ID = "97b6e739-44cc-ffa7-49ad-398ba502ceb0"   // Episode 1 (Act 1)
+    private const val CURRENT_ACT_ID = "ab57ef51-4e59-da91-cc8d-51a5a2b9b8ff"   // Episode 1 (Act 1)
     private const val VAL_RANKED_V1 = "https://{region}.api.riotgames.com/val/ranked/v1/leaderboards/by-act/$CURRENT_ACT_ID?size={size}&startIndex={index}"
     private val logger = LoggerFactory.getLogger(RiotAPI::class.java)
 }

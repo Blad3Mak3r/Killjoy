@@ -1,0 +1,46 @@
+{
+  "id": "41FB69C1-4189-7B37-F117-BCAF1E96F1BF",
+  "number": 14,
+  "name": "Astra",
+  "api_name": "rift",
+  "origin": ":flag_gh: Ghana",
+  "image": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/blt5599d0d810824279/6036ca30ce4a0d12c3ec1dfa/V_AGENTS_587x900_Astra.png",
+  "thumbnail": "",
+  "avatar": "https://i.imgur.com/4WsVJ4G.jpg",
+  "role": "Controller",
+  "bio": "Ghanaian Agent Astra harnesses the energies of the cosmos to reshape battlefields to her whim. With full command of her astral form and a talent for deep strategic foresight, she's always eons ahead of her enemy's next move.",
+  "skills": [
+    {
+      "button": "q",
+      "name": "NOVA PULSE",
+      "iconUrl": "https://i.imgur.com/RJlQxY8.png",
+      "info": "Place Stars in Astral Form (X) ACTIVATE a Star to detonate a Nova Pulse. The Nova Pulse charges briefly then strikes, concussing all players in its area.",
+      "preview": "https://i.imgur.com/quG5Wmy.gif",
+      "cost": "100"
+    },
+    {
+      "button": "e",
+      "name": "NEBULA",
+      "iconUrl": "https://i.imgur.com/BNwDNWe.png",
+      "info": "Place Stars in Astral Form (X) ACTIVATE a Star to transform it into a Nebula (smoke). Use (F) on a Star to Dissipate it, returning the star to be placed in a new location after a delay. Dissipate briefly forms a fake Nebula at the Star’s location before returning.",
+      "preview": "https://i.imgur.com/xjVb7ns.gif",
+      "cost": "100"
+    },
+    {
+      "button": "c",
+      "name": "GRAVITY WELL",
+      "iconUrl": "https://i.imgur.com/BTyTuvu.png",
+      "info": "Place Stars in Astral Form (X) ACTIVATE a Star to form a Gravity Well. Players in the area are pulled toward the center before it explodes, making all players still trapped inside fragile.",
+      "preview": "https://i.imgur.com/vctcNKM.gif",
+      "cost": "100"
+    },
+    {
+      "button": "x",
+      "name": "ASTRAL FORM / COSMIC DIVIDE",
+      "iconUrl": "https://i.imgur.com/3huGL7Q.png",
+      "info": "ACTIVATE (X) to enter Astral Form where you can place Stars with PRIMARY FIRE. Stars can be reactivated later, transforming them into a Nova Pulse, Nebula, or Gravity Well. When Cosmic Divide is charged, use SECONDARY FIRE in Astral Form to begin aiming it, then PRIMARY FIRE to select two locations. An infinite Cosmic Divide connects the two points you select. Cosmic Divide blocks bullets and heavily dampens audio.",
+      "preview": "https://i.imgur.com/TOcXnmC.gif",
+      "cost": "••••••• 7"
+    }
+  ]
+}
