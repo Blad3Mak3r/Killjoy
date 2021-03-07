@@ -52,7 +52,7 @@ dependencies {
     //Logging
     implementation("ch.qos.logback:logback-classic:1.2.3")
 
-    implementation("io.sentry:sentry:4.2.0")
+    implementation("io.sentry:sentry:4.3.0")
     implementation("com.google.guava:guava:30.1-jre")
 
     //HTTP Clients
