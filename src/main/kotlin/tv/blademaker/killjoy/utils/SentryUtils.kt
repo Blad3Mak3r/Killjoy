@@ -19,11 +19,25 @@ import io.sentry.Sentry
 import io.sentry.SentryEvent
 import io.sentry.SentryLevel
 import io.sentry.protocol.Message
+import org.slf4j.LoggerFactory
+import tv.blademaker.killjoy.BotConfig
 import tv.blademaker.killjoy.framework.CommandContext
 import tv.blademaker.killjoy.framework.abs.Command
 import tv.blademaker.killjoy.framework.abs.SubCommand
 
 object SentryUtils {
+
+    private val LOGGER = LoggerFactory.getLogger(SentryUtils::class.java)
+
+    fun init() {
+        val dsn = BotConfig.getOrNull<String>("sentry.dsn")
+            ?: return
+
+        LOGGER.info("Initializing sentry with DSN $dsn")
+        Sentry.init { options ->
+            options.dsn = dsn
+        }
+    }
 
     fun sendCommandException(ctx: CommandContext, command: Command, ex: Throwable) {
         ctx.replyError(ex).queue()
