@@ -102,7 +102,7 @@ data class ValorantAgent (
         Sentinel("<:sentinel:754676227994026044>", "https://i.imgur.com/ODX86kl.png");
 
         val snowFlake: String
-            get() = emoji.removeSuffix("<").removePrefix(">")
+            get() = emoji.removePrefix("<").removeSuffix(">")
 
         companion object {
             fun of(str: String): Role {
