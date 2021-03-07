@@ -33,6 +33,7 @@ import tv.blademaker.killjoy.listeners.MainListener
 import tv.blademaker.killjoy.prometheus.Prometheus
 import tv.blademaker.killjoy.utils.CooldownManager
 import tv.blademaker.killjoy.utils.Loaders
+import tv.blademaker.killjoy.utils.SentryUtils
 import tv.blademaker.killjoy.utils.extensions.isInt
 import tv.blademaker.killjoy.valorant.ValorantAgent
 import tv.blademaker.killjoy.valorant.ValorantMap
@@ -77,6 +78,9 @@ object Launcher {
         pid = ProcessHandle.current().pid()
 
         log.info("Starting with PID: $pid")
+
+        //Initialize sentry
+        SentryUtils.init()
 
         //Waiting for Riot approval
         // - RiotAPI.init(BotConfig.getOrNull<String>("riot.api_key"))
