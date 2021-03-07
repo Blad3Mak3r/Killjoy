@@ -14,3 +14,7 @@ prometheus {
   host: "localhost"
   port: 8080
 }
+
+sentry {
+  dsn: "YOUR SENTRY DSN HERE"
+}
