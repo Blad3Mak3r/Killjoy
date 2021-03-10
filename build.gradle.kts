@@ -70,7 +70,7 @@ dependencies {
 
     //Config
     implementation("com.typesafe:config:1.4.1")
-    implementation("org.json:json:20201115")
+    implementation("org.json:json:20210307")
 
     implementation("org.jsoup:jsoup:1.13.1")
 
