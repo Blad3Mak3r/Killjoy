@@ -45,7 +45,9 @@ class DefaultSlashCommandHandler(packageName: String) : SlashCommandHandler {
 
     override val registry = SlashUtils.discoverSlashCommands(packageName)
 
-    fun onSlashCommandEvent(event: SlashCommandEvent) = SCOPE.launch { handleSuspend(event) }
+    override fun onSlashCommandEvent(event: SlashCommandEvent) {
+        SCOPE.launch { handleSuspend(event) }
+    }
 
     private suspend fun handleSuspend(event: SlashCommandEvent) {
         if (event.guild == null)

@@ -31,6 +31,8 @@ import tv.blademaker.killjoy.apis.stats.Website
 import tv.blademaker.killjoy.framework.CommandRegistry
 import tv.blademaker.killjoy.listeners.MainListener
 import tv.blademaker.killjoy.prometheus.Prometheus
+import tv.blademaker.killjoy.slash.handler.DefaultSlashCommandHandler
+import tv.blademaker.killjoy.slash.handler.SlashCommandHandler
 import tv.blademaker.killjoy.utils.CooldownManager
 import tv.blademaker.killjoy.utils.Loaders
 import tv.blademaker.killjoy.utils.SentryUtils
@@ -61,6 +63,9 @@ object Launcher {
     lateinit var commandRegistry: CommandRegistry
         private set
 
+    lateinit var slashCommandHandler: SlashCommandHandler
+        private set
+
     lateinit var cooldownManager: CooldownManager
         private set
 
@@ -86,6 +91,7 @@ object Launcher {
         // - RiotAPI.init(BotConfig.getOrNull<String>("riot.api_key"))
 
         commandRegistry = CommandRegistry()
+        slashCommandHandler = DefaultSlashCommandHandler("tv.blademaker.killjoy.commands")
 
         cooldownManager = CooldownManager(15, TimeUnit.SECONDS)
 
@@ -97,7 +103,7 @@ object Launcher {
             .setShardsTotal(-1)
             .setActivity(Activity.competing("Valorant | joy help"))
             .setEnableShutdownHook(false)
-            .addEventListeners(MainListener())
+            .addEventListeners(MainListener(slashCommandHandler))
             .setCompression(Compression.ZLIB)
             .setEnableShutdownHook(true)
             .enableIntents(

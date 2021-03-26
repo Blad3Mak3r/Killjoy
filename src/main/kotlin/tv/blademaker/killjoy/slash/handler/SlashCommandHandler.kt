@@ -22,6 +22,8 @@ import tv.blademaker.killjoy.slash.AbstractSlashCommand
 interface SlashCommandHandler {
     val registry: List<AbstractSlashCommand>
 
+    fun onSlashCommandEvent(event: SlashCommandEvent)
+
     fun getCommand(name: String) = registry.firstOrNull { it.commandName.equals(name, true) }
 
     fun logCommand(event: SlashCommandEvent, command: AbstractSlashCommand, logger: Logger) {
