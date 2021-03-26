@@ -32,7 +32,7 @@ interface SlashCommandHandler {
             ?: ""
         val options = event.options.map { parseOption(it) }
 
-        logger.info("[%c${event.guild!!.name}%R] %y${event.user.asTag}%R uses command %g${command.commandName} $subcommandName $options%R")
+        logger.info("[${event.guild!!.name}] ${event.user.asTag} uses command ${command.commandName} $subcommandName$options")
     }
 
     private fun parseOption(option: SlashCommandEvent.OptionData): String {
