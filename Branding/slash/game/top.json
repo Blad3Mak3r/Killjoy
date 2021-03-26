@@ -1,0 +1,38 @@
+{
+  "name": "top",
+  "description": "Retrieve the TOP 10 players by region.",
+  "options": [
+    {
+      "type": 3,
+      "name": "region",
+      "description": "Select the region.",
+      "required": false,
+      "choices": [
+        {
+          "name": "Asia-Pacific (AP)",
+          "value": "AP"
+        },
+        {
+          "name": "Brazil (BR)",
+          "value": "BR"
+        },
+        {
+          "name": "Europe (EU)",
+          "value": "EU"
+        },
+        {
+          "name": "Korea (KR)",
+          "value": "KR"
+        },
+        {
+          "name": "Latam (LATAM)",
+          "value": "LATAM"
+        },
+        {
+          "name": "North America (NA)",
+          "value": "NA"
+        }
+      ]
+    }
+  ]
+}
