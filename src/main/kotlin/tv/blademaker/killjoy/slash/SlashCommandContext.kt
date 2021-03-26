@@ -15,12 +15,18 @@
 
 package tv.blademaker.killjoy.slash
 
+import net.dv8tion.jda.api.commands.CommandHook
 import net.dv8tion.jda.api.events.interaction.SlashCommandEvent
 
 class SlashCommandContext(
     val event: SlashCommandEvent
 ) {
 
+    val hook: CommandHook
+        get() = event.hook
+
     val options: List<SlashCommandEvent.OptionData>
         get() = event.options
+
+    fun getOption(name: String) = event.getOption(name)
 }

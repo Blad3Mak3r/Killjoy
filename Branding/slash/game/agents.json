@@ -1,0 +1,36 @@
+{
+  "name": "agents",
+  "description": "Get information and statistics about a Valorant agent.",
+  "options": [
+    {
+      "type": 3,
+      "name": "agent",
+      "description": "Agent name or number: Sage, 1",
+      "required": false
+    },
+    {
+      "type": 3,
+      "name": "skill",
+      "description": "Get information about a skill from a Valorant agent (requires an agent).",
+      "required": false,
+      "choices": [
+        {
+          "name": "Basic (C)",
+          "value": "c"
+        },
+        {
+          "name": "Basic (Q)",
+          "value": "q"
+        },
+        {
+          "name": "Signature (E)",
+          "value": "e"
+        },
+        {
+          "name": "Ultimate (X)",
+          "value": "x"
+        }
+      ]
+    }
+  ]
+}
