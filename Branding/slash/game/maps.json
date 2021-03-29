@@ -1,0 +1,12 @@
+{
+  "name": "maps",
+  "description": "Get a list of maps or information about a specific map from Valorant.",
+  "options": [
+    {
+      "type": 3,
+      "name": "map",
+      "description": "Map name, for example: Icebox",
+      "required": false
+    }
+  ]
+}
