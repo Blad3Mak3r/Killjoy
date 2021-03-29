@@ -19,6 +19,7 @@ import tv.blademaker.killjoy.apis.news.NewsRetriever
 import tv.blademaker.killjoy.slash.AbstractSlashCommand
 import tv.blademaker.killjoy.slash.SlashCommandContext
 
+@Suppress("unused")
 class NewsSlashCommand : AbstractSlashCommand("news") {
 
     override suspend fun handle(ctx: SlashCommandContext) {

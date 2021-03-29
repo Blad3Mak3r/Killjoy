@@ -15,11 +15,9 @@
 
 package tv.blademaker.killjoy.commands.game
 
-import net.dv8tion.jda.api.entities.Command
 import tv.blademaker.killjoy.Launcher
 import tv.blademaker.killjoy.slash.AbstractSlashCommand
 import tv.blademaker.killjoy.slash.SlashCommandContext
-import tv.blademaker.killjoy.slash.SlashCommandOption
 import tv.blademaker.killjoy.utils.Emojis
 
 @Suppress("unused")
