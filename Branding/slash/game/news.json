@@ -1,0 +1,5 @@
+{
+  "name": "news",
+  "description": "Retrieve the latest news from the official PlayValorant website.",
+  "options": []
+}
