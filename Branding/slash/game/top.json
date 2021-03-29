@@ -6,7 +6,7 @@
       "type": 3,
       "name": "region",
       "description": "Select the region.",
-      "required": false,
+      "required": true,
       "choices": [
         {
           "name": "Asia-Pacific (AP)",
