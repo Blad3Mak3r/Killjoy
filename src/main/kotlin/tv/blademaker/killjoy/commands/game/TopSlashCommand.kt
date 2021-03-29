@@ -16,18 +16,15 @@
 package tv.blademaker.killjoy.commands.game
 
 import net.dv8tion.jda.api.EmbedBuilder
-import net.dv8tion.jda.api.entities.Command
 import tv.blademaker.killjoy.apis.riot.RiotAPI
 import tv.blademaker.killjoy.apis.riot.entities.Region
 import tv.blademaker.killjoy.slash.AbstractSlashCommand
 import tv.blademaker.killjoy.slash.SlashCommandContext
-import tv.blademaker.killjoy.slash.SlashCommandOption
 
 @Suppress("unused", "DuplicatedCode")
 class TopSlashCommand : AbstractSlashCommand("top") {
 
-    @SlashCommandOption(Command.OptionType.STRING)
-    suspend fun region(ctx: SlashCommandContext) {
+    override suspend fun handle(ctx: SlashCommandContext) {
         val option = ctx.getOption("region")!!.asString.toUpperCase()
 
         val region = Region.values().firstOrNull { it.name.equals(option, true) }

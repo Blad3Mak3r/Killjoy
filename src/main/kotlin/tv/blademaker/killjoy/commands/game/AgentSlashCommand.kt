@@ -16,38 +16,34 @@
 package tv.blademaker.killjoy.commands.game
 
 import net.dv8tion.jda.api.EmbedBuilder
-import net.dv8tion.jda.api.entities.Command
 import tv.blademaker.killjoy.Launcher
 import tv.blademaker.killjoy.framework.ColorExtra
 import tv.blademaker.killjoy.slash.AbstractSlashCommand
 import tv.blademaker.killjoy.slash.SlashCommandContext
-import tv.blademaker.killjoy.slash.SlashCommandOption
 import tv.blademaker.killjoy.valorant.ValorantAgent
 
 @Suppress("unused")
 class AgentSlashCommand : AbstractSlashCommand("agents") {
 
     override suspend fun handle(ctx: SlashCommandContext) {
-        val embed = EmbedBuilder().apply {
-            setColor(ColorExtra.VAL_RED)
-            setTitle("Valorant Agents")
-            for (agent in Launcher.agents) {
-                addField("${agent.role.emoji} - ${agent.name}", agent.bio, true)
-            }
-        }.build()
-        ctx.event.acknowledge().addEmbeds(embed).queue()
-    }
+        ctx.acknowledge().queue()
 
-    @SlashCommandOption(Command.OptionType.STRING)
-    suspend fun agent(ctx: SlashCommandContext) {
-        ctx.event.acknowledge().queue()
-        val agentName = ctx.getOption("agent")!!.asString
+        val agentName = ctx.getOption("agent")?.asString
         val skillName = ctx.getOption("skill")?.asString
 
-        val agent = findAgent(agentName)
-            ?: return ctx.hook.sendMessage("Agent with name or number ``$agentName`` does not exists.").queue()
+        if (agentName == null && skillName == null) {
+            val embed = EmbedBuilder().apply {
+                setColor(ColorExtra.VAL_RED)
+                setTitle("Valorant Agents")
+                for (agent in Launcher.agents) {
+                    addField("${agent.role.emoji} - ${agent.name}", agent.bio, true)
+                }
+            }.build()
 
-        if (skillName != null) {
+            ctx.send(embed).queue()
+        } else if (agentName != null && skillName != null) {
+            val agent = findAgent(agentName)
+                ?: return ctx.hook.sendMessage("Agent with name or number ``$agentName`` does not exists.").queue()
 
             val skill = agent.skills.find { it.button.name.equals(skillName, true) }
                 ?: return ctx.hook.sendMessage("I have not been able to find that skill...").queue()
@@ -63,10 +59,9 @@ class AgentSlashCommand : AbstractSlashCommand("agents") {
                 setColor(ColorExtra.VAL_RED)
             }.build()
 
-            ctx.hook.sendMessage(embed).queue()
-
+            ctx.send(embed).queue()
         } else {
-            ctx.hook.sendMessage(agent.asEmbed().build()).queue()
+            ctx.send("In order to see the abilities of the agents you need to choose an agent first.").queue()
         }
     }
 

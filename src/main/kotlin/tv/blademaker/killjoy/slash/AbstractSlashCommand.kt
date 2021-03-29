@@ -18,6 +18,7 @@ package tv.blademaker.killjoy.slash
 import io.sentry.Sentry
 import org.slf4j.LoggerFactory
 import java.util.function.Predicate
+import kotlin.reflect.KFunction
 import kotlin.reflect.full.callSuspend
 import kotlin.reflect.full.findAnnotation
 import kotlin.reflect.full.functions
@@ -27,18 +28,19 @@ abstract class AbstractSlashCommand(val commandName: String) {
 
     val checks: MutableList<Predicate<SlashCommandContext>> = mutableListOf()
 
+    val subCommands: List<KFunction<*>> = this::class.functions.filter { it.hasAnnotation<SlashSubCommand>() }
+
     private fun doChecks(ctx: SlashCommandContext): Boolean {
         if (checks.isEmpty()) return true
         return checks.all { it.test(ctx) }
     }
 
-    private suspend fun handleCommandOption(ctx: SlashCommandContext): Boolean {
+    private suspend fun handleSubcommand(ctx: SlashCommandContext): Boolean {
         val subCommandName = ctx.event.subcommandName
-            ?: ctx.options.firstOrNull()?.name
             ?: return false
 
         try {
-            val function = this::class.functions.filter { it.hasAnnotation<SlashCommandOption>() }.find { func ->
+            val function = subCommands.find { func ->
                 func.name.equals(subCommandName, true)
             }
 
@@ -48,8 +50,6 @@ abstract class AbstractSlashCommand(val commandName: String) {
             }
 
             LOGGER.debug("Executing \"${function.name}\" for option \"$subCommandName\"")
-
-            val annotation = function.findAnnotation<SlashCommandOption>()!!
 
             try {
                 function.callSuspend(this, ctx)
@@ -67,7 +67,7 @@ abstract class AbstractSlashCommand(val commandName: String) {
 
     open suspend fun execute(ctx: SlashCommandContext) {
         if (!doChecks(ctx)) return
-        if (handleCommandOption(ctx)) return
+        if (handleSubcommand(ctx)) return
 
         handle(ctx)
     }

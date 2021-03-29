@@ -19,7 +19,4 @@ import net.dv8tion.jda.api.entities.Command
 
 @Target(AnnotationTarget.FIELD, AnnotationTarget.FUNCTION)
 @Retention(AnnotationRetention.RUNTIME)
-annotation class SlashCommandOption(
-    val optionType: Command.OptionType,
-    val i18nPrefix: String = ""
-)
+annotation class SlashSubCommand
