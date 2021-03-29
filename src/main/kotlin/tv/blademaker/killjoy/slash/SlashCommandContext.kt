@@ -23,6 +23,7 @@ import net.dv8tion.jda.api.entities.MessageEmbed
 import net.dv8tion.jda.api.entities.TextChannel
 import net.dv8tion.jda.api.events.interaction.SlashCommandEvent
 import net.dv8tion.jda.api.requests.restaction.InteractionWebhookAction
+import tv.blademaker.killjoy.framework.ColorExtra
 import tv.blademaker.killjoy.utils.Emojis
 
 class SlashCommandContext(
@@ -54,7 +55,9 @@ class SlashCommandContext(
     fun send(embedBuilder: EmbedBuilder) = hook.sendMessage(embedBuilder.build())
 
     fun sendEmbed(builder: EmbedBuilder.() -> Unit): InteractionWebhookAction {
-        val embed = EmbedBuilder().apply(builder).build()
+        val embed = EmbedBuilder()
+            .setColor(ColorExtra.VAL_RED)
+            .apply(builder).build()
 
         return hook.sendMessage(embed)
     }
