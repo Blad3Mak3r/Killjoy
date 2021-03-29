@@ -1,8 +1,8 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
-val ktorVersion = "1.5.1"
-val coroutinesVersion = "1.4.2-native-mt"
+val ktorVersion = "1.5.2"
+val coroutinesVersion = "1.4.3-native-mt"
 val prometheusVersion = "0.10.0"
 
 plugins {
@@ -47,7 +47,7 @@ dependencies {
     implementation("com.github.killjoybot:Valorant.API:0.1")
 
     //Common
-    //implementation("net.dv8tion:JDA:4.2.0_231") { exclude(module = "opus-java") }
+    //implementation("net.dv8tion:JDA:4.2.0_240") { exclude(module = "opus-java") }
     implementation("com.github.DV8FromTheWorld:JDA:feature~slash-commands-SNAPSHOT") { exclude(module = "opus-java") }
     implementation("com.jagrosh:jda-utilities:3.0.5")
 
@@ -72,7 +72,7 @@ dependencies {
 
     //Config
     implementation("com.typesafe:config:1.4.1")
-    implementation("org.json:json:20201115")
+    implementation("org.json:json:20210307")
 
     implementation("org.jsoup:jsoup:1.13.1")
 

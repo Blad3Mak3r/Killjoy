@@ -127,7 +127,7 @@ object NewsRetriever {
 
                     return ValorantNew(
                         title = title,
-                        url = externalLink ?: "https://playvalorant.com$url",
+                        url = externalLink ?: "https://playvalorant.com/en-us$url",
                         timestamp = newDateFormat.parse(date).time,
                         description = description,
                         image = banner
