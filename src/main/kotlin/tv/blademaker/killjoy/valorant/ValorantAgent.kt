@@ -50,6 +50,8 @@ data class ValorantAgent (
 
     private var stats: Stats? = null
 
+    val abilities = skills.map { AgentAbility(this, it) }
+
     private suspend fun getStats(): Stats {
         if (StatsMapper.lastCheck.get() == 0L || StatsMapper.lastCheck.get() < System.currentTimeMillis()) StatsMapper.doUpdate()
 

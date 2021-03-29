@@ -37,6 +37,7 @@ import tv.blademaker.killjoy.utils.CooldownManager
 import tv.blademaker.killjoy.utils.Loaders
 import tv.blademaker.killjoy.utils.SentryUtils
 import tv.blademaker.killjoy.utils.extensions.isInt
+import tv.blademaker.killjoy.valorant.AgentAbility
 import tv.blademaker.killjoy.valorant.ValorantAgent
 import tv.blademaker.killjoy.valorant.ValorantMap
 import tv.blademaker.killjoy.valorant.ValorantWeapon
@@ -145,6 +146,8 @@ object Launcher {
         if (result.isFailure) return null
         return agents.filter { it.role === result.getOrNull()!! }
     }
+
+    fun getAbilities() = agents.map { it.abilities }.reduce { acc, list -> acc + list }
 
     fun getSkills() = agents.map { it.skills }.reduce { acc, list -> acc + list }
 

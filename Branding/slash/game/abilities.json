@@ -1,0 +1,12 @@
+{
+  "name": "abilities",
+  "description": "Get information on all the abilities in the game.",
+  "options": [
+    {
+      "type": 4,
+      "name": "page",
+      "description": "Abilities list page you want to access.",
+      "required": false
+    }
+  ]
+}
