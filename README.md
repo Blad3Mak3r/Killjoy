@@ -1,6 +1,7 @@
 <img align="right" src="/assets/img/avatar.jpg" height="200" width="200">
 
 # KILLJOY ([Invite][invitation])
+[![TeamCity Full Build Status](https://img.shields.io/teamcity/build/s/Killjoy_Build?label=Build%20Status&server=https%3A%2F%2Fhugebot.beta.teamcity.com)](https://hugebot.beta.teamcity.com/buildConfiguration/Killjoy_Build?mode=builds&guest=1)
 [![Gradle Check](https://github.com/Blad3Mak3r/Killjoy/actions/workflows/gradle.yml/badge.svg)](https://github.com/Blad3Mak3r/Killjoy/actions/workflows/gradle.yml)
 ![Discord](https://img.shields.io/discord/425661010662260736?logo=discord)
 ![Docker Image Version (latest by date)](https://img.shields.io/docker/v/blademaker/killjoy?logo=docker&sort=date)
