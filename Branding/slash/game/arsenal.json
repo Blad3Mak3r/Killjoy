@@ -1,0 +1,12 @@
+{
+  "name": "arsenal",
+  "description": "Get information and statistics about a Valorant weapon or the entire arsenal.",
+  "options": [
+    {
+      "type": 3,
+      "name": "weapon",
+      "description": "Weapon name, for example: Tactical Knife",
+      "required": false
+    }
+  ]
+}
