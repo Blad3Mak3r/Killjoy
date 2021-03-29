@@ -32,6 +32,7 @@ class AgentSlashCommand : AbstractSlashCommand("agents") {
         val skillName = ctx.getOption("skill")?.asString
 
         if (agentName == null && skillName == null) {
+
             val embed = EmbedBuilder().apply {
                 setColor(ColorExtra.VAL_RED)
                 setTitle("Valorant Agents")
@@ -41,7 +42,16 @@ class AgentSlashCommand : AbstractSlashCommand("agents") {
             }.build()
 
             ctx.send(embed).queue()
+
+        } else if (agentName != null && skillName == null) {
+
+            val agent = findAgent(agentName)
+                ?: return ctx.hook.sendMessage("Agent with name or number ``$agentName`` does not exists.").queue()
+
+            ctx.send(agent.asEmbed()).queue()
+
         } else if (agentName != null && skillName != null) {
+
             val agent = findAgent(agentName)
                 ?: return ctx.hook.sendMessage("Agent with name or number ``$agentName`` does not exists.").queue()
 
@@ -60,8 +70,11 @@ class AgentSlashCommand : AbstractSlashCommand("agents") {
             }.build()
 
             ctx.send(embed).queue()
+
         } else {
+
             ctx.send("In order to see the abilities of the agents you need to choose an agent first.").queue()
+
         }
     }
 
