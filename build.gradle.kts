@@ -83,7 +83,7 @@ tasks {
         manifest {
             attributes["Main-Class"] = "tv.blademaker.killjoy.Launcher"
         }
-        archiveBaseName.set("KilljoyAI")
+        archiveBaseName.set("Killjoy")
         archiveClassifier.set("")
         archiveVersion.set("")
     }
