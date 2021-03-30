@@ -21,4 +21,4 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Check with Gradle
-      run: ./gradlew checj
+      run: ./gradlew check
