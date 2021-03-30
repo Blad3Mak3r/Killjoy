@@ -26,5 +26,5 @@ jobs:
     - name: Upload artifacts
       uses: actions/upload-artifact@v2
       with:
-        name: Killjoy-${{ env.GITHUB_RUN_NUMBER }}.jar
+        name: Killjoy-${{ github.run_number }}.jar
         path: build/libs/KilljoyAI.jar
