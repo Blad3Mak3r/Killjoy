@@ -16,7 +16,7 @@ package tv.blademaker.killjoy.utils
 
 import net.dv8tion.jda.api.Permission
 import tv.blademaker.killjoy.framework.CommandContext
-import tv.blademaker.killjoy.slash.SlashCommandContext
+import tv.blademaker.slash.SlashCommandContext
 
 enum class Emojis(private val custom: String?, private val def: String) {
     WasteBasket(null, "\uD83D\uDDD1️"),

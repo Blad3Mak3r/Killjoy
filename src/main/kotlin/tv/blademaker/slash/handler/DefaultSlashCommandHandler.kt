@@ -28,7 +28,7 @@
  * See the License for the specific language governing permissions and limitations under the License.
  ******************************************************************************/
 
-package tv.blademaker.killjoy.slash.handler
+package tv.blademaker.slash.handler
 
 import io.sentry.Sentry
 import kotlinx.coroutines.CoroutineScope
@@ -37,8 +37,8 @@ import kotlinx.coroutines.asCoroutineDispatcher
 import kotlinx.coroutines.launch
 import net.dv8tion.jda.api.events.interaction.SlashCommandEvent
 import org.slf4j.LoggerFactory
-import tv.blademaker.killjoy.slash.SlashCommandContext
-import tv.blademaker.killjoy.slash.SlashUtils
+import tv.blademaker.slash.SlashCommandContext
+import tv.blademaker.slash.SlashUtils
 import tv.blademaker.killjoy.utils.Utils
 
 class DefaultSlashCommandHandler(packageName: String) : SlashCommandHandler {

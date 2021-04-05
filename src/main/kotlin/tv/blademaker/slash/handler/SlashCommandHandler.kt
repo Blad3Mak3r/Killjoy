@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and limitations under the License.
  ******************************************************************************/
 
-package tv.blademaker.killjoy.slash.handler
+package tv.blademaker.slash.handler
 
 import net.dv8tion.jda.api.events.interaction.SlashCommandEvent
 import org.slf4j.Logger
-import tv.blademaker.killjoy.slash.AbstractSlashCommand
+import tv.blademaker.slash.AbstractSlashCommand
 
 interface SlashCommandHandler {
     val registry: List<AbstractSlashCommand>
