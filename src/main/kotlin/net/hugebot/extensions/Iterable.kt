@@ -13,10 +13,17 @@
  * See the License for the specific language governing permissions and limitations under the License.
  ******************************************************************************/
 
-package tv.blademaker.slash.api
+package net.hugebot.extensions
 
-import net.dv8tion.jda.api.entities.Command
+import net.dv8tion.jda.api.Permission
+import net.dv8tion.jda.api.entities.Message
 
-@Target(AnnotationTarget.FIELD, AnnotationTarget.FUNCTION)
-@Retention(AnnotationRetention.RUNTIME)
-annotation class SlashSubCommand
+fun Iterable<Permission>.toHuman(jump: Boolean = false): String {
+    return this.joinToString(if (jump) "\n" else ", ") { it.getName() }
+}
+
+fun Array<Permission>.toHuman(jump: Boolean = false): String {
+    return this.joinToString(if (jump) "\n" else ", ") { it.getName() }
+}
+
+fun Iterable<Message>.toIDs() = this.map { it.id }

@@ -15,16 +15,74 @@
 
 package tv.blademaker.slash.utils
 
+import net.dv8tion.jda.api.Permission
+import net.dv8tion.jda.api.entities.Member
+import net.dv8tion.jda.api.requests.RestAction
+import net.dv8tion.jda.api.requests.restaction.CommandReplyAction
+import net.dv8tion.jda.api.requests.restaction.InteractionWebhookAction
+import net.hugebot.extensions.toHuman
 import org.reflections.Reflections
 import org.reflections.scanners.SubTypesScanner
 import org.slf4j.LoggerFactory
 import tv.blademaker.slash.api.AbstractSlashCommand
+import tv.blademaker.slash.api.SlashCommandContext
+import tv.blademaker.slash.api.annotations.Permissions
 import java.lang.IllegalStateException
 import java.lang.reflect.Modifier
 
 object SlashUtils {
 
     private val LOGGER = LoggerFactory.getLogger(SlashUtils::class.java)
+
+    enum class PermissionTarget {
+        BOT, USER;
+    }
+
+    internal fun hasPermissions(ctx: SlashCommandContext, permissions: Permissions?): Boolean {
+        if (permissions == null || permissions.bot.isEmpty() && permissions.user.isEmpty()) return true
+
+        var member: Member = ctx.member
+
+        // Check for the user permissions
+        var guildPerms = member.hasPermission(permissions.user.toList())
+        var channelPerms = member.hasPermission(ctx.channel, permissions.user.toList())
+
+        if (!(guildPerms && channelPerms)) {
+            replyRequiredPermissions(ctx, PermissionTarget.USER, permissions.user)
+            return false
+        }
+
+        // Check for the bot permissions
+        member = ctx.selfMember
+        guildPerms = member.hasPermission(permissions.bot.toList())
+        channelPerms = member.hasPermission(ctx.channel, permissions.bot.toList())
+
+        if (!(guildPerms && channelPerms)) {
+            replyRequiredPermissions(ctx, PermissionTarget.BOT, permissions.bot)
+            return false
+        }
+
+        return true
+    }
+
+    private fun replyRequiredPermissions(
+        ctx: SlashCommandContext,
+        target: PermissionTarget,
+        permissions: Array<Permission>
+    ) {
+        when(target) {
+            PermissionTarget.BOT -> {
+                val perms = permissions.toHuman()
+                ctx.reply("\uD83D\uDEAB The bot does not have the necessary permissions to carry out this action." +
+                        "\nRequired permissions: **${perms}**.")
+            }
+            PermissionTarget.USER -> {
+                val perms = permissions.toHuman()
+                ctx.reply("\uD83D\uDEAB You do not have the necessary permissions to carry out this action." +
+                        "\nRequired permissions: **${perms}**.")
+            }
+        }.setEphemeral(true).queue()
+    }
 
     fun discoverSlashCommands(packageName: String): List<AbstractSlashCommand> {
         val classes = Reflections(packageName, SubTypesScanner())
@@ -47,5 +105,14 @@ object SlashUtils {
         }
 
         return commands
+    }
+
+    fun RestAction<*>.asEphemeral(): RestAction<*> {
+        when(this) {
+            is CommandReplyAction -> this.setEphemeral(true)
+            is InteractionWebhookAction -> this.setEphemeral(true)
+        }
+
+        return this
     }
 }
