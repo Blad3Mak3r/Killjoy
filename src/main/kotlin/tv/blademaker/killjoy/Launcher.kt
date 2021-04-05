@@ -36,6 +36,7 @@ import tv.blademaker.slash.api.handler.SlashCommandHandler
 import tv.blademaker.killjoy.utils.CooldownManager
 import tv.blademaker.killjoy.utils.Loaders
 import tv.blademaker.killjoy.utils.SentryUtils
+import tv.blademaker.killjoy.utils.Utils
 import tv.blademaker.killjoy.utils.extensions.isInt
 import tv.blademaker.killjoy.valorant.ValorantAgent
 import tv.blademaker.killjoy.valorant.ValorantMap
@@ -82,7 +83,7 @@ object Launcher {
 
         pid = ProcessHandle.current().pid()
 
-        log.info("Starting with PID: $pid")
+        log.info(Utils.printBanner(pid))
 
         //Initialize sentry
         SentryUtils.init()
