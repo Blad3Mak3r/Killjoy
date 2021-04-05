@@ -18,8 +18,8 @@ package tv.blademaker.killjoy.commands.game
 import net.dv8tion.jda.api.EmbedBuilder
 import tv.blademaker.killjoy.apis.riot.RiotAPI
 import tv.blademaker.killjoy.apis.riot.entities.Region
-import tv.blademaker.slash.AbstractSlashCommand
-import tv.blademaker.slash.SlashCommandContext
+import tv.blademaker.slash.api.AbstractSlashCommand
+import tv.blademaker.slash.api.SlashCommandContext
 
 @Suppress("unused", "DuplicatedCode")
 class TopSlashCommand : AbstractSlashCommand("top") {

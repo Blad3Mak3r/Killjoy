@@ -25,7 +25,7 @@ import net.dv8tion.jda.api.hooks.EventListener
 import org.slf4j.LoggerFactory
 import tv.blademaker.killjoy.Launcher
 import tv.blademaker.killjoy.prometheus.exporters.Metrics
-import tv.blademaker.slash.handler.SlashCommandHandler
+import tv.blademaker.slash.api.handler.SlashCommandHandler
 import tv.blademaker.killjoy.utils.Utils
 import java.lang.Exception
 import java.time.OffsetDateTime

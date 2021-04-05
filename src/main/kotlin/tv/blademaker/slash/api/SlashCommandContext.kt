@@ -28,7 +28,7 @@
  * See the License for the specific language governing permissions and limitations under the License.
  ******************************************************************************/
 
-package tv.blademaker.slash
+package tv.blademaker.slash.api
 
 import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.commands.CommandHook
