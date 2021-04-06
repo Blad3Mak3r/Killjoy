@@ -28,9 +28,11 @@ version = "0.8.2"
 
 repositories {
     mavenCentral()
-    jcenter()
+    maven("https://m2.dv8tion.net/releases")
     maven("https://dl.bintray.com/kotlin/kotlinx")
     maven("https://jitpack.io")
+
+    jcenter()
 }
 
 dependencies {
@@ -40,6 +42,9 @@ dependencies {
     implementation(kotlin("reflect"))
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:$coroutinesVersion")
+
+    //Reflections
+    implementation("org.reflections:reflections:0.9.12")
 
     //HugeBot dependencies
     implementation("net.hugebot:RateLimiter:1.1")
