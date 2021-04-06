@@ -15,6 +15,7 @@
 
 package tv.blademaker.killjoy
 
+import com.typesafe.config.Config
 import com.typesafe.config.ConfigFactory
 import java.io.File
 import java.lang.IllegalStateException
@@ -28,6 +29,14 @@ object BotConfig {
         val ref = conf.getAnyRef(path)
         if (ref is T) return ref
         else throw IllegalStateException("Reference is not ${T::class}")
+    }
+
+    internal fun getNullableConfigList(path: String): List<Config>? {
+        return try {
+            conf.getConfigList(path)
+        } catch (e: Exception) {
+            null
+        }
     }
 
     internal inline fun <reified T> getOrNull(path: String): T? {
@@ -52,4 +61,31 @@ object BotConfig {
 
     // Base config
     val token: String = get("discord.token")
+
+    //KUtils
+    internal inline fun <reified T> Config.get(path: String): T {
+        val ref = this.getAnyRef(path)
+        if (ref is T) return ref
+        else throw IllegalStateException("Reference is not ${T::class}")
+    }
+
+    internal inline fun <reified T> Config.getOrNull(path: String): T? {
+        return try {
+            val ref = this.getAnyRef(path)
+            if (ref is T) ref
+            else null
+        } catch (e: Throwable) {
+            null
+        }
+    }
+
+    internal inline fun <reified T> Config.getOrDefault(path: String, fallback: T): T {
+        return try {
+            val ref = this.getAnyRef(path)
+            if (ref is T) ref
+            else fallback
+        } catch (e: Throwable) {
+            return fallback
+        }
+    }
 }

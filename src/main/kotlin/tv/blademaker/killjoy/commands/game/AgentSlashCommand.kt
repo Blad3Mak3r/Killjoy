@@ -80,7 +80,7 @@ class AgentSlashCommand : AbstractSlashCommand("agents") {
 
     companion object {
         private fun findAgent(input: String): ValorantAgent? {
-            return Launcher.retrieveAgentByInput(input)
+            return Launcher.getAgent(input)
         }
     }
 }

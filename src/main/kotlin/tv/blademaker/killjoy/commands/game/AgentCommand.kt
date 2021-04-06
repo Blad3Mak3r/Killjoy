@@ -55,7 +55,7 @@ class AgentCommand : Command() {
             val input = ctx.args[0]
             val isInt = input.isInt()
 
-            val agent = Launcher.retrieveAgentByInput(input)
+            val agent = Launcher.getAgent(input)
                 ?: return if (isInt) ctx.send(Emojis.NoEntry, "Agent with id ``$input`` does not exists...").queue()
                 else ctx.send(Emojis.NoEntry, "Agent with name ``${input.capitalize()}`` does not exists...").queue()
 
@@ -64,7 +64,7 @@ class AgentCommand : Command() {
             val input = ctx.args[0]
             val isInt = input.isInt()
 
-            val agent = Launcher.retrieveAgentByInput(input)
+            val agent = Launcher.getAgent(input)
                 ?: return if (isInt) ctx.send(Emojis.NoEntry, "Agent with id ``$input`` does not exists...").queue()
                 else ctx.send(Emojis.NoEntry, "Agent with name ``${input.capitalize()}`` does not exists...").queue()
 

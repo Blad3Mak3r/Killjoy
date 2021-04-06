@@ -2,12 +2,9 @@ discord {
   token: "YOUR TOKEN HERE"
 }
 
-listing {
-  topgg: ""
-  dbotsgg: ""
-  botsfordiscord: ""
-  dboats: ""
-}
+listing [
+  { id: "bots.gg", url: "https://discord.bots.gg/api/v1/bots/%s/stats", token: "TOKEN", entity_type: "guildCount"}
+]
 
 prometheus {
   enabled: true

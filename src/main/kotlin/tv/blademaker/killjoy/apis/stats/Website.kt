@@ -15,19 +15,28 @@
 
 package tv.blademaker.killjoy.apis.stats
 
+import com.typesafe.config.Config
 import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.sharding.ShardManager
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody.Companion.toRequestBody
+import tv.blademaker.killjoy.BotConfig.getOrDefault
 import java.io.IOException
 
 class Website(
     val id: String,
     val urlRegex: String,
     private val token: String,
-    private val entityName: String = "server_count"
+    private val entityName: String
 ) {
+
+    constructor(config: Config) : this(
+        config.getString("id"),
+        config.getString("url"),
+        config.getString("token"),
+        config.getOrDefault("entity_type", "server_count")
+    )
 
     internal fun postStats(httpClient: OkHttpClient, botId: String, guildCount: Int) {
         doRequest(httpClient, buildRequest(botId, guildCount))

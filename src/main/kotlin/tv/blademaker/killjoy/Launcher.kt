@@ -128,13 +128,17 @@ object Launcher {
         enableListing()
     }
 
-    fun retrieveAgentByInput(input: String): ValorantAgent? {
-        return if (input.isInt()) getAgent(input.toInt())
-        else getAgent(input)
+    /**
+     * Get agent by name or number.
+     *
+     * @param input Agent name or number formatted as [String].
+     *
+     * @return A nullable [ValorantAgent]
+     */
+    fun getAgent(input: String): ValorantAgent? {
+        return if (input.isInt()) agents.find { it.number == input.toInt() }
+        else agents.find { it.name.equals(input, true) }
     }
-
-    fun getAgent(number: Int) = agents.find { it.number == number }
-    fun getAgent(name: String) = agents.find { it.name.equals(name, true) }
 
     fun getWeapon(name: String) = arsenal.find { it.name.equals(name, true) }
     fun getWeaponById(id: String) = arsenal.find { it.id.equals(id, true) }
@@ -152,36 +156,23 @@ object Launcher {
     fun getSkills() = agents.map { it.skills }.reduce { acc, list -> acc + list }
 
     private fun enableListing() {
-        val websites = mutableListOf<Website>()
-        BotConfig.getOrNull<String>("listing.topgg")?.let {
-            val website = Website("top.gg", "https://top.gg/api/bots/%s/stats", it)
-            websites.add(website)
-        }
-        BotConfig.getOrNull<String>("listing.dbotsgg")?.let {
-            val website = Website("discord.bots.gg", "https://discord.bots.gg/api/v1/bots/%s/stats", it, "guildCount")
-            websites.add(website)
-        }
-        BotConfig.getOrNull<String>("listing.botsfordiscord")?.let {
-            val website = Website("botsfordiscord.com", "https://botsfordiscord.com/api/bot/%s", it)
-            websites.add(website)
-        }
-        BotConfig.getOrNull<String>("listing.dboats")?.let {
-            val website = Website("discord.boats", "https://discord.boats/api/bot/%s", it)
-            websites.add(website)
-        }
+        try {
+            val websites = BotConfig.getNullableConfigList("listing")?.map { Website(it) }
 
-        if (websites.isEmpty()) {
-            log.info("Listing is not enabled.")
-            return
+            if (websites == null || websites.isEmpty()) {
+                log.info("Listing is not enabled.")
+            } else {
+                StatsPosting.Builder()
+                    .withShardManager(shardManager)
+                    .addWebsites(websites)
+                    .withInitialDelay(1)
+                    .withRepetitionPeriod(30)
+                    .withTimeUnit(TimeUnit.MINUTES)
+                    .build()
+            }
+        } catch (e: Exception) {
+            log.error("Listing is not enabled.", e)
         }
-
-        StatsPosting.Builder()
-            .withShardManager(shardManager)
-            .addWebsites(websites)
-            .withInitialDelay(1)
-            .withRepetitionPeriod(30)
-            .withTimeUnit(TimeUnit.MINUTES)
-            .build()
     }
 
     private val log = LoggerFactory.getLogger(Launcher::class.java)
