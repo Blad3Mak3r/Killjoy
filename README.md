@@ -1,4 +1,4 @@
-<img align="right" src="/assets/img/avatar.jpg" height="200" width="200">
+<img align="right" src="https://github.com/KilljoyBot/KilljoyAssets/raw/master/img/avatar.jpg" height="200" width="200">
 
 # KILLJOY ([Invite][invitation])
 [![TeamCity Full Build Status](https://img.shields.io/teamcity/build/s/Killjoy_Build?label=Build%20Status&server=https%3A%2F%2Fhugebot.beta.teamcity.com)](https://hugebot.beta.teamcity.com/buildConfiguration/Killjoy_Build?mode=builds&guest=1)

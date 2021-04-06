@@ -17,6 +17,9 @@ package tv.blademaker.killjoy.utils
 
 import org.json.JSONArray
 import org.json.JSONObject
+import org.reflections.Reflections
+import org.reflections.ReflectionsException
+import org.reflections.scanners.ResourcesScanner
 import org.slf4j.LoggerFactory
 import tv.blademaker.killjoy.apis.riot.entities.RankedPlayer
 import tv.blademaker.killjoy.valorant.ValorantAgent
@@ -79,27 +82,31 @@ object Loaders {
     /**
      * Load a list of provided [ValorantEntity] based class.
      *
-     * @param clazz a class extending the interface [ValorantEntity]
-     * @param resourcePath the path to the resource (maps, agents, arsenal)
+     * @param clazz a class extending the interface [ValorantEntity].
+     * @param resourcePath the path to the resource (maps, agents, arsenal).
      *
-     * @return a list of the given valorant entity [ValorantEntity]
+     * @throws ReflectionsException When the provided resourcePath not exists.
+     * @throws IllegalStateException When some of the resources from the resourcePath not exists or is empty.
+     *
+     * @return a list of the given valorant entity [ValorantEntity].
      */
-    @Throws(IllegalStateException::class)
+    @Throws(IllegalStateException::class, ReflectionsException::class)
     private fun <T : ValorantEntity> loadValorantEntities(clazz: Class<T>, resourcePath: String): List<T> {
-        val list = mutableListOf<T>()
-        val index = this::class.java.getResource("/$resourcePath/index").readText().split("\\r?\\n".toRegex())
-        check(index.isNotEmpty()) { "${resourcePath.capitalize()} index cannot be empty or null." }
+        val entities = mutableListOf<T>()
 
-        for (entityName in index) {
-            val file = this::class.java.getResource("/$resourcePath/${entityName.toLowerCase()}.json")
-                ?: throw IllegalStateException("/$resourcePath/$entityName.json is not present")
+        val indexes = Reflections(resourcePath, ResourcesScanner())
+            .getResources(".*\\.json".toPattern())
 
-            val fileContent = file.readText()
-            if (fileContent.isEmpty()) throw IllegalStateException("/$resourcePath/$entityName.json is empty")
-            list.add(clazz.getConstructor(JSONObject::class.java).newInstance(JSONObject(fileContent)))
+        for (index in indexes) {
+            val file = this::class.java.getResource("/$index")
+                ?: throw IllegalStateException("/$index is not present")
+
+            val content = file.readText()
+            if (content.isEmpty()) throw IllegalStateException("/$index is empty")
+            entities.add(clazz.getConstructor(JSONObject::class.java).newInstance(JSONObject(content)))
         }
 
-        log.info("Loaded ${list.size} ${clazz.simpleName} entities!! [${list.joinToString(", ") { it.name }}]")
-        return list
+        log.info("Loaded ${entities.size} ${clazz.simpleName} entities!! [${entities.joinToString(", ") { it.name }}]")
+        return entities
     }
 }
