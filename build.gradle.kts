@@ -51,7 +51,7 @@ dependencies {
     implementation("com.github.killjoybot:Valorant.API:0.1")
 
     //Common
-    implementation("net.dv8tion:JDA:4.2.0_240") { exclude(module = "opus-java") }
+    implementation("net.dv8tion:JDA:4.2.1_254") { exclude(module = "opus-java") }
     implementation("com.jagrosh:jda-utilities:3.0.5")
 
     //Logging
