@@ -42,43 +42,6 @@ object Loaders {
     fun loadArsenal(): List<ValorantWeapon> = loadValorantEntities(ValorantWeapon::class.java, "arsenal")
     fun loadMaps(): List<ValorantMap> = loadValorantEntities(ValorantMap::class.java, "maps")
 
-    fun loadLeaderboards(): Map<String, List<RankedPlayer>> {
-        val map = mutableMapOf<String, List<RankedPlayer>>()
-
-        val path = "leaderboards"
-        val index = this::class.java.getResource("/$path/index").readText().split("\\r?\\n".toRegex())
-
-        check(index.isNotEmpty()) { "LEADERBOARDS index cannot be empty or null." }
-
-        for (fileName in index) {
-            val file = this::class.java.getResource("/$path/$fileName.json")
-                ?: throw IllegalStateException("/$path/$fileName is not present")
-
-            val fileContent = file.readText()
-            if (fileContent.isEmpty()) throw IllegalStateException("$path/$fileName is empty")
-
-            val region = fileName.toUpperCase().removeSuffix(".JSON")
-
-            val players = JSONArray(fileContent).map {
-                it as JSONObject
-                RankedPlayer(
-                    it.getString("puuid"),
-                    it.getString("gameName"),
-                    it.getString("tagLine"),
-                    it.getInt("leaderboardRank"),
-                    it.getInt("rankedRating"),
-                    it.getInt("numberOfWins")
-                )
-            }.sortedBy { it.leaderboardRank }
-
-            map[region] = players
-        }
-
-        log.info("Loaded ${map.size} region leaderboards!! [${map.keys.joinToString(", ")}]")
-
-        return map
-    }
-
     /**
      * Load a list of provided [ValorantEntity] based class.
      *
