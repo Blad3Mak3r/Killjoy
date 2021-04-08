@@ -15,13 +15,11 @@
 
 package tv.blademaker.killjoy.utils
 
-import org.json.JSONArray
 import org.json.JSONObject
 import org.reflections.Reflections
 import org.reflections.ReflectionsException
 import org.reflections.scanners.ResourcesScanner
 import org.slf4j.LoggerFactory
-import tv.blademaker.killjoy.apis.riot.entities.RankedPlayer
 import tv.blademaker.killjoy.valorant.ValorantAgent
 import tv.blademaker.killjoy.valorant.ValorantEntity
 import tv.blademaker.killjoy.valorant.ValorantMap
@@ -37,67 +35,33 @@ object Loaders {
     fun loadArsenal(): List<ValorantWeapon> = loadValorantEntities(ValorantWeapon::class.java, "arsenal")
     fun loadMaps(): List<ValorantMap> = loadValorantEntities(ValorantMap::class.java, "maps")
 
-    fun loadLeaderboards(): Map<String, List<RankedPlayer>> {
-        val map = mutableMapOf<String, List<RankedPlayer>>()
-
-        val path = "leaderboards"
-        val index = this::class.java.getResource("/$path/index").readText().split("\\r?\\n".toRegex())
-
-        check(index.isNotEmpty()) { "LEADERBOARDS index cannot be empty or null." }
-
-        for (fileName in index) {
-            val file = this::class.java.getResource("/$path/$fileName.json")
-                ?: throw IllegalStateException("/$path/$fileName is not present")
-
-            val fileContent = file.readText()
-            if (fileContent.isEmpty()) throw IllegalStateException("$path/$fileName is empty")
-
-            val region = fileName.toUpperCase().removeSuffix(".JSON")
-
-            val players = JSONArray(fileContent).map {
-                it as JSONObject
-                RankedPlayer(
-                    it.getString("puuid"),
-                    it.getString("gameName"),
-                    it.getString("tagLine"),
-                    it.getInt("leaderboardRank"),
-                    it.getInt("rankedRating"),
-                    it.getInt("numberOfWins")
-                )
-            }.sortedBy { it.leaderboardRank }
-
-            map[region] = players
-        }
-
-        log.info("Loaded ${map.size} region leaderboards!! [${map.keys.joinToString(", ")}]")
-
-        return map
-    }
-
     /**
-     * Load a list of provided [ValorantEntity] based class.
+     * Load a list of [ValorantEntity] objects.
      *
      * @param clazz a class extending the interface [ValorantEntity].
      * @param resourcePath the path to the resource (maps, agents, arsenal).
      *
-     * @throws ReflectionsException When the provided resourcePath does not exists.
-     * @throws IllegalStateException When some of the resources from the resourcePath not exists or is empty.
+     * @throws ReflectionsException When the provided resourcePath don't exists.
+     * @throws IllegalStateException When some of the resources from the resourcePath don't exists or is empty.
      *
      * @return a list of the given valorant entity [ValorantEntity].
      */
     @Throws(IllegalStateException::class, ReflectionsException::class)
     private fun <T : ValorantEntity> loadValorantEntities(clazz: Class<T>, resourcePath: String): List<T> {
-        val entities = Reflections(resourcePath, ResourcesScanner())
-            .getResources(".*\\.json".toPattern())
-            .map { if (!it.startsWith("/")) "/$it" else it }
-            .map {
-                val file = this::class.java.getResource(it)
-                    ?: throw IllegalStateException("$it is not present")
+        val entities = mutableListOf<T>()
 
-                val content = file.readText()
-                if (content.isEmpty()) throw IllegalStateException("$it is empty")
-                clazz.getConstructor(JSONObject::class.java).newInstance(JSONObject(content))
-            }
+        val resources = Reflections(resourcePath, ResourcesScanner())
+            .getResources(".*\\.json".toPattern())
+            .map { "/$it" }
+
+        for (resource in resources) {
+            val file = this::class.java.getResource(resource) ?: error("$resource is not present")
+
+            val content = file.readText()
+            if (content.isEmpty()) error("$resource is empty")
+
+            entities.add(clazz.getConstructor(JSONObject::class.java).newInstance(JSONObject(content)))
+        }
 
         log.info("Loaded ${entities.size} ${clazz.simpleName} entities!! [${entities.joinToString(", ") { it.name }}]")
         return entities
