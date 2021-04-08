@@ -43,13 +43,13 @@ object Loaders {
     fun loadMaps(): List<ValorantMap> = loadValorantEntities(ValorantMap::class.java, "maps")
 
     /**
-     * Load a list of provided [ValorantEntity] based class.
+     * Load a list of [ValorantEntity] objects.
      *
      * @param clazz a class extending the interface [ValorantEntity].
      * @param resourcePath the path to the resource (maps, agents, arsenal).
      *
-     * @throws ReflectionsException When the provided resourcePath not exists.
-     * @throws IllegalStateException When some of the resources from the resourcePath not exists or is empty.
+     * @throws ReflectionsException When the provided resourcePath don't exists.
+     * @throws IllegalStateException When some of the resources from the resourcePath don't exists or is empty.
      *
      * @return a list of the given valorant entity [ValorantEntity].
      */
@@ -57,15 +57,16 @@ object Loaders {
     private fun <T : ValorantEntity> loadValorantEntities(clazz: Class<T>, resourcePath: String): List<T> {
         val entities = mutableListOf<T>()
 
-        val indexes = Reflections(resourcePath, ResourcesScanner())
+        val resources = Reflections(resourcePath, ResourcesScanner())
             .getResources(".*\\.json".toPattern())
+            .map { "/$it" }
 
-        for (index in indexes) {
-            val file = this::class.java.getResource("/$index")
-                ?: throw IllegalStateException("/$index is not present")
+        for (resource in resources) {
+            val file = this::class.java.getResource(resource) ?: error("$resource is not present")
 
             val content = file.readText()
-            if (content.isEmpty()) throw IllegalStateException("/$index is empty")
+            if (content.isEmpty()) error("$resource is empty")
+
             entities.add(clazz.getConstructor(JSONObject::class.java).newInstance(JSONObject(content)))
         }
 
