@@ -58,7 +58,7 @@ dependencies {
     implementation("ch.qos.logback:logback-classic:1.2.3")
 
     implementation("io.sentry:sentry:4.3.0")
-    implementation("com.google.guava:guava:30.1-jre")
+    implementation("com.google.guava:guava:30.1.1-jre")
 
     //HTTP Clients
     implementation("io.ktor:ktor-client-core:$ktorVersion")
