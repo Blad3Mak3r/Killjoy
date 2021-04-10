@@ -1,0 +1,5 @@
+{
+  "name": "ping",
+  "description": "Check current Discord ping.",
+  "options": []
+}

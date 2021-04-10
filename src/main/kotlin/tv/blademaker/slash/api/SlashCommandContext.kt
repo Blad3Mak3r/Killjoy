@@ -16,6 +16,7 @@
 package tv.blademaker.slash.api
 
 import net.dv8tion.jda.api.EmbedBuilder
+import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.commands.CommandHook
 import net.dv8tion.jda.api.entities.Guild
 import net.dv8tion.jda.api.entities.Member
@@ -33,6 +34,9 @@ class SlashCommandContext(
 ) {
 
     private val isAck = AtomicBoolean(false)
+
+    val jda: JDA
+        get() = event.jda
 
     val hook: CommandHook
         get() = event.hook

@@ -31,6 +31,7 @@ enum class Emojis(private val custom: String?, private val def: String) {
     Mag(null, "\uD83D\uDD0D"),
     Nsfw(null, "\uD83D\uDD1E"),
     NoEntry(null, "\uD83D\uDEAB"),
+    PING_PONG(null, "\uD83C\uDFD3"),
     Stop(null, "\uD83D\uDED1"),
     StopWatch(null, "⏱️"),
     Muted(null, "\uD83D\uDD07"),
