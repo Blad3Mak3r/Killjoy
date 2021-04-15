@@ -9,6 +9,8 @@
   "avatar": "https://i.imgur.com/ervI0dM.jpg",
   "role": "Duelist",
   "bio": "Japanese native Yoru rips holes straight through reality to infiltrate enemy lines unseen. Using deception and aggression in equal measure, he gets the drop on each target before they know where to look.",
+  "gender": "Male",
+  "affiliation": "Valorant Protocol",
   "skills": [
     {
       "button": "q",

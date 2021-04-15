@@ -9,6 +9,8 @@
   "avatar": "https://i.imgur.com/JTTbc1E.jpg",
   "role": "Initiator",
   "bio": "Hailing from Australia, Skye and her band of beasts trail-blaze the way through hostile territory. With her creations hampering the enemy, and her power to heal others, the team is strongest and safest by Skye’s side.",
+  "gender": "Female",
+  "affiliation": "Valorant Protocol",
   "skills": [
     {
       "button": "q",

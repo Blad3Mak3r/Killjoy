@@ -9,6 +9,8 @@
   "avatar": "https://i.imgur.com/gKSte8h.jpg",
   "role": "Duelist",
   "bio": "Hailing from the U.K., Phoenix's star power shines through in his fighting style, igniting the battlefield with flash and flare. Whether he's got backup or not, he'll rush into a fight on his own terms.",
+  "gender": "Male",
+  "affiliation": "Valorant Protocol",
   "skills": [
     {
       "button": "q",

@@ -9,6 +9,8 @@
   "avatar": "https://i.imgur.com/4WsVJ4G.jpg",
   "role": "Controller",
   "bio": "Ghanaian Agent Astra harnesses the energies of the cosmos to reshape battlefields to her whim. With full command of her astral form and a talent for deep strategic foresight, she's always eons ahead of her enemy's next move.",
+  "gender": "Female",
+  "affiliation": "Valorant Protocol",
   "skills": [
     {
       "button": "q",

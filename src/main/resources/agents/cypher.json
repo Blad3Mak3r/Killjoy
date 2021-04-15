@@ -9,6 +9,8 @@
   "avatar": "https://i.imgur.com/BTzJmHu.jpg",
   "role": "Sentinel",
   "bio": "The Moroccan information broker, Cypher is a one-man surveillance network who keeps tabs on the enemy's every move. No secret is safe. No maneuver goes unseen. Cypher is always watching.",
+  "gender": "Male",
+  "affiliation": "Valorant Protocol",
   "skills": [
     {
       "button": "q",

@@ -9,6 +9,8 @@
   "avatar": "https://i.imgur.com/kww9EGa.jpg",
   "role": "Controller",
   "bio": "Joining from the USA, Brimstone's orbital arsenal ensures his squad always has the advantage. His ability to deliver utility precisely and from a distance make him an unmatched boots-on-the-ground commander.",
+  "gender": "Male",
+  "affiliation": "Valorant Protocol",
   "skills": [
     {
       "button": "q",

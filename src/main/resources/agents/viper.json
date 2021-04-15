@@ -9,6 +9,8 @@
   "avatar": "https://i.imgur.com/PSqfir0.jpg",
   "role": "Controller",
   "bio": "The American chemist, Viper deploys an array of poisonous chemical devices to control the battlefield and cripple the enemy's vision. If the toxins don't kill her prey, her mind games surely will.",
+  "gender": "Female",
+  "affiliation": "Valorant Protocol",
   "skills": [
     {
       "button": "q",
