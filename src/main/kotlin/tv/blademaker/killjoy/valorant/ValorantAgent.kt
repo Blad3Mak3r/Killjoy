@@ -81,15 +81,15 @@ data class ValorantAgent (
         val stats = getStats()
 
         val statistics = buildString {
-            appendLine("__**Win Ratio:**__ ${String.format("%.2f", stats.winRatio)}")
-            appendLine("__**KDA Ratio:**__ ${String.format("%.2f", stats.kdaRatio)}")
-            appendLine("__**AVG Damage:**__ ${String.format("%.2f", stats.avgDamage)}")
-            appendLine("__**AVG Kills:**__ ${String.format("%.2f", stats.avgKills)}")
-            appendLine("__**AVG Assists:**__ ${String.format("%.2f", stats.avgAssists)}")
+            appendLine("__**Win Ratio:**__   %.2f".format(stats.winRatio))
+            appendLine("__**KDA Ratio:**__   %.2f".format(stats.kdaRatio))
+            appendLine("__**AVG Damage:**__  %.2f".format(stats.avgDamage))
+            appendLine("__**AVG Kills:**__   %.2f".format(stats.avgKills))
+            appendLine("__**AVG Assists:**__ %.2f".format(stats.avgAssists))
         }
         val info = buildString {
-            appendLine("__**Origin:**__ $origin")
-            appendLine("__**Gender:**__ $gender")
+            appendLine("__**Origin:**__      $origin")
+            appendLine("__**Gender:**__      $gender")
             appendLine("__**Affiliation:**__ $affiliation")
         }
 
