@@ -15,7 +15,6 @@
 
 package tv.blademaker.killjoy.commands.game
 
-import net.dv8tion.jda.api.EmbedBuilder
 import tv.blademaker.killjoy.apis.riot.RiotAPI
 import tv.blademaker.killjoy.apis.riot.entities.Region
 import tv.blademaker.slash.api.AbstractSlashCommand
@@ -28,7 +27,7 @@ class TopSlashCommand : AbstractSlashCommand("top") {
         val option = ctx.getOption("region")!!.asString.toUpperCase()
 
         val region = Region.values().firstOrNull { it.name.equals(option, true) }
-            ?: return ctx.event.reply("` $option ` is not a valid region. Valid regions: ${Region.values().joinToString(", ") { "**${it.name}**"}}").queue()
+            ?: return ctx.event.reply("` $option ` is not a valid region. Valid regions: ${Region.asListed}").queue()
 
         ctx.event.acknowledge().queue()
 

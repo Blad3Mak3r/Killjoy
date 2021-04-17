@@ -26,7 +26,6 @@ import io.prometheus.client.hotspot.DefaultExports
 import org.slf4j.LoggerFactory
 import tv.blademaker.killjoy.BotConfig
 import java.io.StringWriter
-import java.util.concurrent.TimeUnit
 
 class Prometheus {
 

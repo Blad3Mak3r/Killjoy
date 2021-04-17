@@ -15,7 +15,6 @@
 
 package tv.blademaker.killjoy.apis.stats
 
-import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.events.ReadyEvent
 import net.dv8tion.jda.api.hooks.ListenerAdapter
 import net.dv8tion.jda.api.sharding.ShardManager

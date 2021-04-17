@@ -23,21 +23,20 @@ import net.dv8tion.jda.api.Permission
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
 import net.dv8tion.jda.api.exceptions.InsufficientPermissionException
 import org.slf4j.LoggerFactory
-import tv.blademaker.killjoy.framework.abs.Command
-import tv.blademaker.killjoy.framework.abs.SubCommand
-import tv.blademaker.killjoy.framework.annotations.CommandProperties
-import tv.blademaker.killjoy.framework.annotations.SubCommandProperties
 import tv.blademaker.killjoy.Launcher
 import tv.blademaker.killjoy.commands.game.*
 import tv.blademaker.killjoy.commands.info.HelpCommand
 import tv.blademaker.killjoy.commands.info.InviteCommand
 import tv.blademaker.killjoy.commands.info.PingCommand
 import tv.blademaker.killjoy.commands.misc.MemeCommand
+import tv.blademaker.killjoy.framework.abs.Command
+import tv.blademaker.killjoy.framework.abs.SubCommand
+import tv.blademaker.killjoy.framework.annotations.CommandProperties
+import tv.blademaker.killjoy.framework.annotations.SubCommandProperties
 import tv.blademaker.killjoy.utils.Emojis
 import tv.blademaker.killjoy.utils.SentryUtils
 import tv.blademaker.killjoy.utils.Utils
 import java.lang.annotation.IncompleteAnnotationException
-import kotlin.collections.HashMap
 
 class CommandRegistry {
 

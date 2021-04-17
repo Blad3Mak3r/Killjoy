@@ -16,9 +16,9 @@
 package tv.blademaker.killjoy.commands.game
 
 import tv.blademaker.killjoy.Launcher
+import tv.blademaker.killjoy.utils.Emojis
 import tv.blademaker.slash.api.AbstractSlashCommand
 import tv.blademaker.slash.api.SlashCommandContext
-import tv.blademaker.killjoy.utils.Emojis
 
 @Suppress("unused")
 class ArsenalSlashCommand : AbstractSlashCommand("arsenal") {

@@ -18,9 +18,10 @@ package tv.blademaker.killjoy.apis.stats
 import net.dv8tion.jda.api.sharding.ShardManager
 import okhttp3.OkHttpClient
 import org.slf4j.LoggerFactory
-import java.lang.Exception
-import java.lang.IllegalArgumentException
-import java.util.concurrent.*
+import java.util.concurrent.Executors
+import java.util.concurrent.ScheduledExecutorService
+import java.util.concurrent.ScheduledFuture
+import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicInteger
 
 @Suppress("unused")

@@ -15,8 +15,8 @@
 package tv.blademaker.killjoy.framework.abs
 
 import net.dv8tion.jda.api.Permission
-import tv.blademaker.killjoy.framework.annotations.CommandArgument
 import tv.blademaker.killjoy.framework.CommandContext
+import tv.blademaker.killjoy.framework.annotations.CommandArgument
 import tv.blademaker.killjoy.framework.annotations.CommandProperties
 import java.util.concurrent.atomic.AtomicInteger
 

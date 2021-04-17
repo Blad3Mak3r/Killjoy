@@ -15,17 +15,13 @@
 
 package tv.blademaker.killjoy.apis.riot
 
-import com.github.benmanes.caffeine.cache.AsyncLoadingCache
 import com.github.benmanes.caffeine.cache.Caffeine
-import com.github.benmanes.caffeine.cache.LoadingCache
-import kong.unirest.Cache
 import kong.unirest.Unirest
 import kong.unirest.json.JSONObject
 import kotlinx.coroutines.future.await
 import org.slf4j.LoggerFactory
 import tv.blademaker.killjoy.apis.riot.entities.RankedPlayer
 import tv.blademaker.killjoy.apis.riot.entities.Region
-import tv.blademaker.killjoy.valorant.ValorantEntity
 import java.util.concurrent.TimeUnit
 
 object RiotAPI {

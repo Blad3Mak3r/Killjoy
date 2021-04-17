@@ -21,5 +21,12 @@ enum class Region {
     EU,
     KR,
     LATAM,
-    NA
+    NA;
+
+    companion object {
+
+        val asListed: String
+            get() = values().joinToString(", ") { "**${it.name}**"}
+
+    }
 }

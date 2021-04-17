@@ -24,7 +24,6 @@ import tv.blademaker.killjoy.valorant.ValorantAgent
 import tv.blademaker.killjoy.valorant.ValorantEntity
 import tv.blademaker.killjoy.valorant.ValorantMap
 import tv.blademaker.killjoy.valorant.ValorantWeapon
-import kotlin.jvm.Throws
 
 
 object Loaders {

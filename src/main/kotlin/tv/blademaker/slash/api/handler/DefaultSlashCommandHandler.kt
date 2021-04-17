@@ -22,9 +22,9 @@ import kotlinx.coroutines.asCoroutineDispatcher
 import kotlinx.coroutines.launch
 import net.dv8tion.jda.api.events.interaction.SlashCommandEvent
 import org.slf4j.LoggerFactory
+import tv.blademaker.killjoy.utils.Utils
 import tv.blademaker.slash.api.SlashCommandContext
 import tv.blademaker.slash.utils.SlashUtils
-import tv.blademaker.killjoy.utils.Utils
 
 class DefaultSlashCommandHandler(packageName: String) : SlashCommandHandler {
 

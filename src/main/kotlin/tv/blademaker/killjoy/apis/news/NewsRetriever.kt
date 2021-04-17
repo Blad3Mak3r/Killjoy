@@ -23,10 +23,10 @@ import org.jsoup.Jsoup
 import org.jsoup.nodes.Element
 import org.slf4j.LoggerFactory
 import tv.blademaker.killjoy.utils.extensions.isUrl
-import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
-import java.util.concurrent.*
+import java.util.concurrent.CompletableFuture
+import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicReference
 
 object NewsRetriever {
@@ -66,30 +66,6 @@ object NewsRetriever {
 
         logger.info("Successfully retrieved valorant news.")
         mappedResults
-    }
-
-    @Deprecated("Replace with retrieveExperimentalValorantNews()")
-    private fun retrieveValorantNews(): CompletableFuture<List<ValorantNew>> = CompletableFuture.supplyAsync {
-        logger.info("Retrieving new valorant news...")
-        
-        try {
-            val document = Jsoup.connect("https://playvalorant.com/en-us/news/").get()
-
-            //val featuredNews = document.select("div.news-card > a")
-            val latestNews = document.select("div[class~=NewsArchive-module--content--(?i)] > div > div > a")
-            val mappedResults = latestNews.mapNotNull(ValorantNew::buildFromElement)
-
-            if (mappedResults.isNotEmpty()) {
-                cachedNews.set(mappedResults)
-                cachedNewsTimestamp = System.currentTimeMillis() + TimeUnit.HOURS.toMillis(1)
-            }
-
-            logger.info("Successfully retrieved valorant news.")
-            mappedResults
-        } catch (e: Exception) {
-            logger.error("Error retrieving valorant news...", e)
-            throw e
-        }
     }
 
     data class ValorantNew(

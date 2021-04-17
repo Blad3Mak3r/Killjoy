@@ -18,9 +18,9 @@ package tv.blademaker.killjoy.commands.game
 import net.dv8tion.jda.api.EmbedBuilder
 import tv.blademaker.killjoy.Launcher
 import tv.blademaker.killjoy.framework.ColorExtra
+import tv.blademaker.killjoy.valorant.ValorantAgent
 import tv.blademaker.slash.api.AbstractSlashCommand
 import tv.blademaker.slash.api.SlashCommandContext
-import tv.blademaker.killjoy.valorant.ValorantAgent
 
 @Suppress("unused")
 class AgentSlashCommand : AbstractSlashCommand("agents") {

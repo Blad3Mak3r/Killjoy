@@ -23,9 +23,8 @@ import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
 import net.dv8tion.jda.api.requests.RestAction
 import net.dv8tion.jda.api.requests.restaction.MessageAction
 import net.dv8tion.jda.api.sharding.ShardManager
-import tv.blademaker.killjoy.utils.extensions.sendMessage
-import tv.blademaker.killjoy.framework.abs.Command
 import tv.blademaker.killjoy.utils.Emojis
+import tv.blademaker.killjoy.utils.extensions.sendMessage
 import java.awt.Color
 
 @Suppress("ReplaceGetOrSet", "unused")

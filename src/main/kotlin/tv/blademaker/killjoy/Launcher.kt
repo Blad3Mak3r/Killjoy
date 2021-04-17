@@ -31,8 +31,6 @@ import tv.blademaker.killjoy.apis.stats.Website
 import tv.blademaker.killjoy.framework.CommandRegistry
 import tv.blademaker.killjoy.listeners.MainListener
 import tv.blademaker.killjoy.prometheus.Prometheus
-import tv.blademaker.slash.api.handler.DefaultSlashCommandHandler
-import tv.blademaker.slash.api.handler.SlashCommandHandler
 import tv.blademaker.killjoy.utils.CooldownManager
 import tv.blademaker.killjoy.utils.Loaders
 import tv.blademaker.killjoy.utils.SentryUtils
@@ -41,6 +39,8 @@ import tv.blademaker.killjoy.utils.extensions.isInt
 import tv.blademaker.killjoy.valorant.ValorantAgent
 import tv.blademaker.killjoy.valorant.ValorantMap
 import tv.blademaker.killjoy.valorant.ValorantWeapon
+import tv.blademaker.slash.api.handler.DefaultSlashCommandHandler
+import tv.blademaker.slash.api.handler.SlashCommandHandler
 import java.util.concurrent.TimeUnit
 import javax.security.auth.login.LoginException
 import kotlin.properties.Delegates

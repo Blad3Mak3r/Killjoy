@@ -16,8 +16,6 @@
 package tv.blademaker.killjoy.apis.stats
 
 import com.typesafe.config.Config
-import net.dv8tion.jda.api.JDA
-import net.dv8tion.jda.api.sharding.ShardManager
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody.Companion.toRequestBody
