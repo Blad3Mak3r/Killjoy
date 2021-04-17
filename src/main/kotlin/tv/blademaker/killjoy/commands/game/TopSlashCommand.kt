@@ -34,20 +34,16 @@ class TopSlashCommand : AbstractSlashCommand("top") {
 
         val players = RiotAPI.getCurrentTop20(region)
 
-        val embed = EmbedBuilder()
-            .apply {
-                setTitle("Current Top 10 players of $region")
-                setThumbnail("https://i.imgur.com/G6wcDZB.png")
-                for (player in players.take(10)) {
-                    addField("` Top ${player.leaderboardRank} ` ${player.fullNameTag}", buildString {
-                        appendLine("**Wins**: ${player.numberOfWins}")
-                        appendLine("**Rating**: ${player.rankedRating}")
-                    }, false)
-                }
+        ctx.sendEmbed {
+            setTitle("[$region] Top 10 players")
+            setThumbnail("https://i.imgur.com/G6wcDZB.png")
+            for (player in players.take(10)) {
+                addField("` Top ${player.leaderboardRank} ` ${player.fullNameTag}", buildString {
+                    appendLine("**Wins**: ${player.numberOfWins}")
+                    appendLine("**Rating**: ${player.rankedRating}")
+                }, false)
             }
-            .build()
-
-        ctx.hook.sendMessage(embed).queue()
+        }.queue()
     }
 
 }
