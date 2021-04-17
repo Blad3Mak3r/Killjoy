@@ -1,12 +1,12 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
-val ktorVersion = "1.5.2"
+val ktorVersion = "1.5.3"
 val coroutinesVersion = "1.4.3-native-mt"
 val prometheusVersion = "0.10.0"
 
 plugins {
-    kotlin("jvm") version "1.4.31"
+    kotlin("jvm") version "1.4.32"
     id("com.github.johnrengelman.shadow") version "6.1.0"
 
     application
@@ -52,7 +52,7 @@ dependencies {
     implementation("com.github.killjoybot:Valorant.API:0.1")
 
     //Common
-    //implementation("net.dv8tion:JDA:4.2.0_240") { exclude(module = "opus-java") }
+    //implementation("net.dv8tion:JDA:4.2.0_255") { exclude(module = "opus-java") }
     implementation("com.github.DV8FromTheWorld:JDA:feature~slash-commands-SNAPSHOT") { exclude(module = "opus-java") }
     implementation("com.jagrosh:jda-utilities:3.0.5")
 
@@ -60,7 +60,7 @@ dependencies {
     implementation("ch.qos.logback:logback-classic:1.2.3")
 
     implementation("io.sentry:sentry:4.3.0")
-    implementation("com.google.guava:guava:30.1-jre")
+    implementation("com.google.guava:guava:30.1.1-jre")
 
     //HTTP Clients
     implementation("io.ktor:ktor-client-core:$ktorVersion")

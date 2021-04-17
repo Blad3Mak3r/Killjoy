@@ -9,6 +9,8 @@
   "avatar": "https://i.imgur.com/ePEFhEH.jpg",
   "role": "Duelist",
   "bio": "Representing her home country of South Korea, Jett's agile and evasive fighting style lets her take risks no one else can. She runs circles around every skirmish, cutting enemies before they even know what hit them.",
+  "gender": "Female",
+  "affiliation": "Valorant Protocol",
   "skills": [
     {
       "button": "q",

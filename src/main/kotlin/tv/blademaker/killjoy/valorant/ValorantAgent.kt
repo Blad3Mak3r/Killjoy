@@ -41,6 +41,8 @@ data class ValorantAgent (
     private val apiName: String? = null,
     override val name: String,
     val bio: String,
+    val gender: String,
+    val affiliation: String,
     val origin: String,
     val role: Role,
     val avatar: String,
@@ -64,6 +66,8 @@ data class ValorantAgent (
         json.optString("api_name").trim().takeIf { it.isNotEmpty() },
         json.getString("name").trim(),
         json.getString("bio").trim(),
+        json.getString("gender"),
+        json.getString("affiliation"),
         json.getString("origin").trim(),
         Role.of(json.getString("role")),
         json.getString("avatar"),
@@ -77,18 +81,28 @@ data class ValorantAgent (
 
     suspend fun asEmbed(): EmbedBuilder {
         val stats = getStats()
+
+        val statistics = buildString {
+            appendLine("__**Win Ratio:**__   %.2f".format(stats.winRatio))
+            appendLine("__**KDA Ratio:**__   %.2f".format(stats.kdaRatio))
+            appendLine("__**AVG Damage:**__  %.2f".format(stats.avgDamage))
+            appendLine("__**AVG Kills:**__   %.2f".format(stats.avgKills))
+            appendLine("__**AVG Assists:**__ %.2f".format(stats.avgAssists))
+        }
+        val info = buildString {
+            appendLine("__**Origin:**__      $origin")
+            appendLine("__**Gender:**__      $gender")
+            appendLine("__**Affiliation:**__ $affiliation")
+        }
+
         return EmbedBuilder().apply {
             setAuthor(role.name, null, role.iconUrl)
             setTitle(name, "https://playvalorant.com/en-us/agents/${name.toLowerCase()}/")
             setThumbnail(avatar)
             //setImage(thumbnail)
             setDescription(bio)
-            addField("Origin", origin, true)
-            addField("Win Ratio", String.format("%.2f", stats.winRatio), true)
-            addField("KDA Ratio", String.format("%.2f", stats.kdaRatio), true)
-            addField("AVG Damage", String.format("%.2f", stats.avgDamage), true)
-            addField("AVG Kills", String.format("%.2f", stats.avgKills), true)
-            addField("AVG Assists", String.format("%.2f", stats.avgAssists), true)
+            addField("Information", info, true)
+            addField("Statistics", statistics, true)
             addBlankField(false)
             setColor(ColorExtra.VAL_RED)
             for (skill in skills) {

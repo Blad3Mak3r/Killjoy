@@ -9,6 +9,8 @@
   "avatar": "https://i.imgur.com/n7oZkvA.jpg",
   "role": "Sentinel",
   "bio": "The stronghold of China, Sage creates safety for herself and her team wherever she goes. Able to revive fallen friends and stave off aggressive pushes, she provides a calm center to a hellish fight.",
+  "gender": "Female",
+  "affiliation": "Valorant Protocol",
   "skills": [
     {
       "button": "q",

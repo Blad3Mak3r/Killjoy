@@ -9,6 +9,8 @@
   "avatar": "https://i.imgur.com/TtvIYa9.jpg",
   "role": "Duelist",
   "bio": "Forged in the heart of Mexico, Reyna dominates single combat, popping off with each kill she scores. Her capability is only limited by her raw skill, making her highly dependent on performance.",
+  "gender": "Female",
+  "affiliation": "Valorant Protocol",
   "skills": [
     {
       "button": "q",

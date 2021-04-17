@@ -9,6 +9,8 @@
   "avatar": "https://i.imgur.com/g3MxHqn.jpg",
   "role": "Duelist",
   "bio": "Raze explodes out of Brazil with her big personality and big guns. With her blunt-force-trauma playstyle, she excels at flushing entrenched enemies and clearing tight spaces with a generous dose of “boom.”",
+  "gender": "Female",
+  "affiliation": "Valorant Protocol",
   "skills": [
     {
       "button": "q",

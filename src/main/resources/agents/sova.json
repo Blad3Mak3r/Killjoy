@@ -9,6 +9,8 @@
   "avatar": "https://i.imgur.com/SF0eH7j.jpg",
   "role": "Initiator",
   "bio": "Born from the eternal winter of Russia's tundra, Sova tracks, finds, and eliminates enemies with ruthless efficiency and precision. His custom bow and incredible scouting abilities ensure that even if you run, you cannot hide.",
+  "gender": "Male",
+  "affiliation": "Valorant Protocol",
   "skills": [
     {
       "button": "q",
