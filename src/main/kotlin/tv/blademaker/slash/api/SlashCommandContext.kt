@@ -23,6 +23,7 @@ import net.dv8tion.jda.api.entities.Member
 import net.dv8tion.jda.api.entities.MessageEmbed
 import net.dv8tion.jda.api.entities.TextChannel
 import net.dv8tion.jda.api.events.interaction.SlashCommandEvent
+import net.dv8tion.jda.api.requests.RestAction
 import net.dv8tion.jda.api.requests.restaction.CommandReplyAction
 import net.dv8tion.jda.api.requests.restaction.InteractionWebhookAction
 import tv.blademaker.killjoy.framework.ColorExtra
@@ -61,6 +62,19 @@ class SlashCommandContext(
             throw IllegalStateException("Current command is already ack.")
         }
         return event.acknowledge(ephemeral)
+    }
+
+    fun sendNotFound(description: String = "I couldn't find what you were looking for."): RestAction<*> {
+        val embed = EmbedBuilder().run {
+            setColor(ColorExtra.VAL_RED)
+            setAuthor("Content not found", null, "https://cdn.discordapp.com/emojis/690093935233990656.png")
+            setThumbnail("https://i.imgur.com/P3p4EEG.png")
+            setDescription(description)
+            build()
+        }
+
+        return if (event.isAcknowledged) hook.sendMessage(embed)
+        else event.reply(embed)
     }
 
     fun getOption(name: String) = event.getOption(name)

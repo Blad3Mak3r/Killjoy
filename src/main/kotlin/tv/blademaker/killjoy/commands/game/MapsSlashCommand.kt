@@ -36,7 +36,7 @@ class MapsSlashCommand : AbstractSlashCommand("maps") {
             }.queue()
         } else {
             val map = Launcher.getMap(selection)
-                ?: return ctx.send("There is no map called `` $selection ``.").queue()
+                ?: return ctx.sendNotFound("There is no map called `` $selection ``.").queue()
 
             ctx.sendEmbed {
                 setTitle(map.name.capitalize(), "https://playvalorant.com/en-us/maps/")

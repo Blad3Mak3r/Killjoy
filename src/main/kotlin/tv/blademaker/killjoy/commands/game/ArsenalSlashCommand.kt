@@ -41,7 +41,7 @@ class ArsenalSlashCommand : AbstractSlashCommand("arsenal") {
         } else {
             val weapon = Launcher.getWeapon(selection)
                 ?: Launcher.getWeaponById(selection)
-                ?: return ctx.send(Emojis.NoEntry, "That weapon does not exists...").queue()
+                ?: return ctx.sendNotFound("That weapon does not exists...").queue()
 
             ctx.send(weapon.asEmbed()).queue()
         }

@@ -27,7 +27,7 @@ class TopSlashCommand : AbstractSlashCommand("top") {
         val option = ctx.getOption("region")!!.asString.toUpperCase()
 
         val region = Region.values().firstOrNull { it.name.equals(option, true) }
-            ?: return ctx.event.reply("` $option ` is not a valid region. Valid regions: ${Region.asListed}").queue()
+            ?: return ctx.sendNotFound("` $option ` is not a valid region. Valid regions: ${Region.asListed}").queue()
 
         ctx.event.acknowledge().queue()
 

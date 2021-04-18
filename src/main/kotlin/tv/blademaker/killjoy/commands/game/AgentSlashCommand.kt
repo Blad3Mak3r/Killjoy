@@ -46,17 +46,17 @@ class AgentSlashCommand : AbstractSlashCommand("agents") {
         } else if (agentName != null && skillName == null) {
 
             val agent = findAgent(agentName)
-                ?: return ctx.hook.sendMessage("Agent with name or number ``$agentName`` does not exists.").queue()
+                ?: return ctx.sendNotFound("Agent with name or number ``$agentName`` does not exists.").queue()
 
             ctx.send(agent.asEmbed()).queue()
 
         } else if (agentName != null && skillName != null) {
 
             val agent = findAgent(agentName)
-                ?: return ctx.hook.sendMessage("Agent with name or number ``$agentName`` does not exists.").queue()
+                ?: return ctx.sendNotFound("Agent with name or number ``$agentName`` does not exists.").queue()
 
             val skill = agent.skills.find { it.button.name.equals(skillName, true) }
-                ?: return ctx.hook.sendMessage("I have not been able to find that skill...").queue()
+                ?: return ctx.sendNotFound("I have not been able to find that skill...").queue()
 
             val embed = EmbedBuilder().apply {
                 setAuthor(agent.name, null, agent.avatar)
