@@ -20,8 +20,10 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.asCoroutineDispatcher
 import kotlinx.coroutines.launch
+import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.events.interaction.SlashCommandEvent
 import org.slf4j.LoggerFactory
+import tv.blademaker.killjoy.framework.ColorExtra
 import tv.blademaker.killjoy.utils.Utils
 import tv.blademaker.slash.api.SlashCommandContext
 import tv.blademaker.slash.utils.SlashUtils
@@ -47,6 +49,14 @@ class DefaultSlashCommandHandler(packageName: String) : SlashCommandHandler {
         } catch (e: Exception) {
             Sentry.captureException(e)
             LOGGER.error("Exception executing command ${command.commandName}.", e)
+
+            val embed = EmbedBuilder().run {
+                setColor(ColorExtra.VAL_RED)
+                setAuthor("Exception executing command ${command.commandName}", null, "https://cdn.discordapp.com/emojis/690093935233990656.png")
+                build()
+            }
+
+            event.hook.editOriginal(embed).setEphemeral(false).queue()
         }
     }
 
