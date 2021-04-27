@@ -31,7 +31,7 @@ class TopSlashCommand : AbstractSlashCommand("top") {
 
         ctx.event.acknowledge().queue()
 
-        val players = RiotAPI.getCurrentTop20(region)
+        val players = RiotAPI.LeaderboardsAPI.getCurrentTop20(region)
 
         ctx.sendEmbed {
             setTitle("[$region] Top 10 players")

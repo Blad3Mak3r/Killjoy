@@ -67,7 +67,7 @@ data class ValorantAgent (
         val statistics = buildString {
             appendLine("__**Pick Rate:**__     ${stats?.pickRate ?: "N/A"}")
             appendLine("__**Win Rate:**__      ${stats?.winRate ?: "N/A"}")
-            appendLine("__**KDA (match):**__   ${stats?.kdaPerRound ?: "N/A"}")
+            appendLine("__**KDA (match):**__   ${stats?.kdaPerMatch ?: "N/A"}")
             appendLine("__**KDA (round):**__   ${stats?.kdaPerRound ?: "N/A"}")
             appendLine("__**AVG. Damage:**__   ${stats?.avgDamage ?: "N/A"}")
             appendLine("__**AVG. Score:**__    ${stats?.avgScore ?: "N/A"}")
