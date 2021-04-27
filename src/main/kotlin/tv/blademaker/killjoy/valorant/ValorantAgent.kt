@@ -18,21 +18,11 @@
 package tv.blademaker.killjoy.valorant
 
 import net.dv8tion.jda.api.EmbedBuilder
-import okhttp3.Call
-import okhttp3.Callback
-import okhttp3.Request
-import okhttp3.Response
 import org.json.JSONArray
 import org.json.JSONObject
-import org.slf4j.LoggerFactory
-import tv.blademaker.killjoy.Launcher
+import tv.blademaker.killjoy.apis.riot.RiotAPI
 import tv.blademaker.killjoy.framework.ColorExtra
 import tv.blademaker.killjoy.utils.extensions.isUrl
-import java.io.IOException
-import java.util.concurrent.TimeUnit
-import java.util.concurrent.atomic.AtomicLong
-import kotlin.coroutines.resume
-import kotlin.coroutines.suspendCoroutine
 
 @Suppress("unused")
 data class ValorantAgent (
@@ -50,15 +40,7 @@ data class ValorantAgent (
     val skills: List<Skill>
 ) : ValorantEntity {
 
-    private var stats: Stats? = null
-
     val abilities = skills.map { AgentAbility(this, it) }
-
-    private suspend fun getStats(): Stats {
-        if (StatsMapper.lastCheck.get() == 0L || StatsMapper.lastCheck.get() < System.currentTimeMillis()) StatsMapper.doUpdate()
-
-        return stats ?: Stats.default()
-    }
 
     constructor(json: JSONObject) : this(
         json.getString("id").takeIf { it.isNotEmpty() },
@@ -80,14 +62,15 @@ data class ValorantAgent (
     }
 
     suspend fun asEmbed(): EmbedBuilder {
-        val stats = getStats()
+        val stats = RiotAPI.AgentStatsAPI.getAgentStatsAsync(name.toLowerCase()).await()
 
         val statistics = buildString {
-            appendLine("__**Win Ratio:**__   %.2f".format(stats.winRatio))
-            appendLine("__**KDA Ratio:**__   %.2f".format(stats.kdaRatio))
-            appendLine("__**AVG Damage:**__  %.2f".format(stats.avgDamage))
-            appendLine("__**AVG Kills:**__   %.2f".format(stats.avgKills))
-            appendLine("__**AVG Assists:**__ %.2f".format(stats.avgAssists))
+            appendLine("__**Pick Rate:**__     ${stats?.pickRate ?: "N/A"}")
+            appendLine("__**Win Rate:**__      ${stats?.winRate ?: "N/A"}")
+            appendLine("__**KDA (match):**__   ${stats?.kdaPerRound ?: "N/A"}")
+            appendLine("__**KDA (round):**__   ${stats?.kdaPerRound ?: "N/A"}")
+            appendLine("__**AVG. Damage:**__   ${stats?.avgDamage ?: "N/A"}")
+            appendLine("__**AVG. Score:**__    ${stats?.avgScore ?: "N/A"}")
         }
         val info = buildString {
             appendLine("__**Origin:**__      $origin")
@@ -127,27 +110,6 @@ data class ValorantAgent (
         }
     }
 
-    data class Stats(
-        val avgDamage: Double,
-        val avgKills: Double,
-        val avgAssists: Double,
-        val winRatio: Double,
-        val kdaRatio: Double
-    ) {
-
-        constructor(json: JSONObject) : this(
-            json.getDouble("average_damage"),
-            json.getDouble("average_kills"),
-            json.getDouble("average_assists"),
-            json.getDouble("win_ratio"),
-            json.getDouble("kda_ratio")
-        )
-
-        companion object {
-            fun default() = Stats(00.00, 00.00, 00.00, 00.00, 00.00)
-        }
-    }
-
     data class Skill(
         val button: Button,
         val name: String,
@@ -163,7 +125,7 @@ data class ValorantAgent (
             json.getString("iconUrl").trim(),
             json.getString("info").trim(),
             json.getString("preview").trim(),
-            kotlin.runCatching { json.getString("cost") }.getOrDefault("")
+            json.optString("cost", "")
         )
 
         init {
@@ -193,60 +155,6 @@ data class ValorantAgent (
             private fun buildIdentifier(str: String): String {
                 return str.trim().toLowerCase().replace(" ", "").replace("’", "").replace("'", "").replace("\"", "")
             }
-        }
-    }
-
-    object StatsMapper {
-        var lastCheck: AtomicLong = AtomicLong(0L)
-        private const val url = "https://valorantics-ow.kda.gg/tierlist/agent"
-        private val logger = LoggerFactory.getLogger(StatsMapper::class.java)
-
-        suspend fun doUpdate() = suspendCoroutine<Boolean> { cont ->
-            logger.info("Running agent stats update...")
-            val r = Request.Builder().apply {
-                url(url)
-                addHeader("User-Agent", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36")
-            }.build()
-            Launcher.httpClient.newCall(r).enqueue(object : Callback {
-                override fun onFailure(call: Call, e: IOException) {
-                    logger.warn("Cannot update stats")
-                    lastCheck.set(System.currentTimeMillis() + TimeUnit.MINUTES.toMillis(2))
-                    cont.resume(false)
-                }
-
-                override fun onResponse(call: Call, response: Response) {
-                    var count = 0
-                    lastCheck.set(System.currentTimeMillis() + TimeUnit.MINUTES.toMillis(30))
-
-                    logger.info("Last check was ${lastCheck.get()}")
-
-                    val content = response.body?.string() ?: return logger.warn("Cannot update stats [Empty body]")
-                    val stats = JSONObject(content).getJSONArray("all")
-
-                    Launcher.agents.forEach { agent ->
-                        try {
-                            val agentStats = stats.find {
-                                val jsonAgent = it as JSONObject
-                                jsonAgent.getString("name") == "${agent.apiName}_pc_c"
-                            }
-
-                            if (agentStats != null) {
-                                agent.stats = Stats(agentStats as JSONObject)
-                                count++
-                            }
-                        } catch (e: Throwable) {
-                            logger.error("Cannot update agent stats => ${agent.name}\n${e.stackTraceToString()}")
-                        }
-                    }
-
-                    response.close()
-
-                    logger.info("Loaded $count stats for agents.")
-
-                    cont.resume(true)
-                }
-
-            })
         }
     }
 }

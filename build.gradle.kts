@@ -83,6 +83,8 @@ dependencies {
 
     //Cache
     implementation("com.github.ben-manes.caffeine:caffeine:2.8.8")
+
+    testImplementation("junit:junit:4.13.2")
 }
 
 tasks {

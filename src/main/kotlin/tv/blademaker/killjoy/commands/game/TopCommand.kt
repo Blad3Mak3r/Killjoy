@@ -39,7 +39,7 @@ class TopCommand : Command() {
         val region = Region.values().firstOrNull { it.name.equals(arg, true) }
             ?: return ctx.reply(Emojis.NoEntry, "` $arg ` is not a valid region. Valid regions: ${Region.values().joinToString(", ") { "**${it.name}**"}}").queue()
 
-        val players = RiotAPI.getCurrentTop20(region)
+        val players = RiotAPI.LeaderboardsAPI.getCurrentTop20(region)
 
         ctx.replyEmbed {
             setTitle("Current Top 10 players of $region")
