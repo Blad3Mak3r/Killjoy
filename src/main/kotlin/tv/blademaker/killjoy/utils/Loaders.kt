@@ -46,7 +46,7 @@ object Loaders {
      * @return a list of the given valorant entity [ValorantEntity].
      */
     @Throws(IllegalStateException::class, ReflectionsException::class)
-    private fun <T : ValorantEntity> loadValorantEntities(clazz: Class<T>, resourcePath: String): List<T> {
+    private fun <T : ValorantEntity> loadValorantEntities(clazz: Class<T>, resourcePath: String, sort: Boolean = true): List<T> {
         val entities = mutableListOf<T>()
 
         val resources = Reflections(resourcePath, ResourcesScanner())
@@ -63,6 +63,8 @@ object Loaders {
         }
 
         log.info("Loaded ${entities.size} ${clazz.simpleName} entities!! [${entities.joinToString(", ") { it.name }}]")
-        return entities
+
+        return if (sort) entities.asIterable().sortedBy { it.name }
+        else entities
     }
 }
