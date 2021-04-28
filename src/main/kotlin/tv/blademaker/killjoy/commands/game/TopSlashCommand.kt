@@ -19,6 +19,7 @@ import tv.blademaker.killjoy.apis.riot.RiotAPI
 import tv.blademaker.killjoy.apis.riot.entities.Region
 import tv.blademaker.slash.api.AbstractSlashCommand
 import tv.blademaker.slash.api.SlashCommandContext
+import java.time.Instant
 
 @Suppress("unused", "DuplicatedCode")
 class TopSlashCommand : AbstractSlashCommand("top") {
@@ -31,17 +32,20 @@ class TopSlashCommand : AbstractSlashCommand("top") {
 
         ctx.event.acknowledge().queue()
 
-        val players = RiotAPI.LeaderboardsAPI.getCurrentTop20(region)
+        val playersList = RiotAPI.LeaderboardsAPI.getCurrentTop20(region)
+        val players = playersList.players.take(10)
 
         ctx.sendEmbed {
-            setTitle("[$region] Top 10 players")
+            setTitle("[$region] Top ${players.size} players")
             setThumbnail("https://i.imgur.com/G6wcDZB.png")
-            for (player in players.take(10)) {
+            for (player in players) {
                 addField("` Top ${player.leaderboardRank} ` ${player.fullNameTag}", buildString {
                     appendLine("**Wins**: ${player.numberOfWins}")
                     appendLine("**Rating**: ${player.rankedRating}")
                 }, false)
             }
+            setTimestamp(Instant.ofEpochMilli(playersList.updatedAt))
+            setFooter("Episode 2 Act 3 | Updated at")
         }.queue()
     }
 

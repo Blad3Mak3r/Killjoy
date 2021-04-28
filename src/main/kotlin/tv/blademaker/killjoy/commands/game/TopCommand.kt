@@ -23,6 +23,7 @@ import tv.blademaker.killjoy.framework.abs.Command
 import tv.blademaker.killjoy.framework.annotations.CommandArgument
 import tv.blademaker.killjoy.framework.annotations.CommandProperties
 import tv.blademaker.killjoy.utils.Emojis
+import java.time.Instant
 
 @CommandProperties(
     name = "top",
@@ -39,17 +40,20 @@ class TopCommand : Command() {
         val region = Region.values().firstOrNull { it.name.equals(arg, true) }
             ?: return ctx.reply(Emojis.NoEntry, "` $arg ` is not a valid region. Valid regions: ${Region.values().joinToString(", ") { "**${it.name}**"}}").queue()
 
-        val players = RiotAPI.LeaderboardsAPI.getCurrentTop20(region)
+        val playersList = RiotAPI.LeaderboardsAPI.getCurrentTop20(region)
+        val players = playersList.players.take(10)
 
         ctx.replyEmbed {
-            setTitle("Current Top 10 players of $region")
+            setTitle("Current Top ${players.size} players of $region)")
             setThumbnail("https://i.imgur.com/G6wcDZB.png")
-            for (player in players.take(10)) {
+            for (player in players) {
                 addField("` Top ${player.leaderboardRank} ` ${player.fullNameTag}", buildString {
                     appendLine("**Wins**: ${player.numberOfWins}")
                     appendLine("**Rating**: ${player.rankedRating}")
                 }, false)
             }
+            setTimestamp(Instant.ofEpochMilli(playersList.updatedAt))
+            setFooter("Episode 2 Act 3 | Updated at")
         }.queue()
     }
 

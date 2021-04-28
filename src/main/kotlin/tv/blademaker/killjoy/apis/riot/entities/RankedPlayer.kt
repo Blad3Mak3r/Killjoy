@@ -25,3 +25,8 @@ data class RankedPlayer(
 ) {
     val fullNameTag = "$gameName#$tagLine"
 }
+
+data class RankedPlayerList(
+    val updatedAt: Long,
+    val players: List<RankedPlayer>
+)

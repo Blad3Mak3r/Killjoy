@@ -27,23 +27,23 @@ import org.jsoup.Jsoup
 import org.slf4j.LoggerFactory
 import tv.blademaker.killjoy.apis.riot.entities.AgentStats
 import tv.blademaker.killjoy.apis.riot.entities.RankedPlayer
+import tv.blademaker.killjoy.apis.riot.entities.RankedPlayerList
 import tv.blademaker.killjoy.apis.riot.entities.Region
 import java.time.Duration
+import java.time.Instant
 import java.util.concurrent.TimeUnit
 
 object RiotAPI {
 
-    private const val CURRENT_ACT_ID = "ab57ef51-4e59-da91-cc8d-51a5a2b9b8ff"   // Episode 2 (Act 3)
+    const val CURRENT_ACT_ID = "52e9749a-429b-7060-99fe-4595426a0cf7"   // Episode 2 (Act 3)
     private val LOGGER = LoggerFactory.getLogger(RiotAPI::class.java)
-
-    private var apiKey: String? = null
 
     object LeaderboardsAPI {
         private val leaderboardsCache = Caffeine.newBuilder()
             .expireAfterWrite(15, TimeUnit.MINUTES)
-            .build<String, List<RankedPlayer>>()
+            .build<String, RankedPlayerList>()
 
-        suspend fun getCurrentTop20(region: Region): List<RankedPlayer> {
+        suspend fun getCurrentTop20(region: Region): RankedPlayerList {
 
             val cached = leaderboardsCache.getIfPresent(region.name.toUpperCase())
             if (cached != null) return cached
@@ -55,7 +55,9 @@ object RiotAPI {
 
             check(r.isSuccess) { "Not success status: ${r.status}" }
 
-            val list = r.body.`object`.getJSONArray("players").map {
+            val content = r.body.`object`
+
+            val list = content.getJSONArray("players").map {
                 it as JSONObject
                 RankedPlayer(
                     it.getString("puuid"),
@@ -67,8 +69,9 @@ object RiotAPI {
                 )
             }.sortedBy { p -> p.leaderboardRank }
 
-            leaderboardsCache.put(region.name.toUpperCase(), list)
-            return list
+            val rankedList = RankedPlayerList(System.currentTimeMillis(), list)
+            leaderboardsCache.put(region.name.toUpperCase(), rankedList)
+            return rankedList
         }
     }
 
