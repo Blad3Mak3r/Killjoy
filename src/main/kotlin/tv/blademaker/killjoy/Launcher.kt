@@ -104,7 +104,10 @@ object Launcher {
             .setShardsTotal(-1)
             .setActivity(Activity.competing("Valorant | joy help"))
             .setEnableShutdownHook(false)
-            .addEventListeners(MainListener(slashCommandHandler))
+            .addEventListeners(
+                MainListener(),
+                slashCommandHandler
+            )
             .setCompression(Compression.ZLIB)
             .setEnableShutdownHook(true)
             .enableIntents(

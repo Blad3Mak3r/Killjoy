@@ -16,10 +16,7 @@
 package tv.blademaker.slash.api.handler
 
 import io.sentry.Sentry
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.asCoroutineDispatcher
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.events.interaction.SlashCommandEvent
 import org.slf4j.LoggerFactory
@@ -27,13 +24,19 @@ import tv.blademaker.killjoy.framework.ColorExtra
 import tv.blademaker.killjoy.utils.Utils
 import tv.blademaker.slash.api.SlashCommandContext
 import tv.blademaker.slash.utils.SlashUtils
+import kotlin.coroutines.CoroutineContext
 
-class DefaultSlashCommandHandler(packageName: String) : SlashCommandHandler {
+class DefaultSlashCommandHandler(packageName: String) : SlashCommandHandler, CoroutineScope {
+
+    private val dispatcher = Utils.newCoroutineDispatcher("slash-pool-worker-%d", 2, 50)
+
+    override val coroutineContext: CoroutineContext
+        get() = dispatcher + Job()
 
     override val registry = SlashUtils.discoverSlashCommands(packageName)
 
     override fun onSlashCommandEvent(event: SlashCommandEvent) {
-        SCOPE.launch { handleSuspend(event) }
+        launch { handleSuspend(event) }
     }
 
     private suspend fun handleSuspend(event: SlashCommandEvent) {
@@ -43,9 +46,10 @@ class DefaultSlashCommandHandler(packageName: String) : SlashCommandHandler {
         val command = getCommand(event.name) ?: return
         val context = SlashCommandContext(event)
 
+        logCommand(event, command, LOGGER)
+
         try {
             command.execute(context)
-            logCommand(event, command, LOGGER)
         } catch (e: Exception) {
             Sentry.captureException(e)
             LOGGER.error("Exception executing command ${command.commandName}.", e)
@@ -62,9 +66,5 @@ class DefaultSlashCommandHandler(packageName: String) : SlashCommandHandler {
 
     companion object {
         private val LOGGER = LoggerFactory.getLogger(DefaultSlashCommandHandler::class.java)
-        private val SLASH_POOL = Utils.newThreadFactory("slash-pool-worker-%d", 2, 50)
-        private val DISPATCHER = SLASH_POOL.asCoroutineDispatcher()
-        private val PARENT_JOB = Job()
-        private val SCOPE = CoroutineScope(DISPATCHER + PARENT_JOB)
     }
 }

@@ -15,27 +15,32 @@
 
 package tv.blademaker.slash.api.handler
 
+import net.dv8tion.jda.api.events.GenericEvent
 import net.dv8tion.jda.api.events.interaction.SlashCommandEvent
+import net.dv8tion.jda.api.hooks.EventListener
 import org.slf4j.Logger
 import tv.blademaker.slash.api.AbstractSlashCommand
+import tv.blademaker.slash.utils.SlashUtils
 
-interface SlashCommandHandler {
+interface SlashCommandHandler : EventListener {
     val registry: List<AbstractSlashCommand>
+
+    override fun onEvent(event: GenericEvent) {
+        if (event is SlashCommandEvent) onSlashCommandEvent(event)
+    }
 
     fun onSlashCommandEvent(event: SlashCommandEvent)
 
     fun getCommand(name: String) = registry.firstOrNull { it.commandName.equals(name, true) }
 
     fun logCommand(event: SlashCommandEvent, command: AbstractSlashCommand, logger: Logger) {
-        val subcommandName = event.subcommandName
-            ?: event.subcommandGroup
-            ?: ""
-        val options = event.options.map { parseOption(it) }
+        kotlin.runCatching {
+            val subcommandName = event.subcommandName
+                ?: event.subcommandGroup
+                ?: ""
+            val options = event.options.map { SlashUtils.parseOptionToString(it) }
 
-        logger.info("[${event.guild!!.name}] ${event.user.asTag} uses command ${command.commandName} $subcommandName$options")
-    }
-
-    private fun parseOption(option: SlashCommandEvent.OptionData): String {
-        return "${option.name} (${option.asString})"
+            logger.info("[${event.guild!!.name}] ${event.user.asTag} uses command ${command.commandName} $subcommandName$options")
+        }
     }
 }

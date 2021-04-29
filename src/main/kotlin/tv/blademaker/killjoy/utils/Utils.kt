@@ -18,6 +18,8 @@
 package tv.blademaker.killjoy.utils
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.asCoroutineDispatcher
 import net.dv8tion.jda.api.entities.Guild
 import net.dv8tion.jda.api.entities.Role
 import tv.blademaker.killjoy.framework.CommandContext
@@ -57,6 +59,20 @@ object Utils {
             keepAliveTime, unit,
             LinkedBlockingQueue(),
             ThreadFactoryBuilder().setNameFormat(name).setDaemon(daemon).build())
+    }
+
+    fun newCoroutineDispatcher(name: String,
+                         corePoolSize: Int,
+                         maximumPoolSize: Int,
+                         keepAliveTime: Long = 5L,
+                         unit: TimeUnit = TimeUnit.MINUTES,
+                         daemon: Boolean = true
+    ): CoroutineDispatcher {
+        return ThreadPoolExecutor(
+            corePoolSize, maximumPoolSize,
+            keepAliveTime, unit,
+            LinkedBlockingQueue(),
+            ThreadFactoryBuilder().setNameFormat(name).setDaemon(daemon).build()).asCoroutineDispatcher()
     }
 
     @JvmStatic

@@ -30,13 +30,9 @@ import tv.blademaker.slash.api.handler.SlashCommandHandler
 import java.time.OffsetDateTime
 import java.util.concurrent.TimeUnit
 
-class MainListener(
-    private val slashCommandHandler: SlashCommandHandler
-) : EventListener {
+class MainListener : EventListener {
     override fun onEvent(event: GenericEvent) {
         when (event) {
-            is SlashCommandEvent -> slashCommandHandler.onSlashCommandEvent(event)
-
             is GuildJoinEvent -> onGuildJoin(event)
             is GuildLeaveEvent -> onGuildLeave(event)
 

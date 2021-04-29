@@ -17,6 +17,8 @@ package tv.blademaker.slash.utils
 
 import net.dv8tion.jda.api.Permission
 import net.dv8tion.jda.api.entities.Member
+import net.dv8tion.jda.api.events.interaction.SlashCommandEvent
+import net.dv8tion.jda.api.interactions.commands.OptionType
 import net.dv8tion.jda.api.requests.RestAction
 import net.dv8tion.jda.api.requests.restaction.CommandReplyAction
 import net.dv8tion.jda.api.requests.restaction.InteractionWebhookAction
@@ -27,6 +29,7 @@ import org.slf4j.LoggerFactory
 import tv.blademaker.slash.api.AbstractSlashCommand
 import tv.blademaker.slash.api.SlashCommandContext
 import tv.blademaker.slash.api.annotations.Permissions
+import tv.blademaker.slash.api.handler.SlashCommandHandler
 import java.lang.reflect.Modifier
 
 object SlashUtils {
@@ -105,6 +108,24 @@ object SlashUtils {
 
         return commands
     }
+
+    fun parseOptionToString(option: SlashCommandEvent.OptionData): String {
+        return "${option.name} (${optionToString(option)})"
+    }
+
+    private fun optionToString(option: SlashCommandEvent.OptionData): String {
+        return try {
+            when (option.type) {
+                in LONG_TYPES -> option.asLong.toString()
+                OptionType.BOOLEAN -> option.asBoolean.toString()
+                else -> option.asString
+            }
+        } catch (e: Exception) {
+            "EXCEPTION"
+        }
+    }
+
+    private val LONG_TYPES = setOf(OptionType.CHANNEL, OptionType.ROLE, OptionType.USER, OptionType.INTEGER)
 
     fun RestAction<*>.asEphemeral(): RestAction<*> {
         when(this) {
