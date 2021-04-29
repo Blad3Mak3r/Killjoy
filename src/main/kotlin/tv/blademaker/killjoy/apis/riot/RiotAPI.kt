@@ -30,7 +30,6 @@ import tv.blademaker.killjoy.apis.riot.entities.RankedPlayer
 import tv.blademaker.killjoy.apis.riot.entities.RankedPlayerList
 import tv.blademaker.killjoy.apis.riot.entities.Region
 import java.time.Duration
-import java.time.Instant
 import java.util.concurrent.TimeUnit
 
 object RiotAPI {

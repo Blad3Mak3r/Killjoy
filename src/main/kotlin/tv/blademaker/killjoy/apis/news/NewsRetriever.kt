@@ -19,7 +19,6 @@ import kong.unirest.Unirest
 import kong.unirest.json.JSONObject
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.future.await
-import org.jsoup.Jsoup
 import org.jsoup.nodes.Element
 import org.slf4j.LoggerFactory
 import tv.blademaker.killjoy.utils.extensions.isUrl

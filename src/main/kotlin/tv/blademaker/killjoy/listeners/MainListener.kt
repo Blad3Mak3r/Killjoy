@@ -19,14 +19,12 @@ import io.sentry.Sentry
 import net.dv8tion.jda.api.events.*
 import net.dv8tion.jda.api.events.guild.GuildJoinEvent
 import net.dv8tion.jda.api.events.guild.GuildLeaveEvent
-import net.dv8tion.jda.api.events.interaction.SlashCommandEvent
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
 import net.dv8tion.jda.api.hooks.EventListener
 import org.slf4j.LoggerFactory
 import tv.blademaker.killjoy.Launcher
 import tv.blademaker.killjoy.prometheus.exporters.Metrics
 import tv.blademaker.killjoy.utils.Utils
-import tv.blademaker.slash.api.handler.SlashCommandHandler
 import java.time.OffsetDateTime
 import java.util.concurrent.TimeUnit
 

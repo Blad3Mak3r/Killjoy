@@ -29,7 +29,6 @@ import org.slf4j.LoggerFactory
 import tv.blademaker.slash.api.AbstractSlashCommand
 import tv.blademaker.slash.api.SlashCommandContext
 import tv.blademaker.slash.api.annotations.Permissions
-import tv.blademaker.slash.api.handler.SlashCommandHandler
 import java.lang.reflect.Modifier
 
 object SlashUtils {
