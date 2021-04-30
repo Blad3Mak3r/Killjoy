@@ -1,5 +1,5 @@
 <p align="center">
-    <a href="https://killjoy.dev" target="_blank"><img src="/Branding/logo.svg" width="250" alt="Killjoy Logo"></a>
+    <a href="https://killjoy.dev" target="_blank"><img src="/Branding/logo.svg" width="100%" alt="Killjoy Logo"></a>
 </p>
 
 ## [Add to Discord][invitation]
