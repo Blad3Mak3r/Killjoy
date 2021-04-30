@@ -92,7 +92,7 @@ object Launcher {
         // - RiotAPI.init(BotConfig.getOrNull<String>("riot.api_key"))
 
         commandRegistry = CommandRegistry()
-        slashCommandHandler = DefaultSlashCommandHandler("tv.blademaker.killjoy.commands")
+        slashCommandHandler = DefaultSlashCommandHandler("dev.killjoy.bot.commands")
 
         cooldownManager = CooldownManager(15, TimeUnit.SECONDS)
 
