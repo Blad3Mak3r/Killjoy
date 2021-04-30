@@ -40,7 +40,6 @@ dependencies {
     implementation(kotlin("stdlib"))
     implementation(kotlin("serialization"))
     implementation(kotlin("reflect"))
-    implementation("org.reflections:reflections:0.9.11")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:$coroutinesVersion")
 
@@ -54,7 +53,6 @@ dependencies {
     //Common
     //implementation("net.dv8tion:JDA:4.2.0_255") { exclude(module = "opus-java") }
     implementation("com.github.DV8FromTheWorld:JDA:feature~slash-commands-SNAPSHOT") { exclude(module = "opus-java") }
-    implementation("com.jagrosh:jda-utilities:3.0.5")
 
     //Logging
     implementation("ch.qos.logback:logback-classic:1.2.3")
