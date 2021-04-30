@@ -13,26 +13,22 @@
  * See the License for the specific language governing permissions and limitations under the License.
  ******************************************************************************/
 
-import kotlinx.coroutines.runBlocking
-import org.junit.Test
-import dev.killjoy.apis.riot.RiotAPI
+package dev.killjoy.bot.utils.extensions
 
-class AgentStatsTest {
+import net.dv8tion.jda.api.Permission
+import net.dv8tion.jda.api.entities.Member
 
-    @Test
-    fun `Retrieve agent stats`() {
-        val expected = 15
-        val result = runBlocking { RiotAPI.AgentStatsAPI.getAgentStatsAsync().await() }
+/*val Member.isBotOwner: Boolean
+    get() = Config.owners.any { it == this.id }*/
 
-        assert(result.isNotEmpty()) { "Result is empty." }
-        assert(result.size == expected) { "Result is not equal to expected (${result.size} != $expected)." }
-    }
+val Member.isSelf: Boolean
+    get() = this.jda.selfUser.id == this.user.id
 
-    @Test
-    fun `Get Killjoy stats`() {
-        val result = runBlocking { RiotAPI.AgentStatsAPI.getAgentStatsAsync("killjoy").await() }
+val Member.isDeafened: Boolean
+    get() = this.voiceState!!.isDeafened
 
-        assert(result != null) { "Result is empty." }
-        assert(result!!.key == "killjoy") { "Result is not Killjoy agent." }
-    }
-}
+val Member.isManager: Boolean
+    get() = hasPermission(Permission.MANAGE_SERVER)
+
+val Member.isAdmin: Boolean
+    get() = hasPermission(Permission.ADMINISTRATOR)

@@ -12,27 +12,20 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and limitations under the License.
  ******************************************************************************/
+package dev.killjoy.bot.framework.annotations
 
-import kotlinx.coroutines.runBlocking
-import org.junit.Test
-import dev.killjoy.apis.riot.RiotAPI
+import net.dv8tion.jda.api.Permission
+import dev.killjoy.bot.framework.Category
 
-class AgentStatsTest {
-
-    @Test
-    fun `Retrieve agent stats`() {
-        val expected = 15
-        val result = runBlocking { RiotAPI.AgentStatsAPI.getAgentStatsAsync().await() }
-
-        assert(result.isNotEmpty()) { "Result is empty." }
-        assert(result.size == expected) { "Result is not equal to expected (${result.size} != $expected)." }
-    }
-
-    @Test
-    fun `Get Killjoy stats`() {
-        val result = runBlocking { RiotAPI.AgentStatsAPI.getAgentStatsAsync("killjoy").await() }
-
-        assert(result != null) { "Result is empty." }
-        assert(result!!.key == "killjoy") { "Result is not Killjoy agent." }
-    }
-}
+@Target(AnnotationTarget.ANNOTATION_CLASS, AnnotationTarget.CLASS)
+@Retention(AnnotationRetention.RUNTIME)
+annotation class CommandProperties(
+        val name: String,
+        val category: Category,
+        val isNsfw: Boolean = false,
+        val aliases: Array<String> = [],
+        val arguments: Array<CommandArgument> = [],
+        val cooldown: Cooldown = Cooldown(3),
+        val userPermissions: Array<Permission> = [],
+        val botPermissions: Array<Permission> = []
+)

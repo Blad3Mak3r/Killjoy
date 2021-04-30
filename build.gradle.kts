@@ -20,10 +20,10 @@ java {
 }
 
 application {
-    mainClassName = "tv.blademaker.killjoy.Launcher"
+    mainClassName = "dev.killjoy.discord.Launcher"
 }
 
-group = "tv.blademaker.killjoy"
+group = "dev.killjoy"
 version = "0.9.1"
 
 repositories {

@@ -13,26 +13,31 @@
  * See the License for the specific language governing permissions and limitations under the License.
  ******************************************************************************/
 
-import kotlinx.coroutines.runBlocking
-import org.junit.Test
-import dev.killjoy.apis.riot.RiotAPI
+package dev.killjoy.apis.riot.entities
 
-class AgentStatsTest {
+import org.json.JSONObject
 
-    @Test
-    fun `Retrieve agent stats`() {
-        val expected = 15
-        val result = runBlocking { RiotAPI.AgentStatsAPI.getAgentStatsAsync().await() }
+data class RankedPlayer(
+    val puuid: String,
+    val gameName: String,
+    val tagLine: String,
+    val leaderboardRank: Int,
+    val rankedRating: Int,
+    val numberOfWins: Int
+) {
+    constructor(json: JSONObject) : this(
+        json.getString("puuid"),
+        json.getString("gameName"),
+        json.getString("tagLine"),
+        json.getInt("leaderboardRank"),
+        json.getInt("rankedRating"),
+        json.getInt("numberOfWins")
+    )
 
-        assert(result.isNotEmpty()) { "Result is empty." }
-        assert(result.size == expected) { "Result is not equal to expected (${result.size} != $expected)." }
-    }
-
-    @Test
-    fun `Get Killjoy stats`() {
-        val result = runBlocking { RiotAPI.AgentStatsAPI.getAgentStatsAsync("killjoy").await() }
-
-        assert(result != null) { "Result is empty." }
-        assert(result!!.key == "killjoy") { "Result is not Killjoy agent." }
-    }
+    val fullNameTag = "$gameName#$tagLine"
 }
+
+data class RankedPlayerList(
+    val updatedAt: Long,
+    val players: List<RankedPlayer>
+)

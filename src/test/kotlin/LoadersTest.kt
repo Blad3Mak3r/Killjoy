@@ -1,5 +1,5 @@
 import org.junit.Test
-import tv.blademaker.killjoy.utils.Loaders
+import dev.killjoy.bot.utils.Loaders
 
 /*******************************************************************************
  * Copyright (c) 2021. Blademaker

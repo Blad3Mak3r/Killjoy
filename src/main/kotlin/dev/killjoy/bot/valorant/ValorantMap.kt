@@ -13,26 +13,21 @@
  * See the License for the specific language governing permissions and limitations under the License.
  ******************************************************************************/
 
-import kotlinx.coroutines.runBlocking
-import org.junit.Test
-import dev.killjoy.apis.riot.RiotAPI
+package dev.killjoy.bot.valorant
 
-class AgentStatsTest {
+import org.json.JSONObject
 
-    @Test
-    fun `Retrieve agent stats`() {
-        val expected = 15
-        val result = runBlocking { RiotAPI.AgentStatsAPI.getAgentStatsAsync().await() }
-
-        assert(result.isNotEmpty()) { "Result is empty." }
-        assert(result.size == expected) { "Result is not equal to expected (${result.size} != $expected)." }
-    }
-
-    @Test
-    fun `Get Killjoy stats`() {
-        val result = runBlocking { RiotAPI.AgentStatsAPI.getAgentStatsAsync("killjoy").await() }
-
-        assert(result != null) { "Result is empty." }
-        assert(result!!.key == "killjoy") { "Result is not Killjoy agent." }
-    }
+@Suppress("unused")
+data class ValorantMap(
+    override val name: String,
+    val description: String,
+    val minimap: String,
+    val imageUrl: String
+) : ValorantEntity {
+    constructor(jsonObject: JSONObject) : this(
+        jsonObject.getString("name"),
+        jsonObject.getString("description"),
+        jsonObject.getString("minimap"),
+        jsonObject.getString("image_url")
+    )
 }

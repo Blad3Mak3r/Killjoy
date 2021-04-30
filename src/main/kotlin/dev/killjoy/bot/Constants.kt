@@ -13,26 +13,9 @@
  * See the License for the specific language governing permissions and limitations under the License.
  ******************************************************************************/
 
-import kotlinx.coroutines.runBlocking
-import org.junit.Test
-import dev.killjoy.apis.riot.RiotAPI
+package dev.killjoy.bot
 
-class AgentStatsTest {
-
-    @Test
-    fun `Retrieve agent stats`() {
-        val expected = 15
-        val result = runBlocking { RiotAPI.AgentStatsAPI.getAgentStatsAsync().await() }
-
-        assert(result.isNotEmpty()) { "Result is empty." }
-        assert(result.size == expected) { "Result is not equal to expected (${result.size} != $expected)." }
-    }
-
-    @Test
-    fun `Get Killjoy stats`() {
-        val result = runBlocking { RiotAPI.AgentStatsAPI.getAgentStatsAsync("killjoy").await() }
-
-        assert(result != null) { "Result is empty." }
-        assert(result!!.key == "killjoy") { "Result is not Killjoy agent." }
-    }
-}
+const val INVITE_URL = "https://discord.com/oauth2/authorize?client_id=706887214088323092&permissions=321600&scope=bot%20applications.commands"
+const val REPOSITORY_URL = "https://github.com/Blad3Mak3r/Killjoy"
+const val WEBSITE_URL = "https://killjoy.blademaker.tv"
+const val BUG_REPORT_URL = "https://github.com/Blad3Mak3r/Killjoy/issues/new?template=bug_report.md"

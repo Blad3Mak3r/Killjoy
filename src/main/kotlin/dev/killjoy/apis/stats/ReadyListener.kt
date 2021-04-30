@@ -13,26 +13,24 @@
  * See the License for the specific language governing permissions and limitations under the License.
  ******************************************************************************/
 
-import kotlinx.coroutines.runBlocking
-import org.junit.Test
-import dev.killjoy.apis.riot.RiotAPI
+package dev.killjoy.apis.stats
 
-class AgentStatsTest {
+import net.dv8tion.jda.api.events.ReadyEvent
+import net.dv8tion.jda.api.hooks.ListenerAdapter
+import net.dv8tion.jda.api.sharding.ShardManager
 
-    @Test
-    fun `Retrieve agent stats`() {
-        val expected = 15
-        val result = runBlocking { RiotAPI.AgentStatsAPI.getAgentStatsAsync().await() }
+class ReadyListener(private val shardManager: ShardManager, private val statsPosting: StatsPosting) : ListenerAdapter() {
 
-        assert(result.isNotEmpty()) { "Result is empty." }
-        assert(result.size == expected) { "Result is not equal to expected (${result.size} != $expected)." }
+    private var ready = 0
+    private val totalShards = shardManager.shardsTotal
+
+    override fun onReady(event: ReadyEvent) {
+        ready++
+
+        if (ready == totalShards) {
+            statsPosting.task = statsPosting.createTask()
+            shardManager.removeEventListener(this)
+        }
     }
 
-    @Test
-    fun `Get Killjoy stats`() {
-        val result = runBlocking { RiotAPI.AgentStatsAPI.getAgentStatsAsync("killjoy").await() }
-
-        assert(result != null) { "Result is empty." }
-        assert(result!!.key == "killjoy") { "Result is not Killjoy agent." }
-    }
 }

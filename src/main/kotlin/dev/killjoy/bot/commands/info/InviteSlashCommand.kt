@@ -13,26 +13,17 @@
  * See the License for the specific language governing permissions and limitations under the License.
  ******************************************************************************/
 
-import kotlinx.coroutines.runBlocking
-import org.junit.Test
-import dev.killjoy.apis.riot.RiotAPI
+package dev.killjoy.bot.commands.info
 
-class AgentStatsTest {
+import dev.killjoy.bot.INVITE_URL
+import dev.killjoy.slash.api.AbstractSlashCommand
+import dev.killjoy.slash.api.SlashCommandContext
 
-    @Test
-    fun `Retrieve agent stats`() {
-        val expected = 15
-        val result = runBlocking { RiotAPI.AgentStatsAPI.getAgentStatsAsync().await() }
+class InviteSlashCommand : AbstractSlashCommand("invite") {
 
-        assert(result.isNotEmpty()) { "Result is empty." }
-        assert(result.size == expected) { "Result is not equal to expected (${result.size} != $expected)." }
+    override suspend fun handle(ctx: SlashCommandContext) {
+        val content = "Here is the invitation link to invite me to your servers:\n$INVITE_URL"
+        ctx.acknowledge(true).setContent(content).queue()
     }
 
-    @Test
-    fun `Get Killjoy stats`() {
-        val result = runBlocking { RiotAPI.AgentStatsAPI.getAgentStatsAsync("killjoy").await() }
-
-        assert(result != null) { "Result is empty." }
-        assert(result!!.key == "killjoy") { "Result is not Killjoy agent." }
-    }
 }
