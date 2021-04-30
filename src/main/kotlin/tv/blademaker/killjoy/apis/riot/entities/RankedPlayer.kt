@@ -15,6 +15,8 @@
 
 package tv.blademaker.killjoy.apis.riot.entities
 
+import org.json.JSONObject
+
 data class RankedPlayer(
     val puuid: String,
     val gameName: String,
@@ -23,6 +25,15 @@ data class RankedPlayer(
     val rankedRating: Int,
     val numberOfWins: Int
 ) {
+    constructor(json: JSONObject) : this(
+        json.getString("puuid"),
+        json.getString("gameName"),
+        json.getString("tagLine"),
+        json.getInt("leaderboardRank"),
+        json.getInt("rankedRating"),
+        json.getInt("numberOfWins")
+    )
+
     val fullNameTag = "$gameName#$tagLine"
 }
 

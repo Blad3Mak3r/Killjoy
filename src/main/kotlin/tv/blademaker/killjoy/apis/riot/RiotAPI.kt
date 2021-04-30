@@ -56,17 +56,9 @@ object RiotAPI {
 
             val content = r.body.`object`
 
-            val list = content.getJSONArray("players").map {
-                it as JSONObject
-                RankedPlayer(
-                    it.getString("puuid"),
-                    it.getString("gameName"),
-                    it.getString("tagLine"),
-                    it.getInt("leaderboardRank"),
-                    it.getInt("rankedRating"),
-                    it.getInt("numberOfWins")
-                )
-            }.sortedBy { p -> p.leaderboardRank }
+            val list = content.getJSONArray("players")
+                .map { RankedPlayer(it as org.json.JSONObject) }
+                .sortedBy { p -> p.leaderboardRank }
 
             val rankedList = RankedPlayerList(System.currentTimeMillis(), list)
             leaderboardsCache.put(region.name.toUpperCase(), rankedList)
@@ -101,13 +93,11 @@ object RiotAPI {
             return agentStatsCache[agent.toLowerCase()]
         }
 
-        suspend fun getAgentStatsAsync(): Deferred<List<AgentStats>> = withContext(
-            Dispatchers.IO) {
+        suspend fun getAgentStatsAsync(): Deferred<List<AgentStats>> = withContext(Dispatchers.IO) {
             async { getAgentStats() }
         }
 
-        suspend fun getAgentStatsAsync(agent: String): Deferred<AgentStats?> = withContext(
-            Dispatchers.IO)  {
+        suspend fun getAgentStatsAsync(agent: String): Deferred<AgentStats?> = withContext(Dispatchers.IO)  {
             async { getAgentStats(agent) }
         }
 
