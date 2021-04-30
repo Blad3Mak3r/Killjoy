@@ -1,6 +1,5 @@
-import kotlinx.coroutines.runBlocking
 import org.junit.Test
-import tv.blademaker.killjoy.apis.riot.RiotAPI
+import tv.blademaker.killjoy.utils.Loaders
 
 /*******************************************************************************
  * Copyright (c) 2021. Blademaker
@@ -17,24 +16,27 @@ import tv.blademaker.killjoy.apis.riot.RiotAPI
  * See the License for the specific language governing permissions and limitations under the License.
  ******************************************************************************/
 
-class ValorantAgentStatsTest {
+class LoadersTest {
 
     @Test
-    fun `Retrieve agent stats`() {
+    fun `Load agents`() {
         val expected = 15
-        val result = runBlocking { RiotAPI.AgentStatsAPI.getAgentStatsAsync().await() }
-
-        //Check result is not empty
-        check(result.isNotEmpty())
-
-        //Check result size is equal to expected
-        check(result.size == expected) { "Result is not equal to expected (${result.size} != $expected)" }
+        val result = Loaders.loadAgents()
+        assert(result.size == expected) { "Agents size is not equal to expected" }
     }
 
     @Test
-    fun `Get Killjoy stats`() {
-        val result = runBlocking { RiotAPI.AgentStatsAPI.getAgentStatsAsync("killjoy").await() }
-
-        checkNotNull(result)
+    fun `Load maps`() {
+        val expected = 6
+        val result = Loaders.loadMaps()
+        assert(result.size == expected) { "Maps size is not equal to expected" }
     }
+
+    @Test
+    fun `Load arsenal`() {
+        val expected = 18
+        val result = Loaders.loadArsenal()
+        assert(result.size == expected) { "Arsenal size is not equal to expected" }
+    }
+
 }
