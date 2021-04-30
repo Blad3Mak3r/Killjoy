@@ -15,10 +15,10 @@
 
 package dev.killjoy.bot.utils.extensions
 
+import dev.killjoy.bot.utils.Emojis
 import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.MessageBuilder
 import net.dv8tion.jda.api.entities.TextChannel
-import dev.killjoy.bot.utils.Emojis
 
 inline fun TextChannel.sendEmbed(builder: EmbedBuilder.() -> Unit) = this.sendMessage(EmbedBuilder().apply(builder).build())
 inline fun TextChannel.sendMessage(builder: MessageBuilder.() -> Unit) = this.sendMessage(MessageBuilder().apply(builder).build())

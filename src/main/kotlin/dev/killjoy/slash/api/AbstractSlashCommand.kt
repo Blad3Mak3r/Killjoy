@@ -15,11 +15,11 @@
 
 package dev.killjoy.slash.api
 
-import io.sentry.Sentry
-import org.slf4j.LoggerFactory
 import dev.killjoy.slash.api.annotations.Permissions
 import dev.killjoy.slash.api.annotations.SlashSubCommand
 import dev.killjoy.slash.utils.SlashUtils
+import io.sentry.Sentry
+import org.slf4j.LoggerFactory
 import java.util.function.Predicate
 import kotlin.reflect.KFunction
 import kotlin.reflect.KVisibility
@@ -30,7 +30,7 @@ import kotlin.reflect.full.hasAnnotation
 
 abstract class AbstractSlashCommand(val commandName: String) {
 
-    val checks: MutableList<Predicate<SlashCommandContext>> = mutableListOf()
+    private val checks: MutableList<Predicate<SlashCommandContext>> = mutableListOf()
 
     private val subCommands: List<SubCommand> = this::class.functions
         .filter { it.hasAnnotation<SlashSubCommand>() && it.visibility == KVisibility.PUBLIC && !it.isAbstract }

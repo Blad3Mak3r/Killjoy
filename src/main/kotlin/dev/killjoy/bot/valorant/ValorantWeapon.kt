@@ -17,9 +17,9 @@
 
 package dev.killjoy.bot.valorant
 
+import dev.killjoy.bot.framework.ColorExtra
 import net.dv8tion.jda.api.EmbedBuilder
 import org.json.JSONObject
-import dev.killjoy.bot.framework.ColorExtra
 
 @Suppress("unused")
 data class ValorantWeapon(

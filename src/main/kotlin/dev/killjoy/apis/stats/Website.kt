@@ -16,10 +16,10 @@
 package dev.killjoy.apis.stats
 
 import com.typesafe.config.Config
+import dev.killjoy.bot.BotConfig.getOrDefault
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody.Companion.toRequestBody
-import dev.killjoy.bot.BotConfig.getOrDefault
 import java.io.IOException
 
 class Website(

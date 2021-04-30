@@ -15,6 +15,8 @@
 
 package dev.killjoy.bot.framework
 
+import dev.killjoy.bot.utils.Emojis
+import dev.killjoy.bot.utils.extensions.sendMessage
 import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.MessageBuilder
@@ -23,11 +25,9 @@ import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
 import net.dv8tion.jda.api.requests.RestAction
 import net.dv8tion.jda.api.requests.restaction.MessageAction
 import net.dv8tion.jda.api.sharding.ShardManager
-import dev.killjoy.bot.utils.Emojis
-import dev.killjoy.bot.utils.extensions.sendMessage
 import java.awt.Color
 
-@Suppress("ReplaceGetOrSet", "unused")
+@Suppress("ReplaceGetOrSet", "unused", "MemberVisibilityCanBePrivate")
 class CommandContext(
         val event: GuildMessageReceivedEvent,
         split: List<String>

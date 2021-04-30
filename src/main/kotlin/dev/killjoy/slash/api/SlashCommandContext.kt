@@ -15,6 +15,8 @@
 
 package dev.killjoy.slash.api
 
+import dev.killjoy.bot.framework.ColorExtra
+import dev.killjoy.bot.utils.Emojis
 import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.entities.Guild
@@ -26,10 +28,9 @@ import net.dv8tion.jda.api.interactions.commands.CommandHook
 import net.dv8tion.jda.api.requests.RestAction
 import net.dv8tion.jda.api.requests.restaction.CommandReplyAction
 import net.dv8tion.jda.api.requests.restaction.InteractionWebhookAction
-import dev.killjoy.bot.framework.ColorExtra
-import dev.killjoy.bot.utils.Emojis
 import java.util.concurrent.atomic.AtomicBoolean
 
+@Suppress("unused")
 class SlashCommandContext(
     val event: SlashCommandEvent
 ) {
@@ -39,6 +40,7 @@ class SlashCommandContext(
     val jda: JDA
         get() = event.jda
 
+    @Suppress("MemberVisibilityCanBePrivate")
     val hook: CommandHook
         get() = event.hook
 

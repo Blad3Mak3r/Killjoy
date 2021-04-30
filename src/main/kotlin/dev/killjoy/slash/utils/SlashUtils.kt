@@ -15,6 +15,9 @@
 
 package dev.killjoy.slash.utils
 
+import dev.killjoy.slash.api.AbstractSlashCommand
+import dev.killjoy.slash.api.SlashCommandContext
+import dev.killjoy.slash.api.annotations.Permissions
 import net.dv8tion.jda.api.Permission
 import net.dv8tion.jda.api.entities.Member
 import net.dv8tion.jda.api.events.interaction.SlashCommandEvent
@@ -26,9 +29,6 @@ import net.hugebot.extensions.toHuman
 import org.reflections.Reflections
 import org.reflections.scanners.SubTypesScanner
 import org.slf4j.LoggerFactory
-import dev.killjoy.slash.api.AbstractSlashCommand
-import dev.killjoy.slash.api.SlashCommandContext
-import dev.killjoy.slash.api.annotations.Permissions
 import java.lang.reflect.Modifier
 
 object SlashUtils {
@@ -126,6 +126,7 @@ object SlashUtils {
 
     private val LONG_TYPES = setOf(OptionType.CHANNEL, OptionType.ROLE, OptionType.USER, OptionType.INTEGER)
 
+    @Suppress("unused")
     fun RestAction<*>.asEphemeral(): RestAction<*> {
         when(this) {
             is CommandReplyAction -> this.setEphemeral(true)

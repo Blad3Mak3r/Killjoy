@@ -15,13 +15,13 @@
 
 package dev.killjoy.bot.commands.info
 
-import net.dv8tion.jda.api.EmbedBuilder
-import net.hugebot.extensions.jda.await
 import dev.killjoy.bot.framework.Category
 import dev.killjoy.bot.framework.ColorExtra
 import dev.killjoy.bot.framework.CommandContext
 import dev.killjoy.bot.framework.abs.Command
 import dev.killjoy.bot.framework.annotations.CommandProperties
+import net.dv8tion.jda.api.EmbedBuilder
+import net.hugebot.extensions.jda.await
 
 @CommandProperties("ping", Category.Information)
 class PingCommand : Command() {

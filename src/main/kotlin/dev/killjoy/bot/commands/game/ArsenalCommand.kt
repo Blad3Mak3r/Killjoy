@@ -28,7 +28,7 @@ import dev.killjoy.bot.utils.Emojis
     category = Category.Game,
     aliases = ["weapons", "weapon"],
     arguments = [
-        CommandArgument("weapon", "A valid Valorant weapon name [tacticalknife]", false)
+        CommandArgument("weapon", "A valid Valorant weapon name [tactical knife]", false)
     ]
 )
 class ArsenalCommand : Command() {

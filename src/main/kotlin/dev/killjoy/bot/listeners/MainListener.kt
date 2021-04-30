@@ -15,6 +15,9 @@
 
 package dev.killjoy.bot.listeners
 
+import dev.killjoy.bot.Launcher
+import dev.killjoy.bot.prometheus.exporters.Metrics
+import dev.killjoy.bot.utils.Utils
 import io.sentry.Sentry
 import net.dv8tion.jda.api.events.*
 import net.dv8tion.jda.api.events.guild.GuildJoinEvent
@@ -22,9 +25,6 @@ import net.dv8tion.jda.api.events.guild.GuildLeaveEvent
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
 import net.dv8tion.jda.api.hooks.EventListener
 import org.slf4j.LoggerFactory
-import dev.killjoy.bot.Launcher
-import dev.killjoy.bot.prometheus.exporters.Metrics
-import dev.killjoy.bot.utils.Utils
 import java.time.OffsetDateTime
 import java.util.concurrent.TimeUnit
 

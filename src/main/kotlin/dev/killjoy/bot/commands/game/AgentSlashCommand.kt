@@ -15,12 +15,12 @@
 
 package dev.killjoy.bot.commands.game
 
-import net.dv8tion.jda.api.EmbedBuilder
 import dev.killjoy.bot.Launcher
 import dev.killjoy.bot.framework.ColorExtra
 import dev.killjoy.bot.valorant.ValorantAgent
 import dev.killjoy.slash.api.AbstractSlashCommand
 import dev.killjoy.slash.api.SlashCommandContext
+import net.dv8tion.jda.api.EmbedBuilder
 
 @Suppress("unused")
 class AgentSlashCommand : AbstractSlashCommand("agents") {

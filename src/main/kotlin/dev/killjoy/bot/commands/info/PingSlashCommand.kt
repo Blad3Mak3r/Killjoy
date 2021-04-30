@@ -15,11 +15,12 @@
 
 package dev.killjoy.bot.commands.info
 
-import net.hugebot.extensions.jda.await
 import dev.killjoy.bot.utils.Emojis
 import dev.killjoy.slash.api.AbstractSlashCommand
 import dev.killjoy.slash.api.SlashCommandContext
+import net.hugebot.extensions.jda.await
 
+@Suppress("unused")
 class PingSlashCommand : AbstractSlashCommand("ping") {
 
     override suspend fun handle(ctx: SlashCommandContext) {

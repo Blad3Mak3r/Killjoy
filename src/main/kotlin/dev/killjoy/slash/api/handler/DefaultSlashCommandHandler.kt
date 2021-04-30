@@ -15,6 +15,10 @@
 
 package dev.killjoy.slash.api.handler
 
+import dev.killjoy.bot.framework.ColorExtra
+import dev.killjoy.bot.utils.Utils
+import dev.killjoy.slash.api.SlashCommandContext
+import dev.killjoy.slash.utils.SlashUtils
 import io.sentry.Sentry
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
@@ -22,10 +26,6 @@ import kotlinx.coroutines.launch
 import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.events.interaction.SlashCommandEvent
 import org.slf4j.LoggerFactory
-import dev.killjoy.bot.framework.ColorExtra
-import dev.killjoy.bot.utils.Utils
-import dev.killjoy.slash.api.SlashCommandContext
-import dev.killjoy.slash.utils.SlashUtils
 import kotlin.coroutines.CoroutineContext
 
 class DefaultSlashCommandHandler(packageName: String) : SlashCommandHandler, CoroutineScope {

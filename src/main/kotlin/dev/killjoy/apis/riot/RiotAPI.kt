@@ -16,6 +16,10 @@
 package dev.killjoy.apis.riot
 
 import com.github.benmanes.caffeine.cache.Caffeine
+import dev.killjoy.apis.riot.entities.AgentStats
+import dev.killjoy.apis.riot.entities.RankedPlayer
+import dev.killjoy.apis.riot.entities.RankedPlayerList
+import dev.killjoy.apis.riot.entities.Region
 import kong.unirest.Unirest
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers
@@ -24,10 +28,6 @@ import kotlinx.coroutines.future.await
 import kotlinx.coroutines.withContext
 import org.jsoup.Jsoup
 import org.slf4j.LoggerFactory
-import dev.killjoy.apis.riot.entities.AgentStats
-import dev.killjoy.apis.riot.entities.RankedPlayer
-import dev.killjoy.apis.riot.entities.RankedPlayerList
-import dev.killjoy.apis.riot.entities.Region
 import java.time.Duration
 import java.util.concurrent.TimeUnit
 

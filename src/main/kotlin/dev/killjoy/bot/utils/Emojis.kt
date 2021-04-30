@@ -14,10 +14,11 @@
  ******************************************************************************/
 package dev.killjoy.bot.utils
 
-import net.dv8tion.jda.api.Permission
 import dev.killjoy.bot.framework.CommandContext
 import dev.killjoy.slash.api.SlashCommandContext
+import net.dv8tion.jda.api.Permission
 
+@Suppress("MemberVisibilityCanBePrivate")
 enum class Emojis(private val custom: String?, private val def: String) {
     WasteBasket(null, "\uD83D\uDDD1️"),
     BangBang(null, "‼️"),

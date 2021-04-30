@@ -14,21 +14,17 @@
  ******************************************************************************/
 package dev.killjoy.bot.framework.abs
 
-import net.dv8tion.jda.api.Permission
 import dev.killjoy.bot.framework.CommandContext
 import dev.killjoy.bot.framework.annotations.CommandArgument
 import dev.killjoy.bot.framework.annotations.CommandProperties
-import java.util.concurrent.atomic.AtomicInteger
+import net.dv8tion.jda.api.Permission
 
 abstract class Command {
     @JvmField
     val props: CommandProperties = this.javaClass.getAnnotation(CommandProperties::class.java)
 
-    private val hits = AtomicInteger(0)
-
     @Throws(Exception::class)
     suspend fun execute(ctx: CommandContext) {
-        hits.incrementAndGet()
         /*if (this.javaClass.isAnnotationPresent(PremiumCommand::class.java)) {
             //val lvlRequired = this.javaClass.getAnnotation(PremiumCommand::class.java).value
 
@@ -80,6 +76,4 @@ abstract class Command {
 
     val userPermissions = userPermissions()
     val botPermissions = botPermissions()
-
-    fun getHits() = hits.get()
 }

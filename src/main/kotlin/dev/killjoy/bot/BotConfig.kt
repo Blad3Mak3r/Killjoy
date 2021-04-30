@@ -18,11 +18,9 @@ package dev.killjoy.bot
 import com.typesafe.config.Config
 import com.typesafe.config.ConfigFactory
 import java.io.File
-import java.util.*
 
 object BotConfig {
     private val conf = ConfigFactory.parseFile(File("killjoy.conf"))
-    private val encoder = Base64.getEncoder()
 
     internal inline operator fun <reified T> get(path: String): T {
         val ref = conf.getAnyRef(path)
@@ -68,6 +66,7 @@ object BotConfig {
         else throw IllegalStateException("Reference is not ${T::class}")
     }
 
+    @Suppress("unused")
     internal inline fun <reified T> Config.getOrNull(path: String): T? {
         return try {
             val ref = this.getAnyRef(path)

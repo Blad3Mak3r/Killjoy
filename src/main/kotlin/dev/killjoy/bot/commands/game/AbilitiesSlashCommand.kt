@@ -20,6 +20,7 @@ import dev.killjoy.slash.api.AbstractSlashCommand
 import dev.killjoy.slash.api.SlashCommandContext
 import kotlin.math.ceil
 
+@Suppress("unused")
 class AbilitiesSlashCommand : AbstractSlashCommand("abilities") {
 
     override suspend fun handle(ctx: SlashCommandContext) {

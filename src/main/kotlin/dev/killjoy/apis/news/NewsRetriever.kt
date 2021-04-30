@@ -15,13 +15,13 @@
 
 package dev.killjoy.apis.news
 
+import dev.killjoy.bot.utils.extensions.isUrl
 import kong.unirest.Unirest
 import kong.unirest.json.JSONObject
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.future.await
 import org.jsoup.nodes.Element
 import org.slf4j.LoggerFactory
-import dev.killjoy.bot.utils.extensions.isUrl
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.CompletableFuture

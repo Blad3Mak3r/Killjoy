@@ -15,15 +15,15 @@
 
 package dev.killjoy.bot.utils
 
+import dev.killjoy.bot.valorant.ValorantAgent
+import dev.killjoy.bot.valorant.ValorantEntity
+import dev.killjoy.bot.valorant.ValorantMap
+import dev.killjoy.bot.valorant.ValorantWeapon
 import org.json.JSONObject
 import org.reflections.Reflections
 import org.reflections.ReflectionsException
 import org.reflections.scanners.ResourcesScanner
 import org.slf4j.LoggerFactory
-import dev.killjoy.bot.valorant.ValorantAgent
-import dev.killjoy.bot.valorant.ValorantEntity
-import dev.killjoy.bot.valorant.ValorantMap
-import dev.killjoy.bot.valorant.ValorantWeapon
 
 
 object Loaders {

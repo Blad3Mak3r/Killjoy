@@ -15,12 +15,13 @@
 
 package dev.killjoy.bot.commands.misc
 
-import net.hugebot.memes4k.Memes4K
 import dev.killjoy.bot.framework.ColorExtra
 import dev.killjoy.bot.utils.Emojis
 import dev.killjoy.slash.api.AbstractSlashCommand
 import dev.killjoy.slash.api.SlashCommandContext
+import net.hugebot.memes4k.Memes4K
 
+@Suppress("unused")
 class MemeSlashCommand : AbstractSlashCommand("meme") {
 
     override suspend fun handle(ctx: SlashCommandContext) {

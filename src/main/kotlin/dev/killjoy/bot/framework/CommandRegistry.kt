@@ -15,14 +15,6 @@
 
 package dev.killjoy.bot.framework
 
-import io.sentry.Sentry
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.asCoroutineDispatcher
-import kotlinx.coroutines.launch
-import net.dv8tion.jda.api.Permission
-import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
-import net.dv8tion.jda.api.exceptions.InsufficientPermissionException
-import org.slf4j.LoggerFactory
 import dev.killjoy.bot.Launcher
 import dev.killjoy.bot.commands.game.*
 import dev.killjoy.bot.commands.info.HelpCommand
@@ -36,6 +28,14 @@ import dev.killjoy.bot.framework.annotations.SubCommandProperties
 import dev.killjoy.bot.utils.Emojis
 import dev.killjoy.bot.utils.SentryUtils
 import dev.killjoy.bot.utils.Utils
+import io.sentry.Sentry
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.asCoroutineDispatcher
+import kotlinx.coroutines.launch
+import net.dv8tion.jda.api.Permission
+import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
+import net.dv8tion.jda.api.exceptions.InsufficientPermissionException
+import org.slf4j.LoggerFactory
 import java.lang.annotation.IncompleteAnnotationException
 
 class CommandRegistry {
@@ -82,8 +82,8 @@ class CommandRegistry {
         val prefix = "joy "
 
         when {
-            raw.startsWith(prefix) -> commandsScope.launch { analiceMessage(event, prefix) }
-            raw.startsWith(mention) -> commandsScope.launch { analiceMessage(event, mention) }
+            raw.startsWith(prefix) -> commandsScope.launch { analyzeMessage(event, prefix) }
+            raw.startsWith(mention) -> commandsScope.launch { analyzeMessage(event, mention) }
         }
     }
 
@@ -123,7 +123,7 @@ class CommandRegistry {
         }
     }
 
-    private suspend fun analiceMessage(event: GuildMessageReceivedEvent, prefix: String) {
+    private suspend fun analyzeMessage(event: GuildMessageReceivedEvent, prefix: String) {
         val channel = event.channel
         val bot = event.guild.selfMember
 

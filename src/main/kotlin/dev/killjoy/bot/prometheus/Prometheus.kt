@@ -15,6 +15,7 @@
 
 package dev.killjoy.bot.prometheus
 
+import dev.killjoy.bot.BotConfig
 import io.ktor.application.*
 import io.ktor.response.*
 import io.ktor.routing.*
@@ -24,7 +25,6 @@ import io.prometheus.client.CollectorRegistry
 import io.prometheus.client.exporter.common.TextFormat
 import io.prometheus.client.hotspot.DefaultExports
 import org.slf4j.LoggerFactory
-import dev.killjoy.bot.BotConfig
 import java.io.StringWriter
 
 class Prometheus {

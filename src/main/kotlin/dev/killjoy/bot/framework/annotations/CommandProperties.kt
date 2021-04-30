@@ -14,8 +14,8 @@
  ******************************************************************************/
 package dev.killjoy.bot.framework.annotations
 
-import net.dv8tion.jda.api.Permission
 import dev.killjoy.bot.framework.Category
+import net.dv8tion.jda.api.Permission
 
 @Target(AnnotationTarget.ANNOTATION_CLASS, AnnotationTarget.CLASS)
 @Retention(AnnotationRetention.RUNTIME)

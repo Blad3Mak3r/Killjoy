@@ -16,13 +16,13 @@
 package dev.killjoy.bot.commands.misc
 
 
-import net.hugebot.memes4k.Memes4K
 import dev.killjoy.bot.framework.Category
 import dev.killjoy.bot.framework.ColorExtra
 import dev.killjoy.bot.framework.CommandContext
 import dev.killjoy.bot.framework.abs.Command
 import dev.killjoy.bot.framework.annotations.CommandProperties
 import dev.killjoy.bot.utils.Emojis
+import net.hugebot.memes4k.Memes4K
 
 @CommandProperties("meme", Category.Misc)
 class MemeCommand : Command() {

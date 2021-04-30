@@ -15,15 +15,15 @@
 
 package dev.killjoy.bot.utils
 
+import dev.killjoy.bot.BotConfig
+import dev.killjoy.bot.framework.CommandContext
+import dev.killjoy.bot.framework.abs.Command
+import dev.killjoy.bot.framework.abs.SubCommand
 import io.sentry.Sentry
 import io.sentry.SentryEvent
 import io.sentry.SentryLevel
 import io.sentry.protocol.Message
 import org.slf4j.LoggerFactory
-import dev.killjoy.bot.BotConfig
-import dev.killjoy.bot.framework.CommandContext
-import dev.killjoy.bot.framework.abs.Command
-import dev.killjoy.bot.framework.abs.SubCommand
 
 object SentryUtils {
 

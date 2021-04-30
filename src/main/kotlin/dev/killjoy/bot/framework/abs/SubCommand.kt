@@ -18,13 +18,11 @@ package dev.killjoy.bot.framework.abs
 import dev.killjoy.bot.framework.CommandContext
 import dev.killjoy.bot.framework.annotations.CommandArgument
 import dev.killjoy.bot.framework.annotations.SubCommandProperties
-import java.util.concurrent.atomic.AtomicInteger
 
 abstract class SubCommand(@JvmField val parent: Command) {
 
     @JvmField
     val props: SubCommandProperties = this::class.java.getAnnotation(SubCommandProperties::class.java)
-    val hits = AtomicInteger(0)
 
     open val help: String
         get() = "No help provided for this sub-command"
@@ -34,7 +32,6 @@ abstract class SubCommand(@JvmField val parent: Command) {
 
     @Throws(Exception::class)
     suspend fun execute(ctx: CommandContext) {
-        hits.incrementAndGet()
         if (checks(ctx)) handle(ctx)
     }
 

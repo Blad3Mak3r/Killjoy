@@ -17,12 +17,12 @@
 
 package dev.killjoy.bot.valorant
 
-import net.dv8tion.jda.api.EmbedBuilder
-import org.json.JSONArray
-import org.json.JSONObject
 import dev.killjoy.apis.riot.RiotAPI
 import dev.killjoy.bot.framework.ColorExtra
 import dev.killjoy.bot.utils.extensions.isUrl
+import net.dv8tion.jda.api.EmbedBuilder
+import org.json.JSONArray
+import org.json.JSONObject
 
 @Suppress("unused")
 data class ValorantAgent (

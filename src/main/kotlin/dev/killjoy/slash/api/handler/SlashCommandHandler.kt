@@ -15,12 +15,12 @@
 
 package dev.killjoy.slash.api.handler
 
+import dev.killjoy.slash.api.AbstractSlashCommand
+import dev.killjoy.slash.utils.SlashUtils
 import net.dv8tion.jda.api.events.GenericEvent
 import net.dv8tion.jda.api.events.interaction.SlashCommandEvent
 import net.dv8tion.jda.api.hooks.EventListener
 import org.slf4j.Logger
-import dev.killjoy.slash.api.AbstractSlashCommand
-import dev.killjoy.slash.utils.SlashUtils
 
 interface SlashCommandHandler : EventListener {
     val registry: List<AbstractSlashCommand>

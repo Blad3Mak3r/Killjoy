@@ -16,16 +16,6 @@
 package dev.killjoy.bot
 
 import com.typesafe.config.ConfigException
-import net.dv8tion.jda.api.entities.Activity
-import net.dv8tion.jda.api.entities.ApplicationInfo
-import net.dv8tion.jda.api.requests.GatewayIntent
-import net.dv8tion.jda.api.sharding.DefaultShardManagerBuilder
-import net.dv8tion.jda.api.sharding.ShardManager
-import net.dv8tion.jda.api.utils.Compression
-import net.dv8tion.jda.api.utils.cache.CacheFlag
-import net.hugebot.ratelimiter.RateLimiter
-import okhttp3.OkHttpClient
-import org.slf4j.LoggerFactory
 import dev.killjoy.apis.stats.StatsPosting
 import dev.killjoy.apis.stats.Website
 import dev.killjoy.bot.framework.CommandRegistry
@@ -41,21 +31,26 @@ import dev.killjoy.bot.valorant.ValorantMap
 import dev.killjoy.bot.valorant.ValorantWeapon
 import dev.killjoy.slash.api.handler.DefaultSlashCommandHandler
 import dev.killjoy.slash.api.handler.SlashCommandHandler
+import net.dv8tion.jda.api.entities.Activity
+import net.dv8tion.jda.api.entities.ApplicationInfo
+import net.dv8tion.jda.api.requests.GatewayIntent
+import net.dv8tion.jda.api.sharding.DefaultShardManagerBuilder
+import net.dv8tion.jda.api.sharding.ShardManager
+import net.dv8tion.jda.api.utils.Compression
+import net.dv8tion.jda.api.utils.cache.CacheFlag
+import net.hugebot.ratelimiter.RateLimiter
+import org.slf4j.LoggerFactory
 import java.util.concurrent.TimeUnit
 import javax.security.auth.login.LoginException
 import kotlin.properties.Delegates
 
+@Suppress("MemberVisibilityCanBePrivate", "SpellCheckingInspection")
 object Launcher {
-
-    val httpClient: OkHttpClient = OkHttpClient()
 
     lateinit var shardManager: ShardManager
         private set
 
     var pid by Delegates.notNull<Long>()
-        private set
-
-    lateinit var config: Any
         private set
 
     lateinit var info: ApplicationInfo
@@ -79,7 +74,10 @@ object Launcher {
     lateinit var maps: List<ValorantMap>
         private set
 
-    val rateLimiter: RateLimiter = RateLimiter.Builder().setQuota(20).setExpirationTime(1, TimeUnit.MINUTES).build()
+    val rateLimiter: RateLimiter = RateLimiter.Builder()
+        .setQuota(20)
+        .setExpirationTime(1, TimeUnit.MINUTES)
+        .build()
 
     @JvmStatic
     @Throws(LoginException::class, ConfigException::class)
@@ -153,12 +151,6 @@ object Launcher {
     fun getWeaponById(id: String) = arsenal.find { it.id.equals(id, true) }
 
     fun getMap(name: String) = maps.find { it.name.equals(name, true) }
-
-    fun getAgentsByRole(name: String): List<ValorantAgent>? {
-        val result = kotlin.runCatching { ValorantAgent.Role.of(name) }
-        if (result.isFailure) return null
-        return agents.filter { it.role === result.getOrNull()!! }
-    }
 
     fun getAbilities() = agents.map { it.abilities }.reduce { acc, list -> acc + list }
 

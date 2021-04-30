@@ -15,7 +15,7 @@
 
 package dev.killjoy.bot.valorant
 
-@Suppress("unused")
+@Suppress("unused", "MemberVisibilityCanBePrivate")
 enum class Ranks(
         val id: Int,
         val emoji: String

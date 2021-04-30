@@ -19,6 +19,7 @@ import dev.killjoy.bot.INVITE_URL
 import dev.killjoy.slash.api.AbstractSlashCommand
 import dev.killjoy.slash.api.SlashCommandContext
 
+@Suppress("unused")
 class InviteSlashCommand : AbstractSlashCommand("invite") {
 
     override suspend fun handle(ctx: SlashCommandContext) {

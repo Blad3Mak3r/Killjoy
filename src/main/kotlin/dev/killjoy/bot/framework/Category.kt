@@ -17,7 +17,7 @@ package dev.killjoy.bot.framework
 import net.dv8tion.jda.api.Permission
 
 enum class Category(
-        val emoji: String,
+        @Suppress("unused") val emoji: String,
         val isEnabled: Boolean,
         val isPublic: Boolean,
         val permissions: Set<Permission>,
