@@ -1,6 +1,8 @@
-<img alt="Avatar" align="right" src="https://github.com/KilljoyBot/KilljoyAssets/raw/master/img/avatar.jpg" height="200" width="200">
+<p align="center">
+    <a href="https://killjoy.dev" target="_blank"><img src="/Branding/logo.svg" width="250" alt="Killjoy Logo"></a>
+</p>
 
-# KILLJOY ([Invite][invitation])
+## [Add to Discord][invitation]
 [![TeamCity Full Build Status](https://img.shields.io/teamcity/build/s/Killjoy_Build?label=Build%20Status&server=https%3A%2F%2Fhugebot.beta.teamcity.com)](https://hugebot.beta.teamcity.com/buildConfiguration/Killjoy_Build?mode=builds&guest=1)
 [![Gradle Check](https://github.com/Blad3Mak3r/Killjoy/actions/workflows/gradle.yml/badge.svg)](https://github.com/Blad3Mak3r/Killjoy/actions/workflows/gradle.yml)
 ![Discord](https://img.shields.io/discord/425661010662260736?logo=discord)
