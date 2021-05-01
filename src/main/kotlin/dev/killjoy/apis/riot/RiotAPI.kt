@@ -21,6 +21,7 @@ import dev.killjoy.apis.riot.entities.RankedPlayer
 import dev.killjoy.apis.riot.entities.RankedPlayerList
 import dev.killjoy.apis.riot.entities.Region
 import kong.unirest.Unirest
+import kong.unirest.json.JSONObject
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -56,7 +57,17 @@ object RiotAPI {
             val content = r.body.`object`
 
             val list = content.getJSONArray("players")
-                .map { RankedPlayer(it as org.json.JSONObject) }
+                .map {
+                    it as JSONObject
+                    RankedPlayer(
+                        it.getString("puuid"),
+                        it.getString("gameName"),
+                        it.getString("tagLine"),
+                        it.getInt("leaderboardRank"),
+                        it.getInt("rankedRating"),
+                        it.getInt("numberOfWins")
+                    )
+                }
                 .sortedBy { p -> p.leaderboardRank }
 
             val rankedList = RankedPlayerList(System.currentTimeMillis(), list)
