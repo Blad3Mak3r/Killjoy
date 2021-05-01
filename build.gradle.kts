@@ -20,7 +20,7 @@ java {
 }
 
 application {
-    mainClassName = "dev.killjoy.discord.Launcher"
+    mainClassName = "dev.killjoy.bot.Launcher"
 }
 
 group = "dev.killjoy"
