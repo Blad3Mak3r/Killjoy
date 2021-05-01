@@ -17,6 +17,7 @@ package dev.killjoy.slash.api
 
 import dev.killjoy.bot.framework.ColorExtra
 import dev.killjoy.bot.utils.Emojis
+import dev.killjoy.slash.utils.SlashUtils.asEphemeral
 import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.entities.Guild
@@ -75,8 +76,9 @@ class SlashCommandContext(
             build()
         }
 
-        return if (event.isAcknowledged) hook.sendMessage(embed)
-        else event.reply(embed)
+        val action = if (event.isAcknowledged) hook.sendMessage(embed) else event.reply(embed)
+
+        return action.asEphemeral()
     }
 
     fun getOption(name: String) = event.getOption(name)
@@ -84,6 +86,14 @@ class SlashCommandContext(
     fun reply(content: String) = event.reply(content)
 
     fun reply(embed: MessageEmbed) = event.reply(embed)
+
+    fun replyEmbed(builder: EmbedBuilder.() -> Unit): CommandReplyAction {
+        val embed = EmbedBuilder()
+            .setColor(ColorExtra.VAL_RED)
+            .apply(builder).build()
+
+        return event.reply(embed)
+    }
 
     fun send(content: String) = hook.sendMessage(content)
 

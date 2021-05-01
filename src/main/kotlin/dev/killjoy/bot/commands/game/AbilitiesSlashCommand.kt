@@ -18,14 +18,25 @@ package dev.killjoy.bot.commands.game
 import dev.killjoy.bot.Launcher
 import dev.killjoy.slash.api.AbstractSlashCommand
 import dev.killjoy.slash.api.SlashCommandContext
+import dev.killjoy.slash.api.annotations.SlashSubCommand
 import kotlin.math.ceil
 
 @Suppress("unused")
 class AbilitiesSlashCommand : AbstractSlashCommand("abilities") {
 
-    override suspend fun handle(ctx: SlashCommandContext) {
-        ctx.acknowledge().queue()
+    @SlashSubCommand("info")
+    fun info(ctx: SlashCommandContext) {
 
+        val option = ctx.getOption("name")!!.asString
+
+        val ability = Launcher.getAbility(option)
+            ?: return ctx.sendNotFound("Ability not found.").queue()
+
+        ctx.reply(ability.asEmbed()).queue()
+    }
+
+    @SlashSubCommand("all")
+    fun all(ctx: SlashCommandContext) {
         val abilities = Launcher.getAbilities().sortedBy { it.skill.name }
 
         val page = ctx.getOption("page")?.asString?.toInt() ?: 1
@@ -36,7 +47,7 @@ class AbilitiesSlashCommand : AbstractSlashCommand("abilities") {
         val firstIndex = if (pageIndex <= 0) 0 else (pageIndex * MAX_ABILITIES_PER_PAGE)
         val lastIndex = (firstIndex + MAX_ABILITIES_PER_PAGE).coerceAtMost(abilities.size)
 
-        ctx.sendEmbed {
+        ctx.replyEmbed {
             setTitle("Valorant Abilities")
             setDescription("")
             for (index in firstIndex until lastIndex) {

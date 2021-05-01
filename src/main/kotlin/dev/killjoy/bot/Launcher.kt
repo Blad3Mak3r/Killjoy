@@ -153,6 +153,7 @@ object Launcher {
     fun getMap(name: String) = maps.find { it.name.equals(name, true) }
 
     fun getAbilities() = agents.map { it.abilities }.reduce { acc, list -> acc + list }
+    fun getAbility(name: String) = getAbilities().find { it.skill.name.equals(name, true) }
 
     fun getSkills() = agents.map { it.skills }.reduce { acc, list -> acc + list }
 

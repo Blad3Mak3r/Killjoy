@@ -15,7 +15,27 @@
 
 package dev.killjoy.bot.valorant
 
-data class AgentAbility(
+import dev.killjoy.bot.framework.ColorExtra
+import net.dv8tion.jda.api.EmbedBuilder
+import net.dv8tion.jda.api.entities.MessageEmbed
+
+class AgentAbility(
     val agent: ValorantAgent,
     val skill: ValorantAgent.Skill
-)
+) {
+
+    fun asEmbed(): MessageEmbed {
+        return EmbedBuilder().run {
+            setAuthor(agent.name, null, agent.avatar)
+            setTitle(skill.name)
+            setDescription(skill.info)
+            setThumbnail(skill.iconUrl)
+            setImage(skill.preview)
+            addField("Action Button", skill.button.name, true)
+            addField("Usage Cost", skill.cost, true)
+            setColor(ColorExtra.VAL_RED)
+            build()
+        }
+    }
+
+}

@@ -3,10 +3,30 @@
   "description": "Get information on all the abilities in the game.",
   "options": [
     {
-      "type": 4,
-      "name": "page",
-      "description": "Abilities list page you want to access.",
-      "required": false
+      "type": 1,
+      "name": "all",
+      "description": "Get information on all the abilities in the game.",
+      "options": [
+        {
+          "type": 4,
+          "name": "page",
+          "description": "Abilities list page you want to access.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "name": "info",
+      "description": "Information about a specific ability.",
+      "options": [
+        {
+          "type": 3,
+          "name": "name",
+          "description": "The name of the ability.",
+          "required": true
+        }
+      ]
     }
   ]
 }

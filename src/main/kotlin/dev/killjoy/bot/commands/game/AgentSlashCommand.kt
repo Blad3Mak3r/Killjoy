@@ -50,27 +50,6 @@ class AgentSlashCommand : AbstractSlashCommand("agents") {
 
             ctx.send(agent.asEmbed()).queue()
 
-        } else if (agentName != null && skillName != null) {
-
-            val agent = findAgent(agentName)
-                ?: return ctx.sendNotFound("Agent with name or number ``$agentName`` does not exists.").queue()
-
-            val skill = agent.skills.find { it.button.name.equals(skillName, true) }
-                ?: return ctx.sendNotFound("I have not been able to find that skill...").queue()
-
-            val embed = EmbedBuilder().apply {
-                setAuthor(agent.name, null, agent.avatar)
-                setTitle(skill.name)
-                setDescription(skill.info)
-                setThumbnail(skill.iconUrl)
-                setImage(skill.preview)
-                addField("Action Button", skill.button.name, true)
-                addField("Usage Cost", skill.cost, true)
-                setColor(ColorExtra.VAL_RED)
-            }.build()
-
-            ctx.send(embed).queue()
-
         } else {
 
             ctx.send("In order to see the abilities of the agents you need to choose an agent first.").queue()
