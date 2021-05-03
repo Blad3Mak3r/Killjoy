@@ -60,7 +60,7 @@ dependencies {
 tasks {
     named<ShadowJar>("shadowJar") {
         manifest {
-            attributes["Main-Class"] = "tv.blademaker.killjoy.Launcher"
+            attributes["Main-Class"] = "dev.killjoy.bot.Launcher"
         }
         archiveBaseName.set("Killjoy")
         archiveClassifier.set("")
