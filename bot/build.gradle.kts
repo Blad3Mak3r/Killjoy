@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
-val ktorVersion = "1.5.3"
+val ktorVersion = "1.5.4"
 val coroutinesVersion = "1.4.3-native-mt"
 val prometheusVersion = "0.10.0"
 
