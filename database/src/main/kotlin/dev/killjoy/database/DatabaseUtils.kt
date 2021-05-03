@@ -13,11 +13,16 @@
  * See the License for the specific language governing permissions and limitations under the License.
  ******************************************************************************/
 
-package dev.killjoy.bot
+package dev.killjoy.database
 
-const val INVITE_URL = "https://discord.com/oauth2/authorize?client_id=706887214088323092&permissions=321600&scope=bot%20applications.commands"
-const val REPOSITORY_URL = "https://github.com/Blad3Mak3r/Killjoy"
-const val WEBSITE_URL = "https://killjoy.blademaker.tv"
-const val BUG_REPORT_URL = "https://github.com/Blad3Mak3r/Killjoy/issues/new?template=bug_report.md"
+import com.zaxxer.hikari.HikariDataSource
+import org.jetbrains.exposed.sql.Database
 
-internal inline fun <reified T> getConfig(property: String, fallback: T): T = BotConfig.getOrDefault("database.$property", fallback)
+typealias DatabaseConnection = Database
+
+private val LOCAL_ADDRESS_REGEX = "(localhost|(192|127|10)\\.(\\d){1,3}\\.(\\d){1,3}\\.(\\d))".toRegex()
+
+internal fun discoverSslMode(host: String): String {
+    return if (LOCAL_ADDRESS_REGEX matches host) "allow"
+    else "require"
+}
