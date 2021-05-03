@@ -5,8 +5,6 @@ val ktorVersion = "1.5.3"
 val coroutinesVersion = "1.4.3-native-mt"
 val prometheusVersion = "0.10.0"
 
-val moduleName = "killjoy"
-
 dependencies {
     //Kotlin
     implementation(kotlin("stdlib"))
@@ -15,6 +13,9 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:$coroutinesVersion")
 
+    //Database
+    implementation(project(":database"))
+
     //Reflections
     implementation("org.reflections:reflections:0.9.12")
 
@@ -22,14 +23,6 @@ dependencies {
     implementation("net.hugebot:RateLimiter:1.1")
     implementation("com.github.killjoybot:Valorant.API:0.1")
 
-    //Common
-    //implementation("net.dv8tion:JDA:4.2.0_255") { exclude(module = "opus-java") }
-    implementation("com.github.DV8FromTheWorld:JDA:feature~slash-commands-SNAPSHOT") { exclude(module = "opus-java") }
-
-    //Logging
-    implementation("ch.qos.logback:logback-classic:1.2.3")
-
-    implementation("io.sentry:sentry:4.3.0")
     implementation("com.google.guava:guava:30.1.1-jre")
 
     //HTTP Clients

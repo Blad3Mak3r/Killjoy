@@ -29,6 +29,7 @@ import dev.killjoy.bot.utils.extensions.isInt
 import dev.killjoy.bot.valorant.ValorantAgent
 import dev.killjoy.bot.valorant.ValorantMap
 import dev.killjoy.bot.valorant.ValorantWeapon
+import dev.killjoy.database.Database
 import dev.killjoy.slash.api.handler.DefaultSlashCommandHandler
 import dev.killjoy.slash.api.handler.SlashCommandHandler
 import net.dv8tion.jda.api.entities.Activity
@@ -46,6 +47,9 @@ import kotlin.properties.Delegates
 
 @Suppress("MemberVisibilityCanBePrivate", "SpellCheckingInspection")
 object Launcher {
+
+    lateinit var database: Database
+        private set
 
     lateinit var shardManager: ShardManager
         private set
@@ -90,6 +94,8 @@ object Launcher {
         //Initialize sentry
         SentryUtils.init()
 
+        database = buildDatabaseConnection()
+
         // Load entities after banner
         agents = Loaders.loadAgents()
         arsenal = Loaders.loadArsenal()
@@ -133,6 +139,16 @@ object Launcher {
             .build()
 
         enableListing()
+    }
+
+    private fun buildDatabaseConnection(): Database {
+        val host = getConfig("host", "localhost")
+        val port = getConfig("port", 5432)
+        val user = getConfig("user", "killjoy")
+        val password = getConfig("password", "killjoy")
+        val name = getConfig("name", "killjoy")
+
+        return Database(host, port, user, password, name)
     }
 
     /**
