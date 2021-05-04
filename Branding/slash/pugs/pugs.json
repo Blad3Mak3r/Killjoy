@@ -4,8 +4,8 @@
   "options": [
     {
       "type": 1,
-      "name": "info",
-      "description": "Information about the active PUG on this guild."
+      "name": "current",
+      "description": "Information about the currently active PUG on this guild."
     },
     {
       "type": 1,
