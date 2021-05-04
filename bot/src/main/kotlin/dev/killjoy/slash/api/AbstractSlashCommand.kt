@@ -15,10 +15,13 @@
 
 package dev.killjoy.slash.api
 
+import dev.killjoy.bot.utils.Emojis
 import dev.killjoy.slash.api.annotations.Permissions
 import dev.killjoy.slash.api.annotations.SlashSubCommand
 import dev.killjoy.slash.utils.SlashUtils
 import io.sentry.Sentry
+import io.sentry.SentryEvent
+import io.sentry.protocol.Message
 import org.slf4j.LoggerFactory
 import java.util.function.Predicate
 import kotlin.reflect.KFunction
@@ -64,7 +67,17 @@ abstract class AbstractSlashCommand(val commandName: String) {
 
                 subCommand.execute(this, ctx)
             } catch (e: Exception) {
-                LOGGER.error("Exception executing handler for option $subCommandName")
+                val message = "Exception executing handler for option $subCommandName... **${e.message}**"
+                LOGGER.error(message, e)
+                Sentry.captureEvent(SentryEvent().apply {
+                    this.message = Message().apply {
+                        this.message = "Exception executing handler for option $subCommandName, ${e.message}"
+                    }
+                    throwable = e
+                })
+
+                if (ctx.event.isAcknowledged) ctx.send(Emojis.Cancel, message).setEphemeral(true).queue()
+                else ctx.reply(Emojis.Cancel, message).setEphemeral(true).queue()
                 return true
             }
             return true

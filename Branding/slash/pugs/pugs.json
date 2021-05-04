@@ -1,0 +1,36 @@
+{
+  "name": "pugs",
+  "description": "Pugs commands.",
+  "options": [
+    {
+      "type": 1,
+      "name": "info",
+      "description": "Information about the active PUG on this guild."
+    },
+    {
+      "type": 1,
+      "name": "join",
+      "description": "Join the active PUG on this guild."
+    },
+    {
+      "type": 1,
+      "name": "teams",
+      "description": "Create two random teams of registered players, with a minimum of 4 registered players."
+    },
+    {
+      "type": 1,
+      "name": "leave",
+      "description": "Leave the active PUG on this guild."
+    },
+    {
+      "type": 1,
+      "name": "create",
+      "description": "Start a new PUG on this guild, requires Manage Server permissions."
+    },
+    {
+      "type": 1,
+      "name": "close",
+      "description": "Close the active PUG, requires Manage Server permissions."
+    }
+  ]
+}
