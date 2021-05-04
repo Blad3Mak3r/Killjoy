@@ -31,8 +31,8 @@ import net.dv8tion.jda.api.Permission
 @Suppress("unused")
 class PugsSlashCommand : AbstractSlashCommand("pugs") {
 
-    @SlashSubCommand("info")
-    suspend fun info(ctx: SlashCommandContext) {
+    @SlashSubCommand("current")
+    suspend fun current(ctx: SlashCommandContext) {
         ctx.acknowledge().queue()
         val pug = Launcher.database.pugs.findByGuild(ctx.guild)
             ?: return ctx.send(Emojis.NoEntry, NOT_ACTIVE_PUG).setEphemeral(true).queue()
