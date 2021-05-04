@@ -1,2 +1,2 @@
-docker:
-	docker build -t blademaker/killjoy:latest -t blademaker/killjoy:$(version) .
+build:
+	gradlew clean buildBot

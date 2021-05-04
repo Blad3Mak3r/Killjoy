@@ -1,3 +1,5 @@
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+
 plugins {
     kotlin("jvm") version "1.5.0"
     id("com.github.johnrengelman.shadow") version "6.1.0"
@@ -62,3 +64,15 @@ application {
 
 group = "dev.killjoy"
 version = "0.9.2"
+
+tasks {
+    named("clean") {
+        subprojects.forEach {
+            dependsOn(it.tasks.clean)
+        }
+    }
+
+    register<ShadowJar>("buildBot") {
+        dependsOn(":bot:shadowJar")
+    }
+}
