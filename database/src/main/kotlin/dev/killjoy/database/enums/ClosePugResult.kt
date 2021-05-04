@@ -15,9 +15,8 @@
 
 package dev.killjoy.database.enums
 
-enum class JoinPugStatus {
-    Joined,
-    AlreadyJoined,
-    CantJoin,
-    PugDoesNotExists
+enum class ClosePugResult {
+    Closed,
+    CantClose,
+    NotActivePug
 }

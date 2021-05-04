@@ -20,10 +20,7 @@ import dev.killjoy.bot.utils.Emojis
 import dev.killjoy.slash.utils.SlashUtils.asEphemeral
 import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.JDA
-import net.dv8tion.jda.api.entities.Guild
-import net.dv8tion.jda.api.entities.Member
-import net.dv8tion.jda.api.entities.MessageEmbed
-import net.dv8tion.jda.api.entities.TextChannel
+import net.dv8tion.jda.api.entities.*
 import net.dv8tion.jda.api.events.interaction.SlashCommandEvent
 import net.dv8tion.jda.api.interactions.commands.CommandHook
 import net.dv8tion.jda.api.requests.RestAction
@@ -60,6 +57,9 @@ class SlashCommandContext(
     val channel: TextChannel
         get() = event.channel as TextChannel
 
+    val author: User
+        get() = event.user
+
     fun acknowledge(ephemeral: Boolean = false): CommandReplyAction {
         if (!isAck.compareAndSet(false, true)) {
             throw IllegalStateException("Current command is already ack.")
@@ -84,6 +84,8 @@ class SlashCommandContext(
     fun getOption(name: String) = event.getOption(name)
 
     fun reply(content: String) = event.reply(content)
+
+    fun reply(emoji: Emojis, content: String) = event.reply("${emoji.getCode(this)} $content")
 
     fun reply(embed: MessageEmbed) = event.reply(embed)
 

@@ -15,25 +15,36 @@
 
 package dev.killjoy.database.models
 
+import dev.killjoy.database.extensions.array
+import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.entities.Guild
+import net.dv8tion.jda.api.entities.MessageEmbed
 import net.dv8tion.jda.api.entities.User
 import org.jetbrains.exposed.dao.UUIDEntity
 import org.jetbrains.exposed.dao.UUIDEntityClass
 import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.id.UUIDTable
+import org.jetbrains.exposed.sql.LongColumnType
+import org.jetbrains.exposed.sql.`java-time`.timestamp
+import java.awt.Color
+import java.time.Instant
 import java.util.*
 
 object PugsTable : UUIDTable("pugs") {
     val guildId = long("guild_id")
     val ownerId = long("owner_id")
-    val isActive = bool("active").default(true)
+    val isActive = bool("is_active").default(true)
+    val players = array<Long>("players", LongColumnType())
+    val createdAt = timestamp("created_at").clientDefault { Instant.now() }
 }
 
+@Suppress("MemberVisibilityCanBePrivate")
 class Pug(id: EntityID<UUID>) : UUIDEntity(id) {
     companion object : UUIDEntityClass<Pug>(PugsTable) {
-        fun newWithOwner(owner: User, guild: Guild) = new(UUID.randomUUID()) {
+        fun newWithOwner(owner: User, guild: Guild) = new(null) {
             guildId = guild.idLong
             ownerId = owner.idLong
+            players = arrayOf(owner.idLong)
         }
     }
 
@@ -45,4 +56,44 @@ class Pug(id: EntityID<UUID>) : UUIDEntity(id) {
 
     var isActive by PugsTable.isActive
         internal set
+
+    var players by PugsTable.players
+        internal set
+
+    var createdAt by PugsTable.createdAt
+        private set
+
+    val taggedPlayers: List<String>
+        get() = players.map { "<@$it>" }
+
+    fun addPlayer(user: User): Boolean {
+        if (players.size >= 12) return false
+        val playersList = players.toMutableList()
+        playersList.add(user.idLong)
+        players = playersList.toTypedArray()
+        return flush()
+    }
+
+    fun removePlayer(user: User): Boolean {
+        val playersList = players.toMutableList()
+        playersList.remove(user.idLong)
+        players = playersList.toTypedArray()
+        return flush()
+    }
+
+    fun close(): Boolean {
+        isActive = false
+        return flush()
+    }
+
+    fun asEmbed(): MessageEmbed {
+        return EmbedBuilder().run {
+            setColor(0xFF4753)
+            setTitle("Active PUG")
+            addField("Registered players (${players.size}/12)", taggedPlayers.joinToString("\n"), false)
+            setFooter("ID(${id})")
+            setTimestamp(createdAt)
+            build()
+        }
+    }
 }
