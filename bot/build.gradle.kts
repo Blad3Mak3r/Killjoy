@@ -47,7 +47,7 @@ dependencies {
     implementation("org.jsoup:jsoup:1.13.1")
 
     //Cache
-    implementation("com.github.ben-manes.caffeine:caffeine:2.8.8")
+    implementation("com.github.ben-manes.caffeine:caffeine:3.0.2")
 
     testImplementation("junit:junit:4.13.2")
 
