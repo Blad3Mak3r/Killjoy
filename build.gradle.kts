@@ -9,7 +9,7 @@ plugins {
     idea
 }
 
-val exposedVersion = "0.30.2"
+val exposedVersion = "0.31.1"
 
 allprojects {
     group = rootProject.group
