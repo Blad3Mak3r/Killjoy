@@ -33,7 +33,7 @@ allprojects {
     dependencies {
         //Common
         //implementation("net.dv8tion:JDA:4.2.0_255") { exclude(module = "opus-java") }
-        implementation("com.github.DV8FromTheWorld:JDA:feature~slash-commands-SNAPSHOT") { exclude(module = "opus-java") }
+        implementation("com.github.DV8FromTheWorld:JDA:29f888d03d") { exclude(module = "opus-java") }
 
         //Logging
         implementation("ch.qos.logback:logback-classic:1.2.3")

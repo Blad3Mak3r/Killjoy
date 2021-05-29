@@ -23,7 +23,7 @@ import dev.killjoy.slash.api.SlashCommandContext
 class ArsenalSlashCommand : AbstractSlashCommand("arsenal") {
 
     override suspend fun handle(ctx: SlashCommandContext) {
-        ctx.event.acknowledge().queue()
+        ctx.event.deferReply().queue()
 
         val selection = ctx.getOption("weapon")?.asString
 

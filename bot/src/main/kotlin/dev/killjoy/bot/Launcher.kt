@@ -21,14 +21,12 @@ import dev.killjoy.apis.stats.Website
 import dev.killjoy.bot.framework.CommandRegistry
 import dev.killjoy.bot.listeners.MainListener
 import dev.killjoy.bot.prometheus.Prometheus
-import dev.killjoy.bot.utils.CooldownManager
-import dev.killjoy.bot.utils.Loaders
-import dev.killjoy.bot.utils.SentryUtils
-import dev.killjoy.bot.utils.Utils
+import dev.killjoy.bot.utils.*
 import dev.killjoy.bot.utils.extensions.isInt
 import dev.killjoy.bot.valorant.ValorantAgent
 import dev.killjoy.bot.valorant.ValorantMap
 import dev.killjoy.bot.valorant.ValorantWeapon
+import dev.killjoy.bot.webhook.WebhookUtils
 import dev.killjoy.database.Database
 import dev.killjoy.slash.api.handler.DefaultSlashCommandHandler
 import dev.killjoy.slash.api.handler.SlashCommandHandler
@@ -110,6 +108,8 @@ object Launcher {
             Prometheus()
         }
 
+        BotConfig.getOrNull<String>("webhook_url")?.let { WebhookUtils.init(it) }
+
         shardManager = DefaultShardManagerBuilder.createLight(BotConfig.token)
             .setShardsTotal(-1)
             .setActivity(Activity.competing("Valorant | joy help"))
@@ -118,6 +118,7 @@ object Launcher {
                 MainListener(),
                 slashCommandHandler
             )
+            .setEventPool(Utils.newThreadFactory("jda-event-worker-%d", 4, 20, 6L, TimeUnit.MINUTES))
             .setCompression(Compression.ZLIB)
             .setEnableShutdownHook(true)
             .enableIntents(

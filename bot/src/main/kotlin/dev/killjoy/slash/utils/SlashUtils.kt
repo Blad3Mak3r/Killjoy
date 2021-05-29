@@ -21,10 +21,12 @@ import dev.killjoy.slash.api.annotations.Permissions
 import net.dv8tion.jda.api.Permission
 import net.dv8tion.jda.api.entities.Member
 import net.dv8tion.jda.api.events.interaction.SlashCommandEvent
+import net.dv8tion.jda.api.interactions.commands.OptionMapping
 import net.dv8tion.jda.api.interactions.commands.OptionType
 import net.dv8tion.jda.api.requests.RestAction
-import net.dv8tion.jda.api.requests.restaction.CommandReplyAction
-import net.dv8tion.jda.api.requests.restaction.InteractionWebhookAction
+import net.dv8tion.jda.api.requests.restaction.WebhookMessageAction
+import net.dv8tion.jda.api.requests.restaction.WebhookMessageUpdateAction
+import net.dv8tion.jda.api.requests.restaction.interactions.ReplyAction
 import net.hugebot.extensions.toHuman
 import org.reflections.Reflections
 import org.reflections.scanners.SubTypesScanner
@@ -108,11 +110,11 @@ object SlashUtils {
         return commands
     }
 
-    fun parseOptionToString(option: SlashCommandEvent.OptionData): String {
+    fun parseOptionToString(option: OptionMapping): String {
         return "${option.name} (${optionToString(option)})"
     }
 
-    private fun optionToString(option: SlashCommandEvent.OptionData): String {
+    private fun optionToString(option: OptionMapping): String {
         return try {
             when (option.type) {
                 in LONG_TYPES -> option.asLong.toString()
@@ -129,8 +131,8 @@ object SlashUtils {
     @Suppress("unused")
     fun RestAction<*>.asEphemeral(): RestAction<*> {
         when(this) {
-            is CommandReplyAction -> this.setEphemeral(true)
-            is InteractionWebhookAction -> this.setEphemeral(true)
+            is ReplyAction -> this.setEphemeral(true)
+            is WebhookMessageAction<*> -> this.setEphemeral(true)
         }
 
         return this

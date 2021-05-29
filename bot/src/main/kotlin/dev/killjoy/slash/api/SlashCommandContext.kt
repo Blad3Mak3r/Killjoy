@@ -22,10 +22,11 @@ import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.entities.*
 import net.dv8tion.jda.api.events.interaction.SlashCommandEvent
-import net.dv8tion.jda.api.interactions.commands.CommandHook
+import net.dv8tion.jda.api.interactions.InteractionHook
+import net.dv8tion.jda.api.interactions.commands.OptionMapping
 import net.dv8tion.jda.api.requests.RestAction
-import net.dv8tion.jda.api.requests.restaction.CommandReplyAction
-import net.dv8tion.jda.api.requests.restaction.InteractionWebhookAction
+import net.dv8tion.jda.api.requests.restaction.WebhookMessageAction
+import net.dv8tion.jda.api.requests.restaction.interactions.ReplyAction
 import java.util.concurrent.atomic.AtomicBoolean
 
 @Suppress("unused")
@@ -39,10 +40,10 @@ class SlashCommandContext(
         get() = event.jda
 
     @Suppress("MemberVisibilityCanBePrivate")
-    val hook: CommandHook
+    val hook: InteractionHook
         get() = event.hook
 
-    val options: List<SlashCommandEvent.OptionData>
+    val options: List<OptionMapping>
         get() = event.options
 
     val guild: Guild
@@ -60,11 +61,11 @@ class SlashCommandContext(
     val author: User
         get() = event.user
 
-    fun acknowledge(ephemeral: Boolean = false): CommandReplyAction {
+    fun acknowledge(ephemeral: Boolean = false): ReplyAction {
         if (!isAck.compareAndSet(false, true)) {
             throw IllegalStateException("Current command is already ack.")
         }
-        return event.acknowledge(ephemeral)
+        return event.deferReply(ephemeral)
     }
 
     fun sendNotFound(description: String = "I couldn't find what you were looking for."): RestAction<*> {
@@ -76,7 +77,7 @@ class SlashCommandContext(
             build()
         }
 
-        val action = if (event.isAcknowledged) hook.sendMessage(embed) else event.reply(embed)
+        val action = if (event.isAcknowledged) hook.sendMessageEmbeds(embed) else event.replyEmbeds(embed)
 
         return action.asEphemeral()
     }
@@ -87,29 +88,29 @@ class SlashCommandContext(
 
     fun reply(emoji: Emojis, content: String) = event.reply("${emoji.getCode(this)} $content")
 
-    fun reply(embed: MessageEmbed) = event.reply(embed)
+    fun reply(embed: MessageEmbed) = event.replyEmbeds(embed)
 
-    fun replyEmbed(builder: EmbedBuilder.() -> Unit): CommandReplyAction {
+    fun replyEmbed(builder: EmbedBuilder.() -> Unit): ReplyAction {
         val embed = EmbedBuilder()
             .setColor(ColorExtra.VAL_RED)
             .apply(builder).build()
 
-        return event.reply(embed)
+        return event.replyEmbeds(embed)
     }
 
     fun send(content: String) = hook.sendMessage(content)
 
     fun send(emoji: Emojis, message: String) = hook.sendMessage("${emoji.getCode(this)} $message")
 
-    fun send(embed: MessageEmbed) = hook.sendMessage(embed)
+    fun send(embed: MessageEmbed) = hook.sendMessageEmbeds(embed)
 
-    fun send(embedBuilder: EmbedBuilder) = hook.sendMessage(embedBuilder.build())
+    fun send(embedBuilder: EmbedBuilder) = hook.sendMessageEmbeds(embedBuilder.build())
 
-    fun sendEmbed(builder: EmbedBuilder.() -> Unit): InteractionWebhookAction {
+    fun sendEmbed(builder: EmbedBuilder.() -> Unit): WebhookMessageAction<Message> {
         val embed = EmbedBuilder()
             .setColor(ColorExtra.VAL_RED)
             .apply(builder).build()
 
-        return hook.sendMessage(embed)
+        return hook.sendMessageEmbeds(embed)
     }
 }

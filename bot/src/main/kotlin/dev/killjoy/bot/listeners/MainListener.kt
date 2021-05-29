@@ -15,9 +15,11 @@
 
 package dev.killjoy.bot.listeners
 
+import club.minnced.discord.webhook.send.WebhookEmbed
 import dev.killjoy.bot.Launcher
 import dev.killjoy.bot.prometheus.exporters.Metrics
 import dev.killjoy.bot.utils.Utils
+import dev.killjoy.bot.webhook.WebhookUtils
 import io.sentry.Sentry
 import net.dv8tion.jda.api.events.*
 import net.dv8tion.jda.api.events.guild.GuildJoinEvent
@@ -51,22 +53,22 @@ class MainListener : EventListener {
      * Guild events
      */
 
-    private fun onGuildJoin(event: GuildJoinEvent) = handleEvent {
+    private fun onGuildJoin(event: GuildJoinEvent) {
         if (event.guild.selfMember.timeJoined.isBefore(OffsetDateTime.now().minusSeconds(30)))
-            return@handleEvent
+            return
 
         logger.info("Joined Guild: ${event.guild.name}::${event.guild.id} with a total of ${event.guild.memberCount} members.")
-
+        WebhookUtils.sendJoinGuild(event.guild)
         Metrics.updateShardStats(event.jda)
     }
 
-    private fun onGuildLeave(event: GuildLeaveEvent) = handleEvent {
+    private fun onGuildLeave(event: GuildLeaveEvent) {
         logger.info("Left Guild: ${event.guild.name}::${event.guild.id}.")
-
+        WebhookUtils.sendLeaveGuild(event.guild)
         Metrics.updateShardStats(event.jda)
     }
 
-    private fun onGuildMessageReceived(event: GuildMessageReceivedEvent) = handleEvent {
+    private fun onGuildMessageReceived(event: GuildMessageReceivedEvent) {
         Launcher.commandRegistry.onGuildMessageReceived(event)
         Metrics.increaseMessageEvents(event.jda)
     }
@@ -75,25 +77,26 @@ class MainListener : EventListener {
      * Shards events
      */
 
-    private fun onReady(event: ReadyEvent) = handleEvent {
+    private fun onReady(event: ReadyEvent) {
         logger.info("JDA Shard#${event.jda.shardInfo.shardId} ready with ${event.guildAvailableCount} guilds available(s) of ${event.guildTotalCount}.")
 
+        WebhookUtils.sendShardReady(event)
         Metrics.updateShardStats(event.jda)
     }
 
-    private fun onReconnected(event: ReconnectedEvent) = handleEvent {
+    private fun onReconnected(event: ReconnectedEvent) {
         logger.info("JDA Shard#${event.jda.shardInfo.shardId} has reconnected.")
 
         Metrics.updateShardStats(event.jda)
     }
 
-    private fun onResumed(event: ResumedEvent) = handleEvent {
+    private fun onResumed(event: ResumedEvent) {
         logger.info("JDA Shard#${event.jda.shardInfo.shardId} has resumed.")
 
         Metrics.updateShardStats(event.jda)
     }
 
-    private fun onDisconnect(event: DisconnectEvent) = handleEvent {
+    private fun onDisconnect(event: DisconnectEvent) {
         if (event.isClosedByServer) {
             logger.warn("JDA Shard#${event.jda.shardInfo.shardId} disconnected (server-side). Code: ${event.serviceCloseFrame?.closeCode ?: -1} ${event.closeCode}")
         } else {
@@ -101,7 +104,7 @@ class MainListener : EventListener {
         }
     }
 
-    private fun onException(event: ExceptionEvent) = handleEvent {
+    private fun onException(event: ExceptionEvent) {
         Sentry.captureException(event.cause)
         if (!event.isLogged)
             logger.error("Exception in JDA {}", event.jda.shardInfo.shardId, event.cause)
@@ -109,19 +112,5 @@ class MainListener : EventListener {
 
     companion object {
         private val logger = LoggerFactory.getLogger(MainListener::class.java)
-
-        //Handle events in a separate ThreadPool
-        private val EVENT_POOL = Utils.newThreadFactory("jda-event-pool-worker-%d", 4, 20, 6L, TimeUnit.MINUTES)
-        private fun handleEvent(runnable: Runnable) {
-            EVENT_POOL.execute {
-                synchronized(this) {
-                    try {
-                        runnable.run()
-                    } catch (e: Exception) {
-                        logger.error("Exception handling event.", e)
-                    }
-                }
-            }
-        }
     }
 }

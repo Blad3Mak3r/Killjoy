@@ -30,7 +30,7 @@ class TopSlashCommand : AbstractSlashCommand("top") {
         val region = Region.values().firstOrNull { it.name.equals(option, true) }
             ?: return ctx.sendNotFound("` $option ` is not a valid region. Valid regions: ${Region.asListed}").queue()
 
-        ctx.event.acknowledge().queue()
+        ctx.event.deferReply().queue()
 
         val playersList = RiotAPI.LeaderboardsAPI.getCurrentTop20(region)
         val players = playersList.players.take(10)

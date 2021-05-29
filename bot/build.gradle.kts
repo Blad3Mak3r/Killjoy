@@ -21,6 +21,9 @@ dependencies {
     //Reflections
     implementation("org.reflections:reflections:0.9.12")
 
+    //Webhooks
+    implementation("club.minnced:discord-webhooks:0.5.7")
+
     //HugeBot dependencies
     implementation("net.hugebot:RateLimiter:1.1")
     implementation("com.github.killjoybot:Valorant.API:0.1")

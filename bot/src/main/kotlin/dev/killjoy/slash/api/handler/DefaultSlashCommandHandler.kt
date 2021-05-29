@@ -62,7 +62,7 @@ class DefaultSlashCommandHandler(packageName: String) : SlashCommandHandler, Cor
                 build()
             }
 
-            event.hook.editOriginal(embed).setEphemeral(false).queue()
+            event.hook.setEphemeral(false).editOriginalEmbeds(embed).queue()
         }
     }
 

@@ -23,7 +23,7 @@ import dev.killjoy.slash.api.SlashCommandContext
 class MapsSlashCommand : AbstractSlashCommand("maps") {
 
     override suspend fun handle(ctx: SlashCommandContext) {
-        ctx.event.acknowledge().queue()
+        ctx.event.deferReply().queue()
 
         val selection = ctx.getOption("map")?.asString
 
