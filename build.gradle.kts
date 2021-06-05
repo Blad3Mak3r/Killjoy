@@ -1,15 +1,15 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
 plugins {
-    kotlin("jvm") version "1.5.0"
-    id("com.github.johnrengelman.shadow") version "6.1.0"
+    kotlin("jvm") version "1.5.10"
+    id("com.github.johnrengelman.shadow") version "7.0.0"
 
     application
     java
     idea
 }
 
-val exposedVersion = "0.30.2"
+val exposedVersion = "0.32.1"
 
 allprojects {
     group = rootProject.group
@@ -32,8 +32,7 @@ allprojects {
 
     dependencies {
         //Common
-        //implementation("net.dv8tion:JDA:4.2.0_255") { exclude(module = "opus-java") }
-        implementation("com.github.DV8FromTheWorld:JDA:29f888d03d") { exclude(module = "opus-java") }
+        implementation("net.dv8tion:JDA:4.2.1_269") { exclude(module = "opus-java") }
 
         //Logging
         implementation("ch.qos.logback:logback-classic:1.2.3")
