@@ -15,9 +15,10 @@
 
 package dev.killjoy.bot
 
-const val INVITE_URL = "https://discord.com/oauth2/authorize?client_id=706887214088323092&permissions=321600&scope=bot%20applications.commands"
+const val INVITE_URL = "https://discord.com/oauth2/authorize?client_id=706887214088323092&permissions=321600&scope=bot+applications.commands"
 const val REPOSITORY_URL = "https://github.com/Blad3Mak3r/Killjoy"
-const val WEBSITE_URL = "https://killjoy.blademaker.tv"
+const val WEBSITE_URL = "https://killjoy.dev"
 const val BUG_REPORT_URL = "https://github.com/Blad3Mak3r/Killjoy/issues/new?template=bug_report.md"
+const val VOTE_URL = "https://top.gg/bot/706887214088323092/vote"
 
 internal inline fun <reified T> getConfig(property: String, fallback: T): T = BotConfig.getOrDefault("database.$property", fallback)
