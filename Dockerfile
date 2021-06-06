@@ -1,11 +1,11 @@
-FROM gradle:6.7.0-jdk11 AS builder
+FROM gradle:7.0.2-jdk11 AS builder
 COPY --chown=gradle:gradle . /home/gradle/src
 WORKDIR /home/gradle/src
-RUN gradle --no-daemon shadowJar -i --stacktrace
+RUN gradle --no-daemon buildBot -i --stacktrace
 
-FROM azul/zulu-openjdk-alpine:11
+FROM azul/zulu-openjdk-alpine:11-jre
 EXPOSE 8080
 RUN mkdir /app
-COPY --from=builder /home/gradle/src/build/libs/KilljoyAI.jar /app/KilljoyAI.jar
+COPY --from=builder /home/gradle/bot/src/build/libs/Killjoy.jar /app/Killjoy.jar
 WORKDIR /app
-ENTRYPOINT ["java", "-Xmx4G", "-jar", "KilljoyAI.jar"]
+ENTRYPOINT ["java", "-jar", "Killjoy.jar"]
