@@ -3,9 +3,9 @@ COPY --chown=gradle:gradle . /home/gradle/src
 WORKDIR /home/gradle/src
 RUN gradle --no-daemon buildBot -i --stacktrace
 
-FROM azul/zulu-openjdk-alpine:11-jre
+FROM azul/zulu-openjdk-alpine:13-jre-headless as application
 EXPOSE 8080
 RUN mkdir /app
-COPY --from=builder /home/gradle/bot/src/build/libs/Killjoy.jar /app/Killjoy.jar
+COPY --from=builder /home/gradle/src/bot/build/libs/Killjoy.jar /app/Killjoy.jar
 WORKDIR /app
 ENTRYPOINT ["java", "-jar", "Killjoy.jar"]
