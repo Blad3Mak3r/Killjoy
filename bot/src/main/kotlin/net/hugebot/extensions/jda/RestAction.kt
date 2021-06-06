@@ -15,14 +15,7 @@
 
 package net.hugebot.extensions.jda
 
+import kotlinx.coroutines.future.await
 import net.dv8tion.jda.api.requests.RestAction
-import kotlin.coroutines.resume
-import kotlin.coroutines.resumeWithException
-import kotlin.coroutines.suspendCoroutine
 
-suspend fun <T> RestAction<T>.await() = suspendCoroutine<T> { cont ->
-    queue(
-            cont::resume,
-            cont::resumeWithException
-    )
-}
+suspend fun <T> RestAction<T>.await(): T = submit().await()
