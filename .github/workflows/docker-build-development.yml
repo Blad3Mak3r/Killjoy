@@ -2,7 +2,7 @@ name: Build and Publish Docker Container Image.
 
 on:
   push:
-    branches: [ master ]
+    branches: [ development ]
 
 jobs:
 
