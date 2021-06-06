@@ -9,7 +9,7 @@ plugins {
     idea
 }
 
-val exposedVersion = "0.30.2"
+val exposedVersion = "0.32.1"
 
 allprojects {
     group = rootProject.group
@@ -37,7 +37,7 @@ allprojects {
         //Logging
         implementation("ch.qos.logback:logback-classic:1.2.3")
 
-        implementation("io.sentry:sentry:4.3.0")
+        implementation("io.sentry:sentry:5.0.0")
     }
 
     java {
