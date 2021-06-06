@@ -1,9 +1,9 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
-val ktorVersion = "1.5.3"
-val coroutinesVersion = "1.4.3-native-mt"
-val prometheusVersion = "0.10.0"
+val ktorVersion = "1.6.0"
+val coroutinesVersion = "1.5.0-native-mt"
+val prometheusVersion = "0.11.0"
 
 val exposedVersion = ext.get("exposedVersion")
 
@@ -50,7 +50,7 @@ dependencies {
     implementation("org.jsoup:jsoup:1.13.1")
 
     //Cache
-    implementation("com.github.ben-manes.caffeine:caffeine:2.8.8")
+    implementation("com.github.ben-manes.caffeine:caffeine:3.0.2")
 
     testImplementation("junit:junit:4.13.2")
 
