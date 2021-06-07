@@ -58,11 +58,11 @@ dependencies {
 }
 
 application {
-    mainClassName = "dev.killjoy.bot.Launcher"
+    mainClass.set("dev.killjoy.bot.Launcher")
 }
 
 group = "dev.killjoy"
-version = "0.10.1"
+version = "0.10.2"
 
 tasks {
     named("clean") {
