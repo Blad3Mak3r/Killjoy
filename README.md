@@ -115,4 +115,4 @@ $ systemctl enable killjoy.service
 ```
 
 [devs_application]: https://discord.com/developers/applications
-[invitation]: https://discord.com/api/oauth2/authorize?client_id=706887214088323092&permissions=321600&scope=bot%20applications.commands%20applications.commands.update
+[invitation]: https://discord.com/api/oauth2/authorize?client_id=706887214088323092&permissions=321600&scope=bot+applications.commands
