@@ -1,2 +1,1 @@
-include("bot")
-include("database")
+rootProject.name = "Killjoy"
