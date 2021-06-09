@@ -1,6 +1,3 @@
-import org.junit.Test
-import dev.killjoy.utils.Loaders
-
 /*******************************************************************************
  * Copyright (c) 2021. Blademaker
  *
@@ -16,27 +13,22 @@ import dev.killjoy.utils.Loaders
  * See the License for the specific language governing permissions and limitations under the License.
  ******************************************************************************/
 
-class LoadersTest {
+package dev.killjoy.utils.extensions
 
-    @Test
-    fun `Load agents`() {
-        val expected = 15
-        val result = Loaders.loadAgents()
-        assert(result.size == expected) { "Agents size is not equal to expected" }
-    }
+import net.dv8tion.jda.api.Permission
+import net.dv8tion.jda.api.entities.Member
 
-    @Test
-    fun `Load maps`() {
-        val expected = 6
-        val result = Loaders.loadMaps()
-        assert(result.size == expected) { "Maps size is not equal to expected" }
-    }
+/*val Member.isBotOwner: Boolean
+    get() = Config.owners.any { it == this.id }*/
 
-    @Test
-    fun `Load arsenal`() {
-        val expected = 18
-        val result = Loaders.loadArsenal()
-        assert(result.size == expected) { "Arsenal size is not equal to expected" }
-    }
+val Member.isSelf: Boolean
+    get() = this.jda.selfUser.id == this.user.id
 
-}
+val Member.isDeafened: Boolean
+    get() = this.voiceState!!.isDeafened
+
+val Member.isManager: Boolean
+    get() = hasPermission(Permission.MANAGE_SERVER)
+
+val Member.isAdmin: Boolean
+    get() = hasPermission(Permission.ADMINISTRATOR)

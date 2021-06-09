@@ -15,10 +15,10 @@
 
 package dev.killjoy.slash.api.handler
 
-import dev.killjoy.bot.framework.ColorExtra
-import dev.killjoy.bot.utils.Utils
+import dev.killjoy.framework.ColorExtra
 import dev.killjoy.slash.api.SlashCommandContext
 import dev.killjoy.slash.utils.SlashUtils
+import dev.killjoy.utils.Utils
 import io.sentry.Sentry
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job

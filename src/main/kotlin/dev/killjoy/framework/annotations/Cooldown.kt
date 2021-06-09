@@ -1,6 +1,3 @@
-import org.junit.Test
-import dev.killjoy.utils.Loaders
-
 /*******************************************************************************
  * Copyright (c) 2021. Blademaker
  *
@@ -16,27 +13,18 @@ import dev.killjoy.utils.Loaders
  * See the License for the specific language governing permissions and limitations under the License.
  ******************************************************************************/
 
-class LoadersTest {
+package dev.killjoy.framework.annotations
 
-    @Test
-    fun `Load agents`() {
-        val expected = 15
-        val result = Loaders.loadAgents()
-        assert(result.size == expected) { "Agents size is not equal to expected" }
+import java.util.concurrent.TimeUnit
+
+@Target(AnnotationTarget.ANNOTATION_CLASS)
+@Retention(AnnotationRetention.RUNTIME)
+annotation class Cooldown(
+        val value: Long = 3,
+        val timeUnit: TimeUnit = TimeUnit.SECONDS,
+        val type: Type = Type.User
+) {
+    enum class Type {
+        User, Guild;
     }
-
-    @Test
-    fun `Load maps`() {
-        val expected = 6
-        val result = Loaders.loadMaps()
-        assert(result.size == expected) { "Maps size is not equal to expected" }
-    }
-
-    @Test
-    fun `Load arsenal`() {
-        val expected = 18
-        val result = Loaders.loadArsenal()
-        assert(result.size == expected) { "Arsenal size is not equal to expected" }
-    }
-
 }

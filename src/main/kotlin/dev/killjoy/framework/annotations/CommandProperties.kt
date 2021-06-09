@@ -1,6 +1,3 @@
-import org.junit.Test
-import dev.killjoy.utils.Loaders
-
 /*******************************************************************************
  * Copyright (c) 2021. Blademaker
  *
@@ -15,28 +12,20 @@ import dev.killjoy.utils.Loaders
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and limitations under the License.
  ******************************************************************************/
+package dev.killjoy.framework.annotations
 
-class LoadersTest {
+import dev.killjoy.framework.Category
+import net.dv8tion.jda.api.Permission
 
-    @Test
-    fun `Load agents`() {
-        val expected = 15
-        val result = Loaders.loadAgents()
-        assert(result.size == expected) { "Agents size is not equal to expected" }
-    }
-
-    @Test
-    fun `Load maps`() {
-        val expected = 6
-        val result = Loaders.loadMaps()
-        assert(result.size == expected) { "Maps size is not equal to expected" }
-    }
-
-    @Test
-    fun `Load arsenal`() {
-        val expected = 18
-        val result = Loaders.loadArsenal()
-        assert(result.size == expected) { "Arsenal size is not equal to expected" }
-    }
-
-}
+@Target(AnnotationTarget.ANNOTATION_CLASS, AnnotationTarget.CLASS)
+@Retention(AnnotationRetention.RUNTIME)
+annotation class CommandProperties(
+    val name: String,
+    val category: Category,
+    val isNsfw: Boolean = false,
+    val aliases: Array<String> = [],
+    val arguments: Array<CommandArgument> = [],
+    val cooldown: Cooldown = Cooldown(3),
+    val userPermissions: Array<Permission> = [],
+    val botPermissions: Array<Permission> = []
+)

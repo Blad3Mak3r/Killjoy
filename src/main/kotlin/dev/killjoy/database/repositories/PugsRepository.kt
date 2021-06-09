@@ -29,7 +29,6 @@ import net.dv8tion.jda.api.entities.User
 import org.jetbrains.exposed.sql.SortOrder
 import org.jetbrains.exposed.sql.and
 import org.jetbrains.exposed.sql.transactions.experimental.newSuspendedTransaction
-import java.lang.Exception
 import java.util.*
 
 class PugsRepository(override val conn: DatabaseConnection) : IRepository {

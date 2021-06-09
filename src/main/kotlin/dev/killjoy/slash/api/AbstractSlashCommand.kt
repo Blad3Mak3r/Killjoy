@@ -15,10 +15,10 @@
 
 package dev.killjoy.slash.api
 
-import dev.killjoy.bot.utils.Emojis
 import dev.killjoy.slash.api.annotations.Permissions
 import dev.killjoy.slash.api.annotations.SlashSubCommand
 import dev.killjoy.slash.utils.SlashUtils
+import dev.killjoy.utils.Emojis
 import io.sentry.Sentry
 import io.sentry.SentryEvent
 import io.sentry.protocol.Message

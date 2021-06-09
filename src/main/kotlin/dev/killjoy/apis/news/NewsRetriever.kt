@@ -15,7 +15,7 @@
 
 package dev.killjoy.apis.news
 
-import dev.killjoy.bot.utils.extensions.isUrl
+import dev.killjoy.utils.extensions.isUrl
 import kong.unirest.Unirest
 import kong.unirest.json.JSONObject
 import kotlinx.coroutines.coroutineScope
