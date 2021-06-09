@@ -1,6 +1,3 @@
-import org.junit.Test
-import dev.killjoy.utils.Loaders
-
 /*******************************************************************************
  * Copyright (c) 2021. Blademaker
  *
@@ -16,27 +13,18 @@ import dev.killjoy.utils.Loaders
  * See the License for the specific language governing permissions and limitations under the License.
  ******************************************************************************/
 
-class LoadersTest {
+package dev.killjoy.commands.info
 
-    @Test
-    fun `Load agents`() {
-        val expected = 15
-        val result = Loaders.loadAgents()
-        assert(result.size == expected) { "Agents size is not equal to expected" }
-    }
+import dev.killjoy.INVITE_URL
+import dev.killjoy.slash.api.AbstractSlashCommand
+import dev.killjoy.slash.api.SlashCommandContext
 
-    @Test
-    fun `Load maps`() {
-        val expected = 6
-        val result = Loaders.loadMaps()
-        assert(result.size == expected) { "Maps size is not equal to expected" }
-    }
+@Suppress("unused")
+class InviteSlashCommand : AbstractSlashCommand("invite") {
 
-    @Test
-    fun `Load arsenal`() {
-        val expected = 18
-        val result = Loaders.loadArsenal()
-        assert(result.size == expected) { "Arsenal size is not equal to expected" }
+    override suspend fun handle(ctx: SlashCommandContext) {
+        val content = "Here is the invitation link to invite me to your servers:\n$INVITE_URL"
+        ctx.acknowledge(true).setContent(content).queue()
     }
 
 }

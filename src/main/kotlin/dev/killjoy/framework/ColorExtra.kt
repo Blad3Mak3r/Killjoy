@@ -1,6 +1,3 @@
-import org.junit.Test
-import dev.killjoy.utils.Loaders
-
 /*******************************************************************************
  * Copyright (c) 2021. Blademaker
  *
@@ -16,27 +13,12 @@ import dev.killjoy.utils.Loaders
  * See the License for the specific language governing permissions and limitations under the License.
  ******************************************************************************/
 
-class LoadersTest {
+package dev.killjoy.framework
 
-    @Test
-    fun `Load agents`() {
-        val expected = 15
-        val result = Loaders.loadAgents()
-        assert(result.size == expected) { "Agents size is not equal to expected" }
-    }
+import java.awt.Color
 
-    @Test
-    fun `Load maps`() {
-        val expected = 6
-        val result = Loaders.loadMaps()
-        assert(result.size == expected) { "Maps size is not equal to expected" }
-    }
+object ColorExtra {
 
-    @Test
-    fun `Load arsenal`() {
-        val expected = 18
-        val result = Loaders.loadArsenal()
-        assert(result.size == expected) { "Arsenal size is not equal to expected" }
-    }
-
+    val VAL_RED = Color(255,71 ,83)
+    val VAL_BLUE = Color(16, 24, 35)
 }

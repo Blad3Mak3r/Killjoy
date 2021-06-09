@@ -15,6 +15,7 @@
 
 package dev.killjoy.slash.utils
 
+import dev.killjoy.extensions.toHuman
 import dev.killjoy.slash.api.AbstractSlashCommand
 import dev.killjoy.slash.api.SlashCommandContext
 import dev.killjoy.slash.api.annotations.Permissions
@@ -25,7 +26,6 @@ import net.dv8tion.jda.api.interactions.commands.OptionType
 import net.dv8tion.jda.api.requests.RestAction
 import net.dv8tion.jda.api.requests.restaction.WebhookMessageAction
 import net.dv8tion.jda.api.requests.restaction.interactions.ReplyAction
-import dev.killjoy.extensions.toHuman
 import org.reflections.Reflections
 import org.reflections.scanners.SubTypesScanner
 import org.slf4j.LoggerFactory

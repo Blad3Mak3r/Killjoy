@@ -1,6 +1,3 @@
-import org.junit.Test
-import dev.killjoy.utils.Loaders
-
 /*******************************************************************************
  * Copyright (c) 2021. Blademaker
  *
@@ -16,27 +13,9 @@ import dev.killjoy.utils.Loaders
  * See the License for the specific language governing permissions and limitations under the License.
  ******************************************************************************/
 
-class LoadersTest {
+package dev.killjoy.utils.extensions
 
-    @Test
-    fun `Load agents`() {
-        val expected = 15
-        val result = Loaders.loadAgents()
-        assert(result.size == expected) { "Agents size is not equal to expected" }
-    }
+import net.dv8tion.jda.api.entities.User
 
-    @Test
-    fun `Load maps`() {
-        val expected = 6
-        val result = Loaders.loadMaps()
-        assert(result.size == expected) { "Maps size is not equal to expected" }
-    }
-
-    @Test
-    fun `Load arsenal`() {
-        val expected = 18
-        val result = Loaders.loadArsenal()
-        assert(result.size == expected) { "Arsenal size is not equal to expected" }
-    }
-
-}
+val User.isSelf: Boolean
+    get() = this.id == this.jda.selfUser.id

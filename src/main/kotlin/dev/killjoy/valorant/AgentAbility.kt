@@ -1,6 +1,3 @@
-import org.junit.Test
-import dev.killjoy.utils.Loaders
-
 /*******************************************************************************
  * Copyright (c) 2021. Blademaker
  *
@@ -16,27 +13,29 @@ import dev.killjoy.utils.Loaders
  * See the License for the specific language governing permissions and limitations under the License.
  ******************************************************************************/
 
-class LoadersTest {
+package dev.killjoy.valorant
 
-    @Test
-    fun `Load agents`() {
-        val expected = 15
-        val result = Loaders.loadAgents()
-        assert(result.size == expected) { "Agents size is not equal to expected" }
-    }
+import dev.killjoy.framework.ColorExtra
+import net.dv8tion.jda.api.EmbedBuilder
+import net.dv8tion.jda.api.entities.MessageEmbed
 
-    @Test
-    fun `Load maps`() {
-        val expected = 6
-        val result = Loaders.loadMaps()
-        assert(result.size == expected) { "Maps size is not equal to expected" }
-    }
+class AgentAbility(
+    val agent: ValorantAgent,
+    val skill: ValorantAgent.Skill
+) {
 
-    @Test
-    fun `Load arsenal`() {
-        val expected = 18
-        val result = Loaders.loadArsenal()
-        assert(result.size == expected) { "Arsenal size is not equal to expected" }
+    fun asEmbed(): MessageEmbed {
+        return EmbedBuilder().run {
+            setAuthor(agent.name, null, agent.avatar)
+            setTitle(skill.name)
+            setDescription(skill.info)
+            setThumbnail(skill.iconUrl)
+            setImage(skill.preview)
+            addField("Action Button", skill.button.name, true)
+            addField("Usage Cost", skill.cost, true)
+            setColor(ColorExtra.VAL_RED)
+            build()
+        }
     }
 
 }

@@ -90,7 +90,7 @@ dependencies {
 tasks {
     named<ShadowJar>("shadowJar") {
         manifest {
-            attributes["Main-Class"] = "dev.dev.killjoy.bot.Launcher"
+            attributes["Main-Class"] = "dev.killjoy.Launcher"
         }
         archiveBaseName.set("Killjoy")
         archiveClassifier.set("")
@@ -103,5 +103,5 @@ tasks {
 }
 
 application {
-    mainClass.set("dev.killjoy.bot.Launcher")
+    mainClass.set("dev.killjoy.Launcher")
 }
