@@ -32,7 +32,7 @@ allprojects {
 
     dependencies {
         //Common
-        implementation("net.dv8tion:JDA:4.2.1_273") { exclude(module = "opus-java") }
+        implementation("net.dv8tion:JDA:4.2.1_274") { exclude(module = "opus-java") }
 
         //Logging
         implementation("ch.qos.logback:logback-classic:1.2.3")
