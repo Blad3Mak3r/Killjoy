@@ -4,7 +4,7 @@
 
 ## [Add to Discord][invitation]
 [![TeamCity Full Build Status](https://img.shields.io/teamcity/build/s/Killjoy_Build?label=Build%20Status&server=https%3A%2F%2Fhugebot.beta.teamcity.com)](https://hugebot.beta.teamcity.com/buildConfiguration/Killjoy_Build?mode=builds&guest=1)
-[![Gradle Check](https://github.com/Blad3Mak3r/Killjoy/actions/workflows/gradle.yml/badge.svg)](https://github.com/Blad3Mak3r/Killjoy/actions/workflows/gradle.yml)
+[![Docker Build (development/latest)](https://github.com/Blad3Mak3r/Killjoy/actions/workflows/docker-build-latest.yml/badge.svg)](https://github.com/Blad3Mak3r/Killjoy/actions/workflows/docker-build-latest.yml)
 ![Discord](https://img.shields.io/discord/425661010662260736?logo=discord)
 ![Docker Image Version (latest by date)](https://img.shields.io/docker/v/blademaker/killjoy?logo=docker&sort=date)
 ![Docker Image Size (latest by date)](https://img.shields.io/docker/image-size/blademaker/killjoy?logo=docker&sort=date)
@@ -20,21 +20,25 @@ At the moment the bot is pretty straightforward, but we have great ideas for it,
 
 ``()`` Required command arguments.
 
-``<>`` Valid aliases for the command.
 
-
-- ``joy help`` The basic help command.
-- ``joy help [command]`` Help about the usage of a command.
-- ``joy <agents|agent>`` Show the agent list (``joy agents`` or ``joy agent``).
-- ``joy <agents|agent> [agent_name]`` Show detailed information about the agent you selected (``joy agent killjoy``).
-- ``joy <agents|agent> [agent_name] (q|e|c|x)`` Show a detailed information about the agent's skill you selected (``joy agent sage x``).
-- ``joy arsenal [weapon]`` Get information and statistics about a Valorant weapon or the entire aresenal.
-- ``joy skills (skill_name)`` Get information and statistics about the agent's skill you selected.
-- ``joy invite`` Creates a Bot invite url.
-- ``joy news`` Get the latest news from [Valorant Official Website](https://playvalorant.com)
-- ``joy <maps|map>`` Show the map list (``joy maps`` or ``joy map``)
-- ``joy <maps|map> [map_name]`` Show detailed information about the map you selected (``joy map ascent``)
-- ``joy top (region)`` Retrieve the TOP10 players of a region (``joy top eu``)
+| Name                         | Description                                                                            |
+| ---------------------------- | -------------------------------------------------------------------------------------- |
+| /**abilities all** [`page`]  | Get information on all the abilities in the game.                                      |
+| /**abilities info** (`name`) | Information about a specific ability.                                                  |
+| /**agents** [`agent`]        | Get information and statistics about a Valorant agent.                                 |
+| /**arsenal** [`weapon`]      | Get information and statistics about a Valorant weapon or the entire arsenal.          |
+| /**invite**                  | Generate an invitation link for Killjoy.                                               |
+| /**maps** [`map`]            | Get a list of maps or information about a specific map from Valorant.                  |
+| /**meme**                    | Funny Valorant memes stolen from Reddit.                                               |
+| /**news**                    | Retrieve the latest news from the official PlayValorant website.                       |
+| /**ping**                    | Check current Discord ping.                                                            |
+| /**pugs close**              | Close the active PUG, requires Manage Server permissions.                              |
+| /**pugs create**             | Start a new PUG on this guild, requires Manage Server permissions.                     |
+| /**pugs current**            | Information about the currently active PUG on this guild.                              |
+| /**pugs join**               | Join the active PUG on this guild.                                                     |
+| /**pugs leave**              | Leave the active PUG on this guild.                                                    |
+| /**pugs teams**              | Create two random teams of registered players, with a minimum of 4 registered players. |
+| /**top** (`region`)          | Retrieve the TOP 10 players by region.                                                 |
 
 <p align="center">
  <img alt="Example 1" src="/Branding/examples/commands_agents.png" width="400px">
