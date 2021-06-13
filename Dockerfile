@@ -7,6 +7,6 @@ FROM azul/zulu-openjdk-alpine:13-jre-headless as application
 LABEL org.opencontainers.image.source="https://github.com/Blad3Mak3r/Killjoy"
 EXPOSE 8080
 RUN mkdir /app
-COPY --from=builder /home/gradle/src/build/libs/Killjoy.jar /app/Killjoy.jar
 WORKDIR /app
+COPY --from=builder /home/gradle/src/build/libs/Killjoy.jar Killjoy.jar
 ENTRYPOINT ["java", "-jar", "Killjoy.jar"]
