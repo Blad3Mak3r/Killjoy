@@ -118,7 +118,7 @@ object Launcher {
         maps = Loaders.loadMaps()
 
         commandRegistry = CommandRegistry()
-        slashCommandHandler = DefaultSlashCommandHandler("dev.killjoy.bot.commands")
+        slashCommandHandler = DefaultSlashCommandHandler("dev.killjoy.commands")
 
         cooldownManager = CooldownManager(15, TimeUnit.SECONDS)
 
