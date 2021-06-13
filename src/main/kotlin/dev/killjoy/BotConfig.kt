@@ -35,7 +35,17 @@ import com.typesafe.config.ConfigFactory
 import java.io.File
 
 object BotConfig {
-    private val conf = ConfigFactory.parseFile(File("killjoy.conf"))
+
+    private fun getConfigFile(): File {
+        var file = File("killjoy.conf")
+
+        if (!file.exists()) file = File("data/killjoy.conf")
+        if (!file.exists()) file = File("config/killjoy.conf")
+        if (!file.exists()) throw IllegalStateException("Can not found killjoy.conf file.")
+        return file
+    }
+
+    private val conf = ConfigFactory.parseFile(getConfigFile())
 
     internal inline operator fun <reified T> get(path: String): T {
         val ref = conf.getAnyRef(path)

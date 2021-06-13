@@ -3,7 +3,7 @@ COPY --chown=gradle:gradle . /home/gradle/src
 WORKDIR /home/gradle/src
 RUN gradle shadowJar --no-daemon -i --stacktrace
 
-FROM azul/zulu-openjdk-alpine:13-jre-headless as application
+FROM azul/zulu-openjdk-alpine:13-jre
 LABEL org.opencontainers.image.source="https://github.com/Blad3Mak3r/Killjoy"
 EXPOSE 8080
 RUN mkdir /app
