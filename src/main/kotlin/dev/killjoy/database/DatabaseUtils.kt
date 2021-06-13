@@ -30,13 +30,23 @@
 
 package dev.killjoy.database
 
-import org.jetbrains.exposed.sql.Database
+import dev.killjoy.getConfig
 
-typealias DatabaseConnection = Database
+typealias DatabaseConnection = org.jetbrains.exposed.sql.Database
 
 private val LOCAL_ADDRESS_REGEX = "(localhost|(192|127|10)\\.(\\d){1,3}\\.(\\d){1,3}\\.(\\d))".toRegex()
 
 internal fun discoverSslMode(host: String): String {
     return if (LOCAL_ADDRESS_REGEX matches host) "allow"
     else "require"
+}
+
+internal fun buildDatabaseConnection(): Database {
+    val host = getConfig("host", "localhost")
+    val port = getConfig("port", 5432)
+    val user = getConfig("user", "killjoy")
+    val password = getConfig("password", "killjoy")
+    val name = getConfig("name", "killjoy")
+
+    return Database(host, port, user, password, name)
 }

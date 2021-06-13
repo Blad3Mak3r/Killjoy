@@ -13,37 +13,22 @@
  * See the License for the specific language governing permissions and limitations under the License.
  ******************************************************************************/
 
-/*******************************************************************************
- * Copyright (c) 2021. Blademaker
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *        http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and limitations under the License.
- ******************************************************************************/
-
 package dev.killjoy
 
 import com.typesafe.config.ConfigException
 import dev.killjoy.apis.stats.StatsPosting
 import dev.killjoy.apis.stats.Website
 import dev.killjoy.database.Database
+import dev.killjoy.database.DatabaseConnection
+import dev.killjoy.database.buildDatabaseConnection
 import dev.killjoy.framework.CommandRegistry
 import dev.killjoy.listeners.MainListener
 import dev.killjoy.prometheus.Prometheus
 import dev.killjoy.slash.api.handler.DefaultSlashCommandHandler
 import dev.killjoy.slash.api.handler.SlashCommandHandler
-import dev.killjoy.utils.CooldownManager
-import dev.killjoy.utils.Loaders
-import dev.killjoy.utils.SentryUtils
-import dev.killjoy.utils.Utils
+import dev.killjoy.utils.*
 import dev.killjoy.utils.extensions.isInt
+import dev.killjoy.valorant.AgentAbility
 import dev.killjoy.valorant.ValorantAgent
 import dev.killjoy.valorant.ValorantMap
 import dev.killjoy.valorant.ValorantWeapon
@@ -62,7 +47,7 @@ import javax.security.auth.login.LoginException
 import kotlin.properties.Delegates
 
 @Suppress("MemberVisibilityCanBePrivate", "SpellCheckingInspection")
-object Launcher {
+object Launcher : Killjoy {
 
     lateinit var database: Database
         private set
@@ -160,35 +145,38 @@ object Launcher {
         enableListing()
     }
 
-    private fun buildDatabaseConnection(): Database {
-        val host = getConfig("host", "localhost")
-        val port = getConfig("port", 5432)
-        val user = getConfig("user", "killjoy")
-        val password = getConfig("password", "killjoy")
-        val name = getConfig("name", "killjoy")
-
-        return Database(host, port, user, password, name)
+    override fun getDatabaseConnection(): DatabaseConnection {
+        return database.connection
     }
 
-    /**
-     * Get agent by name or number.
-     *
-     * @param input Agent name or number formatted as [String].
-     *
-     * @return A nullable [ValorantAgent]
-     */
-    fun getAgent(input: String): ValorantAgent? {
+    override fun getAgent(input: String): ValorantAgent? {
         return if (input.isInt()) agents.find { it.number == input.toInt() }
         else agents.find { it.name.equals(input, true) }
     }
 
-    fun getWeapon(name: String) = arsenal.find { it.name.equals(name, true) }
-    fun getWeaponById(id: String) = arsenal.find { it.id.equals(id, true) }
+    override fun getWeapon(name: String): ValorantWeapon? {
+        return arsenal.find { it.name.equals(name, true) }
+    }
 
-    fun getMap(name: String) = maps.find { it.name.equals(name, true) }
+    override fun getWeaponById(id: String): ValorantWeapon? {
+        return arsenal.find { it.id.equals(id, true) }
+    }
 
-    fun getAbilities() = agents.map { it.abilities }.reduce { acc, list -> acc + list }
-    fun getAbility(name: String) = getAbilities().find { it.skill.name.equals(name, true) }
+    override fun getMap(name: String): ValorantMap? {
+        return maps.find { it.name.equals(name, true) }
+    }
+
+    override fun getAbilities(agentName: String): List<AgentAbility> {
+        return getAgent(agentName)?.abilities ?: emptyList()
+    }
+
+    override fun getAbilities(): List<AgentAbility> {
+        return agents.map { it.abilities }.reduce { acc, list -> acc + list }
+    }
+
+    override fun getAbility(name: String): AgentAbility? {
+        return getAbilities().find { it.skill.name.equals(name, true) }
+    }
 
     fun getSkills() = agents.map { it.skills }.reduce { acc, list -> acc + list }
 
