@@ -90,7 +90,7 @@ object Launcher : Killjoy {
 
         pid = ProcessHandle.current().pid()
 
-        log.info(Utils.printBanner(pid))
+        Utils.printBanner(pid, log)
 
         //Initialize sentry
         SentryUtils.init()

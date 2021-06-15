@@ -1,5 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+import org.gradle.language.jvm.tasks.ProcessResources
+import org.apache.tools.ant.filters.ReplaceTokens
 
 plugins {
     kotlin("jvm") version "1.5.10"
@@ -19,7 +21,8 @@ val prometheusVersion = "0.11.0"
 val sentryVersion = "5.0.1"
 
 group = "killjoy"
-version = "0.10.2"
+val versionObj = Version(0, 10, 3)
+version = versionObj.build()
 
 repositories {
     mavenCentral()
@@ -89,17 +92,56 @@ dependencies {
 
 tasks {
     named<ShadowJar>("shadowJar") {
+        println("Building version ${project.version}")
         manifest {
             attributes["Main-Class"] = "dev.killjoy.Launcher"
         }
         archiveBaseName.set("Killjoy")
         archiveClassifier.set("")
         archiveVersion.set("")
+        dependsOn("processResources")
+    }
+
+    named<ProcessResources>("processResources") {
+        duplicatesStrategy = DuplicatesStrategy.INCLUDE
+
+        val tokens = mapOf(
+            "project.version"   to project.version
+        )
+
+        from("src/main/resources") {
+            include("app.properties")
+            filter<ReplaceTokens>("tokens" to tokens)
+        }
     }
 
     withType<KotlinCompile> {
         kotlinOptions.jvmTarget = "11"
     }
+}
+
+class Version(
+    private val major: Int,
+    private val minor: Int,
+    private val revision: Int
+) {
+    private val pattern = "%d.%d.%d"
+
+    fun build(): String {
+        val version = pattern.format(major, minor, revision)
+        val build = getBuild()
+
+        if (build == null) return version
+        else return "${version}_${build}"
+    }
+}
+
+fun getBuild(): String? {
+    return System.getenv("BUILD_NUMBER")
+        ?: System.getProperty("BUILD_NUMBER")
+        ?: System.getenv("github.run_number")
+        ?: System.getProperty("github.run_number")
+        ?: null
 }
 
 application {

@@ -18,6 +18,7 @@
 package dev.killjoy.utils
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder
+import dev.killjoy.Versions
 import dev.killjoy.framework.CommandContext
 import dev.killjoy.framework.abs.Command
 import dev.killjoy.framework.abs.SubCommand
@@ -25,6 +26,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.asCoroutineDispatcher
 import net.dv8tion.jda.api.entities.Guild
 import net.dv8tion.jda.api.entities.Role
+import org.slf4j.Logger
 import java.net.MalformedURLException
 import java.net.URL
 import java.util.concurrent.LinkedBlockingQueue
@@ -33,8 +35,8 @@ import java.util.concurrent.TimeUnit
 
 object Utils {
 
-    fun printBanner(pid: Long): String {
-        return """
+    fun printBanner(pid: Long, logger: Logger) {
+        val content = """
             Starting Killjoy with PID $pid
              ___  __    ___  ___       ___             ___  ________      ___    ___ 
             |\  \|\  \ |\  \|\  \     |\  \           |\  \|\   __  \    |\  \  /  /|
@@ -43,8 +45,14 @@ object Utils {
               \ \  \\ \  \ \  \ \  \____\ \  \____ |\  \\_\  \ \  \\\  \   \/  /  /  
                \ \__\\ \__\ \__\ \_______\ \_______\ \________\ \_______\__/  / /    
                 \|__| \|__|\|__|\|_______|\|_______|\|________|\|_______|\___/ /     
-                                              • The best Valorant bot!! \|___|/     
+                                                The best Valorant bot!! \|___|/     
+                 
+            • Killjoy Version    :   ${Versions.KILLJOY}
+            • JDA Version        :   ${Versions.JDA}
+            =========================================================================
         """.trimIndent()
+
+        logger.info(content)
     }
 
     fun newThreadFactory(name: String,
