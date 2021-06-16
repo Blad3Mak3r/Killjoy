@@ -18,7 +18,14 @@ package dev.killjoy.extensions.jda
 import dev.killjoy.framework.ColorExtra
 import net.dv8tion.jda.api.EmbedBuilder
 
-fun EmbedBuilder.setDefaultColor(): EmbedBuilder {
-    setColor(ColorExtra.VAL_RED)
+enum class EmbedColor {
+    RED, BLUE
+}
+
+fun EmbedBuilder.setDefaultColor(color: EmbedColor = EmbedColor.RED): EmbedBuilder {
+    when (color) {
+        EmbedColor.RED -> setColor(ColorExtra.VAL_RED)
+        EmbedColor.BLUE -> setColor(ColorExtra.VAL_BLUE)
+    }
     return this
 }
