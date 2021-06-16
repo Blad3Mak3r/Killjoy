@@ -35,7 +35,8 @@ class SlashCommandContext(
     val event: SlashCommandEvent
 ) {
 
-    private val isAck = AtomicBoolean(false)
+    val isAcknowledged: Boolean
+        get() = event.isAcknowledged
 
     val jda: JDA
         get() = event.jda
@@ -63,9 +64,7 @@ class SlashCommandContext(
         get() = event.user
 
     fun acknowledge(ephemeral: Boolean = false): ReplyAction {
-        if (!isAck.compareAndSet(false, true)) {
-            throw IllegalStateException("Current command is already ack.")
-        }
+        if (isAcknowledged) throw IllegalStateException("Current command is already ack.")
         return event.deferReply(ephemeral)
     }
 

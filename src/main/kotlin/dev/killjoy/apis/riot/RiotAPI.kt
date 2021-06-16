@@ -79,6 +79,9 @@ object RiotAPI {
     object AgentStatsAPI {
         private val SCRIPT_REGEX = "(window\\.__statsByAgent = ([\\S\\s]+);)".toPattern()
 
+        val cached: Boolean
+            get() = agentStatsCache.isNotEmpty() && !outdated
+
         @Volatile
         private var lastUpdate = 0L
 
