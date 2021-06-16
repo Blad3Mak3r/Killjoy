@@ -20,14 +20,6 @@ WORKDIR /app
 # Copy Killjoy.jar from builder
 COPY --from=builder /home/gradle/src/build/libs/Killjoy.jar Killjoy.jar
 
-# Create Killjoy group and user for non-root execution and give permissions
-RUN addgroup -g 1000 -S Killjoy && \
-    adduser -u 1000 -S Killjoy -G Killjoy
-RUN chown -R Killjoy:Killjoy /app && \
-    chmod 755 /app && \
-    chmod +rx Killjoy.jar
-USER Killjoy
-
 # Setup default JAVA_OPTIONS
 ENV JAVA_OPTIONS="-Xmx1G -XX:+UseG1GC"
 
