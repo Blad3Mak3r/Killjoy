@@ -9,4 +9,5 @@ EXPOSE 8080
 RUN mkdir /app
 WORKDIR /app
 COPY --from=builder /home/gradle/src/build/libs/Killjoy.jar Killjoy.jar
-ENTRYPOINT ["java", "-jar", "Killjoy.jar"]
+ENV JAVA_OPTIONS="-Xmx1G -XX:+UseG1GC"
+ENTRYPOINT java $JAVA_OPTIONS -jar Killjoy.jar
