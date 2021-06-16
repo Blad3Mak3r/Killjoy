@@ -100,7 +100,7 @@ object Utils {
             if (subCommands.isNullOrEmpty()) return null
 
             for (scmd in subCommands) {
-                if (scmd.props.name == invoke.toLowerCase()) return scmd
+                if (scmd.props.name == invoke.lowercase()) return scmd
             }
 
             return null

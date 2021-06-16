@@ -25,7 +25,7 @@ import java.time.Instant
 class TopSlashCommand : AbstractSlashCommand("top") {
 
     override suspend fun handle(ctx: SlashCommandContext) {
-        val option = ctx.getOption("region")!!.asString.toUpperCase()
+        val option = ctx.getOption("region")!!.asString.uppercase()
 
         val region = Region.values().firstOrNull { it.name.equals(option, true) }
             ?: return ctx.sendNotFound("` $option ` is not a valid region. Valid regions: ${Region.asListed}").queue()

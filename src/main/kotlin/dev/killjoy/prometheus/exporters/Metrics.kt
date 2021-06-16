@@ -48,7 +48,7 @@ object Metrics {
 
     fun increaseCommandUsage(command: String) {
         COMMANDS_COUNTER
-            .labels(command.toLowerCase())
+            .labels(command.lowercase())
             .inc()
     }
 

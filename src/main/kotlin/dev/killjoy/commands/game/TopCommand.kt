@@ -33,9 +33,9 @@ import java.time.Instant
     ])
 class TopCommand : Command() {
     override suspend fun handle(ctx: CommandContext) {
-        if (ctx.args.isEmpty()) return ctx.reply("Specifies the game region. ${Region.values().map { it.name.toLowerCase() }}").queue()
+        if (ctx.args.isEmpty()) return ctx.reply("Specifies the game region. ${Region.values().map { it.name.lowercase() }}").queue()
 
-        val arg = ctx.args.first().toUpperCase()
+        val arg = ctx.args.first().uppercase()
 
         val region = Region.values().firstOrNull { it.name.equals(arg, true) }
             ?: return ctx.reply(Emojis.NoEntry, "` $arg ` is not a valid region. Valid regions: ${Region.values().joinToString(", ") { "**${it.name}**"}}").queue()

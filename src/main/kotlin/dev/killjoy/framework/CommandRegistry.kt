@@ -113,7 +113,7 @@ class CommandRegistry {
     }
 
     fun getCommand(invoke: String, admin: Boolean = false): Command? {
-        val search = invoke.toLowerCase()
+        val search = invoke.lowercase()
         val cmd = commands[search] ?: commands.values.find { it.props.aliases.contains(search) } ?: return null
 
         return when {
@@ -134,7 +134,7 @@ class CommandRegistry {
                 .replaceFirst(prefix, "")
                 .split(" ")
 
-        val invoke = split[0].toLowerCase()
+        val invoke = split[0].lowercase()
 
         val command = getCommand(invoke) ?: return
 

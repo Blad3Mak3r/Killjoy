@@ -22,5 +22,5 @@ private val AUDIO_EXTENSIONS = setOf("flac", "mkv", "mp4", "mp3", "ogg", "wav")
 val Message.Attachment.isAudio: Boolean
     get() {
         val extension = this.fileExtension
-        return extension != null && AUDIO_EXTENSIONS.contains(extension.toLowerCase())
+        return extension != null && AUDIO_EXTENSIONS.contains(extension.lowercase())
     }

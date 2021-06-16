@@ -62,7 +62,7 @@ data class ValorantAgent (
     }
 
     suspend fun asEmbed(): EmbedBuilder {
-        val stats = RiotAPI.AgentStatsAPI.getAgentStatsAsync(name.toLowerCase()).await()
+        val stats = RiotAPI.AgentStatsAPI.getAgentStatsAsync(name.lowercase()).await()
 
         val statistics = buildString {
             appendLine("__**Pick Rate:**__     ${stats?.pickRate ?: "N/A"}")
@@ -80,7 +80,7 @@ data class ValorantAgent (
 
         return EmbedBuilder().apply {
             setAuthor(role.name, null, role.iconUrl)
-            setTitle(name, "https://playvalorant.com/en-us/agents/${name.toLowerCase()}/")
+            setTitle(name, "https://playvalorant.com/en-us/agents/${name.lowercase()}/")
             setThumbnail(avatar)
             //setImage(thumbnail)
             setDescription(bio)
@@ -89,7 +89,7 @@ data class ValorantAgent (
             addBlankField(false)
             setColor(ColorExtra.VAL_RED)
             for (skill in skills) {
-                addField("`` ${skill.button.name.toUpperCase()} `` - ${skill.name}", skill.info, false)
+                addField("`` ${skill.button.name.uppercase()} `` - ${skill.name}", skill.info, false)
             }
         }
     }
@@ -153,7 +153,7 @@ data class ValorantAgent (
             fun ofAll(array: JSONArray) = array.map { it as JSONObject }.map { Skill(it) }
 
             private fun buildIdentifier(str: String): String {
-                return str.trim().toLowerCase().replace(" ", "").replace("’", "").replace("'", "").replace("\"", "")
+                return str.trim().lowercase().replace(" ", "").replace("’", "").replace("'", "").replace("\"", "")
             }
         }
     }

@@ -44,12 +44,12 @@ object RiotAPI {
 
         suspend fun getCurrentTop20(region: Region): RankedPlayerList {
 
-            val cached = leaderboardsCache.getIfPresent(region.name.toUpperCase())
+            val cached = leaderboardsCache.getIfPresent(region.name.uppercase())
             if (cached != null) return cached
 
-            LOGGER.info("Retrieving fresh leaderboards for ${region.name.toUpperCase()}")
+            LOGGER.info("Retrieving fresh leaderboards for ${region.name.uppercase()}")
 
-            val url = "https://dgxfkpkb4zk5c.cloudfront.net/leaderboards/affinity/${region.name.toUpperCase()}/queue/competitive/act/$CURRENT_ACT_ID?startIndex=0&size=10"
+            val url = "https://dgxfkpkb4zk5c.cloudfront.net/leaderboards/affinity/${region.name.uppercase()}/queue/competitive/act/$CURRENT_ACT_ID?startIndex=0&size=10"
             val r = Unirest.get(url).asJsonAsync().await()
 
             check(r.isSuccess) { "Not success status: ${r.status}" }
@@ -71,7 +71,7 @@ object RiotAPI {
                 .sortedBy { p -> p.leaderboardRank }
 
             val rankedList = RankedPlayerList(System.currentTimeMillis(), list)
-            leaderboardsCache.put(region.name.toUpperCase(), rankedList)
+            leaderboardsCache.put(region.name.uppercase(), rankedList)
             return rankedList
         }
     }
@@ -100,7 +100,7 @@ object RiotAPI {
                 updateAgentStats()
             }
 
-            return agentStatsCache[agent.toLowerCase()]
+            return agentStatsCache[agent.lowercase()]
         }
 
         suspend fun getAgentStatsAsync(): Deferred<List<AgentStats>> = withContext(Dispatchers.IO) {
@@ -132,7 +132,7 @@ object RiotAPI {
             val agentStats = array.map { AgentStats(it) }
 
             for (stat in agentStats) {
-                agentStatsCache[stat.key.toLowerCase()] = stat
+                agentStatsCache[stat.key.lowercase()] = stat
             }
 
             lastUpdate = (System.currentTimeMillis() + Duration.ofMinutes(10).toMillis())

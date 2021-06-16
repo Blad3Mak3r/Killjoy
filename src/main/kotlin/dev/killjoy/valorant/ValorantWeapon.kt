@@ -34,7 +34,7 @@ data class ValorantWeapon(
 ) : ValorantEntity {
 
     val id: String
-        get() = name.toLowerCase().replace(" ", "").replace("-", "")
+        get() = name.lowercase().replace(" ", "").replace("-", "")
 
     constructor(json: JSONObject) : this(
             json.getString("name"),
@@ -49,7 +49,7 @@ data class ValorantWeapon(
 
     fun asEmbed(): EmbedBuilder {
         return EmbedBuilder().apply {
-            setAuthor(type.name.toUpperCase())
+            setAuthor(type.name.uppercase())
             setTitle(name)
             setColor(ColorExtra.VAL_RED)
             setDescription(short)

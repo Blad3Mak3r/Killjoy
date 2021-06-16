@@ -96,7 +96,7 @@ object SlashUtils {
 
         for (clazz in classes) {
             val instance = clazz.getDeclaredConstructor().newInstance()
-            val commandName = instance.commandName.toLowerCase()
+            val commandName = instance.commandName.lowercase()
 
             if (commands.any { it.commandName.equals(commandName, true) }) {
                 throw IllegalStateException("Command with name $commandName is already registered.")

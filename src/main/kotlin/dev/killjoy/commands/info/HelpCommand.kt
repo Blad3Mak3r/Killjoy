@@ -60,9 +60,9 @@ class HelpCommand : Command() {
             ctx.embed {
                 setColor(ColorExtra.VAL_BLUE)
                 setAuthor("Killjoy Help")
-                setTitle(cmd.props.name.toUpperCase())
+                setTitle(cmd.props.name.uppercase())
                 setDescription(cmd.help)
-                appendDescription(" [[Read more]($WEBSITE_URL/commands?command=${cmd.props.name.toLowerCase()})]")
+                appendDescription(" [[Read more]($WEBSITE_URL/commands?command=${cmd.props.name.lowercase()})]")
                 addField("Usage", buildString {
                     appendLine("joy **${cmd.props.name}** ${buildString { 
                         for (arg in cmd.args) {

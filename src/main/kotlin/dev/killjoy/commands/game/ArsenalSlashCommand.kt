@@ -33,7 +33,7 @@ class ArsenalSlashCommand : AbstractSlashCommand("arsenal") {
             ctx.sendEmbed {
                 setTitle("Valorant Arsenal")
                 for (weapon in arsenal) {
-                    addField("${weapon.name} //${weapon.type.name.toUpperCase()}", weapon.short, true)
+                    addField("${weapon.name} //${weapon.type.name.uppercase()}", weapon.short, true)
                 }
                 setFooter("If you want to get more information about an weapon use \"joy arsenal weapon_name\"")
             }.queue()
