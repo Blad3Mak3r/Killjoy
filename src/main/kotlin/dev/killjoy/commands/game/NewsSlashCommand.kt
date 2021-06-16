@@ -16,27 +16,34 @@
 package dev.killjoy.commands.game
 
 import dev.killjoy.apis.news.NewsRetriever
+import dev.killjoy.framework.ColorExtra
 import dev.killjoy.slash.api.AbstractSlashCommand
 import dev.killjoy.slash.api.SlashCommandContext
+import net.dv8tion.jda.api.EmbedBuilder
 
 @Suppress("unused")
 class NewsSlashCommand : AbstractSlashCommand("news") {
 
     override suspend fun handle(ctx: SlashCommandContext) {
-        ctx.acknowledge().queue()
+        val isCached = NewsRetriever.cached
+
+        if (!isCached) ctx.acknowledge().queue()
 
         val latestNews = NewsRetriever.lastNews(10)
 
-        ctx.sendEmbed {
+        val embed = EmbedBuilder().run {
+            setColor(ColorExtra.VAL_RED)
             setTitle("Latest Valorant news")
             setDescription("This articles are from the official PlayValorant website.")
-
             for (new in latestNews) {
                 addField(new.title, new.description+"\n[Read more](${new.url})", false)
             }
-
             setImage(latestNews.firstOrNull()?.image)
-        }.queue()
+            build()
+        }
+
+        if (!isCached) ctx.send(embed).queue()
+        else ctx.reply(embed).queue()
     }
 
 }

@@ -17,8 +17,11 @@ package dev.killjoy.apis.news
 
 import kong.unirest.Unirest
 import kong.unirest.json.JSONObject
+import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.future.await
+import kotlinx.coroutines.withContext
 import org.slf4j.LoggerFactory
 import java.util.concurrent.CompletableFuture
 import java.util.concurrent.TimeUnit
@@ -29,8 +32,11 @@ object NewsRetriever {
     private var cachedNewsTimestamp: Long = 0L
     private val logger = LoggerFactory.getLogger(NewsRetriever::class.java)
 
-    suspend fun lastNews(limit: Int = 10): List<ValorantNew> = coroutineScope {
-        if (cachedNews.get() == null || cachedNewsTimestamp < System.currentTimeMillis()) {
+    val cached: Boolean
+        get() = cachedNews.get() != null && cachedNewsTimestamp > System.currentTimeMillis()
+
+    suspend fun lastNews(limit: Int = 10): List<ValorantNew> = withContext(Dispatchers.IO) {
+        if (!cached) {
             retrieveExperimentalValorantNews().await().take(limit)
         } else {
             cachedNews.get()!!.take(limit)
