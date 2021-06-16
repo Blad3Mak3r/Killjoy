@@ -12,7 +12,7 @@ plugins {
     idea
 }
 
-val jdaVersion = "4.3.0_278"
+val jdaVersion = "4.3.0_279"
 val exposedVersion = "0.32.1"
 val ktorVersion = "1.6.0"
 val coroutinesVersion = "1.5.0-native-mt"
