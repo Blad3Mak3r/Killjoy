@@ -20,8 +20,6 @@ import kong.unirest.json.JSONObject
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.future.await
 import org.slf4j.LoggerFactory
-import java.text.SimpleDateFormat
-import java.util.*
 import java.util.concurrent.CompletableFuture
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicReference
@@ -40,7 +38,7 @@ object NewsRetriever {
     }
 
     private fun retrieveExperimentalValorantNews(): CompletableFuture<List<ValorantNew>> = CompletableFuture.supplyAsync {
-        logger.info("Retrieving fresh Valorant news from experimentat data api...")
+        logger.info("Retrieving fresh Valorant news from data api...")
 
         val response = Unirest.get("https://playvalorant.com/page-data/en-us/news/page-data.json").asJson()
 
@@ -63,57 +61,5 @@ object NewsRetriever {
 
         logger.info("Successfully retrieved valorant news.")
         mappedResults
-    }
-
-    data class ValorantNew(
-        val url: String,
-        val title: String,
-        val description: String,
-        val timestamp: Long,
-        val image: String
-    ) {
-
-        val linkedTitle = "[$title]($url)"
-
-        fun shortedDescription(): String {
-            return if (description.length > 40) "${description.substring(0, 40)}... [Read more]($url)"
-            else "$description [Read more]($url)"
-        }
-
-        companion object {
-            private val dateFormat = SimpleDateFormat("MM/dd/yy")
-            private val newDateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ENGLISH)
-
-            fun buildFromExperimentalApi(json: JSONObject): ValorantNew? {
-                //
-
-                try {
-                    val title = json.getString("title")
-                    val description = json.getString("description")
-
-                    val banner = json.getJSONObject("banner").getString("url")
-
-                    val externalLink = json.optString("external_link").takeIf { it.isNotEmpty() }
-                    val url = json.getJSONObject("url").getString("url")
-
-                    val date = json.getString("date")
-
-                    return ValorantNew(
-                        title = title,
-                        url = externalLink ?: "https://playvalorant.com/en-us$url",
-                        timestamp = newDateFormat.parse(date).time,
-                        description = description,
-                        image = banner
-                    )
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                    return null
-                }
-            }
-        }
-
-        override fun toString(): String {
-            return "ValorantNew(url='$url', title='$title', description='$description', timestamp=$timestamp, image='$image')"
-        }
     }
 }
