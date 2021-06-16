@@ -18,6 +18,7 @@
 package dev.killjoy.valorant
 
 import dev.killjoy.apis.riot.RiotAPI
+import dev.killjoy.extensions.jda.setDefaultColor
 import dev.killjoy.framework.ColorExtra
 import dev.killjoy.utils.extensions.isUrl
 import net.dv8tion.jda.api.EmbedBuilder
@@ -87,7 +88,7 @@ data class ValorantAgent (
             addField("Information", info, true)
             addField("Statistics", statistics, true)
             addBlankField(false)
-            setColor(ColorExtra.VAL_RED)
+            setDefaultColor()
             for (skill in skills) {
                 addField("`` ${skill.button.name.uppercase()} `` - ${skill.name}", skill.info, false)
             }

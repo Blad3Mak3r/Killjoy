@@ -17,6 +17,7 @@
 
 package dev.killjoy.valorant
 
+import dev.killjoy.extensions.jda.setDefaultColor
 import dev.killjoy.framework.ColorExtra
 import net.dv8tion.jda.api.EmbedBuilder
 import org.json.JSONObject
@@ -51,7 +52,7 @@ data class ValorantWeapon(
         return EmbedBuilder().apply {
             setAuthor(type.name.uppercase())
             setTitle(name)
-            setColor(ColorExtra.VAL_RED)
+            setDefaultColor()
             setDescription(short)
             addField("Cost", "<:creds:755356472132501574> $cost", true)
             if (magazine != null) addField("Magazine", "$magazine", true)

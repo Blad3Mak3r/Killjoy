@@ -16,6 +16,7 @@
 package dev.killjoy.commands.game
 
 import dev.killjoy.apis.news.NewsRetriever
+import dev.killjoy.extensions.jda.setDefaultColor
 import dev.killjoy.framework.ColorExtra
 import dev.killjoy.slash.api.AbstractSlashCommand
 import dev.killjoy.slash.api.SlashCommandContext
@@ -32,7 +33,7 @@ class NewsSlashCommand : AbstractSlashCommand("news") {
         val latestNews = NewsRetriever.lastNews(10)
 
         val embed = EmbedBuilder().run {
-            setColor(ColorExtra.VAL_RED)
+            setDefaultColor()
             setTitle("Latest Valorant news")
             setDescription("This articles are from the official PlayValorant website.")
             for (new in latestNews) {

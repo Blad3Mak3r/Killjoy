@@ -15,6 +15,7 @@
 
 package dev.killjoy.slash.api.handler
 
+import dev.killjoy.extensions.jda.setDefaultColor
 import dev.killjoy.framework.ColorExtra
 import dev.killjoy.slash.api.SlashCommandContext
 import dev.killjoy.slash.utils.SlashUtils
@@ -57,7 +58,7 @@ class DefaultSlashCommandHandler(packageName: String) : SlashCommandHandler, Cor
             LOGGER.error("Exception executing command ${command.commandName}.", e)
 
             val embed = EmbedBuilder().run {
-                setColor(ColorExtra.VAL_RED)
+                setDefaultColor()
                 setAuthor("Exception executing command ${command.commandName}", null, "https://cdn.discordapp.com/emojis/690093935233990656.png")
                 build()
             }

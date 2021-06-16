@@ -16,6 +16,7 @@
 package dev.killjoy.commands.misc
 
 import dev.killjoy.apis.memes.Memes4K
+import dev.killjoy.extensions.jda.setDefaultColor
 import dev.killjoy.framework.ColorExtra
 import dev.killjoy.slash.api.AbstractSlashCommand
 import dev.killjoy.slash.api.SlashCommandContext
@@ -34,7 +35,7 @@ class MemeSlashCommand : AbstractSlashCommand("meme") {
             setTitle(meme.title, meme.permanentLink)
             setImage(meme.image)
             setFooter("\uD83D\uDC4D\uD83C\uDFFB ${meme.score} | \uD83D\uDCAC ${meme.comments}")
-            setColor(ColorExtra.VAL_RED)
+            setDefaultColor()
         }.queue()
     }
 

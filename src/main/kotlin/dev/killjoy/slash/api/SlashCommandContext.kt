@@ -15,6 +15,7 @@
 
 package dev.killjoy.slash.api
 
+import dev.killjoy.extensions.jda.setDefaultColor
 import dev.killjoy.framework.ColorExtra
 import dev.killjoy.slash.utils.SlashUtils.asEphemeral
 import dev.killjoy.utils.Emojis
@@ -70,7 +71,7 @@ class SlashCommandContext(
 
     fun sendNotFound(description: String = "I couldn't find what you were looking for."): RestAction<*> {
         val embed = EmbedBuilder().run {
-            setColor(ColorExtra.VAL_RED)
+            setDefaultColor()
             setAuthor("Content not found", null, "https://cdn.discordapp.com/emojis/690093935233990656.png")
             setThumbnail("https://i.imgur.com/P3p4EEG.png")
             setDescription(description)
@@ -92,7 +93,7 @@ class SlashCommandContext(
 
     fun replyEmbed(builder: EmbedBuilder.() -> Unit): ReplyAction {
         val embed = EmbedBuilder()
-            .setColor(ColorExtra.VAL_RED)
+            .setDefaultColor()
             .apply(builder).build()
 
         return event.replyEmbeds(embed)
@@ -108,7 +109,7 @@ class SlashCommandContext(
 
     fun sendEmbed(builder: EmbedBuilder.() -> Unit): WebhookMessageAction<Message> {
         val embed = EmbedBuilder()
-            .setColor(ColorExtra.VAL_RED)
+            .setDefaultColor()
             .apply(builder).build()
 
         return hook.sendMessageEmbeds(embed)

@@ -16,6 +16,7 @@
 package dev.killjoy.commands.info
 
 import dev.killjoy.extensions.jda.await
+import dev.killjoy.extensions.jda.setDefaultColor
 import dev.killjoy.framework.Category
 import dev.killjoy.framework.ColorExtra
 import dev.killjoy.framework.CommandContext
@@ -31,7 +32,7 @@ class PingCommand : Command() {
         val gateway = ctx.jda.gatewayPing
 
         val content = String.format("\uD83C\uDF10 Rest: `` %d ``\n\n\uD83D\uDDE8️ Gateway: `` %d ``", rest, gateway)
-        msg.editMessageEmbeds(EmbedBuilder().setDescription(content).setColor(ColorExtra.VAL_RED).build()).queue()
+        msg.editMessageEmbeds(EmbedBuilder().setDescription(content).setDefaultColor().build()).queue()
     }
 
     override val help = "Pong!"

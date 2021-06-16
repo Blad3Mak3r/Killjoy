@@ -16,6 +16,7 @@
 package dev.killjoy.commands.game
 
 import dev.killjoy.Launcher
+import dev.killjoy.extensions.jda.setDefaultColor
 import dev.killjoy.framework.ColorExtra
 import dev.killjoy.slash.api.AbstractSlashCommand
 import dev.killjoy.slash.api.SlashCommandContext
@@ -34,7 +35,7 @@ class AgentSlashCommand : AbstractSlashCommand("agents") {
         if (agentName == null && skillName == null) {
 
             val embed = EmbedBuilder().apply {
-                setColor(ColorExtra.VAL_RED)
+                setDefaultColor()
                 setTitle("Valorant Agents")
                 for (agent in Launcher.agents) {
                     addField("${agent.role.emoji} - ${agent.name}", agent.bio, true)
