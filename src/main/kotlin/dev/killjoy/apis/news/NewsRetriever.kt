@@ -15,12 +15,10 @@
 
 package dev.killjoy.apis.news
 
-import dev.killjoy.utils.extensions.isUrl
 import kong.unirest.Unirest
 import kong.unirest.json.JSONObject
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.future.await
-import org.jsoup.nodes.Element
 import org.slf4j.LoggerFactory
 import java.text.SimpleDateFormat
 import java.util.*
@@ -106,33 +104,6 @@ object NewsRetriever {
                         timestamp = newDateFormat.parse(date).time,
                         description = description,
                         image = banner
-                    )
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                    return null
-                }
-            }
-
-            @Deprecated("Deprecated")
-            fun buildFromElement(el: Element): ValorantNew? {
-
-                try {
-                    val elHref = el.attr("href")
-                    val elDate = el.selectFirst("div > p[class~=NewsCard-module--published--(?i)]").text()
-                    val elTitle = el.selectFirst("div > h5[class~=NewsCard-module--title--(?i)]").text()
-                    val elDesc = el.selectFirst("div > p[class~=NewsCard-module--description--(?i)]").text()
-
-                    val elImageSpan = el.selectFirst("div > span[class~=NewsCard-module--image--(?i)]")
-                        .attr("style")
-
-                    val elImageUrl = elImageSpan.substring(elImageSpan.indexOf("https://"), elImageSpan.indexOf(")"))
-
-                    return ValorantNew(
-                        title = elTitle,
-                        url = if (elHref.isUrl()) elHref else "https://playvalorant.com${elHref}",
-                        timestamp = dateFormat.parse(elDate).time,
-                        description = elDesc,
-                        image = elImageUrl
                     )
                 } catch (e: Exception) {
                     e.printStackTrace()
