@@ -23,8 +23,11 @@ jobs:
     - name: Push to Docker Hub
       uses: docker/build-push-action@v2.5.0
       id: docker_build
+      env:
+        BUILD_NUMBER: ${{ github.run_number }}
       with:
         push: true
+        platforms: linux/amd64
         tags: blademaker/killjoy:latest
         
     - name: Image digest

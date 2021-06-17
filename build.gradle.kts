@@ -106,8 +106,7 @@ tasks {
         duplicatesStrategy = DuplicatesStrategy.INCLUDE
 
         val tokens = mapOf(
-            "project.version"   to project.version,
-            "project.revision"  to gitRevision()
+            "project.version"   to project.version
         )
 
         from("src/main/resources") {
@@ -126,30 +125,24 @@ class Version(
     private val minor: Int,
     private val revision: Int
 ) {
-    private val pattern = "%d.%d.%d_%s"
 
-    fun build() = pattern.format(major, minor, revision, getBuild())
-}
+    fun build(): String {
+        val build = getBuild()
 
-fun gitRevision(): String {
-    val gitVersion = org.apache.commons.io.output.ByteArrayOutputStream()
-    exec {
-        commandLine("git", "rev-parse", "--short", "HEAD")
-        standardOutput = gitVersion
+        return if (build == null) {
+            "%d.%d.%d".format(major, minor, revision)
+        } else {
+            "%d.%d.%d_%s".format(major, minor, revision, build)
+        }
     }
-    return gitVersion.toString(Charsets.UTF_8).trim()
 }
 
-fun getBuild(): String {
-    val buildNumber = System.getenv("BUILD_NUMBER")
+fun getBuild(): String? {
+    return System.getenv("BUILD_NUMBER")
         ?: System.getProperty("BUILD_NUMBER")
         ?: System.getenv("github.run_number")
         ?: System.getProperty("github.run_number")
         ?: null
-    val revision = gitRevision()
-
-    return if (buildNumber == null) revision
-    else "$buildNumber+$revision"
 }
 
 application {

@@ -29,6 +29,7 @@ jobs:
         id: docker_build
         with:
           push: true
+          platforms: linux/amd64
           tags: blademaker/killjoy:${{ steps.get_version.outputs.VERSION }}
 
       - name: Image digest
