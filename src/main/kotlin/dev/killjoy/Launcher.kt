@@ -116,14 +116,13 @@ object Launcher : Killjoy {
         shardManager = DefaultShardManagerBuilder.createLight(BotConfig.token)
             .setShardsTotal(-1)
             .setActivityProvider { Activity.competing("Valorant /help") }
-            .setEnableShutdownHook(false)
+            .setEnableShutdownHook(true)
             .addEventListeners(
                 MainListener(),
                 slashCommandHandler
             )
             .setEventPool(Utils.newThreadFactory("jda-event-worker-%d", 4, 20, 6L, TimeUnit.MINUTES))
             .setCompression(Compression.ZLIB)
-            .setEnableShutdownHook(true)
             .enableIntents(
                 GatewayIntent.GUILD_MESSAGES,
                 GatewayIntent.GUILD_MESSAGE_REACTIONS,
