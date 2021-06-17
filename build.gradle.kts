@@ -125,23 +125,30 @@ class Version(
     private val minor: Int,
     private val revision: Int
 ) {
-    private val pattern = "%d.%d.%d"
+    private val pattern = "%d.%d.%d_%s"
 
-    fun build(): String {
-        val version = pattern.format(major, minor, revision)
-        val build = getBuild()
-
-        if (build == null) return version
-        else return "${version}_${build}"
-    }
+    fun build() = pattern.format(major, minor, revision, getBuild())
 }
 
-fun getBuild(): String? {
-    return System.getenv("BUILD_NUMBER")
+fun gitRevision(): String {
+    val gitVersion = org.apache.commons.io.output.ByteArrayOutputStream()
+    exec {
+        commandLine("git", "rev-parse", "--short", "HEAD")
+        standardOutput = gitVersion
+    }
+    return gitVersion.toString(Charsets.UTF_8).trim()
+}
+
+fun getBuild(): String {
+    val buildNumber = System.getenv("BUILD_NUMBER")
         ?: System.getProperty("BUILD_NUMBER")
         ?: System.getenv("github.run_number")
         ?: System.getProperty("github.run_number")
         ?: null
+    val revision = gitRevision()
+
+    return if (buildNumber == null) revision
+    else "$buildNumber+$revision"
 }
 
 application {
