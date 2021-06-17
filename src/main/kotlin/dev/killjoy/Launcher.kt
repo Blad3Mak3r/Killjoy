@@ -115,7 +115,7 @@ object Launcher : Killjoy {
 
         shardManager = DefaultShardManagerBuilder.createLight(BotConfig.token)
             .setShardsTotal(-1)
-            .setActivity(Activity.competing("Valorant | joy help"))
+            .setActivityProvider { Activity.competing("Valorant /help") }
             .setEnableShutdownHook(false)
             .addEventListeners(
                 MainListener(),
