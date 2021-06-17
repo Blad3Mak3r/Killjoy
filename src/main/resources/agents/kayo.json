@@ -1,0 +1,48 @@
+{
+  "id": "",
+  "number": 16,
+  "name": "KAY/O",
+  "api_name": "kay-o",
+  "origin": "",
+  "image": "",
+  "thumbnail": "",
+  "avatar": "",
+  "role": "",
+  "bio": "",
+  "gender": "Robot",
+  "affiliation": "",
+  "skills": [
+    {
+      "button": "q",
+      "name": "",
+      "iconUrl": "",
+      "info": "",
+      "preview": "",
+      "cost": ""
+    },
+    {
+      "button": "e",
+      "name": "",
+      "iconUrl": "",
+      "info": "",
+      "preview": "",
+      "cost": ""
+    },
+    {
+      "button": "c",
+      "name": "",
+      "iconUrl": "",
+      "info": "",
+      "preview": "",
+      "cost": ""
+    },
+    {
+      "button": "",
+      "name": "",
+      "iconUrl": "",
+      "info": "",
+      "preview": "",
+      "cost": ""
+    }
+  ]
+}
