@@ -22,5 +22,6 @@ object Versions {
     private val appProps = ResourceBundle.getBundle("app")
 
     val KILLJOY: String = if (appProps.getString("version").startsWith("@")) "UNKNOWN" else appProps.getString("version")
+    val GIT: String = if (appProps.getString("revision").startsWith("@")) "UNKNOWN" else appProps.getString("revision")
     val JDA: String = JDAInfo.VERSION
 }

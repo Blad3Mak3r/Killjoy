@@ -106,7 +106,8 @@ tasks {
         duplicatesStrategy = DuplicatesStrategy.INCLUDE
 
         val tokens = mapOf(
-            "project.version"   to project.version
+            "project.version"   to project.version,
+            "project.revision"  to gitRevision()
         )
 
         from("src/main/resources") {
