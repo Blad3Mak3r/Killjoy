@@ -38,7 +38,7 @@ jobs:
       env:
         BUILD_NUMBER: ${{ github.run_number }}
       with:
-        file: {context}/Dockerfile-actions
+        file: Dockerfile-actions
         push: true
         platforms: linux/amd64
         tags: blademaker/killjoy:latest
