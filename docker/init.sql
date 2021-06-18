@@ -13,20 +13,12 @@
  * See the License for the specific language governing permissions and limitations under the License.
  ******************************************************************************/
 
-package dev.killjoy.database
-
-import dev.killjoy.getConfig
-import java.net.Inet4Address
-import java.net.UnknownHostException
-
-typealias DatabaseConnection = org.jetbrains.exposed.sql.Database
-
-internal fun buildDatabaseConnection(): Database {
-    val host = getConfig("host", "localhost")
-    val port = getConfig("port", 5432)
-    val user = getConfig("user", "killjoy")
-    val password = getConfig("password", "killjoy")
-    val name = getConfig("name", "killjoy")
-
-    return Database(host, port, user, password, name)
-}
+CREATE TABLE IF NOT EXISTS pugs (
+    id uuid NOT NULL DEFAULT uuid_generate_v4(),
+    guild_id int8 NOT NULL,
+    owner_id int8 NOT NULL,
+    is_active bool NOT NULL DEFAULT true,
+    created_at timestamp NOT NULL DEFAULT now(),
+    players _int8 NOT NULL DEFAULT '{}'::bigint[],
+    CONSTRAINT pugs_pkey PRIMARY KEY (id)
+);
