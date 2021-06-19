@@ -22,6 +22,7 @@ import dev.killjoy.framework.CommandContext
 import dev.killjoy.framework.abs.Command
 import dev.killjoy.framework.annotations.CommandArgument
 import dev.killjoy.framework.annotations.CommandProperties
+import io.ktor.util.*
 
 @CommandProperties(
     name = "help",
@@ -36,11 +37,18 @@ class HelpCommand : Command() {
                 setColor(ColorExtra.VAL_BLUE)
                 setTitle("Killjoy help")
 
+                addField("Slash Commands", "Slash Commands have been available in Killjoy for some time, " +
+                        "they are very intuitive and easy to use, just by putting ``/`` in a text chat, a menu will " +
+                        "appear with all the available commands, if this menu does not come out or not You get the " +
+                        "Killjoy commands, you must activate the Slash Commands and use the new Killjoy invitation link.", false)
                 addField("Command Usage", "Killjoy is a very easy to use bot, the prefix is __**joy**__ and you can execute a command simply using __**joy commandname**__," +
                         " for example __**joy agents**__ and you can also further explore the possibilities of that command by adding arguments as," +
-                        " __**joy agents jett**__ that will show you the information of the Valorant agent that you want.", true)
+                        " __**joy agents jett**__ that will show you the information of the Valorant agent that you want.", false)
                 addField("Commands with arguments", "In case you need specific information about a command," +
                         " you can use this command adding the name of the command behind as an argument __**joy help commandname**__ for example __**joy help agents**__", false)
+                addField("Vote for Killjoy", "If you like **Killjoy** and its content, don't forget to show your " +
+                        "support, by **voting for Killjoy on top.gg**, you can vote every 12 hours and for us it is a great " +
+                        "show of support from you.", false)
 
                 addBlankField(false)
                 for (category in Category.values()) {
@@ -51,8 +59,7 @@ class HelpCommand : Command() {
                             true)
                 }
                 addBlankField(false)
-                addField("Useful links", "[Add Bot]($INVITE_URL) | [Website]($WEBSITE_URL) | [Repository]($REPOSITORY_URL) | [Report a bug]($BUG_REPORT_URL)", false)
-            }.queue()
+            }.setActionRows(HelpSlashCommand.ACTION_ROWS).queue()
         } else {
             val invoke = ctx.args[0]
             val cmd = Launcher.commandRegistry.getCommand(invoke, false) ?: return
