@@ -18,6 +18,7 @@
 package dev.killjoy.commands.info
 
 import dev.killjoy.INVITE_URL
+import dev.killjoy.SPONSOR_URL
 import dev.killjoy.VOTE_URL
 import dev.killjoy.WEBSITE_URL
 import dev.killjoy.slash.api.AbstractSlashCommand
@@ -44,7 +45,8 @@ class HelpSlashCommand : AbstractSlashCommand("help") {
             Button.link(INVITE_URL, "Invite"),
             Button.link(WEBSITE_URL, "Website"),
             Button.link("$WEBSITE_URL/commands", "Commands"),
-            Button.link(VOTE_URL, "Vote")
+            Button.link(VOTE_URL, "Vote"),
+            Button.link(SPONSOR_URL, "Sponsor")
         )
     }
 }

@@ -20,6 +20,7 @@ const val REPOSITORY_URL = "https://github.com/Blad3Mak3r/Killjoy"
 const val WEBSITE_URL = "https://killjoy.dev"
 const val BUG_REPORT_URL = "https://github.com/Blad3Mak3r/Killjoy/issues/new?template=bug_report.md"
 const val VOTE_URL = "https://top.gg/bot/706887214088323092/vote"
+const val SPONSOR_URL = "https://github.com/sponsors/Blad3Mak3r"
 
 internal inline fun <reified T> getConfig(property: String, fallback: T): T =
     BotConfig.getOrDefault("database.$property", fallback)
