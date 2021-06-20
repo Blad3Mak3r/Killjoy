@@ -23,4 +23,4 @@ const val VOTE_URL = "https://top.gg/bot/706887214088323092/vote"
 const val SPONSOR_URL = "https://github.com/sponsors/Blad3Mak3r"
 
 internal inline fun <reified T> getConfig(property: String, fallback: T): T =
-    BotConfig.getOrDefault("database.$property", fallback)
+    Credentials.getOrDefault("database.$property", fallback)

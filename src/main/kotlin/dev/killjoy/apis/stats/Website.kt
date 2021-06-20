@@ -16,7 +16,7 @@
 package dev.killjoy.apis.stats
 
 import com.typesafe.config.Config
-import dev.killjoy.BotConfig.getOrDefault
+import dev.killjoy.Credentials.getOrDefault
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody.Companion.toRequestBody

@@ -106,13 +106,13 @@ object Launcher : Killjoy {
 
         cooldownManager = CooldownManager(15, TimeUnit.SECONDS)
 
-        if (BotConfig.getOrDefault("prometheus.enabled", false)) {
+        if (Credentials.getOrDefault("prometheus.enabled", false)) {
             Prometheus()
         }
 
-        BotConfig.getOrNull<String>("webhook_url")?.let { WebhookUtils.init(it) }
+        Credentials.getOrNull<String>("webhook_url")?.let { WebhookUtils.init(it) }
 
-        shardManager = DefaultShardManagerBuilder.createLight(BotConfig.token)
+        shardManager = DefaultShardManagerBuilder.createLight(Credentials.token)
             .setShardsTotal(-1)
             .setActivityProvider { Activity.competing("Valorant /help") }
             .setEnableShutdownHook(true)
@@ -184,7 +184,7 @@ object Launcher : Killjoy {
 
     private fun enableListing() {
         try {
-            val websites = BotConfig.getNullableConfigList("listing")?.map { Website(it) }
+            val websites = Credentials.getNullableConfigList("listing")?.map { Website(it) }
 
             if (websites == null || websites.isEmpty()) {
                 log.info("Listing is not enabled.")

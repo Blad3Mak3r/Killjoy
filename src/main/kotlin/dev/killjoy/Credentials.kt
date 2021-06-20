@@ -34,14 +34,12 @@ import com.typesafe.config.Config
 import com.typesafe.config.ConfigFactory
 import java.io.File
 
-object BotConfig {
+object Credentials {
 
     private fun getConfigFile(): File {
-        var file = File("killjoy.conf")
+        val file = File("credentials.conf")
 
-        if (!file.exists()) file = File("data/killjoy.conf")
-        if (!file.exists()) file = File("config/killjoy.conf")
-        if (!file.exists()) throw IllegalStateException("Can not found killjoy.conf file.")
+        if (!file.exists()) throw IllegalStateException("Can not found credentials.conf file.")
         return file
     }
 
@@ -82,7 +80,7 @@ object BotConfig {
     }
 
     // Base config
-    val token: String = get("discord.token")
+    val token: String = get("token")
 
     //KUtils
     internal inline fun <reified T> Config.get(path: String): T {
