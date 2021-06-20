@@ -52,8 +52,7 @@ object Launcher : Killjoy {
     lateinit var database: Database
         private set
 
-    lateinit var shardManager: ShardManager
-        private set
+    private lateinit var shardManager: ShardManager
 
     var pid by Delegates.notNull<Long>()
         private set
@@ -142,6 +141,10 @@ object Launcher : Killjoy {
             .build()
 
         enableListing()
+    }
+
+    override fun getShardManager(): ShardManager {
+        return shardManager
     }
 
     override fun getDatabaseConnection(): DatabaseConnection {
