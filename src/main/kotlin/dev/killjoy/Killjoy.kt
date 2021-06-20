@@ -102,10 +102,16 @@ interface Killjoy {
     }
 
     fun getTotalMembers(): Int {
-        return getShardManager().guildCache.map { it.memberCount }.reduce { acc, i -> acc+i }
+        val collection = getShardManager().guildCache.map { it.memberCount }
+
+        return if (collection.isNotEmpty()) collection.reduce { acc, i -> acc+i }
+        else 0
     }
 
     fun getTotalMembersByShard(shardId: Int): Int {
-        return getShardManager().shardCache.getElementById(shardId)!!.guildCache.map { it.memberCount }.reduce { acc, i -> acc+i }
+        val collection = getShardManager().shardCache.getElementById(shardId)!!.guildCache.map { it.memberCount }
+
+        return if (collection.isNotEmpty()) collection.reduce { acc, i -> acc+i }
+        else 0
     }
 }
