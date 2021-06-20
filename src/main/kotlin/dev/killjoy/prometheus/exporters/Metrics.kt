@@ -46,6 +46,12 @@ object Metrics {
         .labelNames("shard")
         .register()
 
+    private val USER_COUNT: Gauge = Gauge.build()
+        .name("killjoy_user_count")
+        .help("User count")
+        .labelNames("shard")
+        .register()
+
     fun increaseCommandUsage(command: String) {
         COMMANDS_COUNTER
             .labels(command.lowercase())
@@ -68,5 +74,13 @@ object Metrics {
         GUILD_COUNT
             .labels("${shard.shardInfo.shardId}")
             .set(shard.guildCache.size().toDouble())
+
+        val userCollection = shard.guildCache.map { it.memberCount }
+
+        if (userCollection.isNotEmpty()) {
+            USER_COUNT
+                .labels("${shard.shardInfo.shardId}")
+                .set(shard.guildCache.map { it.memberCount }.reduce { acc, i -> acc + i }.toDouble())
+        }
     }
 }
