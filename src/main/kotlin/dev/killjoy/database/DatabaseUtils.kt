@@ -16,8 +16,6 @@
 package dev.killjoy.database
 
 import dev.killjoy.getConfig
-import java.net.Inet4Address
-import java.net.UnknownHostException
 
 typealias DatabaseConnection = org.jetbrains.exposed.sql.Database
 

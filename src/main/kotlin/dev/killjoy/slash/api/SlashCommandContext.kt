@@ -16,7 +16,6 @@
 package dev.killjoy.slash.api
 
 import dev.killjoy.extensions.jda.setDefaultColor
-import dev.killjoy.framework.ColorExtra
 import dev.killjoy.slash.utils.SlashUtils.asEphemeral
 import dev.killjoy.utils.Emojis
 import net.dv8tion.jda.api.EmbedBuilder
@@ -29,7 +28,6 @@ import net.dv8tion.jda.api.interactions.commands.OptionMapping
 import net.dv8tion.jda.api.requests.RestAction
 import net.dv8tion.jda.api.requests.restaction.WebhookMessageAction
 import net.dv8tion.jda.api.requests.restaction.interactions.ReplyAction
-import java.util.concurrent.atomic.AtomicBoolean
 
 @Suppress("unused")
 class SlashCommandContext(

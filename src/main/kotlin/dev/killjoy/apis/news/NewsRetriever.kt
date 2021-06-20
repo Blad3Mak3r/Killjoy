@@ -17,9 +17,7 @@ package dev.killjoy.apis.news
 
 import kong.unirest.Unirest
 import kong.unirest.json.JSONObject
-import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.future.await
 import kotlinx.coroutines.withContext
 import org.slf4j.LoggerFactory

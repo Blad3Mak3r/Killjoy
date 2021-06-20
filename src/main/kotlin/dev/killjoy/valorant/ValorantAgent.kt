@@ -19,7 +19,6 @@ package dev.killjoy.valorant
 
 import dev.killjoy.apis.riot.RiotAPI
 import dev.killjoy.extensions.jda.setDefaultColor
-import dev.killjoy.framework.ColorExtra
 import dev.killjoy.utils.extensions.isUrl
 import net.dv8tion.jda.api.EmbedBuilder
 import org.json.JSONArray

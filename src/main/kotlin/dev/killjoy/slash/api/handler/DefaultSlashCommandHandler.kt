@@ -16,7 +16,6 @@
 package dev.killjoy.slash.api.handler
 
 import dev.killjoy.extensions.jda.setDefaultColor
-import dev.killjoy.framework.ColorExtra
 import dev.killjoy.slash.api.SlashCommandContext
 import dev.killjoy.slash.utils.SlashUtils
 import dev.killjoy.utils.Utils

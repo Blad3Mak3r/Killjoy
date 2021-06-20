@@ -16,7 +16,6 @@
 package dev.killjoy
 
 import dev.killjoy.database.DatabaseConnection
-import dev.killjoy.slash.api.AbstractSlashCommand
 import dev.killjoy.valorant.AgentAbility
 import dev.killjoy.valorant.ValorantAgent
 import dev.killjoy.valorant.ValorantMap

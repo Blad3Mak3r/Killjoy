@@ -15,14 +15,14 @@
 
 package dev.killjoy.commands.info
 
-import dev.killjoy.*
+import dev.killjoy.Launcher
+import dev.killjoy.WEBSITE_URL
 import dev.killjoy.framework.Category
 import dev.killjoy.framework.ColorExtra
 import dev.killjoy.framework.CommandContext
 import dev.killjoy.framework.abs.Command
 import dev.killjoy.framework.annotations.CommandArgument
 import dev.killjoy.framework.annotations.CommandProperties
-import io.ktor.util.*
 
 @CommandProperties(
     name = "help",
