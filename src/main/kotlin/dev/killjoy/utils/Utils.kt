@@ -48,6 +48,7 @@ object Utils {
                                                 The best Valorant bot!! \|___|/     
                  
             • Killjoy Version    :   ${Versions.KILLJOY}
+            • Commit             :   ${Versions.COMMIT}
             • JDA Version        :   ${Versions.JDA}
             =========================================================================
         """.trimIndent()
