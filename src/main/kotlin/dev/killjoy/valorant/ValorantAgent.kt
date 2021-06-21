@@ -36,7 +36,6 @@ data class ValorantAgent (
     val origin: String,
     val role: Role,
     val avatar: String,
-    val thumbnail: String,
     val skills: List<Skill>
 ) : ValorantEntity {
 
@@ -53,7 +52,6 @@ data class ValorantAgent (
         json.getString("origin").trim(),
         Role.of(json.getString("role")),
         json.getString("avatar"),
-        json.getString("thumbnail"),
         Skill.ofAll(json.getJSONArray("skills"))
     )
 
@@ -82,7 +80,6 @@ data class ValorantAgent (
             setAuthor(role.name, null, role.iconUrl)
             setTitle(name, "https://playvalorant.com/en-us/agents/${name.lowercase()}/")
             setThumbnail(avatar)
-            //setImage(thumbnail)
             setDescription(bio)
             addField("Information", info, true)
             addField("Statistics", statistics, true)
