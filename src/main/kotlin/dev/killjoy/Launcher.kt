@@ -26,7 +26,10 @@ import dev.killjoy.listeners.MainListener
 import dev.killjoy.prometheus.Prometheus
 import dev.killjoy.slash.api.handler.DefaultSlashCommandHandler
 import dev.killjoy.slash.api.handler.SlashCommandHandler
-import dev.killjoy.utils.*
+import dev.killjoy.utils.CooldownManager
+import dev.killjoy.utils.Loaders
+import dev.killjoy.utils.SentryUtils
+import dev.killjoy.utils.Utils
 import dev.killjoy.utils.extensions.isInt
 import dev.killjoy.valorant.AgentAbility
 import dev.killjoy.valorant.ValorantAgent
@@ -52,8 +55,7 @@ object Launcher : Killjoy {
     lateinit var database: Database
         private set
 
-    lateinit var shardManager: ShardManager
-        private set
+    private lateinit var shardManager: ShardManager
 
     var pid by Delegates.notNull<Long>()
         private set
@@ -107,23 +109,22 @@ object Launcher : Killjoy {
 
         cooldownManager = CooldownManager(15, TimeUnit.SECONDS)
 
-        if (BotConfig.getOrDefault("prometheus.enabled", false)) {
+        if (Credentials.getOrDefault("prometheus.enabled", false)) {
             Prometheus()
         }
 
-        BotConfig.getOrNull<String>("webhook_url")?.let { WebhookUtils.init(it) }
+        Credentials.getOrNull<String>("webhook_url")?.let { WebhookUtils.init(it) }
 
-        shardManager = DefaultShardManagerBuilder.createLight(BotConfig.token)
+        shardManager = DefaultShardManagerBuilder.createLight(Credentials.token)
             .setShardsTotal(-1)
-            .setActivity(Activity.competing("Valorant | joy help"))
-            .setEnableShutdownHook(false)
+            .setActivityProvider { Activity.competing("Valorant /help") }
+            .setEnableShutdownHook(true)
             .addEventListeners(
                 MainListener(),
                 slashCommandHandler
             )
             .setEventPool(Utils.newThreadFactory("jda-event-worker-%d", 4, 20, 6L, TimeUnit.MINUTES))
             .setCompression(Compression.ZLIB)
-            .setEnableShutdownHook(true)
             .enableIntents(
                 GatewayIntent.GUILD_MESSAGES,
                 GatewayIntent.GUILD_MESSAGE_REACTIONS,
@@ -143,6 +144,10 @@ object Launcher : Killjoy {
             .build()
 
         enableListing()
+    }
+
+    override fun getShardManager(): ShardManager {
+        return shardManager
     }
 
     override fun getDatabaseConnection(): DatabaseConnection {
@@ -182,7 +187,7 @@ object Launcher : Killjoy {
 
     private fun enableListing() {
         try {
-            val websites = BotConfig.getNullableConfigList("listing")?.map { Website(it) }
+            val websites = Credentials.getNullableConfigList("listing")?.map { Website(it) }
 
             if (websites == null || websites.isEmpty()) {
                 log.info("Listing is not enabled.")

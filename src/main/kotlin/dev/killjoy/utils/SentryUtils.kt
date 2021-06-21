@@ -15,7 +15,7 @@
 
 package dev.killjoy.utils
 
-import dev.killjoy.BotConfig
+import dev.killjoy.Credentials
 import dev.killjoy.framework.CommandContext
 import dev.killjoy.framework.abs.Command
 import dev.killjoy.framework.abs.SubCommand
@@ -30,7 +30,7 @@ object SentryUtils {
     private val LOGGER = LoggerFactory.getLogger(SentryUtils::class.java)
 
     fun init() {
-        val dsn = BotConfig.getOrNull<String>("sentry.dsn")
+        val dsn = Credentials.getOrNull<String>("sentry.dsn")
             ?: return
 
         LOGGER.info("Initializing sentry with DSN $dsn")

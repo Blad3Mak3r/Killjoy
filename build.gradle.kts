@@ -21,7 +21,7 @@ val prometheusVersion = "0.11.0"
 val sentryVersion = "5.0.1"
 
 group = "killjoy"
-val versionObj = Version(0, 10, 4)
+val versionObj = Version(0, 10, 7)
 version = versionObj.build()
 
 repositories {
@@ -106,7 +106,8 @@ tasks {
         duplicatesStrategy = DuplicatesStrategy.INCLUDE
 
         val tokens = mapOf(
-            "project.version"   to project.version
+            "project.version"   to project.version,
+            "project.revision"  to (gitRevision() ?: "UNKNOWN")
         )
 
         from("src/main/resources") {
@@ -125,23 +126,29 @@ class Version(
     private val minor: Int,
     private val revision: Int
 ) {
-    private val pattern = "%d.%d.%d"
 
     fun build(): String {
-        val version = pattern.format(major, minor, revision)
-        val build = getBuild()
+        val build = gitRevision()
 
-        if (build == null) return version
-        else return "${version}_${build}"
+        return if (build == null) {
+            "%d.%d.%d".format(major, minor, revision)
+        } else {
+            "%d.%d.%d_%s".format(major, minor, revision, build)
+        }
     }
 }
 
-fun getBuild(): String? {
-    return System.getenv("BUILD_NUMBER")
-        ?: System.getProperty("BUILD_NUMBER")
-        ?: System.getenv("github.run_number")
-        ?: System.getProperty("github.run_number")
-        ?: null
+fun gitRevision(): String? {
+    return try {
+        val gitVersion = org.apache.commons.io.output.ByteArrayOutputStream()
+        exec {
+            commandLine("git", "rev-parse", "--short", "HEAD")
+            standardOutput = gitVersion
+        }
+        gitVersion.toString(Charsets.UTF_8).trim()
+    } catch (e: java.lang.Exception) {
+        return System.getenv("GITHUB_SHA")?.trim() ?: return null
+    }
 }
 
 application {

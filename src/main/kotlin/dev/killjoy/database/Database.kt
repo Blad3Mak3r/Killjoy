@@ -57,7 +57,7 @@ class Database(
 
             dataSourceClassName = "com.impossibl.postgres.jdbc.PGDataSource"
 
-            addDataSourceProperty("sslMode", discoverSslMode(this@Database.host))
+            addDataSourceProperty("sslMode", "allow")
             addDataSourceProperty("serverName", this@Database.host)
             addDataSourceProperty("portNumber", this@Database.port)
             addDataSourceProperty("user", this@Database.user)

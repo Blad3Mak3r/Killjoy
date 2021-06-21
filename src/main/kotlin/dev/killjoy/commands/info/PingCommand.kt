@@ -18,7 +18,6 @@ package dev.killjoy.commands.info
 import dev.killjoy.extensions.jda.await
 import dev.killjoy.extensions.jda.setDefaultColor
 import dev.killjoy.framework.Category
-import dev.killjoy.framework.ColorExtra
 import dev.killjoy.framework.CommandContext
 import dev.killjoy.framework.abs.Command
 import dev.killjoy.framework.annotations.CommandProperties

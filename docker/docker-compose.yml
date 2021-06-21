@@ -3,15 +3,13 @@ version: "3.9"
 services:
   bot:
     container_name: killjoy-bot
-    image: blademaker/killjoy:latest
+    image: blademaker/killjoy
     volumes:
-      - killjoy_config:/app/config:ro
-      - killjoy_logs:/app/logs
+      - ./credentials.conf:/app/credentials.conf:ro
+      - killjoy-logs:/app/logs
     restart: on-failure
     network_mode: host
 
 volumes:
-  killjoy_config:
-    external: true
-  killjoy_logs:
+  killjoy-logs:
     external: true

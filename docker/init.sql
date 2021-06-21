@@ -13,14 +13,12 @@
  * See the License for the specific language governing permissions and limitations under the License.
  ******************************************************************************/
 
-package dev.killjoy
-
-const val INVITE_URL = "https://discord.com/oauth2/authorize?client_id=706887214088323092&permissions=321600&scope=bot+applications.commands"
-const val REPOSITORY_URL = "https://github.com/Blad3Mak3r/Killjoy"
-const val WEBSITE_URL = "https://killjoy.dev"
-const val BUG_REPORT_URL = "https://github.com/Blad3Mak3r/Killjoy/issues/new?template=bug_report.md"
-const val VOTE_URL = "https://top.gg/bot/706887214088323092/vote"
-const val SPONSOR_URL = "https://github.com/sponsors/Blad3Mak3r"
-
-internal inline fun <reified T> getConfig(property: String, fallback: T): T =
-    Credentials.getOrDefault("database.$property", fallback)
+CREATE TABLE IF NOT EXISTS pugs (
+    id uuid NOT NULL DEFAULT uuid_generate_v4(),
+    guild_id int8 NOT NULL,
+    owner_id int8 NOT NULL,
+    is_active bool NOT NULL DEFAULT true,
+    created_at timestamp NOT NULL DEFAULT now(),
+    players _int8 NOT NULL DEFAULT '{}'::bigint[],
+    CONSTRAINT pugs_pkey PRIMARY KEY (id)
+);

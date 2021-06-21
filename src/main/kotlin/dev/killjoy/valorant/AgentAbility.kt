@@ -16,7 +16,6 @@
 package dev.killjoy.valorant
 
 import dev.killjoy.extensions.jda.setDefaultColor
-import dev.killjoy.framework.ColorExtra
 import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.entities.MessageEmbed
 

@@ -15,7 +15,7 @@
 
 package dev.killjoy.prometheus
 
-import dev.killjoy.BotConfig
+import dev.killjoy.Credentials
 import io.ktor.application.*
 import io.ktor.response.*
 import io.ktor.routing.*
@@ -32,8 +32,8 @@ class Prometheus {
     private val registry = CollectorRegistry.defaultRegistry
     private val engine: NettyApplicationEngine
 
-    private val host = BotConfig.getOrDefault("prometheus.host", "localhost")
-    private val port = BotConfig.getOrDefault("prometheus.port", 8080)
+    private val host = Credentials.getOrDefault("prometheus.host", "localhost")
+    private val port = Credentials.getOrDefault("prometheus.port", 8080)
 
     init {
         logger.info("Starting Netty/Prometheus server...")

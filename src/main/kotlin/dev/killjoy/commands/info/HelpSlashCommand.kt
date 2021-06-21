@@ -18,6 +18,7 @@
 package dev.killjoy.commands.info
 
 import dev.killjoy.INVITE_URL
+import dev.killjoy.SPONSOR_URL
 import dev.killjoy.VOTE_URL
 import dev.killjoy.WEBSITE_URL
 import dev.killjoy.slash.api.AbstractSlashCommand
@@ -30,16 +31,22 @@ class HelpSlashCommand : AbstractSlashCommand("help") {
     override suspend fun handle(ctx: SlashCommandContext) {
         ctx.replyEmbed {
             setTitle("Did you need help?")
-            setDescription("With the following links, you can find all the information you are looking for to get the most out of **Killjoy**.")
+            appendDescription("Killjoy apart from being your favorite character, " +
+                    "is a bot focused on the world of **Valorant**, quite complete and easy to understand and learn to use.")
+            appendDescription("With the following links, you can find all the information you are looking for to get the most out of **Killjoy**.")
+            addField("Vote for Killjoy", "If you like **Killjoy** and its content, don't forget to show your " +
+                    "support, by **voting for Killjoy on top.gg**, you can vote every 12 hours and for us it is a great " +
+                    "show of support from you.", false)
         }.addActionRows(ACTION_ROWS).queue()
     }
 
     companion object {
-        private val ACTION_ROWS = ActionRow.of(
+        val ACTION_ROWS = ActionRow.of(
             Button.link(INVITE_URL, "Invite"),
             Button.link(WEBSITE_URL, "Website"),
             Button.link("$WEBSITE_URL/commands", "Commands"),
-            Button.link(VOTE_URL, "Vote")
+            Button.link(VOTE_URL, "Vote"),
+            Button.link(SPONSOR_URL, "Sponsor")
         )
     }
 }

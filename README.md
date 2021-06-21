@@ -56,9 +56,9 @@ At the moment the bot is pretty straightforward, but we have great ideas for it,
 
 To make KillJOY connect to discord you need your Discord app login token, you can get it [here][devs_application] by creating a new Bot Application.
 
-This token has to be passed to KILLJOY through a configuration file called [**killjoy.conf**](/killjoy.conf.example).
+This token has to be passed to KILLJOY through a configuration file called [**killjoy.conf**](/credentials.conf.example).
 
-Copy the content of [``killjoy.conf.example``](killjoy.conf.example) to ``killjoy.conf`` where the Killjoy executable is placed.
+Copy the content of [``killjoy.conf.example``](credentials.conf.example) to ``killjoy.conf`` where the Killjoy executable is placed.
 ```shell
 java -jar KilljoyAI.jar
 ```
@@ -70,7 +70,7 @@ java -jar KilljoyAI.jar
 docker run -it -d \
   --name=killjoy \
   --restart=always \
-  --volume killjoy.conf:/app/killjoy.conf \
+  --volume credentials.conf:/app/credentials.conf \
   blademaker/killjoy:0.8
 ```
 
@@ -111,7 +111,7 @@ RestartSec=5
 WantedBy=multi-user.target
 ```
 
-Copy the content of [``killjoy.conf.example``](killjoy.conf.example) to ``killjoy.conf`` where the Killjoy executable is placed.
+Copy the content of [``killjoy.conf.example``](credentials.conf.example) to ``killjoy.conf`` where the Killjoy executable is placed.
 
 ```shell
 $ systemctl start killjoy.service
