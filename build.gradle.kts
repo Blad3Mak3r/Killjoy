@@ -21,7 +21,7 @@ val prometheusVersion = "0.11.0"
 val sentryVersion = "5.0.1"
 
 group = "killjoy"
-val versionObj = Version(0, 11, 1)
+val versionObj = Version(0, 11)
 version = versionObj.build()
 
 repositories {
@@ -124,17 +124,20 @@ tasks {
 class Version(
     private val major: Int,
     private val minor: Int,
-    private val revision: Int
+    private val revision: Int? = null
 ) {
+
+    private fun getVersion(): String {
+        return if (revision == null) "$major.$minor"
+        else "$major.$minor.$revision"
+    }
 
     fun build(): String {
         val build = gitRevision()
+        val version = getVersion()
 
-        return if (build == null) {
-            "%d.%d.%d".format(major, minor, revision)
-        } else {
-            "%d.%d.%d_%s".format(major, minor, revision, build)
-        }
+        return if (build == null) version
+        else "${version}_$build"
     }
 }
 
