@@ -12,7 +12,7 @@ plugins {
     idea
 }
 
-val jdaVersion = "4.3.0_279"
+val jdaVersion = "4.3.0_281"
 val exposedVersion = "0.32.1"
 val ktorVersion = "1.6.0"
 val coroutinesVersion = "1.5.0-native-mt"
@@ -21,7 +21,7 @@ val prometheusVersion = "0.11.0"
 val sentryVersion = "5.0.1"
 
 group = "killjoy"
-val versionObj = Version(0, 11, 2)
+val versionObj = Version(0, 12)
 version = versionObj.build()
 
 repositories {
