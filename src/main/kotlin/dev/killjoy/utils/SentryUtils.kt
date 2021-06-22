@@ -16,6 +16,7 @@
 package dev.killjoy.utils
 
 import dev.killjoy.Credentials
+import dev.killjoy.Versions
 import dev.killjoy.framework.CommandContext
 import dev.killjoy.framework.abs.Command
 import dev.killjoy.framework.abs.SubCommand
@@ -24,10 +25,21 @@ import io.sentry.SentryEvent
 import io.sentry.SentryLevel
 import io.sentry.protocol.Message
 import org.slf4j.LoggerFactory
+import java.net.InetAddress
+import java.net.UnknownHostException
 
 object SentryUtils {
 
     private val LOGGER = LoggerFactory.getLogger(SentryUtils::class.java)
+
+    private val serverName: String?
+        get() {
+            return try {
+                InetAddress.getLocalHost().hostName
+            } catch (e: UnknownHostException) {
+                null
+            }
+        }
 
     fun init() {
         val dsn = Credentials.getOrNull<String>("sentry.dsn")
@@ -35,7 +47,11 @@ object SentryUtils {
 
         LOGGER.info("Initializing sentry with DSN $dsn")
         Sentry.init { options ->
+            options.environment = "production"
             options.dsn = dsn
+            options.release = Versions.KILLJOY
+            options.setDebug(false)
+            serverName?.let { sn -> options.serverName = sn }
         }
     }
 
