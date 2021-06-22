@@ -1,12 +1,5 @@
 {
   "name": "agents",
-  "description": "Get information and statistics about a Valorant agent.",
-  "options": [
-    {
-      "type": 3,
-      "name": "agent",
-      "description": "Agent name or number: Sage, 1",
-      "required": false
-    }
-  ]
+  "description": "List all the Valorant agents.",
+  "options": []
 }

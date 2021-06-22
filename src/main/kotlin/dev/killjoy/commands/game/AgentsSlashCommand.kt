@@ -25,36 +25,15 @@ import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.entities.MessageEmbed
 
 @Suppress("unused")
-class AgentSlashCommand : AbstractSlashCommand("agent") {
+class AgentsSlashCommand : AbstractSlashCommand("agents") {
 
     override suspend fun handle(ctx: SlashCommandContext) {
-
-        fun send(content: MessageEmbed) {
-            if (ctx.isAcknowledged) ctx.send(content).queue()
-            else ctx.reply(content).queue()
-        }
-
-        fun send(content: String) {
-            if (ctx.isAcknowledged) ctx.send(content).queue()
-            else ctx.reply(content).queue()
-        }
-
-        val isCached = RiotAPI.AgentStatsAPI.cached
-
-        val agentName = ctx.getOption("name")!!.asString
-
-        if (!isCached) ctx.acknowledge().queue()
-
-        val agent = findAgent(agentName)
-            ?: return ctx.sendNotFound("Agent with name or number ``$agentName`` does not exists.").queue()
-
-        val embed = agent.asEmbed().build()
-        send(embed)
-    }
-
-    companion object {
-        private fun findAgent(input: String): ValorantAgent? {
-            return Launcher.getAgent(input)
-        }
+        ctx.replyEmbed {
+            setDefaultColor()
+            setTitle("Valorant Agents")
+            for (agent in Launcher.agents) {
+                addField("${agent.role.emoji} - ${agent.name}", agent.bio, true)
+            }
+        }.queue()
     }
 }
