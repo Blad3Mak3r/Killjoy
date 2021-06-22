@@ -36,7 +36,7 @@ import kotlin.random.Random
 data class Meme (
     val id: String,
     val subReddit: String,
-    val title: String,
+    private val _title: String,
     val author: String,
     val image: String,
     val ups: Int,
@@ -60,6 +60,8 @@ data class Meme (
         obj.getBoolean("over_18"),
         obj.getLong("created_utc")
     )
+
+    val title: String = if (_title.length > 256) _title.substring(0, 255) else _title
 
     val permanentLink = "https://reddit.com/$id"
 
