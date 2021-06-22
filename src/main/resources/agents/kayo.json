@@ -4,7 +4,7 @@
   "name": "KAY/O",
   "api_name": "",
   "origin": "Unknown",
-  "avatar": "https://i.imgur.com/lO4vT5C.jpg",
+  "avatar": "https://i.imgur.com/iqxXg9d.jpg",
   "role": "Initiator",
   "bio": "KAY/O is a machine of war built for a single purpose: neutralizing radiants. His power to suppress enemy abilities cripples his opponents' capacity to fight back, securing him and his allies the ultimate edge.",
   "gender": "Male",
@@ -15,7 +15,7 @@
       "name": "FLASH/DRIVE",
       "iconUrl": "https://i.imgur.com/8NXaqwz.png",
       "info": "Equip a flash grenade. FIRE to throw. The flash grenade explodes after a short fuse, blinding anyone in line of sight.\nRight clicking the flashbang, throws a charged flash, causing it to only have to cook for 1 second, as opposed to left click throwing a flash that cooks in 1.6 seconds.",
-      "preview": "https://i.imgur.com/saf35T3.png",
+      "preview": "https://i.imgur.com/8Fw3KXa.gif",
       "cost": "250"
     },
     {
@@ -23,7 +23,7 @@
       "name": "ZERO/POINT",
       "iconUrl": "https://i.imgur.com/zLq2PBa.png",
       "info": "EQUIP a suppression blade. FIRE to throw. The blade sticks to the first surface it hits, winds up, and suppresses anyone in the radius of the explosion.",
-      "preview": "https://i.imgur.com/saf35T3.png",
+      "preview": "https://i.imgur.com/HpN1Weo.gif",
       "cost": "Free"
     },
     {
@@ -31,7 +31,7 @@
       "name": "FRAG/MENT",
       "iconUrl": "https://i.imgur.com/Ve2Xthz.png",
       "info": "EQUIP an explosive fragment. FIRE to throw. The fragment sticks to the floor and explodes multiple times, dealing near lethal damage at the center with each explosion.",
-      "preview": "https://i.imgur.com/saf35T3.png",
+      "preview": "https://i.imgur.com/qKRsQH3.gif",
       "cost": "200"
     },
     {
@@ -39,7 +39,7 @@
       "name": "NULL/CMD",
       "iconUrl": "https://i.imgur.com/TZJ03Un.png",
       "info": "INSTANTLY overload with polarized radianite energy that empowers KAY/O and causes large energy pulses to emit from his location. Enemies hit with these pulses are suppressed for a short duration.\nWhile overloaded, KAY/O gains combat stim.\nIf KAY/O is killed while overloaded, he is downed and enters a destabilized state, allowing allies to stabilize his core and revive him.",
-      "preview": "https://i.imgur.com/saf35T3.png",
+      "preview": "https://i.imgur.com/AmhYlS0.gif",
       "cost": "••••••• 7 Points"
     }
   ]
