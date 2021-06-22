@@ -21,24 +21,28 @@ At the moment the bot is pretty straightforward, but we have great ideas for it,
 ``()`` Required command arguments.
 
 
-| Name                         | Description                                                                            |
-| ---------------------------- | -------------------------------------------------------------------------------------- |
-| /**abilities all** [`page`]  | Get information on all the abilities in the game.                                      |
-| /**abilities info** (`name`) | Information about a specific ability.                                                  |
-| /**agents** [`agent`]        | Get information and statistics about a Valorant agent.                                 |
-| /**arsenal** [`weapon`]      | Get information and statistics about a Valorant weapon or the entire arsenal.          |
-| /**invite**                  | Generate an invitation link for Killjoy.                                               |
-| /**maps** [`map`]            | Get a list of maps or information about a specific map from Valorant.                  |
-| /**meme**                    | Funny Valorant memes stolen from Reddit.                                               |
-| /**news**                    | Retrieve the latest news from the official PlayValorant website.                       |
-| /**ping**                    | Check current Discord ping.                                                            |
-| /**pugs close**              | Close the active PUG, requires Manage Server permissions.                              |
-| /**pugs create**             | Start a new PUG on this guild, requires Manage Server permissions.                     |
-| /**pugs current**            | Information about the currently active PUG on this guild.                              |
-| /**pugs join**               | Join the active PUG on this guild.                                                     |
-| /**pugs leave**              | Leave the active PUG on this guild.                                                    |
-| /**pugs teams**              | Create two random teams of registered players, with a minimum of 4 registered players. |
-| /**top** (`region`)          | Retrieve the TOP 10 players by region.                                                 |
+| Name                    | Description                                                                            |
+| ----------------------- | -------------------------------------------------------------------------------------- |
+| /**abilities** [`page`] | List all the abilities in the game.                                                    |
+| /**ability** (`name`)   | Get information about an ability.                                                      |
+| /**agent** (`name`)     | Get information and statistics about a Valorant agent.                                 |
+| /**agents**             | List all the Valorant agents.                                                          |
+| /**arsenal** [`weapon`] | Get information and statistics about a Valorant weapon or the entire arsenal.          |
+| /**debug**              | Useful for debugging.                                                                  |
+| /**help**               | Did you need help?                                                                     |
+| /**invite**             | Generate an invitation link for Killjoy.                                               |
+| /**maps** [`map`]       | Get a list of maps or information about a specific map from Valorant.                  |
+| /**meme**               | Funny Valorant memes stolen from Reddit.                                               |
+| /**news**               | The most up-to-date news from the world of VALORANT.                                   |
+| /**ping**               | Check current Discord ping.                                                            |
+| /**pugs close**         | Close the active PUG, requires Manage Server permissions.                              |
+| /**pugs create**        | Start a new PUG on this guild, requires Manage Server permissions.                     |
+| /**pugs current**       | Information about the currently active PUG on this guild.                              |
+| /**pugs join**          | Join the active PUG on this guild.                                                     |
+| /**pugs leave**         | Leave the active PUG on this guild.                                                    |
+| /**pugs teams**         | Create two random teams of registered players, with a minimum of 4 registered players. |
+| /**top** (`region`)     | Retrieve the TOP 10 players by region.                                                 |
+
 
 <p align="center">
  <img alt="Example 1" src="/Branding/examples/commands_agents.png" width="400px">
