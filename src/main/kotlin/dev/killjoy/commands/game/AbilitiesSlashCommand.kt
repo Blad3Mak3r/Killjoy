@@ -24,19 +24,8 @@ import kotlin.math.ceil
 @Suppress("unused")
 class AbilitiesSlashCommand : AbstractSlashCommand("abilities") {
 
-    @SlashSubCommand("info")
-    fun info(ctx: SlashCommandContext) {
-
-        val option = ctx.getOption("name")!!.asString
-
-        val ability = Launcher.getAbility(option)
-            ?: return ctx.sendNotFound("Ability not found.").queue()
-
-        ctx.reply(ability.asEmbed()).queue()
-    }
-
     @SlashSubCommand("all")
-    fun all(ctx: SlashCommandContext) {
+    override suspend fun handle(ctx: SlashCommandContext) {
         val abilities = Launcher.getAbilities().sortedBy { it.skill.name }
 
         val page = ctx.getOption("page")?.asString?.toInt() ?: 1

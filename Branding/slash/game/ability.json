@@ -1,0 +1,12 @@
+{
+  "name": "ability",
+  "description": "Get information about an ability.",
+  "options": [
+    {
+      "type": 3,
+      "name": "name",
+      "description": "The name of the ability.",
+      "required": true
+    }
+  ]
+}
