@@ -41,6 +41,8 @@ data class ValorantAgent (
 
     val abilities = skills.map { AgentAbility(this, it) }
 
+    val normalizedName = name.replace("/", "-")
+
     constructor(json: JSONObject) : this(
         json.getString("id").takeIf { it.isNotEmpty() },
         json.getInt("number"),
@@ -78,7 +80,7 @@ data class ValorantAgent (
 
         return EmbedBuilder().apply {
             setAuthor(role.name, null, role.iconUrl)
-            setTitle(name, "https://playvalorant.com/en-us/agents/${name.lowercase()}/")
+            setTitle(name, "https://playvalorant.com/en-us/agents/${normalizedName.lowercase()}/")
             setThumbnail(avatar)
             setDescription(bio)
             addField("Information", info, true)
