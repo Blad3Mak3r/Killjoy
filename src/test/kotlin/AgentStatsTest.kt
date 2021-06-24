@@ -30,10 +30,10 @@ class AgentStatsTest {
     }
 
     @Test
-    fun `Get Killjoy stats`() {
+    fun `Get KAY-O stats`() {
         val result = runBlocking { RiotAPI.AgentStatsAPI.getAgentStatsAsync("kay/o").await() }
 
         assert(result != null) { "Result is empty." }
-        assert(result!!.key == "kay/o") { "Result is not kay/o agent." }
+        assert(result!!.key == "kayo") { "Result is not kay/o agent." }
     }
 }
