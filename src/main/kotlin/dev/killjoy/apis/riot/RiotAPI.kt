@@ -103,7 +103,7 @@ object RiotAPI {
                 updateAgentStats()
             }
 
-            return agentStatsCache[agent.lowercase()]
+            return agentStatsCache[agent.lowercase().replace("/", "")]
         }
 
         suspend fun getAgentStatsAsync(): Deferred<List<AgentStats>> = withContext(Dispatchers.IO) {

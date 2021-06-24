@@ -21,18 +21,19 @@ class AgentStatsTest {
 
     @Test
     fun `Retrieve agent stats`() {
-        val expected = 15
+        val expected = 16
         val result = runBlocking { RiotAPI.AgentStatsAPI.getAgentStatsAsync().await() }
 
         assert(result.isNotEmpty()) { "Result is empty." }
+        println(result)
         assert(result.size == expected) { "Result is not equal to expected (${result.size} != $expected)." }
     }
 
     @Test
     fun `Get Killjoy stats`() {
-        val result = runBlocking { RiotAPI.AgentStatsAPI.getAgentStatsAsync("killjoy").await() }
+        val result = runBlocking { RiotAPI.AgentStatsAPI.getAgentStatsAsync("kay/o").await() }
 
         assert(result != null) { "Result is empty." }
-        assert(result!!.key == "killjoy") { "Result is not Killjoy agent." }
+        assert(result!!.key == "kay/o") { "Result is not kay/o agent." }
     }
 }
