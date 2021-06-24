@@ -16,7 +16,7 @@
       "iconUrl": "https://i.imgur.com/NNoIolp.png",
       "info": "Enemies killed by Reyna leave behind Soul Orbs that last 3 seconds. INSTANTLY consume a nearby soul orb, rapidly healing for a short duration. Health gained through this skill exceeding 100 will decay over time. If EMPRESS is active, this skill will automatically cast and not consume the orb.",
       "preview": "https://i.imgur.com/XfLWcy5.gif",
-      "cost": "100"
+      "cost": "200"
     },
     {
       "button": "e",
@@ -24,7 +24,7 @@
       "iconUrl": "https://i.imgur.com/mSXrrG6.png",
       "info": "INSTANTLY consume a nearby soul orb, becoming intangible for a short duration. If EMPRESS is active, also become invisible.",
       "preview": "https://i.imgur.com/PmV0hG6.gif",
-      "cost": ""
+      "cost": "200"
     },
     {
       "button": "c",
@@ -32,7 +32,7 @@
       "iconUrl": "https://i.imgur.com/hFvNOek.png",
       "info": "EQUIP an ethereal destructible eye. ACTIVATE to cast the eye a short distance forward. The eye will Nearsight all enemies who look at it.",
       "preview": "https://i.imgur.com/Iffduae.gif",
-      "cost": "200"
+      "cost": "250 (x2)"
     },
     {
       "button": "x",

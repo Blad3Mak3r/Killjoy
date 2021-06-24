@@ -32,7 +32,7 @@
       "iconUrl": "https://i.imgur.com/HVrJZbT.png",
       "info": "EQUIP a Nanoswarm grenade. FIRE to throw the grenade. Upon landing, the Nanoswarm goes covert. ACTIVATE the Nanoswarm to deploy a damaging swarm of nanobots.",
       "preview": "https://i.imgur.com/rg87btl.gif",
-      "cost": "200"
+      "cost": "200 (x2)"
     },
     {
       "button": "x",

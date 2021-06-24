@@ -6,7 +6,7 @@
     "The designated marksman rifle. Heavier and less mobile relative to other rifles but precise and powerful. Headhunt when enemies appear at medium to long distances."
   ],
   "thumbnail": "https://i.imgur.com/nT12CWl.jpg",
-  "cost": 2500,
+  "cost": 2400,
   "magazine": 12,
   "wall_penetration": "High"
 }

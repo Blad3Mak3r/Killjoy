@@ -16,7 +16,7 @@
       "iconUrl": "https://i.imgur.com/8NXaqwz.png",
       "info": "Equip a flash grenade. FIRE to throw. The flash grenade explodes after a short fuse, blinding anyone in line of sight.\nRight clicking the flashbang, throws a charged flash, causing it to only have to cook for 1 second, as opposed to left click throwing a flash that cooks in 1.6 seconds.",
       "preview": "https://i.imgur.com/8Fw3KXa.gif",
-      "cost": "250"
+      "cost": "250 (x2)"
     },
     {
       "button": "e",
@@ -32,7 +32,7 @@
       "iconUrl": "https://i.imgur.com/Ve2Xthz.png",
       "info": "EQUIP an explosive fragment. FIRE to throw. The fragment sticks to the floor and explodes multiple times, dealing near lethal damage at the center with each explosion.",
       "preview": "https://i.imgur.com/qKRsQH3.gif",
-      "cost": "200"
+      "cost": "250 (x2)"
     },
     {
       "button": "x",

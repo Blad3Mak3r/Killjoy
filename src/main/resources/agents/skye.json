@@ -16,7 +16,7 @@
       "iconUrl": "https://i.imgur.com/Oc2AhM6.png",
       "info": "EQUIP a Tasmanian tiger trinket. FIRE to send out and take control of the predator. While in control, FIRE to leap forward, exploding in a concussive blast and damaging directly hit enemies.",
       "preview": "https://i.imgur.com/pqIeCob.gif",
-      "cost": "200"
+      "cost": "250"
     },
     {
       "button": "e",
@@ -24,7 +24,7 @@
       "iconUrl": "https://i.imgur.com/VX1QdhW.png",
       "info": "EQUIP a hawk trinket. FIRE to send it forward. HOLD FIRE to guide the hawk in the direction of your crosshair. RE-USE while the hawk is in flight to transform it into a flash that plays a hit confirm if an enemy was within range and line of sight.",
       "preview": "https://i.imgur.com/pEobOAm.gif",
-      "cost": "100"
+      "cost": "250 (x2)"
     },
     {
       "button": "c",
@@ -32,7 +32,7 @@
       "iconUrl": "https://i.imgur.com/Qr1LnIS.png",
       "info": "EQUIP a healing trinket. HOLD FIRE to channel, healing allies in range and line of sight. Can be reused until her healing pool is depleted. Skye cannot heal herself.",
       "preview": "https://i.imgur.com/IecdVVZ.gif",
-      "cost": "200"
+      "cost": "200 (x2)"
     },
     {
       "button": "x",

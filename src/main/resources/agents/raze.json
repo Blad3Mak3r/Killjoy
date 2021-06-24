@@ -16,7 +16,7 @@
       "iconUrl": "https://i.imgur.com/THS7kMg.png",
       "info": "INSTANTLY throw a Blast Pack that will stick to surfaces. RE-USE the ability after deployment to detonate, damaging and moving anything hit. Raze isn't damaged by this ability, but will still take fall damage if launched up far enough.",
       "preview": "https://i.imgur.com/wWfVfGT.gif",
-      "cost": "200"
+      "cost": "400 (x2)"
     },
     {
       "button": "e",
@@ -24,7 +24,7 @@
       "iconUrl": "https://i.imgur.com/azgkzm2.png",
       "info": "EQUIP a cluster grenade. FIRE to throw the grenade, which does damage and creates sub-munitions, each doing damage to anyone in their range.",
       "preview": "https://i.imgur.com/bwUmyAO.gif",
-      "cost": "2 Kills"
+      "cost": "Free"
     },
     {
       "button": "c",
@@ -40,7 +40,7 @@
       "iconUrl": "https://i.imgur.com/y46R6eU.png",
       "info": "EQUIP a rocket launcher. FIRE shoots a rocket that does massive area damage on contact with anything.",
       "preview": "https://i.imgur.com/vsEs2oe.gif",
-      "cost": "•••••• 6 Points"
+      "cost": "•••••••• 8 Points"
     }
   ]
 }

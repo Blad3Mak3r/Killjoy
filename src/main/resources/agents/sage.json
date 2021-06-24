@@ -16,7 +16,7 @@
       "iconUrl": "https://i.imgur.com/PeRyudR.png",
       "info": "EQUIP a slowing orb. FIRE to throw a slowing orb forward that detonates upon landing, creating a lingering field that slows players caught inside of it.",
       "preview": "https://i.imgur.com/J709jsl.gif",
-      "cost": "100"
+      "cost": "200 (x2)"
     },
     {
       "button": "e",
@@ -24,7 +24,7 @@
       "iconUrl": "https://i.imgur.com/vXisIQ4.png",
       "info": "EQUIP a healing orb. FIRE with your crosshairs over a damaged ally to activate a heal-over-time on them. ALT FIRE while Sage is damaged to activate a self heal-over-time.",
       "preview": "https://i.imgur.com/wy5rimG.gif",
-      "cost": "35s Cooldown"
+      "cost": "45s Cooldown"
     },
     {
       "button": "c",
@@ -40,7 +40,7 @@
       "iconUrl": "https://i.imgur.com/9jJ3lBf.png",
       "info": "EQUIP a resurrection ability. FIRE with your crosshairs placed over a dead ally to begin resurrecting them. After a brief channel, the ally will be brought back to life with full health.",
       "preview": "https://i.imgur.com/LlhSMOq.gif",
-      "cost": "••••••• 7 Points"
+      "cost": "•••••••• 8 Points"
     }
   ]
 }

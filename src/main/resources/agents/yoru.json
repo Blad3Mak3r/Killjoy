@@ -16,7 +16,7 @@
       "iconUrl": "https://i.imgur.com/ewDaXpP.png",
       "info": "EQUIP to rip an unstable dimensional fragment from reality. FIRE to throw the fragment, activating a flash that winds up once it collides with a hard surface in world.",
       "preview": "https://i.imgur.com/AJSx3L7.gif",
-      "cost": "200"
+      "cost": "250 (x2)"
     },
     {
       "button": "e",
@@ -24,7 +24,7 @@
       "iconUrl": "https://i.imgur.com/B9whdpz.png",
       "info": "EQUIP to harness a rift tether FIRE to send the tether out moving forward ALT FIRE to place a tether in place ACTIVATE to teleport to the tether's location.",
       "preview": "https://i.imgur.com/QRzktKZ.gif",
-      "cost": "Free"
+      "cost": "35s Cooldown"
     },
     {
       "button": "c",
@@ -32,7 +32,7 @@
       "iconUrl": "https://i.imgur.com/PZfcIRv.png",
       "info": "EQUIP an echo that mimics footsteps when activated FIRE to activate and send the echo forward ALT FIRE to place an echo in place USE the inactive echo to send it forward.",
       "preview": "https://i.imgur.com/QLSCDmh.gif",
-      "cost": "100"
+      "cost": "100 (x2)"
     },
     {
       "button": "x",
@@ -40,7 +40,7 @@
       "iconUrl": "https://i.imgur.com/N7V6okx.png",
       "info": "EQUIP a mask that can see between dimensions FIRE to drift into Yoru's dimension, unable to be affected or seen by enemies from the outside.",
       "preview": "https://i.imgur.com/f5bocHi.gif",
-      "cost": "••••••• 7 Points"
+      "cost": "•••••• 6 Points"
     }
   ]
 }

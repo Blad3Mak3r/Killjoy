@@ -16,7 +16,7 @@
       "iconUrl": "https://i.imgur.com/NH4o6Dc.png",
       "info": "INSTANTLY toss the cyber cage in front of Cypher. Activate to create a zone that blocks vision and slows enemies who pass through it.",
       "preview": "https://i.imgur.com/Apw5dqW.gif",
-      "cost": "100"
+      "cost": "100 (x2)"
     },
     {
       "button": "e",
@@ -32,7 +32,7 @@
       "iconUrl": "https://i.imgur.com/JWvlhyU.png",
       "info": "EQUIP a trapwire. FIRE to place a destructible and covert tripwire at the targeted location creating a line that spans between the placed location and the wall opposite. Enemy players who cross a tripwire will be tethered, revealed, and dazed after a short period if they do not destroy the device in time. This ability can be picked up to be REDEPLOYED.",
       "preview": "https://i.imgur.com/2Fj8JuQ.gif",
-      "cost": "200"
+      "cost": "200 (x2)"
     },
     {
       "button": "x",
@@ -40,7 +40,7 @@
       "iconUrl": "https://i.imgur.com/5htVVDl.png",
       "info": "INSTANTLY use on a dead enemy player in your crosshairs to reveal the location of all living enemy players.",
       "preview": "https://i.imgur.com/75RAgLO.gif",
-      "cost": "••••••• 7 Points"
+      "cost": "•••••• 6 Points"
     }
   ]
 }

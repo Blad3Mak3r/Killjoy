@@ -6,7 +6,7 @@
     "A nimble lever-action sniper rifle with a single zoom that can keep bullish enemies at bay. A slow rate of fire means you have to either hit the mark or leave yourself open to attacks."
   ],
   "thumbnail": "https://i.imgur.com/a6EBCIE.jpg",
-  "cost": 1100,
+  "cost": 1000,
   "magazine": 5,
   "wall_penetration": "Medium"
 }
