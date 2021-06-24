@@ -34,13 +34,13 @@ data class ValorantNew(
         val date = ParseUtils.millisToCalendar(timestamp)
         return MessageEmbed.Field(
             title,
-            FOOTER_PATTERN.format(description, url, date),
+            fieldPattern.format(description, url, date),
             false
         )
     }
 
     companion object {
-        private val FOOTER_PATTERN = "%s\n[` Read more... `](%s) | ` Posted on %s `"
+        private const val fieldPattern = "%s\n[` Read more... `](%s) | ` Posted on %s `"
         private val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ENGLISH)
         private val logger = LoggerFactory.getLogger(ValorantNew::class.java)
 
@@ -64,7 +64,6 @@ data class ValorantNew(
                     image = banner
                 )
 
-                logger.info("Created new Valorant new $new")
                 return new
             } catch (e: Exception) {
                 logger.error("Error creating Valorant New: ${e.message}", e)
