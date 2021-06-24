@@ -28,7 +28,6 @@ repositories {
     mavenCentral()
     maven("https://m2.dv8tion.net/releases")
     maven("https://dl.bintray.com/kotlin/kotlinx")
-    jcenter()
     maven("https://jitpack.io")
 }
 
