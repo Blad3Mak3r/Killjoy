@@ -64,17 +64,14 @@ data class ValorantAgent (
         val stats = RiotAPI.AgentStatsAPI.getAgentStatsAsync(name.lowercase()).await()
 
         val statistics = buildString {
-            appendLine("__**Pick Rate:**__     ${stats?.pickRate ?: "N/A"}")
-            appendLine("__**Win Rate:**__      ${stats?.winRate ?: "N/A"}")
-            appendLine("__**KDA (match):**__   ${stats?.kdaPerMatch ?: "N/A"}")
-            appendLine("__**KDA (round):**__   ${stats?.kdaPerRound ?: "N/A"}")
-            appendLine("__**AVG. Damage:**__   ${stats?.avgDamage ?: "N/A"}")
-            appendLine("__**AVG. Score:**__    ${stats?.avgScore ?: "N/A"}")
-        }
-        val info = buildString {
-            appendLine("__**Origin:**__      $origin")
-            appendLine("__**Gender:**__      $gender")
-            appendLine("__**Affiliation:**__ $affiliation")
+            appendLine("```kotlin")
+            appendLine("Pick Rate:      ${stats?.pickRate ?: "N/A"}%")
+            appendLine("Win Rate:       ${stats?.winRate ?: "N/A"}%")
+            appendLine("KDA (match):    ${stats?.kdaPerMatch ?: "N/A"}")
+            appendLine("KDA (round):    ${stats?.kdaPerRound ?: "N/A"}")
+            appendLine("AVG. Damage:    ${stats?.avgDamage ?: "N/A"}")
+            appendLine("AVG. Score:     ${stats?.avgScore ?: "N/A"}")
+            appendLine("```")
         }
 
         return EmbedBuilder().apply {
@@ -82,8 +79,10 @@ data class ValorantAgent (
             setTitle(name, "https://playvalorant.com/en-us/agents/${name.replace("/", "-").lowercase()}/")
             setThumbnail(avatar)
             setDescription(bio)
-            addField("Information", info, true)
-            addField("Statistics", statistics, true)
+            addField("Origin", origin, true)
+            addField("Gender", gender, true)
+            addField("Affiliation", affiliation, true)
+            addField("Statistics", statistics, false)
             addBlankField(false)
             setDefaultColor()
             for (skill in skills) {
