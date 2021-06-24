@@ -20,17 +20,17 @@ import kong.unirest.json.JSONObject
 import net.dv8tion.jda.api.entities.MessageEmbed
 import org.slf4j.LoggerFactory
 import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 data class ValorantNew(
     val url: String,
     val title: String,
     val description: String,
-    val timestamp: Long,
+    val date: String,
     val image: String
 ) {
-
-    private val date = ParseUtils.millisToCalendar(timestamp)
 
     fun asEmbedField(): MessageEmbed.Field {
         return MessageEmbed.Field(
@@ -42,8 +42,14 @@ data class ValorantNew(
 
     companion object {
         private const val fieldPattern = "%s\n[` Read more... `](%s) | ` Posted on %s `"
-        private val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ENGLISH)
+        private val inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ENGLISH)
+        private val outputFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy", Locale.ENGLISH)
         private val logger = LoggerFactory.getLogger(ValorantNew::class.java)
+
+        private fun formatDate(date: String): String {
+            val formatted = LocalDate.parse(date, inputFormatter)
+            return outputFormatter.format(formatted)
+        }
 
         fun buildFromExperimentalApi(json: JSONObject): ValorantNew? {
             try {
@@ -55,17 +61,13 @@ data class ValorantNew(
                 val externalLink = json.optString("external_link").takeIf { it.isNotEmpty() }
                 val url = json.getJSONObject("url").getString("url")
 
-                val date = json.getString("date")
-
-                val new = ValorantNew(
+                return ValorantNew(
                     title = title,
                     url = externalLink ?: "https://playvalorant.com/en-us$url",
-                    timestamp = dateFormat.parse(date).time,
+                    date = formatDate(json.getString("date")),
                     description = description,
                     image = banner
                 )
-
-                return new
             } catch (e: Exception) {
                 logger.error("Error creating Valorant New: ${e.message}", e)
                 return null
