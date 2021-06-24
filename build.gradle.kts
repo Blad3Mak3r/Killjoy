@@ -20,7 +20,7 @@ val logbackVersion = "1.2.3"
 val prometheusVersion = "0.11.0"
 val sentryVersion = "5.0.1"
 
-group = "killjoy"
+group = "dev.killjoy"
 val versionObj = Version(0, 12, 2)
 version = versionObj.build()
 
