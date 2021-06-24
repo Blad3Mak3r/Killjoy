@@ -46,6 +46,12 @@ object Metrics {
         .labelNames("shard")
         .register()
 
+    private val LARGE_GUILD_COUNT: Gauge = Gauge.build()
+        .name("killjoy_LARGUE_guild_count")
+        .help("Large Guild count (+250)")
+        .labelNames("shard")
+        .register()
+
     private val USER_COUNT: Gauge = Gauge.build()
         .name("killjoy_user_count")
         .help("User count")
@@ -74,6 +80,10 @@ object Metrics {
         GUILD_COUNT
             .labels("${shard.shardInfo.shardId}")
             .set(shard.guildCache.size().toDouble())
+
+        LARGE_GUILD_COUNT
+            .labels("${shard.shardInfo.shardId}")
+            .set(shard.guildCache.filter { it.memberCount >= 250 }.size.toDouble())
 
         val userCollection = shard.guildCache.map { it.memberCount }
 
