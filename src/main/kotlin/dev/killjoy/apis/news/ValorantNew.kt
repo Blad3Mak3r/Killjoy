@@ -15,7 +15,10 @@
 
 package dev.killjoy.apis.news
 
+import dev.killjoy.utils.ParseUtils
 import kong.unirest.json.JSONObject
+import net.dv8tion.jda.api.entities.MessageEmbed
+import org.slf4j.LoggerFactory
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -27,12 +30,21 @@ data class ValorantNew(
     val image: String
 ) {
 
+    fun asEmbedField(): MessageEmbed.Field {
+        val date = ParseUtils.millisToCalendar(timestamp)
+        return MessageEmbed.Field(
+            title,
+            FOOTER_PATTERN.format(description, url, date),
+            false
+        )
+    }
+
     companion object {
+        private val FOOTER_PATTERN = "%s\n[` Read more... `](%s) | ` Posted on %s `"
         private val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ENGLISH)
+        private val logger = LoggerFactory.getLogger(ValorantNew::class.java)
 
         fun buildFromExperimentalApi(json: JSONObject): ValorantNew? {
-            //
-
             try {
                 val title = json.getString("title")
                 val description = json.getString("description")
@@ -44,21 +56,20 @@ data class ValorantNew(
 
                 val date = json.getString("date")
 
-                return ValorantNew(
+                val new = ValorantNew(
                     title = title,
                     url = externalLink ?: "https://playvalorant.com/en-us$url",
                     timestamp = dateFormat.parse(date).time,
                     description = description,
                     image = banner
                 )
+
+                logger.info("Created new Valorant new $new")
+                return new
             } catch (e: Exception) {
-                e.printStackTrace()
+                logger.error("Error creating Valorant New: ${e.message}", e)
                 return null
             }
         }
-    }
-
-    override fun toString(): String {
-        return "ValorantNew(url='$url', title='$title', description='$description', timestamp=$timestamp, image='$image')"
     }
 }

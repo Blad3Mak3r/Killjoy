@@ -33,11 +33,11 @@ object NewsRetriever {
     val cached: Boolean
         get() = cachedNews.get() != null && cachedNewsTimestamp > System.currentTimeMillis()
 
-    suspend fun lastNews(limit: Int = 10): List<ValorantNew> = withContext(Dispatchers.IO) {
+    suspend fun lastNews(): List<ValorantNew> = withContext(Dispatchers.IO) {
         if (!cached) {
-            retrieveExperimentalValorantNews().await().take(limit)
+            retrieveExperimentalValorantNews().await()
         } else {
-            cachedNews.get()!!.take(limit)
+            cachedNews.get()!!
         }
     }
 
@@ -56,7 +56,7 @@ object NewsRetriever {
             .toList()
             .map { it as JSONObject }
 
-        val mappedResults = contentArray.mapNotNull(ValorantNew::buildFromExperimentalApi)
+        val mappedResults = contentArray.take(5).mapNotNull(ValorantNew::buildFromExperimentalApi)
 
         if (mappedResults.isNotEmpty()) {
             cachedNews.set(mappedResults)

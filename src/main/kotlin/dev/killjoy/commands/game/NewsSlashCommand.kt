@@ -19,6 +19,8 @@ import dev.killjoy.apis.news.NewsRetriever
 import dev.killjoy.extensions.jda.setDefaultColor
 import dev.killjoy.slash.api.AbstractSlashCommand
 import dev.killjoy.slash.api.SlashCommandContext
+import dev.killjoy.utils.ParseUtils
+import dev.killjoy.utils.Utils
 import net.dv8tion.jda.api.EmbedBuilder
 
 @Suppress("unused")
@@ -29,14 +31,14 @@ class NewsSlashCommand : AbstractSlashCommand("news") {
 
         if (!isCached) ctx.acknowledge().queue()
 
-        val latestNews = NewsRetriever.lastNews(10)
+        val latestNews = NewsRetriever.lastNews()
 
         val embed = EmbedBuilder().run {
             setDefaultColor()
             setTitle("Latest Valorant news")
             setDescription("This articles are from the official PlayValorant website.")
             for (new in latestNews) {
-                addField(new.title, new.description+"\n[Read more](${new.url})", false)
+                addField(new.asEmbedField())
             }
             setImage(latestNews.firstOrNull()?.image)
             build()

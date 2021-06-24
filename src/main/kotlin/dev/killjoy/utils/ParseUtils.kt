@@ -50,6 +50,37 @@ object ParseUtils {
         }
     }
 
+    fun millisToCalendar(millis: Long): String {
+        val calendar = Calendar.getInstance()
+        calendar.timeInMillis = millis
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
+        val month = calendar.get(Calendar.MONTH)
+        val year = calendar.get(Calendar.YEAR)
+
+        return "$day ${Months.fromNumber(month).name} $year"
+    }
+
+    private enum class Months(
+        val number: Int
+    ) {
+        Jan(1),
+        Feb(2),
+        Mar(3),
+        Apr(4),
+        May(5),
+        Jun(6),
+        Jul(7),
+        Aug(8),
+        Sep(9),
+        Oct(10),
+        Nov(11),
+        Dec(12);
+
+        companion object {
+            fun fromNumber(number: Int) = values().find { it.number == number }!!
+        }
+    }
+
     /**
      *
      * @return dd days, hh hours, MM minutes and ss seconds.

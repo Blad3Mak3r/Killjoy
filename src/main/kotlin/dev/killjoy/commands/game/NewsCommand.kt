@@ -27,14 +27,14 @@ import dev.killjoy.framework.annotations.CommandProperties
 )
 class NewsCommand : Command() {
     override suspend fun handle(ctx: CommandContext) {
-        val latestNews = NewsRetriever.lastNews(10)
+        val latestNews = NewsRetriever.lastNews()
 
         ctx.replyEmbed {
             setTitle("Latest Valorant news")
             setDescription("This articles are from the official PlayValorant website.")
 
             for (new in latestNews) {
-                addField(new.title, new.description+"\n[Read more](${new.url})", false)
+                addField(new.asEmbedField())
             }
 
             setImage(latestNews.firstOrNull()?.image)
