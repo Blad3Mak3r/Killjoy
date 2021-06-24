@@ -31,8 +31,8 @@ class AgentAbility(
             setDescription(skill.info)
             setThumbnail(skill.iconUrl)
             setImage(skill.preview)
-            addField("Action Button", skill.button.name, true)
-            addField("Usage Cost", skill.cost, true)
+            addField("Action Button", "`${skill.button.name}`", true)
+            addField("Usage Cost", "`${skill.cost}`", true)
             setDefaultColor()
             build()
         }

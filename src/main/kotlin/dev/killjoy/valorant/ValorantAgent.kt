@@ -21,6 +21,7 @@ import dev.killjoy.apis.riot.RiotAPI
 import dev.killjoy.extensions.jda.setDefaultColor
 import dev.killjoy.utils.extensions.isUrl
 import net.dv8tion.jda.api.EmbedBuilder
+import net.dv8tion.jda.api.entities.MessageEmbed
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -86,7 +87,7 @@ data class ValorantAgent (
             addBlankField(false)
             setDefaultColor()
             for (skill in skills) {
-                addField("`` ${skill.button.name.uppercase()} `` - ${skill.name}", skill.info, false)
+                addField(skill.asEmbedField())
             }
         }
     }
@@ -129,6 +130,12 @@ data class ValorantAgent (
             check(this.iconUrl.isUrl()) { "iconUrl is not a valid URL. (Skill $name) [${this.iconUrl}]" }
             check(this.preview.isUrl()) { "preview is not a valid URL. (Skill $name) [${this.preview}]" }
         }
+
+        fun asEmbedField() = MessageEmbed.Field(
+            name,
+            "$info\n` Cost: $cost `",
+            false
+        )
 
         val id: String
             get() = buildIdentifier(name)
