@@ -30,8 +30,9 @@ data class ValorantNew(
     val image: String
 ) {
 
+    private val date = ParseUtils.millisToCalendar(timestamp)
+
     fun asEmbedField(): MessageEmbed.Field {
-        val date = ParseUtils.millisToCalendar(timestamp)
         return MessageEmbed.Field(
             title,
             fieldPattern.format(description, url, date),
