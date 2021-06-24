@@ -63,14 +63,15 @@ data class ValorantAgent (
     suspend fun asEmbed(): EmbedBuilder {
         val stats = RiotAPI.AgentStatsAPI.getAgentStatsAsync(name.lowercase()).await()
 
-        val statistics = buildString {
+        val statistics = if (stats == null) "```\nNot available at the moment.\n```"
+        else buildString {
             appendLine("```kotlin")
-            appendLine("Pick Rate:      ${stats?.pickRate ?: "N/A"}%")
-            appendLine("Win Rate:       ${stats?.winRate ?: "N/A"}%")
-            appendLine("KDA (match):    ${stats?.kdaPerMatch ?: "N/A"}")
-            appendLine("KDA (round):    ${stats?.kdaPerRound ?: "N/A"}")
-            appendLine("AVG. Damage:    ${stats?.avgDamage ?: "N/A"}")
-            appendLine("AVG. Score:     ${stats?.avgScore ?: "N/A"}")
+            appendLine("Pick Rate:      ${stats.pickRate}%")
+            appendLine("Win Rate:       ${stats.winRate}%")
+            appendLine("KDA (match):    ${stats.kdaPerMatch}")
+            appendLine("KDA (round):    ${stats.kdaPerRound}")
+            appendLine("AVG. Damage:    ${stats.avgDamage}")
+            appendLine("AVG. Score:     ${stats.avgScore}")
             appendLine("```")
         }
 
