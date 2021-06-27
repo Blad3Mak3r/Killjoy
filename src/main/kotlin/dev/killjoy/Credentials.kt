@@ -109,5 +109,4 @@ object Credentials {
 
     // Base config
     val token: String = get("token")
-    val synchronize: Boolean = getOrDefault("database.synchronize", false)
 }

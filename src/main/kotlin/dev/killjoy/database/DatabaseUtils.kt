@@ -15,19 +15,23 @@
 
 package dev.killjoy.database
 
+import dev.killjoy.Credentials
 import dev.killjoy.database.models.PugsTable
-import dev.killjoy.getConfig
 import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.transactions.transaction
 
 typealias DatabaseConnection = org.jetbrains.exposed.sql.Database
 
-internal fun buildDatabaseConnection(synchronize: Boolean): Database {
-    val host = getConfig("host", "localhost")
-    val port = getConfig("port", 5432)
-    val user = getConfig("user", "killjoy")
-    val password = getConfig("password", "killjoy")
-    val name = getConfig("name", "killjoy")
+private inline fun <reified T> getCredential(property: String, fallback: T): T =
+    Credentials.getOrDefault("database.$property", fallback)
+
+internal fun buildDatabaseConnection(): Database {
+    val host = getCredential("host", "localhost")
+    val port = getCredential("port", 5432)
+    val user = getCredential("user", "killjoy")
+    val password = getCredential("password", "killjoy")
+    val name = getCredential("name", "killjoy")
+    val synchronize = getCredential("synchronize", false)
 
     val db = Database(host, port, user, password, name)
 
