@@ -33,9 +33,9 @@ repositories {
 
 dependencies {
     //Kotlin
-    implementation(kotlin("stdlib"))
-    implementation(kotlin("serialization"))
-    implementation(kotlin("reflect"))
+    implementation(kotlin("stdlib", "1.5.20"))
+    implementation(kotlin("serialization", "1.5.20"))
+    implementation(kotlin("reflect", "1.5.20"))
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:$coroutinesVersion")
 
