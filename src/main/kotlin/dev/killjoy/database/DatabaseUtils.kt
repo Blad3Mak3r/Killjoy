@@ -15,16 +15,27 @@
 
 package dev.killjoy.database
 
+import dev.killjoy.database.models.PugsTable
 import dev.killjoy.getConfig
+import org.jetbrains.exposed.sql.SchemaUtils
+import org.jetbrains.exposed.sql.transactions.transaction
 
 typealias DatabaseConnection = org.jetbrains.exposed.sql.Database
 
-internal fun buildDatabaseConnection(): Database {
+internal fun buildDatabaseConnection(synchronize: Boolean): Database {
     val host = getConfig("host", "localhost")
     val port = getConfig("port", 5432)
     val user = getConfig("user", "killjoy")
     val password = getConfig("password", "killjoy")
     val name = getConfig("name", "killjoy")
 
-    return Database(host, port, user, password, name)
+    val db = Database(host, port, user, password, name)
+
+    if (synchronize) transaction(db.connection) {
+        SchemaUtils.createMissingTablesAndColumns(
+            PugsTable
+        )
+    }
+
+    return db
 }

@@ -25,6 +25,7 @@ import org.jetbrains.exposed.dao.UUIDEntityClass
 import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.id.UUIDTable
 import org.jetbrains.exposed.sql.LongColumnType
+import org.jetbrains.exposed.sql.`java-time`.CurrentTimestamp
 import org.jetbrains.exposed.sql.`java-time`.timestamp
 import java.time.Instant
 import java.util.*
@@ -34,7 +35,7 @@ object PugsTable : UUIDTable("pugs") {
     val ownerId = long("owner_id")
     val isActive = bool("is_active").default(true)
     val players = array<Long>("players", LongColumnType())
-    val createdAt = timestamp("created_at").clientDefault { Instant.now() }
+    val createdAt = timestamp("created_at").defaultExpression(CurrentTimestamp())
 }
 
 @Suppress("MemberVisibilityCanBePrivate")

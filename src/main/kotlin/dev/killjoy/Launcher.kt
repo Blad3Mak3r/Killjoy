@@ -97,7 +97,7 @@ object Launcher : Killjoy {
         //Initialize sentry
         SentryUtils.init()
 
-        database = buildDatabaseConnection()
+        database = buildDatabaseConnection(Credentials.synchronize)
 
         // Load entities after banner
         agents = Loaders.loadAgents()

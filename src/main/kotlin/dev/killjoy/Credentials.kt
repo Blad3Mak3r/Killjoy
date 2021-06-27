@@ -79,9 +79,6 @@ object Credentials {
         }
     }
 
-    // Base config
-    val token: String = get("token")
-
     //KUtils
     internal inline fun <reified T> Config.get(path: String): T {
         val ref = this.getAnyRef(path)
@@ -109,4 +106,8 @@ object Credentials {
             return fallback
         }
     }
+
+    // Base config
+    val token: String = get("token")
+    val synchronize: Boolean = getOrDefault("database.synchronize", false)
 }
