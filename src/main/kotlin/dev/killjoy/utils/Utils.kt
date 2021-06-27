@@ -22,13 +22,16 @@ import dev.killjoy.Versions
 import dev.killjoy.framework.CommandContext
 import dev.killjoy.framework.abs.Command
 import dev.killjoy.framework.abs.SubCommand
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.asCoroutineDispatcher
+import dev.killjoy.slash.api.SlashCommandContext
+import kong.unirest.Unirest
+import kotlinx.coroutines.*
 import net.dv8tion.jda.api.entities.Guild
+import net.dv8tion.jda.api.entities.Icon
 import net.dv8tion.jda.api.entities.Role
 import org.slf4j.Logger
 import java.net.MalformedURLException
 import java.net.URL
+import java.util.concurrent.CompletableFuture
 import java.util.concurrent.LinkedBlockingQueue
 import java.util.concurrent.ThreadPoolExecutor
 import java.util.concurrent.TimeUnit
@@ -93,6 +96,13 @@ object Utils {
         } catch (ignored: MalformedURLException) {
             false
         }
+    }
+
+    suspend fun getAvatarIcon(ctx: SlashCommandContext): Icon? = withContext(Dispatchers.IO) {
+        val node = Unirest.get(ctx.jda.selfUser.effectiveAvatarUrl).asBytes()
+
+        if (!node.isSuccess) null
+        else Icon.from(node.body)
     }
 
     object Commands {

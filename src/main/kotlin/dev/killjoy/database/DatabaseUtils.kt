@@ -16,6 +16,7 @@
 package dev.killjoy.database
 
 import dev.killjoy.Credentials
+import dev.killjoy.database.models.NewsWebhooksTable
 import dev.killjoy.database.models.PugsTable
 import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.transactions.transaction
@@ -37,6 +38,7 @@ internal fun buildDatabaseConnection(): Database {
 
     if (synchronize) transaction(db.connection) {
         SchemaUtils.createMissingTablesAndColumns(
+            NewsWebhooksTable,
             PugsTable
         )
     }

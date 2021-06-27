@@ -32,6 +32,7 @@ package dev.killjoy.database
 
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
+import dev.killjoy.database.repositories.NewsWebhookRepository
 import dev.killjoy.database.repositories.PugsRepository
 import org.slf4j.LoggerFactory
 
@@ -46,6 +47,7 @@ class Database(
     internal val connection: DatabaseConnection
 
     val pugs: PugsRepository
+    val newsWebhook: NewsWebhookRepository
 
     init {
         logger.info("Initializing database connection...")
@@ -68,6 +70,7 @@ class Database(
         connection = DatabaseConnection.connect(HikariDataSource(config))
 
         pugs = PugsRepository(connection)
+        newsWebhook = NewsWebhookRepository(connection)
     }
 
     companion object {

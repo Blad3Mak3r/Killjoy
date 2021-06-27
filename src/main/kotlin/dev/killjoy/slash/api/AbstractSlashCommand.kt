@@ -31,9 +31,9 @@ import kotlin.reflect.full.findAnnotation
 import kotlin.reflect.full.functions
 import kotlin.reflect.full.hasAnnotation
 
-abstract class AbstractSlashCommand(val commandName: String) {
+abstract class AbstractSlashCommand(val commandName: String, vararg defaultChecks: (SlashCommandContext) -> Boolean = emptyArray()) {
 
-    private val checks: MutableList<Predicate<SlashCommandContext>> = mutableListOf()
+    private val checks: MutableList<Predicate<SlashCommandContext>> = mutableListOf(*defaultChecks.map { Predicate(it) }.toTypedArray())
 
     private val subCommands: List<SubCommand> = this::class.functions
         .filter { it.hasAnnotation<SlashSubCommand>() && it.visibility == KVisibility.PUBLIC && !it.isAbstract }
