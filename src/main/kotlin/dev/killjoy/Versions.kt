@@ -23,5 +23,6 @@ object Versions {
 
     val KILLJOY: String = if (appProps.getString("version").startsWith("@")) "UNKNOWN" else appProps.getString("version")
     val COMMIT: String = if (appProps.getString("revision").startsWith("@")) "UNKNOWN" else appProps.getString("revision")
+    val BUILD_NUMBER: String = if (appProps.getString("build").startsWith("@")) "UNKNOWN" else appProps.getString("build")
     val JDA: String = JDAInfo.VERSION
 }
