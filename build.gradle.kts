@@ -132,19 +132,7 @@ class Version(
         else "$major.$minor.$revision"
     }
 
-    fun build(): String {
-        val build = getBuildCI()
-        val commit = gitRevision()
-        var finalVersion = getVersion()
-
-        if (build != null || commit != null) finalVersion += "_"
-
-        if (build != null && commit != null) finalVersion += "$build+$commit"
-        else if (build != null && commit == null) finalVersion += "$build"
-        else if (build == null && commit != null) finalVersion += "$commit"
-
-        return finalVersion
-    }
+    fun build(): String = getVersion()
 }
 
 fun getBuildCI(): String? {
