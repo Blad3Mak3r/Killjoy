@@ -45,7 +45,7 @@ class TopSlashCommand : AbstractSlashCommand("top") {
                 }, false)
             }
             setTimestamp(Instant.ofEpochMilli(playersList.updatedAt))
-            setFooter("Episode 2 Act 3 | Updated at")
+            setFooter("Episode 3 Act 1 | Updated at")
         }.queue()
     }
 
