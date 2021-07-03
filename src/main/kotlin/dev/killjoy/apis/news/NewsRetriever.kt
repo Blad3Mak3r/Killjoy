@@ -15,36 +15,43 @@
 
 package dev.killjoy.apis.news
 
+import dev.killjoy.i18n.I18n
 import kong.unirest.Unirest
 import kong.unirest.json.JSONObject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.future.await
 import kotlinx.coroutines.withContext
 import org.slf4j.LoggerFactory
+import java.util.*
 import java.util.concurrent.CompletableFuture
+import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicReference
+import kotlin.collections.HashMap
 
 object NewsRetriever {
-    private var cachedNews: AtomicReference<List<ValorantNew>?> = AtomicReference(null)
-    private var cachedNewsTimestamp: Long = 0L
+    private val cacheV2 = ConcurrentHashMap<String, I18nCachedNews>()
     private val logger = LoggerFactory.getLogger(NewsRetriever::class.java)
 
-    val cached: Boolean
-        get() = cachedNews.get() != null && cachedNewsTimestamp > System.currentTimeMillis()
+    fun isCached(locale: Locale): Boolean {
+        val cached = cacheV2[locale.language] ?: return false
 
-    suspend fun lastNews(): List<ValorantNew> = withContext(Dispatchers.IO) {
-        if (!cached) {
-            retrieveExperimentalValorantNews().await()
+        return cached.timestamp > System.currentTimeMillis()
+    }
+
+    suspend fun lastNews(locale: Locale): List<ValorantNew> = withContext(Dispatchers.IO) {
+        if (!isCached(locale)) {
+            retrieveExperimentalValorantNews(locale).await()
         } else {
-            cachedNews.get()!!
+            cacheV2[locale.language]!!.news
         }
     }
 
-    private fun retrieveExperimentalValorantNews(): CompletableFuture<List<ValorantNew>> = CompletableFuture.supplyAsync {
-        logger.info("Retrieving fresh Valorant news from data api...")
+    private fun retrieveExperimentalValorantNews(locale: Locale): CompletableFuture<List<ValorantNew>> = CompletableFuture.supplyAsync {
+        logger.info("Retrieving fresh Valorant news from data api for locale ${locale.language} ...")
 
-        val response = Unirest.get("https://playvalorant.com/page-data/en-us/news/page-data.json").asJson()
+        val localePath = getLocalePath(locale)
+        val response = Unirest.get("https://playvalorant.com/page-data/$localePath/news/page-data.json").asJson()
 
         if (!response.isSuccess) throw IllegalStateException("Non-successful status code: ${response.status}")
 
@@ -56,14 +63,26 @@ object NewsRetriever {
             .toList()
             .map { it as JSONObject }
 
-        val mappedResults = contentArray.take(5).mapNotNull(ValorantNew::buildFromExperimentalApi)
+        val mappedResults = contentArray.take(5).mapNotNull { ValorantNew.buildFromExperimentalApi(localePath, it) }
 
         if (mappedResults.isNotEmpty()) {
-            cachedNews.set(mappedResults)
-            cachedNewsTimestamp = System.currentTimeMillis() + TimeUnit.HOURS.toMillis(1)
+            val newsObj = I18nCachedNews(
+                news = mappedResults,
+                timestamp = System.currentTimeMillis() + TimeUnit.HOURS.toMillis(1)
+            )
+            cacheV2[locale.language] = newsObj
         }
 
         logger.info("Successfully retrieved valorant news.")
         mappedResults
+    }
+
+    private fun getLocalePath(locale: Locale): String {
+        val usedLocale = if (I18n.isSupported(locale)) locale else I18n.DEFAULT_LOCALE
+
+        return when (usedLocale.language) {
+            "es" -> "es-es"
+            else -> "en-us"
+        }
     }
 }

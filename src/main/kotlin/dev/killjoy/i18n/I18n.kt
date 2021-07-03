@@ -28,7 +28,7 @@ object I18n {
 
     private val initialized = AtomicBoolean(false)
     private val logger = LoggerFactory.getLogger(I18n::class.java)
-    private val DEFAULT_LOCALE = Locale("en")
+    val DEFAULT_LOCALE = Locale("en")
     val VALID_LOCALES = listOf(DEFAULT_LOCALE, Locale("es"))
 
     private val generalBundle = I18nBundle()
