@@ -19,8 +19,14 @@ package dev.killjoy.valorant
 
 import dev.killjoy.apis.riot.RiotAPI
 import dev.killjoy.extensions.jda.setDefaultColor
+import dev.killjoy.i18n.I18n
+import dev.killjoy.i18n.I18nKey
+import dev.killjoy.i18n.i18n
+import dev.killjoy.i18n.i18nCommand
+import dev.killjoy.slash.api.SlashCommandContext
 import dev.killjoy.utils.extensions.isUrl
 import net.dv8tion.jda.api.EmbedBuilder
+import net.dv8tion.jda.api.entities.Guild
 import net.dv8tion.jda.api.entities.MessageEmbed
 import org.json.JSONArray
 import org.json.JSONObject
@@ -60,30 +66,21 @@ data class ValorantAgent (
         check(this.avatar.isUrl()) { "avatar is not a valid url (ValorantAgent ${this.name}) [${this.avatar}]" }
     }
 
-    suspend fun asEmbed(): EmbedBuilder {
+    suspend fun asEmbed(guild: Guild): EmbedBuilder {
         val stats = RiotAPI.AgentStatsAPI.getAgentStatsAsync(name.lowercase()).await()
 
-        val statistics = if (stats == null) "```\nNot available at the moment.\n```"
-        else buildString {
-            appendLine("```kotlin")
-            appendLine("Pick Rate:      ${stats.pickRate}%")
-            appendLine("Win Rate:       ${stats.winRate}%")
-            appendLine("KDA (match):    ${stats.kdaPerMatch}")
-            appendLine("KDA (round):    ${stats.kdaPerRound}")
-            appendLine("AVG. Damage:    ${stats.avgDamage}")
-            appendLine("AVG. Score:     ${stats.avgScore}")
-            appendLine("```")
-        }
+        val statistics = if (stats == null) guild.i18n(I18nKey.NOT_AVAILABLE_AT_THE_MOMENT)
+        else guild.i18nCommand("agent.stats", stats.pickRate, stats.winRate, stats.kdaPerMatch, stats.kdaPerRound, stats.avgDamage, stats.avgScore)
 
         return EmbedBuilder().apply {
-            setAuthor(role.name, null, role.iconUrl)
+            setAuthor(role.locatedName(guild), null, role.iconUrl)
             setTitle(name, "https://playvalorant.com/en-us/agents/${name.replace("/", "-").lowercase()}/")
             setThumbnail(avatar)
             setDescription(bio)
-            addField("Origin", origin, true)
-            addField("Gender", gender, true)
-            addField("Affiliation", affiliation, true)
-            addField("Statistics", statistics, false)
+            addField(guild.i18nCommand("agent.origin"), origin, true)
+            addField(guild.i18nCommand("agent.gender"), gender, true)
+            addField(guild.i18nCommand("agent.affiliation"), affiliation, true)
+            addField(guild.i18nCommand("agent.statistics"), statistics, false)
             addBlankField(false)
             setDefaultColor()
             for (skill in skills) {
@@ -92,11 +89,13 @@ data class ValorantAgent (
         }
     }
 
-    enum class Role(val emoji: String, val iconUrl: String) {
-        Controller("<:controller:754676227809214485>", "https://i.imgur.com/V4Ci1Oh.png"),
-        Duelist("<:duelist:754676227952083025>", "https://i.imgur.com/rs0d2qx.png"),
-        Initiator("<:initiator:754676227582722062>", "https://i.imgur.com/hCVcqgf.png"),
-        Sentinel("<:sentinel:754676227994026044>", "https://i.imgur.com/ODX86kl.png");
+    enum class Role(val emoji: String, val iconUrl: String, private val i18nKey: I18nKey) {
+        Controller("<:controller:754676227809214485>", "https://i.imgur.com/V4Ci1Oh.png", I18nKey.AGENT_CLASS_CONTROLLER),
+        Duelist("<:duelist:754676227952083025>", "https://i.imgur.com/rs0d2qx.png", I18nKey.AGENT_CLASS_DUELIST),
+        Initiator("<:initiator:754676227582722062>", "https://i.imgur.com/hCVcqgf.png", I18nKey.AGENT_CLASS_INITIATOR),
+        Sentinel("<:sentinel:754676227994026044>", "https://i.imgur.com/ODX86kl.png", I18nKey.AGENT_CLASS_SENTINEL);
+
+        fun locatedName(guild: Guild): String = I18n.getTranslate(guild, this.i18nKey)
 
         val snowFlake: String
             get() = emoji.removePrefix("<").removeSuffix(">")
