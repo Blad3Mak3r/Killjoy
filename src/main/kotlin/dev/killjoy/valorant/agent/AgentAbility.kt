@@ -29,8 +29,8 @@ import org.json.JSONObject
 data class AgentAbility(
     val agent: ValorantAgent,
     val button: Button,
-    val name: Map<String, String>,
-    val description: Map<String, String>,
+    val name: I18nMap,
+    val description: I18nMap,
     val iconUrl: String,
     val preview: String,
     val cost: String
@@ -39,34 +39,34 @@ data class AgentAbility(
     constructor(agent: ValorantAgent, json: JSONObject) : this(
         agent,
         Button.of(json.getString("button")),
-        buildI18nMap(json.getJSONObject("name")),
+        buildI18nMap(json.getJSONObject("name"), true),
         buildI18nMap(json.getJSONObject("info")),
         json.getString("iconUrl"),
         json.getString("preview"),
         json.getString("cost")
     )
 
-    fun asEmbedField(guild: Guild): MessageEmbed.Field {
-        val lang = guild.supportedLocale.language
+    fun name(guild: Guild) = name[guild.supportedLocale.language]!!.uppercase()
+    fun description(guild: Guild) = description[guild.supportedLocale.language]!!
 
+    fun asEmbedField(guild: Guild): MessageEmbed.Field {
         return MessageEmbed.Field(
-            name[lang],
-            "${description[lang]}\n` ${guild.i18n(I18nKey.ABILITY_COST)}: $cost `",
+            name(guild),
+            "${description(guild)}\n` ${guild.i18n(I18nKey.ABILITY_COST)}: $cost `",
             false
         )
     }
 
     fun asEmbed(guild: Guild): MessageEmbed {
-        val lang = guild.supportedLocale.language
 
         return EmbedBuilder().run {
             setAuthor(agent.name, null, agent.avatar)
-            setTitle(name[lang])
-            setDescription(description[lang])
+            setTitle(name(guild))
+            setDescription(description(guild))
             setThumbnail(iconUrl)
             setImage(preview)
-            addField("Action Button", "`${button.name}`", true)
-            addField("Usage Cost", "`${cost}`", true)
+            addField(guild.i18n(I18nKey.ABILITY_ACTION_BUTTON), button.name, true)
+            addField(guild.i18n(I18nKey.ABILITY_COST), cost, true)
             setDefaultColor()
             build()
         }
@@ -87,16 +87,5 @@ data class AgentAbility(
 
     companion object {
         fun ofAll(agent: ValorantAgent, array: JSONArray) = array.map { it as JSONObject }.map { AgentAbility(agent, it) }
-
-        fun buildI18nMap(json: JSONObject): Map<String, String> {
-            val names = I18n.VALID_LOCALES.map { it.language }
-            val map = HashMap<String, String>()
-
-            for (name in names) {
-                map[name] = json.getString(name)
-            }
-
-            return map
-        }
     }
 }

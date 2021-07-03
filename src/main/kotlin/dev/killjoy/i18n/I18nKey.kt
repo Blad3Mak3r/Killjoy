@@ -18,6 +18,7 @@ package dev.killjoy.i18n
 enum class I18nKey(
     internal val pattern: String
 ) {
+    ABILITY_ACTION_BUTTON("ability.actionButton"),
     ABILITY_COST("ability.cost"),
 
     AGENT_CLASS_CONTROLLER("agent.class.controller"),

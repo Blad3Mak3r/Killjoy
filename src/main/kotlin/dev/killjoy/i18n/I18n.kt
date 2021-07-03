@@ -45,20 +45,20 @@ object I18n {
     }
 
     fun getTranslate(ctx: SlashCommandContext, key: I18nKey, vararg args: Any?): String {
-        return MessageFormat.format(getImpl(ctx.guild.supportedLocale, key), *args)
+        return MessageFormat.format(getImpl(ctx.guild.supportedLocale, key.pattern), *args)
     }
 
     fun getTranslate(guild: Guild, key: I18nKey, vararg args: Any?): String {
-        return MessageFormat.format(getImpl(guild.supportedLocale, key), *args)
+        return MessageFormat.format(getImpl(guild.supportedLocale, key.pattern), *args)
     }
 
     fun getTranslate(key: I18nKey, vararg args: Any?): String {
-        return MessageFormat.format(getImpl(DEFAULT_LOCALE, key), *args)
+        return MessageFormat.format(getImpl(DEFAULT_LOCALE, key.pattern), *args)
     }
 
-    private fun getImpl(locale: Locale, key: I18nKey): String {
+    private fun getImpl(locale: Locale, key: String): String {
         return try {
-            generalBundle[locale.language]!!.getString(key.pattern)
+            generalBundle[locale.language]!!.getString(key)
         } catch (ex: Exception) {
             "{${key}}"
         }

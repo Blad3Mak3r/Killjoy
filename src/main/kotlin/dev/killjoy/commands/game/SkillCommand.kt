@@ -37,21 +37,10 @@ class SkillCommand : Command() {
     override suspend fun handle(ctx: CommandContext) {
         if (ctx.args.isEmpty()) return Utils.Commands.replyWrongUsage(ctx, this)
 
-        val guildLang = ctx.guild.supportedLocale.language
-
-        val skill = Launcher.getAbilities().find { it.name[guildLang].equals(ctx.args[0], true) }
+        val skill = Launcher.getAbility(ctx.args.joinToString(" "))
             ?: return ctx.send(Emojis.NoEntry, "I have not been able to find that skill...").queue()
 
-        ctx.replyEmbed {
-            setAuthor(skill.agent.name, null, skill.agent.avatar)
-            setTitle(skill.name[guildLang])
-            setDescription(skill.description[guildLang])
-            setThumbnail(skill.iconUrl)
-            setImage(skill.preview)
-            addField("Action Button", skill.button.name, true)
-            addField("Usage Cost", skill.cost, true)
-            setDefaultColor()
-        }.queue()
+        ctx.reply(skill.asEmbed(ctx.guild)).queue()
     }
 
     override val help: String = "Get information about a skill from a Valorant agent"

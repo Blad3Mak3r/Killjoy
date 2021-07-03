@@ -27,9 +27,8 @@ class AbilitiesSlashCommand : AbstractSlashCommand("abilities") {
 
     @SlashSubCommand("all")
     override suspend fun handle(ctx: SlashCommandContext) {
-        val guildLocale = ctx.guild.supportedLocale
 
-        val abilities = Launcher.getAbilities().sortedBy { it.name[guildLocale.language] }
+        val abilities = Launcher.getAbilities().sortedBy { it.name(ctx.guild) }
 
         val page = ctx.getOption("page")?.asString?.toInt() ?: 1
 
@@ -46,10 +45,10 @@ class AbilitiesSlashCommand : AbstractSlashCommand("abilities") {
                 val ability = abilities[index]
 
                 val body = buildString {
-                    appendLine(ability.description[guildLocale.language])
+                    appendLine(ability.description(ctx.guild))
                     appendLine("**Cost**: ${ability.cost}")
                 }
-                addField("${ability.name[guildLocale.language]} (${ability.agent.name})", body, false)
+                addField("${ability.name(ctx.guild)} (${ability.agent.name})", body, false)
             }
             setFooter("Page ${pageIndex + 1} / $totalPages | Showing ${firstIndex + 1} - $lastIndex of ${abilities.size} abilities.")
         }.queue()

@@ -39,7 +39,7 @@ class ValorantAgent(json: JSONObject) : ValorantEntity {
     val number: Int = json.getInt("number")
     private val apiName: String? = json.optString("api_name").trim().takeIf { it.isNotEmpty() }
     override val name: String = json.getString("name").trim()
-    private val bio: Map<String, String> = buildI18nMap(json.getJSONObject("bio"))
+    private val bio: I18nMap = buildI18nMap(json.getJSONObject("bio"))
     private val gender: AgentGender = AgentGender.of(json.getString("gender"))
     val affiliation: String = json.getString("affiliation")
     val origin: String = json.getString("origin").trim()
@@ -133,19 +133,6 @@ class ValorantAgent(json: JSONObject) : ValorantEntity {
             private fun buildIdentifier(str: String): String {
                 return str.trim().lowercase().replace(" ", "").replace("’", "").replace("'", "").replace("\"", "")
             }
-        }
-    }
-
-    companion object {
-        fun buildI18nMap(json: JSONObject): Map<String, String> {
-            val names = I18n.VALID_LOCALES.map { it.language }
-            val map = HashMap<String, String>()
-
-            for (name in names) {
-                map[name] = json.getString(name)
-            }
-
-            return map
         }
     }
 }

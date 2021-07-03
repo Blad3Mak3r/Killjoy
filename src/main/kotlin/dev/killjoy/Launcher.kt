@@ -185,7 +185,10 @@ object Launcher : Killjoy {
     }
 
     override fun getAbility(name: String): AgentAbility? {
-        return getAbilities().find { it.name.containsKey(name) }
+        val n = name.lowercase()
+        return getAbilities().find {
+            it.name.containsValue(n) || it.name.containsValue(n.replace("_", " "))
+        }
     }
 
     private fun enableListing() {
