@@ -23,6 +23,8 @@ import dev.killjoy.framework.CommandContext
 import dev.killjoy.framework.abs.Command
 import dev.killjoy.framework.annotations.CommandArgument
 import dev.killjoy.framework.annotations.CommandProperties
+import dev.killjoy.i18n.I18nKey
+import dev.killjoy.i18n.i18n
 import dev.killjoy.utils.Emojis
 import dev.killjoy.utils.Utils
 
@@ -37,8 +39,10 @@ class SkillCommand : Command() {
     override suspend fun handle(ctx: CommandContext) {
         if (ctx.args.isEmpty()) return Utils.Commands.replyWrongUsage(ctx, this)
 
-        val skill = Launcher.getAbility(ctx.args.joinToString(" "))
-            ?: return ctx.send(Emojis.NoEntry, "I have not been able to find that skill...").queue()
+        val input = ctx.args.joinToString(" ")
+
+        val skill = Launcher.getAbility(input)
+            ?: return ctx.send(Emojis.NoEntry, ctx.guild.i18n(I18nKey.ABILITY_NOT_FOUND, input)).queue()
 
         ctx.reply(skill.asEmbed(ctx.guild)).queue()
     }

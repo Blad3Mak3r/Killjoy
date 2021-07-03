@@ -20,6 +20,8 @@ enum class I18nKey(
 ) {
     ABILITY_ACTION_BUTTON("ability.actionButton"),
     ABILITY_COST("ability.cost"),
+    ABILITY_NOT_FOUND("ability.notFound"),
+    VALORANT_ABILITIES_TITLE("valorant.abilities.title"),
 
     AGENT_CLASS_CONTROLLER("agent.class.controller"),
     AGENT_CLASS_DUELIST("agent.class.duelist"),

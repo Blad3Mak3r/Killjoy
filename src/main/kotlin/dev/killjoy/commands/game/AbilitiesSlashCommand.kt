@@ -16,7 +16,9 @@
 package dev.killjoy.commands.game
 
 import dev.killjoy.Launcher
-import dev.killjoy.extensions.jda.supportedLocale
+import dev.killjoy.i18n.I18nKey
+import dev.killjoy.i18n.i18n
+import dev.killjoy.i18n.i18nCommand
 import dev.killjoy.slash.api.AbstractSlashCommand
 import dev.killjoy.slash.api.SlashCommandContext
 import dev.killjoy.slash.api.annotations.SlashSubCommand
@@ -39,18 +41,21 @@ class AbilitiesSlashCommand : AbstractSlashCommand("abilities") {
         val lastIndex = (firstIndex + MAX_ABILITIES_PER_PAGE).coerceAtMost(abilities.size)
 
         ctx.replyEmbed {
-            setTitle("Valorant Abilities")
+            setTitle(ctx.i18n(I18nKey.VALORANT_ABILITIES_TITLE))
             setDescription("")
             for (index in firstIndex until lastIndex) {
                 val ability = abilities[index]
 
                 val body = buildString {
                     appendLine(ability.description(ctx.guild))
-                    appendLine("**Cost**: ${ability.cost}")
+                    appendLine("**${ctx.i18n(I18nKey.ABILITY_COST)}**: ${ability.cost}")
                 }
                 addField("${ability.name(ctx.guild)} (${ability.agent.name})", body, false)
             }
-            setFooter("Page ${pageIndex + 1} / $totalPages | Showing ${firstIndex + 1} - $lastIndex of ${abilities.size} abilities.")
+            val f0 = pageIndex + 1
+            val f2 = firstIndex + 1
+            val f4 = abilities.size
+            setFooter(ctx.i18nCommand("abilities.footer", f0, totalPages, f2, lastIndex, f4))
         }.queue()
     }
 

@@ -19,6 +19,7 @@ import dev.killjoy.extensions.jda.supportedLocale
 import dev.killjoy.slash.api.SlashCommandContext
 import net.dv8tion.jda.api.entities.Guild
 import org.slf4j.LoggerFactory
+import java.lang.IllegalArgumentException
 import java.text.MessageFormat
 import java.util.*
 import java.util.concurrent.atomic.AtomicBoolean
@@ -59,8 +60,8 @@ object I18n {
     private fun getImpl(locale: Locale, key: String): String {
         return try {
             generalBundle[locale.language]!!.getString(key)
-        } catch (ex: Exception) {
-            "{${key}}"
+        } catch (ex: Throwable) {
+            "%${key}%"
         }
     }
 
