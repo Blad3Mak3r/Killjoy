@@ -17,6 +17,7 @@ package dev.killjoy.valorant.agent
 
 import dev.killjoy.extensions.jda.setDefaultColor
 import dev.killjoy.extensions.jda.supportedLocale
+import dev.killjoy.i18n.I18n
 import dev.killjoy.i18n.I18nKey
 import dev.killjoy.i18n.i18n
 import net.dv8tion.jda.api.EmbedBuilder
@@ -38,8 +39,8 @@ data class AgentAbility(
     constructor(agent: ValorantAgent, json: JSONObject) : this(
         agent,
         Button.of(json.getString("button")),
-        buildMap(json.getJSONObject("name")),
-        buildMap(json.getJSONObject("info")),
+        buildI18nMap(json.getJSONObject("name")),
+        buildI18nMap(json.getJSONObject("info")),
         json.getString("iconUrl"),
         json.getString("preview"),
         json.getString("cost")
@@ -87,8 +88,8 @@ data class AgentAbility(
     companion object {
         fun ofAll(agent: ValorantAgent, array: JSONArray) = array.map { it as JSONObject }.map { AgentAbility(agent, it) }
 
-        fun buildMap(json: JSONObject): Map<String, String> {
-            val names = json.names().map { "$it" }
+        fun buildI18nMap(json: JSONObject): Map<String, String> {
+            val names = I18n.VALID_LOCALES.map { it.language }
             val map = HashMap<String, String>()
 
             for (name in names) {
