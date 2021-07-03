@@ -17,6 +17,7 @@ package dev.killjoy.commands.game
 
 import dev.killjoy.apis.riot.RiotAPI
 import dev.killjoy.apis.riot.entities.Region
+import dev.killjoy.i18n.i18nCommand
 import dev.killjoy.slash.api.AbstractSlashCommand
 import dev.killjoy.slash.api.SlashCommandContext
 import java.time.Instant
@@ -28,7 +29,7 @@ class TopSlashCommand : AbstractSlashCommand("top") {
         val option = ctx.getOption("region")!!.asString.uppercase()
 
         val region = Region.values().firstOrNull { it.name.equals(option, true) }
-            ?: return ctx.sendNotFound("` $option ` is not a valid region. Valid regions: ${Region.asListed}").queue()
+            ?: return ctx.sendNotFound(ctx.i18nCommand("top.notValidRegion", option, Region.asListed)).queue()
 
         ctx.event.deferReply().queue()
 
@@ -36,16 +37,14 @@ class TopSlashCommand : AbstractSlashCommand("top") {
         val players = playersList.players.take(10)
 
         ctx.sendEmbed {
-            setTitle("[$region] Top ${players.size} players")
+            setTitle(ctx.i18nCommand("top.header", region, players.size))
             setThumbnail("https://i.imgur.com/G6wcDZB.png")
             for (player in players) {
-                addField("` Top ${player.leaderboardRank} ` ${player.fullNameTag}", buildString {
-                    appendLine("**Wins**: ${player.numberOfWins}")
-                    appendLine("**Rating**: ${player.rankedRating}")
-                }, false)
+                val content = ctx.i18nCommand("top.content", player.rankedRating, player.numberOfWins)
+                addField("` ${player.leaderboardRank} ` ${player.fullNameTag}", content, false)
             }
             setTimestamp(Instant.ofEpochMilli(playersList.updatedAt))
-            setFooter("Episode 3 Act 1 | Updated at")
+            setFooter(ctx.i18nCommand("top.footer", 3, 1))
         }.queue()
     }
 
