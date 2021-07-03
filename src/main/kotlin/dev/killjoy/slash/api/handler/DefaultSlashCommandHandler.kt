@@ -16,8 +16,12 @@
 package dev.killjoy.slash.api.handler
 
 import dev.killjoy.extensions.jda.setDefaultColor
+import dev.killjoy.i18n.I18nKey
+import dev.killjoy.i18n.i18n
+import dev.killjoy.i18n.replyI18n
 import dev.killjoy.slash.api.SlashCommandContext
 import dev.killjoy.slash.utils.SlashUtils
+import dev.killjoy.utils.Emojis
 import dev.killjoy.utils.Utils
 import io.sentry.Sentry
 import kotlinx.coroutines.CoroutineScope
@@ -43,7 +47,7 @@ class DefaultSlashCommandHandler(packageName: String) : SlashCommandHandler, Cor
 
     private suspend fun handleSuspend(event: SlashCommandEvent) {
         if (event.guild == null)
-            return event.reply("This command cannot be used outside of a Guild.").queue()
+            return event.replyI18n(I18nKey.COMMAND_CANNOT_USE_OUTSIDE_GUILD).queue()
 
         val command = getCommand(event.name) ?: return
         val context = SlashCommandContext(event)
@@ -56,13 +60,10 @@ class DefaultSlashCommandHandler(packageName: String) : SlashCommandHandler, Cor
             Sentry.captureException(e)
             LOGGER.error("Exception executing command ${command.commandName}.", e)
 
-            val embed = EmbedBuilder().run {
-                setDefaultColor()
-                setAuthor("Exception executing command ${command.commandName}", null, "https://cdn.discordapp.com/emojis/690093935233990656.png")
-                build()
-            }
+            val message = context.i18n(I18nKey.EXCEPTION_HANDLING_SLASH_COMMAND_OPTION, context.event.commandPath, e.message)
 
-            event.hook.setEphemeral(false).editOriginalEmbeds(embed).queue()
+            if (context.event.isAcknowledged) context.send(Emojis.Cancel, message).setEphemeral(true).queue()
+            else context.reply(Emojis.Cancel, message).setEphemeral(true).queue()
         }
     }
 

@@ -22,6 +22,7 @@ import dev.killjoy.database.Database
 import dev.killjoy.database.DatabaseConnection
 import dev.killjoy.database.buildDatabaseConnection
 import dev.killjoy.framework.CommandRegistry
+import dev.killjoy.i18n.I18n
 import dev.killjoy.listeners.MainListener
 import dev.killjoy.prometheus.Prometheus
 import dev.killjoy.slash.api.handler.DefaultSlashCommandHandler
@@ -98,6 +99,8 @@ object Launcher : Killjoy {
         SentryUtils.init()
 
         database = buildDatabaseConnection()
+
+        I18n.init()
 
         // Load entities after banner
         agents = Loaders.loadAgents()
