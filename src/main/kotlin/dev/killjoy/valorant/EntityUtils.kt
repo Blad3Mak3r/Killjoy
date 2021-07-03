@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and limitations under the License.
  ******************************************************************************/
 
-package dev.killjoy.valorant.agent
+package dev.killjoy.valorant
 
 import dev.killjoy.i18n.I18n
 import org.json.JSONObject

@@ -77,7 +77,7 @@ object NewsRetriever {
         mappedResults
     }
 
-    private fun getLocalePath(locale: Locale): String {
+    fun getLocalePath(locale: Locale): String {
         val usedLocale = if (I18n.isSupported(locale)) locale else I18n.DEFAULT_LOCALE
 
         return when (usedLocale.language) {

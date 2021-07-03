@@ -20,6 +20,8 @@ import dev.killjoy.extensions.jda.supportedLocale
 import dev.killjoy.i18n.I18n
 import dev.killjoy.i18n.I18nKey
 import dev.killjoy.i18n.i18n
+import dev.killjoy.valorant.I18nMap
+import dev.killjoy.valorant.buildI18nMap
 import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.entities.Guild
 import net.dv8tion.jda.api.entities.MessageEmbed
