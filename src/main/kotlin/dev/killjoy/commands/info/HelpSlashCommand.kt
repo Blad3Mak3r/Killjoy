@@ -21,8 +21,10 @@ import dev.killjoy.INVITE_URL
 import dev.killjoy.SPONSOR_URL
 import dev.killjoy.VOTE_URL
 import dev.killjoy.WEBSITE_URL
+import dev.killjoy.i18n.i18nCommand
 import dev.killjoy.slash.api.AbstractSlashCommand
 import dev.killjoy.slash.api.SlashCommandContext
+import net.dv8tion.jda.api.entities.Guild
 import net.dv8tion.jda.api.interactions.components.ActionRow
 import net.dv8tion.jda.api.interactions.components.Button
 
@@ -30,23 +32,20 @@ class HelpSlashCommand : AbstractSlashCommand("help") {
 
     override suspend fun handle(ctx: SlashCommandContext) {
         ctx.replyEmbed {
-            setTitle("Did you need help?")
-            appendDescription("Killjoy apart from being your favorite character, " +
-                    "is a bot focused on the world of **Valorant**, quite complete and easy to understand and learn to use.")
-            appendDescription("With the following links, you can find all the information you are looking for to get the most out of **Killjoy**.")
-            addField("Vote for Killjoy", "If you like **Killjoy** and its content, don't forget to show your " +
-                    "support, by **voting for Killjoy on top.gg**, you can vote every 12 hours and for us it is a great " +
-                    "show of support from you.", false)
-        }.addActionRows(ACTION_ROWS).queue()
+            setTitle(ctx.i18nCommand("help.title"))
+            setDescription(ctx.i18nCommand("help.description"))
+            addBlankField(false)
+            addField(ctx.i18nCommand("help.fields.0.title"), ctx.i18nCommand("help.fields.0.content"), false)
+        }.addActionRows(buildActionRows(ctx.guild)).queue()
     }
 
     companion object {
-        val ACTION_ROWS = ActionRow.of(
-            Button.link(INVITE_URL, "Invite"),
-            Button.link(WEBSITE_URL, "Website"),
-            Button.link("$WEBSITE_URL/commands", "Commands"),
-            Button.link(VOTE_URL, "Vote"),
-            Button.link(SPONSOR_URL, "Sponsor")
+        fun buildActionRows(guild: Guild) = ActionRow.of(
+            Button.link(INVITE_URL, guild.i18nCommand("help.links.invite")),
+            Button.link(WEBSITE_URL, guild.i18nCommand("help.links.website")),
+            Button.link("$WEBSITE_URL/commands", guild.i18nCommand("help.links.commands")),
+            Button.link(VOTE_URL, guild.i18nCommand("help.links.vote")),
+            Button.link(SPONSOR_URL, guild.i18nCommand("help.links.sponsor"))
         )
     }
 }

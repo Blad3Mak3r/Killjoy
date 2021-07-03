@@ -59,7 +59,7 @@ class HelpCommand : Command() {
                             true)
                 }
                 addBlankField(false)
-            }.setActionRows(HelpSlashCommand.ACTION_ROWS).queue()
+            }.setActionRows(HelpSlashCommand.buildActionRows(ctx.guild)).queue()
         } else {
             val invoke = ctx.args[0]
             val cmd = Launcher.commandRegistry.getCommand(invoke, false) ?: return
