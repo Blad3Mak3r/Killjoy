@@ -16,6 +16,7 @@
 package dev.killjoy.commands.info
 
 import dev.killjoy.INVITE_URL
+import dev.killjoy.i18n.i18nCommand
 import dev.killjoy.slash.api.AbstractSlashCommand
 import dev.killjoy.slash.api.SlashCommandContext
 
@@ -23,8 +24,8 @@ import dev.killjoy.slash.api.SlashCommandContext
 class InviteSlashCommand : AbstractSlashCommand("invite") {
 
     override suspend fun handle(ctx: SlashCommandContext) {
-        val content = "Here is the invitation link to invite me to your servers:\n$INVITE_URL"
-        ctx.acknowledge(true).setContent(content).queue()
+        val content = ctx.i18nCommand("invite.message", INVITE_URL)
+        ctx.reply(content).setEphemeral(true).queue()
     }
 
 }
