@@ -17,10 +17,9 @@
 
 package dev.killjoy.commands.info
 
-import dev.killjoy.INVITE_URL
-import dev.killjoy.SPONSOR_URL
-import dev.killjoy.VOTE_URL
-import dev.killjoy.WEBSITE_URL
+import dev.killjoy.*
+import dev.killjoy.extensions.jda.supportedLocale
+import dev.killjoy.i18n.I18n
 import dev.killjoy.i18n.i18nCommand
 import dev.killjoy.slash.api.AbstractSlashCommand
 import dev.killjoy.slash.api.SlashCommandContext
@@ -36,16 +35,30 @@ class HelpSlashCommand : AbstractSlashCommand("help") {
             setDescription(ctx.i18nCommand("help.description"))
             addBlankField(false)
             addField(ctx.i18nCommand("help.fields.0.title"), ctx.i18nCommand("help.fields.0.content"), false)
+            addBlankField(false)
+            addField(ctx.i18nCommand("help.fields.1.title"), guildLocale(ctx.guild), true)
+            addField(ctx.i18nCommand("help.fields.2.title"), killjoyLocale(ctx.guild), true)
         }.addActionRows(buildActionRows(ctx.guild)).queue()
     }
 
     companion object {
+        private fun guildLocale(guild: Guild): String {
+            val isSupported = I18n.isSupported(guild.locale)
+            return guild.locale.getDisplayLanguage(guild.locale).let {
+                if (!isSupported) it.plus(" (Not Supported)") else it
+            }.capitalize(guild.locale)
+        }
+
+        private fun killjoyLocale(guild: Guild): String {
+            return guild.supportedLocale.getDisplayLanguage(guild.locale).capitalize(guild.locale)
+        }
+
         fun buildActionRows(guild: Guild) = ActionRow.of(
             Button.link(INVITE_URL, guild.i18nCommand("help.links.invite")),
             Button.link(WEBSITE_URL, guild.i18nCommand("help.links.website")),
             Button.link("$WEBSITE_URL/commands", guild.i18nCommand("help.links.commands")),
-            Button.link(VOTE_URL, guild.i18nCommand("help.links.vote")),
-            Button.link(SPONSOR_URL, guild.i18nCommand("help.links.sponsor"))
+            Button.link(GUIDES_URL, guild.i18nCommand("help.links.guides")),
+            Button.link(VOTE_URL, guild.i18nCommand("help.links.vote"))
         )
     }
 }
