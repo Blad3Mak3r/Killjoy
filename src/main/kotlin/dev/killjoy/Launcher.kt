@@ -21,6 +21,7 @@ import dev.killjoy.apis.stats.Website
 import dev.killjoy.database.Database
 import dev.killjoy.database.DatabaseConnection
 import dev.killjoy.database.buildDatabaseConnection
+import dev.killjoy.extensions.jda.supportedLocale
 import dev.killjoy.framework.CommandRegistry
 import dev.killjoy.i18n.I18n
 import dev.killjoy.listeners.MainListener
@@ -32,13 +33,14 @@ import dev.killjoy.utils.Loaders
 import dev.killjoy.utils.SentryUtils
 import dev.killjoy.utils.Utils
 import dev.killjoy.utils.extensions.isInt
-import dev.killjoy.valorant.AgentAbility
-import dev.killjoy.valorant.ValorantAgent
-import dev.killjoy.valorant.ValorantMap
-import dev.killjoy.valorant.ValorantWeapon
+import dev.killjoy.valorant.agent.AgentAbility
+import dev.killjoy.valorant.agent.ValorantAgent
+import dev.killjoy.valorant.map.ValorantMap
+import dev.killjoy.valorant.arsenal.ValorantWeapon
 import dev.killjoy.webhook.WebhookUtils
 import net.dv8tion.jda.api.entities.Activity
 import net.dv8tion.jda.api.entities.ApplicationInfo
+import net.dv8tion.jda.api.entities.Guild
 import net.dv8tion.jda.api.requests.GatewayIntent
 import net.dv8tion.jda.api.sharding.DefaultShardManagerBuilder
 import net.dv8tion.jda.api.sharding.ShardManager
@@ -183,10 +185,8 @@ object Launcher : Killjoy {
     }
 
     override fun getAbility(name: String): AgentAbility? {
-        return getAbilities().find { it.skill.name.equals(name, true) }
+        return getAbilities().find { it.name.containsKey(name) }
     }
-
-    fun getSkills() = agents.map { it.skills }.reduce { acc, list -> acc + list }
 
     private fun enableListing() {
         try {

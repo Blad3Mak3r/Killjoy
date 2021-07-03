@@ -6,39 +6,66 @@
   "origin": "Unknown",
   "avatar": "https://i.imgur.com/iqxXg9d.jpg",
   "role": "Initiator",
-  "bio": "KAY/O is a machine of war built for a single purpose: neutralizing radiants. His power to suppress enemy abilities cripples his opponents' capacity to fight back, securing him and his allies the ultimate edge.",
+  "bio": {
+    "en": "KAY/O is a machine of war built for a single purpose: neutralizing radiants. His power to suppress enemy abilities cripples his opponents' capacity to fight back, securing him and his allies the ultimate edge.",
+    "es": "KAY/O es una máquina de guerra creada con un solo propósito: neutralizar radiantes. Su poder para suprimir las habilidades enemigas neutraliza la capacidad de sus rivales para contraatacar, un aspecto que le da a él y a sus aliados la ventaja definitiva en la batalla."
+  },
   "gender": "Male",
   "affiliation": "Valorant Protocol",
   "skills": [
     {
       "button": "q",
-      "name": "FLASH/DRIVE",
+      "name": {
+        "en": "FLASH/DRIVE",
+        "es": "MEMORIA/FLASH"
+      },
       "iconUrl": "https://i.imgur.com/8NXaqwz.png",
-      "info": "Equip a flash grenade. FIRE to throw. The flash grenade explodes after a short fuse, blinding anyone in line of sight.\nRight clicking the flashbang, throws a charged flash, causing it to only have to cook for 1 second, as opposed to left click throwing a flash that cooks in 1.6 seconds.",
+      "info": {
+        "en": "Equip a flash grenade. FIRE to throw. The flash grenade explodes after a short fuse, blinding anyone in line of sight.\nRight clicking the flashbang, throws a charged flash, causing it to only have to cook for 1 second, as opposed to left click throwing a flash that cooks in 1.6 seconds.",
+        "es": "EQUIPA una granada cegadora. DISPARA para lanzarla. La granada cegadora explota después de un breve periodo de tiempo y ciega a todos en la línea de visión."
+      },
       "preview": "https://i.imgur.com/8Fw3KXa.gif",
       "cost": "250 (x2)"
     },
     {
       "button": "e",
-      "name": "ZERO/POINT",
+      "name": {
+        "en": "ZERO/POINT",
+        "es": "PUNTO/CERO"
+      },
       "iconUrl": "https://i.imgur.com/zLq2PBa.png",
-      "info": "EQUIP a suppression blade. FIRE to throw. The blade sticks to the first surface it hits, winds up, and suppresses anyone in the radius of the explosion.",
+      "info": {
+        "en": "EQUIP a suppression blade. FIRE to throw. The blade sticks to the first surface it hits, winds up, and suppresses anyone in the radius of the explosion.",
+        "es": "EQUIPA una cuchilla de supresión. DISPARA para lanzarla. La cuchilla se pega contra la primera superficie que toca, luego explota y suprime a cualquier oponente que se encuentre en el radio de la explosión."
+      },
       "preview": "https://i.imgur.com/HpN1Weo.gif",
       "cost": "Free"
     },
     {
       "button": "c",
-      "name": "FRAG/MENT",
+      "name": {
+        "en": "FRAG/MENT",
+        "es": "FRAG/MENTACIÓN"
+      },
       "iconUrl": "https://i.imgur.com/Ve2Xthz.png",
-      "info": "EQUIP an explosive fragment. FIRE to throw. The fragment sticks to the floor and explodes multiple times, dealing near lethal damage at the center with each explosion.",
+      "info": {
+        "en": "EQUIP an explosive fragment. FIRE to throw. The fragment sticks to the floor and explodes multiple times, dealing near lethal damage at the center with each explosion.",
+        "es": "EQUIPA un fragmento explosivo. DISPARA para lanzarlo. El fragmento se pega al suelo y explota varias veces, lo que inflige daño casi mortal en el centro con cada explosión."
+      },
       "preview": "https://i.imgur.com/qKRsQH3.gif",
       "cost": "250 (x2)"
     },
     {
       "button": "x",
-      "name": "NULL/CMD",
+      "name": {
+        "en": "NULL/CMD",
+        "es": "NULL/CMD"
+      },
       "iconUrl": "https://i.imgur.com/TZJ03Un.png",
-      "info": "INSTANTLY overload with polarized radianite energy that empowers KAY/O and causes large energy pulses to emit from his location. Enemies hit with these pulses are suppressed for a short duration.\nWhile overloaded, KAY/O gains combat stim.\nIf KAY/O is killed while overloaded, he is downed and enters a destabilized state, allowing allies to stabilize his core and revive him.",
+      "info": {
+        "en": "INSTANTLY overload with polarized radianite energy that empowers KAY/O and causes large energy pulses to emit from his location. Enemies hit with these pulses are suppressed for a short duration.",
+        "es": "Se sobrecarga AL INSTANTE con energía de radianita polarizada que le da poder a KAY/O y causa que grandes pulsos de energía emanen desde su ubicación. Los enemigos impactados por dichos pulsos quedan suprimidos durante un breve momento."
+      },
       "preview": "https://i.imgur.com/AmhYlS0.gif",
       "cost": "••••••• 7 Points"
     }

@@ -19,10 +19,14 @@ enum class I18nKey(
     internal val pattern: String
 ) {
     ABILITY_COST("ability.cost"),
+
     AGENT_CLASS_CONTROLLER("agent.class.controller"),
     AGENT_CLASS_DUELIST("agent.class.duelist"),
     AGENT_CLASS_INITIATOR("agent.class.initiator"),
     AGENT_CLASS_SENTINEL("agent.class.sentinel"),
+    AGENT_GENDER_FEMALE("agent.gender.female"),
+    AGENT_GENDER_MALE("agent.gender.male"),
+
     CONTENT_NOT_FOUND("contentNotFound"),
     CONTENT_NOT_FOUND_DESCRIPTION("contentNotFoundDescription"),
     COMMAND_CANNOT_USE_OUTSIDE_GUILD("commandCannotUseOutsideGuild"),

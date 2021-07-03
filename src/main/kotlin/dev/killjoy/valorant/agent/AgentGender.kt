@@ -13,21 +13,15 @@
  * See the License for the specific language governing permissions and limitations under the License.
  ******************************************************************************/
 
-package dev.killjoy.valorant
+package dev.killjoy.valorant.agent
 
-import org.json.JSONObject
+import dev.killjoy.i18n.I18nKey
 
-@Suppress("unused")
-data class ValorantMap(
-    override val name: String,
-    val description: String,
-    val minimap: String,
-    val imageUrl: String
-) : ValorantEntity {
-    constructor(jsonObject: JSONObject) : this(
-        jsonObject.getString("name"),
-        jsonObject.getString("description"),
-        jsonObject.getString("minimap"),
-        jsonObject.getString("image_url")
-    )
+enum class AgentGender(val i18nKey: I18nKey) {
+    Female(I18nKey.AGENT_GENDER_FEMALE),
+    Male(I18nKey.AGENT_GENDER_MALE);
+
+    companion object {
+        fun of(string: String) = values().find { it.name.equals(string, true) } ?: error("Gender with key $string not found.")
+    }
 }

@@ -6,39 +6,66 @@
   "origin": ":flag_cn: China",
   "avatar": "https://i.imgur.com/n7oZkvA.jpg",
   "role": "Sentinel",
-  "bio": "The stronghold of China, Sage creates safety for herself and her team wherever she goes. Able to revive fallen friends and stave off aggressive pushes, she provides a calm center to a hellish fight.",
+  "bio": {
+    "en": "The stronghold of China, Sage creates safety for herself and her team wherever she goes. Able to revive fallen friends and stave off aggressive pushes, she provides a calm center to a hellish fight.",
+    "es": "Originaria de China, Sage destaca a la hora de crear espacios seguros para su equipo allá donde va. Sus capacidades especiales para revivir a compañeros caídos en batalla y para mantener a raya los asaltos enemigos la convierten en la calma en mitad de la tormenta para su equipo."
+  },
   "gender": "Female",
   "affiliation": "Valorant Protocol",
   "skills": [
     {
       "button": "q",
-      "name": "SLOW ORB",
+      "name": {
+        "en": "SLOW ORB",
+        "es": "ORBE DE RALENTIZACIÓN"
+      },
       "iconUrl": "https://i.imgur.com/PeRyudR.png",
-      "info": "EQUIP a slowing orb. FIRE to throw a slowing orb forward that detonates upon landing, creating a lingering field that slows players caught inside of it.",
+      "info": {
+        "en": "EQUIP a slowing orb. FIRE to throw a slowing orb forward that detonates upon landing, creating a lingering field that slows players caught inside of it.",
+        "es": "EQUIPA un orbe de ralentización. DISPARAD para lanzar hacia adelante un orbe de ralentización que explota al aterrizar, lo que genera un campo persistente que ralentiza a los jugadores que se encuentren en su interior."
+      },
       "preview": "https://i.imgur.com/J709jsl.gif",
       "cost": "200 (x2)"
     },
     {
       "button": "e",
-      "name": "HEALING ORB",
+      "name": {
+        "en": "HEALING ORB",
+        "es": "ORBE DE SANACIÓN"
+      },
       "iconUrl": "https://i.imgur.com/vXisIQ4.png",
-      "info": "EQUIP a healing orb. FIRE with your crosshairs over a damaged ally to activate a heal-over-time on them. ALT FIRE while Sage is damaged to activate a self heal-over-time.",
+      "info": {
+        "en": "EQUIP a healing orb. FIRE with your crosshairs over a damaged ally to activate a heal-over-time on them. ALT FIRE while Sage is damaged to activate a self heal-over-time.",
+        "es": "EQUIPA un orbe de sanación. DISPARAD con la mira sobre un aliado herido para curarlo durante un breve periodo. ALTERNAD EL MODO DE DISPARO si Sage ha recibido daño para que se cure a sí misma durante un breve periodo."
+      },
       "preview": "https://i.imgur.com/wy5rimG.gif",
       "cost": "45s Cooldown"
     },
     {
       "button": "c",
-      "name": "BARRIER ORB",
+      "name": {
+        "en": "BARRIER ORB",
+        "es": "ORBE BARRERA"
+      },
       "iconUrl": "https://i.imgur.com/sNdZyEr.png",
-      "info": "EQUIP a barrier orb. FIRE places a solid wall. ALT FIRE rotates the targeter.",
+      "info": {
+        "en": "EQUIP a barrier orb. FIRE places a solid wall. ALT FIRE rotates the targeter.",
+        "es": "EQUIPA un orbe barrera. DISPARAD para colocar una pared sólida. Alternad el MODO DE DISPARO para rotarla antes de crearla."
+      },
       "preview": "https://i.imgur.com/RmNnDtm.gif",
       "cost": "400"
     },
     {
       "button": "x",
-      "name": "RESURRECTION",
+      "name": {
+        "en": "RESURRECTION",
+        "es": "RESURRECCIÓN"
+      },
       "iconUrl": "https://i.imgur.com/9jJ3lBf.png",
-      "info": "EQUIP a resurrection ability. FIRE with your crosshairs placed over a dead ally to begin resurrecting them. After a brief channel, the ally will be brought back to life with full health.",
+      "info": {
+        "en": "EQUIP a resurrection ability. FIRE with your crosshairs placed over a dead ally to begin resurrecting them. After a brief channel, the ally will be brought back to life with full health.",
+        "es": "EQUIPA una habilidad de resurrección. DISPARAD con la mira sobre un aliado muerto para empezar a resucitarlo. Tras un breve periodo de canalización, el aliado resucitará con toda la vida."
+      },
       "preview": "https://i.imgur.com/LlhSMOq.gif",
       "cost": "•••••••• 8 Points"
     }

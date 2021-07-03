@@ -6,39 +6,66 @@
   "origin": ":flag_gb: United Kingdom",
   "avatar": "https://i.imgur.com/gKSte8h.jpg",
   "role": "Duelist",
-  "bio": "Hailing from the U.K., Phoenix's star power shines through in his fighting style, igniting the battlefield with flash and flare. Whether he's got backup or not, he'll rush into a fight on his own terms.",
+  "bio": {
+    "en": "Hailing from the U.K., Phoenix's star power shines through in his fighting style, igniting the battlefield with flash and flare. Whether he's got backup or not, he'll rush into a fight on his own terms.",
+    "es": "Phoenix proviene del Reino Unido y sus poderes estelares salen a relucir con su estilo de combate, que prende fuego al campo de batalla de forma deslumbrante. No le hacen falta refuerzos; es él quién se lanza al combate y marca el ritmo."
+  },
   "gender": "Male",
   "affiliation": "Valorant Protocol",
   "skills": [
     {
       "button": "q",
-      "name": "CURVEBALL",
+      "name": {
+        "en": "CURVEBALL",
+        "es": "BOLA CURVA"
+      },
       "iconUrl": "https://i.imgur.com/PADeR9B.png",
-      "info": "EQUIP a flare orb that takes a curving path and detonates shortly after throwing. FIRE to curve the flare orb to the left, detonating and blinding any player who sees the orb. ALTERNATE FIRE to curve the flare orb to the right.",
+      "info": {
+        "en": "EQUIP a flare orb that takes a curving path and detonates shortly after throwing. FIRE to curve the flare orb to the left, detonating and blinding any player who sees the orb. ALTERNATE FIRE to curve the flare orb to the right.",
+        "es": "EQUIPA un orbe fulgurante que dibuja una trayectoria curva y explota poco después de haberlo lanzado. DISPARAD para lanzar el orbe fulgurante hacia la izquierda, lo que hará que detone y ciegue a cualquier jugador que lo vea. ALTERNAD EL MODO DE DISPARO para lanzar el orbe fulgurante hacia la derecha."
+      },
       "preview": "https://i.imgur.com/K4ocXDl.gif",
       "cost": "250 (x2)"
     },
     {
       "button": "e",
-      "name": "HOT HANDS",
+      "name": {
+        "en": "HOT HANDS",
+        "es": "COMBUSTIÓN"
+      },
       "iconUrl": "https://i.imgur.com/RDzBAfI.png",
-      "info": "EQUIP a fireball. FIRE to throw a fireball that explodes after a set amount of time or upon hitting the ground, creating a lingering fire zone that damages enemies.",
+      "info": {
+        "en": "EQUIP a fireball. FIRE to throw a fireball that explodes after a set amount of time or upon hitting the ground, creating a lingering fire zone that damages enemies.",
+        "es": "EQUIPA una bola de fuego. DISPARAD para lanzar una bola de fuego que explota transcurrido un tiempo determinado o al impactar contra el suelo, lo que crea una zona de fuego persistente que inflige daño a los enemigos."
+      },
       "preview": "https://i.imgur.com/sYBBgKf.gif",
       "cost": "2 Kills"
     },
     {
       "button": "c",
-      "name": "BLAZE",
+      "name": {
+        "en": "BLAZE",
+        "es": "LLAMARADA"
+      },
       "iconUrl": "https://i.imgur.com/j9GTBxS.png",
-      "info": "EQUIP a flame wall. FIRE to create a line of flame that moves forward, creating a wall of fire that blocks vision and damages players passing through it. HOLD FIRE to bend the wall in the direction of your crosshair.",
+      "info": {
+        "en": "EQUIP a flame wall. FIRE to create a line of flame that moves forward, creating a wall of fire that blocks vision and damages players passing through it. HOLD FIRE to bend the wall in the direction of your crosshair.",
+        "es": "EQUIPA una pared de llamas. DISPARAD para crear una línea de llamas que avanza hacia adelante, lo que forma una pared de fuego que bloquea la visión e inflige daño a los jugadores enemigos que la atraviesen. MANTENED PULSADO DISPARAR para curvar la pared en la dirección de la mira."
+      },
       "preview": "https://i.imgur.com/rC69MYi.gif",
       "cost": "200"
     },
     {
       "button": "x",
-      "name": "RUN IT BACK",
+      "name": {
+        "en": "RUN IT BACK",
+        "es": "CENIZAS"
+      },
       "iconUrl": "https://i.imgur.com/uaaSoI4.png",
-      "info": "INSTANTLY place a marker at Phoenix’s location. While this ability is active, dying or allowing the timer to expire will end this ability and bring Phoenix back to this location with full health.",
+      "info": {
+        "en": "INSTANTLY place a marker at Phoenix’s location. While this ability is active, dying or allowing the timer to expire will end this ability and bring Phoenix back to this location with full health.",
+        "es": "Coloca INSTANTANEAMENTE un marcador en la ubicación de Phoenix. Mientras esta habilidad esté activa, morir o dejar que se agote el temporizador hará que se termine la habilidad y devolverá a Phoenix a esta ubicación con toda la vida."
+      },
       "preview": "https://i.imgur.com/jlLaE5f.gif",
       "cost": "•••••• 6 Points"
     }

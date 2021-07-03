@@ -13,29 +13,22 @@
  * See the License for the specific language governing permissions and limitations under the License.
  ******************************************************************************/
 
-package dev.killjoy.valorant
+package dev.killjoy.valorant.map
 
-import dev.killjoy.extensions.jda.setDefaultColor
-import net.dv8tion.jda.api.EmbedBuilder
-import net.dv8tion.jda.api.entities.MessageEmbed
+import dev.killjoy.valorant.ValorantEntity
+import org.json.JSONObject
 
-class AgentAbility(
-    val agent: ValorantAgent,
-    val skill: ValorantAgent.Skill
-) {
-
-    fun asEmbed(): MessageEmbed {
-        return EmbedBuilder().run {
-            setAuthor(agent.name, null, agent.avatar)
-            setTitle(skill.name)
-            setDescription(skill.info)
-            setThumbnail(skill.iconUrl)
-            setImage(skill.preview)
-            addField("Action Button", "`${skill.button.name}`", true)
-            addField("Usage Cost", "`${skill.cost}`", true)
-            setDefaultColor()
-            build()
-        }
-    }
-
+@Suppress("unused")
+data class ValorantMap(
+    override val name: String,
+    val description: String,
+    val minimap: String,
+    val imageUrl: String
+) : ValorantEntity {
+    constructor(jsonObject: JSONObject) : this(
+        jsonObject.getString("name"),
+        jsonObject.getString("description"),
+        jsonObject.getString("minimap"),
+        jsonObject.getString("image_url")
+    )
 }

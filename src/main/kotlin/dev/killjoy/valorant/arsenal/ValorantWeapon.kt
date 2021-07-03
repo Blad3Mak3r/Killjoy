@@ -15,9 +15,10 @@
 
 @file:Suppress("unused")
 
-package dev.killjoy.valorant
+package dev.killjoy.valorant.arsenal
 
 import dev.killjoy.extensions.jda.setDefaultColor
+import dev.killjoy.valorant.ValorantEntity
 import net.dv8tion.jda.api.EmbedBuilder
 import org.json.JSONObject
 

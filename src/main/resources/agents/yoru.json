@@ -6,39 +6,66 @@
   "origin": ":flag_jp: Japan",
   "avatar": "https://i.imgur.com/ervI0dM.jpg",
   "role": "Duelist",
-  "bio": "Japanese native Yoru rips holes straight through reality to infiltrate enemy lines unseen. Using deception and aggression in equal measure, he gets the drop on each target before they know where to look.",
+  "bio": {
+    "en": "Japanese native Yoru rips holes straight through reality to infiltrate enemy lines unseen. Using deception and aggression in equal measure, he gets the drop on each target before they know where to look.",
+    "es": "Yoru, nacido en Japón, abre agujeros en el tejido de la realidad para infiltrarse tras las líneas enemigas sin ser visto. Utiliza el engaño y la agresividad por igual para acabar con sus objetivos antes de que sepan qué ha pasado."
+  },
   "gender": "Male",
   "affiliation": "Valorant Protocol",
   "skills": [
     {
       "button": "q",
-      "name": "BLINDSIDE",
+      "name": {
+        "en": "BLINDSIDE",
+        "es": "PUNTO CIEGO"
+      },
       "iconUrl": "https://i.imgur.com/ewDaXpP.png",
-      "info": "EQUIP to rip an unstable dimensional fragment from reality. FIRE to throw the fragment, activating a flash that winds up once it collides with a hard surface in world.",
+      "info": {
+        "en": "EQUIP to rip an unstable dimensional fragment from reality. FIRE to throw the fragment, activating a flash that winds up once it collides with a hard surface in world.",
+        "es": "EQUIPA para arrancar un fragmento dimensional inestable de la realidad. DISPARA para lanzar el fragmento, lo que activa un destello que se carga al impactar contra una superficie sólida."
+      },
       "preview": "https://i.imgur.com/AJSx3L7.gif",
       "cost": "250 (x2)"
     },
     {
       "button": "e",
-      "name": "GATECRASH",
+      "name": {
+        "en": "GATECRASH",
+        "es": "INFILTRACIÓN"
+      },
       "iconUrl": "https://i.imgur.com/B9whdpz.png",
-      "info": "EQUIP to harness a rift tether FIRE to send the tether out moving forward ALT FIRE to place a tether in place ACTIVATE to teleport to the tether's location.",
+      "info": {
+        "en": "EQUIP to harness a rift tether FIRE to send the tether out moving forward ALT FIRE to place a tether in place ACTIVATE to teleport to the tether's location.",
+        "es": "EQUIPA para preparar un vínculo de grietas. DISPARA para lanzarlo hacia delante. ALTERNA el modo de disparo para colocarlo en el sitio. ACTIVA para teleportarte a la ubicación del vínculo."
+      },
       "preview": "https://i.imgur.com/QRzktKZ.gif",
       "cost": "35s Cooldown"
     },
     {
       "button": "c",
-      "name": "FAKEOUT",
+      "name": {
+        "en": "FAKEOUT",
+        "es": "ENGAÑO"
+      },
       "iconUrl": "https://i.imgur.com/PZfcIRv.png",
-      "info": "EQUIP an echo that mimics footsteps when activated FIRE to activate and send the echo forward ALT FIRE to place an echo in place USE the inactive echo to send it forward.",
+      "info": {
+        "en": "EQUIP an echo that mimics footsteps when activated FIRE to activate and send the echo forward ALT FIRE to place an echo in place USE the inactive echo to send it forward.",
+        "es": "EQUIPA un eco que imita el sonido de pisadas cuando se activa. DISPARA para activarlo y enviarlo hacia delante. ALTERNA el modo de disparo para colocar el eco en el sitio. UTILIZA el eco inactivo para enviarlo hacia delante."
+      },
       "preview": "https://i.imgur.com/QLSCDmh.gif",
       "cost": "100 (x2)"
     },
     {
       "button": "x",
-      "name": "DIMENSIONAL DRIFT",
+      "name": {
+        "en": "DIMENSIONAL DRIFT",
+        "es": "VIAJE INTERDIMENSIONAL"
+      },
       "iconUrl": "https://i.imgur.com/N7V6okx.png",
-      "info": "EQUIP a mask that can see between dimensions FIRE to drift into Yoru's dimension, unable to be affected or seen by enemies from the outside.",
+      "info": {
+        "en": "EQUIP a mask that can see between dimensions FIRE to drift into Yoru's dimension, unable to be affected or seen by enemies from the outside.",
+        "es": ""
+      },
       "preview": "https://i.imgur.com/f5bocHi.gif",
       "cost": "•••••• 6 Points"
     }

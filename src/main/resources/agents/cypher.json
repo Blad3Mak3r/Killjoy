@@ -6,39 +6,66 @@
   "origin": ":flag_ma: Morocco",
   "avatar": "https://i.imgur.com/BTzJmHu.jpg",
   "role": "Sentinel",
-  "bio": "The Moroccan information broker, Cypher is a one-man surveillance network who keeps tabs on the enemy's every move. No secret is safe. No maneuver goes unseen. Cypher is always watching.",
+  "bio": {
+    "en": "The Moroccan information broker, Cypher is a one-man surveillance network who keeps tabs on the enemy's every move. No secret is safe. No maneuver goes unseen. Cypher is always watching.",
+    "es": "Cypher es un experto en información de Marruecos que se especializa en redes de vigilancia y es capaz de seguirle la pista al enemigo constantemente. No hay secreto a salvo ni maniobra que pase desapercibida. Cypher siempre está alerta."
+  },
   "gender": "Male",
   "affiliation": "Valorant Protocol",
   "skills": [
     {
       "button": "q",
-      "name": "CYBER CAGE",
+      "name": {
+        "en": "CYBER CAGE",
+        "es": "PRISIÓN CIBERNÉTICA"
+      },
       "iconUrl": "https://i.imgur.com/NH4o6Dc.png",
-      "info": "INSTANTLY toss the cyber cage in front of Cypher. Activate to create a zone that blocks vision and slows enemies who pass through it.",
+      "info": {
+        "en": "INSTANTLY toss the cyber cage in front of Cypher. Activate to create a zone that blocks vision and slows enemies who pass through it.",
+        "es": "Lanza INSTANTÁNEAMENTE una prisión cibernética frente a Cypher. ACTIVADLA para crear una zona que bloquea la visión de los enemigos que la atraviesan."
+      },
       "preview": "https://i.imgur.com/Apw5dqW.gif",
       "cost": "100 (x2)"
     },
     {
       "button": "e",
-      "name": "SPYCAM",
+      "name": {
+        "en": "SPYCAM",
+        "es": "CÁMARA ESPÍA"
+      },
       "iconUrl": "https://i.imgur.com/TZ7QwE0.png",
-      "info": "EQUIP a spycam. FIRE to place the spycam at the targeted location. RE-USE this ability to take control of the camera’s view. While in control of the camera, FIRE to shoot a marking dart. This dart will reveal the location of any player struck by the dart.",
+      "info": {
+        "en": "EQUIP a spycam. FIRE to place the spycam at the targeted location. RE-USE this ability to take control of the camera’s view. While in control of the camera, FIRE to shoot a marking dart. This dart will reveal the location of any player struck by the dart.",
+        "es": "EQUIPA una cámara espía. DISPARAD para desplegar la cámara en la ubicación objetivo. VOLVED A USAR la habilidad para controlar la vista de la cámara. Cuando tengáis control de la cámara, DISPARAD para lanzar un dardo marcador que revelará la ubicación de cualquier jugador alcanzado."
+      },
       "preview": "https://i.imgur.com/ffizAhY.gif",
       "cost": "Reusable"
     },
     {
       "button": "c",
-      "name": "TRAPWIRE",
+      "name": {
+        "en": "TRAPWIRE",
+        "es": "CABLE TRAMPA"
+      },
       "iconUrl": "https://i.imgur.com/JWvlhyU.png",
-      "info": "EQUIP a trapwire. FIRE to place a destructible and covert tripwire at the targeted location creating a line that spans between the placed location and the wall opposite. Enemy players who cross a tripwire will be tethered, revealed, and dazed after a short period if they do not destroy the device in time. This ability can be picked up to be REDEPLOYED.",
+      "info": {
+        "en": "EQUIP a trapwire. FIRE to place a destructible and covert tripwire at the targeted location creating a line that spans between the placed location and the wall opposite. Enemy players who cross a tripwire will be tethered, revealed, and dazed after a short period if they do not destroy the device in time. This ability can be picked up to be REDEPLOYED.",
+        "es": "EQUIPA un cable trampa. DISPARAD para colocar un cable trampa destructible pero oculto en la ubicación objetivo. Creará una línea que se extiende entre la ubicación en la que se ha colocado y la pared opuesta. Los jugadores enemigos que atraviesen un cable trampa quedarán anclados, revelados y aturdidos tras un breve lapso si no logran destruir el dispositivo a tiempo. El cable trampa se puede recoger para VOLVER A COLOCARLO."
+      },
       "preview": "https://i.imgur.com/2Fj8JuQ.gif",
       "cost": "200 (x2)"
     },
     {
       "button": "x",
-      "name": "NEURAL THEFT",
+      "name": {
+        "en": "NEURAL THEFT",
+        "es": "HURTO NEURONAL"
+      },
       "iconUrl": "https://i.imgur.com/5htVVDl.png",
-      "info": "INSTANTLY use on a dead enemy player in your crosshairs to reveal the location of all living enemy players.",
+      "info": {
+        "en": "INSTANTLY use on a dead enemy player in your crosshairs to reveal the location of all living enemy players.",
+        "es": "Usadla INSTANTANEAMENTE sobre un enemigo muerto en vuestra mira para revelar la posición de todos los jugadores enemigos vivos."
+      },
       "preview": "https://i.imgur.com/75RAgLO.gif",
       "cost": "•••••• 6 Points"
     }

@@ -6,39 +6,66 @@
   "origin": ":flag_kr: Shout Korea",
   "avatar": "https://i.imgur.com/ePEFhEH.jpg",
   "role": "Duelist",
-  "bio": "Representing her home country of South Korea, Jett's agile and evasive fighting style lets her take risks no one else can. She runs circles around every skirmish, cutting enemies before they even know what hit them.",
+  "bio": {
+    "en": "Representing her home country of South Korea, Jett's agile and evasive fighting style lets her take risks no one else can. She runs circles around every skirmish, cutting enemies before they even know what hit them.",
+    "es": "Jett viene de Corea del Sur, y su estilo de lucha ágil y evasivo le permite asumir grandes riesgos. Corre y salta de aquí para allá en las refriegas y hace trizas a los enemigos con una rapidez espectacular."
+  },
   "gender": "Female",
   "affiliation": "Valorant Protocol",
   "skills": [
     {
       "button": "q",
-      "name": "UPDRAFT",
+      "name": {
+        "en": "UPDRAFT",
+        "es": "VENDAVAL"
+      },
       "iconUrl": "https://i.imgur.com/HFkRJSL.png",
-      "info": "INSTANTLY propel Jett high into the air.",
+      "info": {
+        "en": "INSTANTLY propel Jett high into the air.",
+        "es": "Propulsa INSTANTÁNEAMENTE a Jett a mucha altura hacia arriba."
+      },
       "preview": "https://i.imgur.com/SavOZ7d.gif",
       "cost": "150 (x2)"
     },
     {
       "button": "e",
-      "name": "TAILWIND",
+      "name": {
+        "en": "TAILWIND",
+        "es": "VIENTO DE COLA"
+      },
       "iconUrl": "https://i.imgur.com/yObh8n2.png",
-      "info": "INSTANTLY propel Jett in the direction she is moving. If Jett is standing still, she will propel forward.",
+      "info": {
+        "en": "INSTANTLY propel Jett in the direction she is moving. If Jett is standing still, she will propel forward.",
+        "es": "Propulsa a Jett INSTANTÁNEAMENTE en la dirección en la que se esté moviendo. Si está quieta, se propulsará hacia delante."
+      },
       "preview": "https://i.imgur.com/OgRvGEs.gif",
       "cost": "2 Kills"
     },
     {
       "button": "c",
-      "name": "CLOUDBURST",
+      "name": {
+        "en": "CLOUDBURST",
+        "es": "BORRASCA"
+      },
       "iconUrl": "https://i.imgur.com/LViadRc.png",
-      "info": "INSTANTLY throw a projectile that expands into a brief vision-blocking cloud on impact with a surface. HOLD the ability key to curve the smoke in the direction of your crosshair.",
+      "info": {
+        "en": "INSTANTLY throw a projectile that expands into a brief vision-blocking cloud on impact with a surface. HOLD the ability key to curve the smoke in the direction of your crosshair.",
+        "es": "Lanza un proyectil INSTANTÁNEAMENTE que se expande para crear una nube que bloquea la visión brevemente al impactar contra una superficie. MANTENED PULSADO el botón de la habilidad para que el humo se curve en la dirección de la mira."
+      },
       "preview": "https://i.imgur.com/C7JgXOV.gif",
       "cost": "200 (x3)"
     },
     {
       "button": "x",
-      "name": "BLADE STORM",
+      "name": {
+        "en": "BLADE STORM",
+        "es": "TORMENTA DE CUCHILLAS"
+      },
       "iconUrl": "https://i.imgur.com/Zp4WIKi.png",
-      "info": "EQUIP a set of highly accurate knives that recharge on killing an opponent. FIRE to throw a single knife at your target. ALTERNATE FIRE to throw all remaining daggers at your target.",
+      "info": {
+        "en": "EQUIP a set of highly accurate knives that recharge on killing an opponent. FIRE to throw a single knife at your target. ALTERNATE FIRE to throw all remaining daggers at your target.",
+        "es": "EQUIPA un conjunto de cuchillos de alta precisión que se recargan cuando acaban con un oponente. DISPARAD para lanzar un único cuchillo a vuestro objetivo. ALTERNAD EL MODO DE DISPARO para lanzar todos los cuchillos que os queden a vuestro objetivo."
+      },
       "preview": "https://i.imgur.com/7Wuenma.gif",
       "cost": "••••••• 7 Points"
     }

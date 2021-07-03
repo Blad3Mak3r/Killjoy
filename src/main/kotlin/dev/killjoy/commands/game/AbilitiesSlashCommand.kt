@@ -16,6 +16,7 @@
 package dev.killjoy.commands.game
 
 import dev.killjoy.Launcher
+import dev.killjoy.extensions.jda.supportedLocale
 import dev.killjoy.slash.api.AbstractSlashCommand
 import dev.killjoy.slash.api.SlashCommandContext
 import dev.killjoy.slash.api.annotations.SlashSubCommand
@@ -26,7 +27,9 @@ class AbilitiesSlashCommand : AbstractSlashCommand("abilities") {
 
     @SlashSubCommand("all")
     override suspend fun handle(ctx: SlashCommandContext) {
-        val abilities = Launcher.getAbilities().sortedBy { it.skill.name }
+        val guildLocale = ctx.guild.supportedLocale
+
+        val abilities = Launcher.getAbilities().sortedBy { it.name[guildLocale.language] }
 
         val page = ctx.getOption("page")?.asString?.toInt() ?: 1
 
@@ -43,10 +46,10 @@ class AbilitiesSlashCommand : AbstractSlashCommand("abilities") {
                 val ability = abilities[index]
 
                 val body = buildString {
-                    appendLine(ability.skill.info)
-                    appendLine("**Cost**: ${ability.skill.cost}")
+                    appendLine(ability.description[guildLocale.language])
+                    appendLine("**Cost**: ${ability.cost}")
                 }
-                addField("${ability.skill.name} (${ability.agent.name})", body, false)
+                addField("${ability.name[guildLocale.language]} (${ability.agent.name})", body, false)
             }
             setFooter("Page ${pageIndex + 1} / $totalPages | Showing ${firstIndex + 1} - $lastIndex of ${abilities.size} abilities.")
         }.queue()

@@ -15,16 +15,17 @@
 
 @file:Suppress("unused")
 
-package dev.killjoy.valorant
+package dev.killjoy.valorant.agent
 
 import dev.killjoy.apis.riot.RiotAPI
 import dev.killjoy.extensions.jda.setDefaultColor
+import dev.killjoy.extensions.jda.supportedLocale
 import dev.killjoy.i18n.I18n
 import dev.killjoy.i18n.I18nKey
 import dev.killjoy.i18n.i18n
 import dev.killjoy.i18n.i18nCommand
-import dev.killjoy.slash.api.SlashCommandContext
 import dev.killjoy.utils.extensions.isUrl
+import dev.killjoy.valorant.ValorantEntity
 import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.entities.Guild
 import net.dv8tion.jda.api.entities.MessageEmbed
@@ -32,38 +33,30 @@ import org.json.JSONArray
 import org.json.JSONObject
 
 @Suppress("unused")
-data class ValorantAgent (
-    val id: String? = null,
-    val number: Int,
-    private val apiName: String? = null,
-    override val name: String,
-    val bio: String,
-    val gender: String,
-    val affiliation: String,
-    val origin: String,
-    val role: Role,
-    val avatar: String,
-    val skills: List<Skill>
-) : ValorantEntity {
+class ValorantAgent(json: JSONObject) : ValorantEntity {
 
-    val abilities = skills.map { AgentAbility(this, it) }
-
-    constructor(json: JSONObject) : this(
-        json.getString("id").takeIf { it.isNotEmpty() },
-        json.getInt("number"),
-        json.optString("api_name").trim().takeIf { it.isNotEmpty() },
-        json.getString("name").trim(),
-        json.getString("bio").trim(),
-        json.getString("gender"),
-        json.getString("affiliation"),
-        json.getString("origin").trim(),
-        Role.of(json.getString("role")),
-        json.getString("avatar"),
-        Skill.ofAll(json.getJSONArray("skills"))
-    )
+    val id: String? = json.getString("id").takeIf { it.isNotEmpty() }
+    val number: Int = json.getInt("number")
+    private val apiName: String? = json.optString("api_name").trim().takeIf { it.isNotEmpty() }
+    override val name: String = json.getString("name").trim()
+    private val bio: Map<String, String> = buildMap(json.getJSONObject("bio"))
+    private val gender: AgentGender = AgentGender.of(json.getString("gender"))
+    val affiliation: String = json.getString("affiliation")
+    val origin: String = json.getString("origin").trim()
+    val role: AgentRole = AgentRole.of(json.getString("role"))
+    val avatar: String = json.getString("avatar")
+    val abilities: List<AgentAbility> = AgentAbility.ofAll(this, json.getJSONArray("skills"))
 
     init {
         check(this.avatar.isUrl()) { "avatar is not a valid url (ValorantAgent ${this.name}) [${this.avatar}]" }
+    }
+
+    fun bio(guild: Guild): String {
+        return bio[guild.supportedLocale.language] ?: "No translates available."
+    }
+
+    fun gender(guild: Guild): String {
+        return guild.i18n(gender.i18nKey)
     }
 
     suspend fun asEmbed(guild: Guild): EmbedBuilder {
@@ -76,33 +69,15 @@ data class ValorantAgent (
             setAuthor(role.locatedName(guild), null, role.iconUrl)
             setTitle(name, "https://playvalorant.com/en-us/agents/${name.replace("/", "-").lowercase()}/")
             setThumbnail(avatar)
-            setDescription(bio)
+            setDescription(bio(guild))
             addField(guild.i18nCommand("agent.origin"), origin, true)
-            addField(guild.i18nCommand("agent.gender"), gender, true)
+            addField(guild.i18nCommand("agent.gender"), gender(guild), true)
             addField(guild.i18nCommand("agent.affiliation"), affiliation, true)
             addField(guild.i18nCommand("agent.statistics"), statistics, false)
             addBlankField(false)
             setDefaultColor()
-            for (skill in skills) {
-                addField(skill.asEmbedField())
-            }
-        }
-    }
-
-    enum class Role(val emoji: String, val iconUrl: String, private val i18nKey: I18nKey) {
-        Controller("<:controller:754676227809214485>", "https://i.imgur.com/V4Ci1Oh.png", I18nKey.AGENT_CLASS_CONTROLLER),
-        Duelist("<:duelist:754676227952083025>", "https://i.imgur.com/rs0d2qx.png", I18nKey.AGENT_CLASS_DUELIST),
-        Initiator("<:initiator:754676227582722062>", "https://i.imgur.com/hCVcqgf.png", I18nKey.AGENT_CLASS_INITIATOR),
-        Sentinel("<:sentinel:754676227994026044>", "https://i.imgur.com/ODX86kl.png", I18nKey.AGENT_CLASS_SENTINEL);
-
-        fun locatedName(guild: Guild): String = I18n.getTranslate(guild, this.i18nKey)
-
-        val snowFlake: String
-            get() = emoji.removePrefix("<").removeSuffix(">")
-
-        companion object {
-            fun of(str: String): Role {
-                return values().find { it.name.equals(str, true) } ?: throw IllegalArgumentException("$str is not a valid role name.")
+            for (ability in abilities) {
+                addField(ability.asEmbedField(guild))
             }
         }
     }
@@ -158,6 +133,19 @@ data class ValorantAgent (
             private fun buildIdentifier(str: String): String {
                 return str.trim().lowercase().replace(" ", "").replace("’", "").replace("'", "").replace("\"", "")
             }
+        }
+    }
+
+    companion object {
+        fun buildMap(json: JSONObject): Map<String, String> {
+            val names = json.names().map { "$it" }
+            val map = HashMap<String, String>()
+
+            for (name in names) {
+                map[name] = json.getString(name)
+            }
+
+            return map
         }
     }
 }

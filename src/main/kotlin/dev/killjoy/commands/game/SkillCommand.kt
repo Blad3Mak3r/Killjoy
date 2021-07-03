@@ -17,6 +17,7 @@ package dev.killjoy.commands.game
 
 import dev.killjoy.Launcher
 import dev.killjoy.extensions.jda.setDefaultColor
+import dev.killjoy.extensions.jda.supportedLocale
 import dev.killjoy.framework.Category
 import dev.killjoy.framework.CommandContext
 import dev.killjoy.framework.abs.Command
@@ -36,15 +37,15 @@ class SkillCommand : Command() {
     override suspend fun handle(ctx: CommandContext) {
         if (ctx.args.isEmpty()) return Utils.Commands.replyWrongUsage(ctx, this)
 
-        val skill = Launcher.getSkills().find { it.id.equals(ctx.args[0], true) }
+        val guildLang = ctx.guild.supportedLocale.language
+
+        val skill = Launcher.getAbilities().find { it.name[guildLang].equals(ctx.args[0], true) }
             ?: return ctx.send(Emojis.NoEntry, "I have not been able to find that skill...").queue()
 
-        val agent = Launcher.agents.find { it.skills.any { s -> s === skill } }!!
-
         ctx.replyEmbed {
-            setAuthor(agent.name, null, agent.avatar)
-            setTitle(skill.name)
-            setDescription(skill.info)
+            setAuthor(skill.agent.name, null, skill.agent.avatar)
+            setTitle(skill.name[guildLang])
+            setDescription(skill.description[guildLang])
             setThumbnail(skill.iconUrl)
             setImage(skill.preview)
             addField("Action Button", skill.button.name, true)
