@@ -1,0 +1,5 @@
+files:
+  - source: /src/main/resources/i18n/general_en.properties
+    translation: /src/main/resources/i18n/general_%two_letters_code%.properties
+  - source: /src/main/resources/i18n/commands_en.properties
+    translation: /src/main/resources/i18n/commands_%two_letters_code%.properties
