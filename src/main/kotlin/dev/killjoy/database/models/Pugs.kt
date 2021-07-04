@@ -16,6 +16,7 @@
 package dev.killjoy.database.models
 
 import dev.killjoy.database.extensions.array
+import dev.killjoy.i18n.i18nCommand
 import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.entities.Guild
 import net.dv8tion.jda.api.entities.MessageEmbed
@@ -86,11 +87,11 @@ class Pug(id: EntityID<UUID>) : UUIDEntity(id) {
         return flush()
     }
 
-    fun asEmbed(): MessageEmbed {
+    fun asEmbed(guild: Guild): MessageEmbed {
         return EmbedBuilder().run {
             setColor(0xFF4753)
-            setTitle("Active PUG")
-            addField("Registered players (${players.size}/12)", taggedPlayers.joinToString("\n"), false)
+            setTitle(guild.i18nCommand("pugs.activeTitle"))
+            addField(guild.i18nCommand("pugs.embedField", players.size), taggedPlayers.joinToString("\n"), false)
             setFooter("ID(${id})")
             setTimestamp(createdAt)
             build()
