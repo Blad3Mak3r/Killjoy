@@ -1,10 +1,18 @@
 {
   "name": "Shorty",
-  "short": "Surprise your enemy up close for max effectiveness.",
+  "short": {
+    "en": "Surprise your enemy up close for max effectiveness.",
+    "es": "Sorprended a vuestros enemigos de cerca para maximizar su efectividad."
+  },
   "type": "Sidearms",
-  "descriptions": [
-    "A nimble, short barrel shotgun that is deadly at close range but can only fire twice before needing to reload. Pairs well with long range weapons."
-  ],
+  "descriptions": {
+    "en": [
+      "A nimble, short barrel shotgun that is deadly at close range but can only fire twice before needing to reload. Pairs well with long range weapons."
+    ],
+    "es": [
+      "Se trata de una escopeta ligera de barril corto que resulta letal cuerpo a cuerpo pero solo puede dispararse dos veces antes de tener que recargarla. Complementa de maravilla a las armas de larga distancia."
+    ]
+  },
   "thumbnail": "https://i.imgur.com/ElljOQq.jpg",
   "cost": 200,
   "magazine": 2,

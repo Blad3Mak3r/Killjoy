@@ -1,10 +1,18 @@
 {
   "name": "Frenzy",
-  "short": "Up close, hold the trigger. From afar...try something else.",
+  "short": {
+    "en": "Up close, hold the trigger. From afar... try something else.",
+    "es": "De cerca, lo mejor es mantener pulsado el gatillo. De lejos, hay que cambiar de estrategia."
+  },
   "type": "Sidearms",
-  "descriptions": [
-    "Lightweight machine pistol that excels at firing on the move. It’s high rate-of-fire can be difficult to control, so try short bursts at medium ranges."
-  ],
+  "descriptions": {
+    "en": [
+      "Lightweight machine pistol that excels at firing on the move. It’s high rate-of-fire can be difficult to control, so try short bursts at medium ranges."
+    ],
+    "es": [
+      "Se trata de una pistola ametralladora ligera que destaca a la hora de disparar en movimiento. Tiene una velocidad de disparo muy alta, pero es difícil de controlar, así que a media distancia es mejor apostar por ráfagas cortas."
+    ]
+  },
   "thumbnail": "https://i.imgur.com/uIghW1N.jpg",
   "cost": 500,
   "magazine": 13,

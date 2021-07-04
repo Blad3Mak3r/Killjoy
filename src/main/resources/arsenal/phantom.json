@@ -1,10 +1,18 @@
 {
   "name": "Phantom",
-  "short": "A balanced weapon built for stable, extended shots.",
+  "short": {
+    "en": "A balanced weapon built for stable, extended shots.",
+    "es": "Un arma equilibrada pensada para disparar muchas balas con estabilidad."
+  },
   "type": "Rifles",
-  "descriptions": [
-    "Go full auto for anyone who tests you up close and short controlled bursts scramble enemies from anywhere. Best when fired while stationary."
-  ],
+  "descriptions": {
+    "en": [
+      "Go full auto for anyone who tests you up close and short controlled bursts scramble enemies from anywhere. Best when fired while stationary."
+    ],
+    "es": [
+      "El modo automático es perfecto para los encuentros en espacios reducidos, mientras que las ráfagas cortas son la opción indicada en cualquier otra situación. Es mucho más precisa si no se dispara en movimiento."
+    ]
+  },
   "thumbnail": "https://i.imgur.com/KZ7nWmq.jpg",
   "cost": 2900,
   "magazine": 30,

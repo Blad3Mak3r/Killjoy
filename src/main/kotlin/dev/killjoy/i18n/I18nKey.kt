@@ -30,6 +30,18 @@ enum class I18nKey(
     AGENT_GENDER_FEMALE("agent.gender.female"),
     AGENT_GENDER_MALE("agent.gender.male"),
 
+    ARSENAL_TYPE_SMGS("arsenal.type.smgs"),
+    ARSENAL_TYPE_RIFLES("arsenal.type.rifles"),
+    ARSENAL_TYPE_SHOTGUNS("arsenal.type.shotguns"),
+    ARSENAL_TYPE_SNIPERS("arsenal.type.snipers"),
+    ARSENAL_TYPE_MELEE("arsenal.type.melee"),
+    ARSENAL_TYPE_HEAVIES("arsenal.type.heavies"),
+    ARSENAL_TYPE_SIDEARMS("arsenal.type.sidearms"),
+
+    ARSENAL_WALLPENETRATION_LOW("arsenal.wallPenetration.low"),
+    ARSENAL_WALLPENETRATION_MEDIUM("arsenal.wallPenetration.medium"),
+    ARSENAL_WALLPENETRATION_HIGH("arsenal.wallPenetration.high"),
+
     CONTENT_NOT_FOUND("contentNotFound"),
     CONTENT_NOT_FOUND_DESCRIPTION("contentNotFoundDescription"),
     COMMAND_CANNOT_USE_OUTSIDE_GUILD("commandCannotUseOutsideGuild"),

@@ -18,63 +18,66 @@
 package dev.killjoy.valorant.arsenal
 
 import dev.killjoy.extensions.jda.setDefaultColor
-import dev.killjoy.valorant.ValorantEntity
+import dev.killjoy.extensions.jda.supportedLocale
+import dev.killjoy.i18n.I18nKey
+import dev.killjoy.i18n.i18n
+import dev.killjoy.i18n.i18nCommand
+import dev.killjoy.valorant.*
 import net.dv8tion.jda.api.EmbedBuilder
+import net.dv8tion.jda.api.entities.Guild
 import org.json.JSONObject
 
 @Suppress("unused")
 data class ValorantWeapon(
     override val name: String,
-    val short: String,
-    val type: Type,
-    val descriptions: List<String>,
+    val locatedNames: I18nMap? = null,
+    val short: I18nMap,
+    private val type: WeaponType,
+    val descriptions: Map<String, List<String>>,
     val thumbnail: String,
     val cost: Int,
     val magazine: Int?,
-    val wallPenetration: String?
+    private val wallPenetration: WallPenetration?
 ) : ValorantEntity {
-
-    val id: String
-        get() = name.lowercase().replace(" ", "").replace("-", "")
+    val ids = buildWeaponIDs(this)
+    val names = buildWeaponNames(this)
 
     constructor(json: JSONObject) : this(
-            json.getString("name"),
-            json.getString("short"),
-        Type.of(json.getString("type")),
-            json.getJSONArray("descriptions").map { it as String },
-            json.getString("thumbnail"),
-            json.getInt("cost"),
-            kotlin.runCatching { json.getInt("magazine") }.getOrNull(),
-            kotlin.runCatching { json.getString("wall_penetration") }.getOrNull()
+        json.getString("name"),
+        buildNullableI18nMap(json,"located_names"),
+        buildI18nMap(json.getJSONObject("short")),
+        WeaponType.of(json.getString("type")),
+        buildWeaponDescriptions(json.getJSONObject("descriptions")),
+        json.getString("thumbnail"),
+        json.getInt("cost"),
+        kotlin.runCatching { json.getInt("magazine") }.getOrNull(),
+        WallPenetration.of(json)
     )
 
-    fun asEmbed(): EmbedBuilder {
-        return EmbedBuilder().apply {
-            setAuthor(type.name.uppercase())
-            setTitle(name)
-            setDefaultColor()
-            setDescription(short)
-            addField("Cost", "<:creds:755356472132501574> $cost", true)
-            if (magazine != null) addField("Magazine", "$magazine", true)
-            if (wallPenetration != null) addField("Wall Penetration", wallPenetration, true)
-            addField("Info", descriptions.joinToString("\n") { " • $it" }, false)
-            setImage(thumbnail)
-        }
+    fun name(guild: Guild): String {
+        return if (locatedNames == null) name
+        else locatedNames[guild.supportedLocale.language]!!
     }
 
-    enum class Type {
-        Smgs,
-        Rifles,
-        Shotguns,
-        Snipers,
-        Melee,
-        Heavies,
-        Sidearms;
+    fun short(guild: Guild) = short[guild.supportedLocale.language]!!
 
-        companion object {
-            fun of(str: String): Type {
-                return values().find { it.name.equals(str, true) } ?: throw IllegalArgumentException("$str is not a valid type name.")
-            }
+    fun type(guild: Guild) = guild.i18n(type.i18nKey)
+
+    private fun descriptions(guild: Guild) = descriptions[guild.supportedLocale.language]!!
+
+    private fun wallPenetration(guild: Guild) = wallPenetration?.let { guild.i18n(it.i18nKey) }
+
+    fun asEmbed(guild: Guild): EmbedBuilder {
+        return EmbedBuilder().apply {
+            setAuthor(type(guild))
+            setTitle(name(guild))
+            setDefaultColor()
+            setDescription(short(guild))
+            addField(guild.i18n(I18nKey.ABILITY_COST), "<:creds:755356472132501574> $cost", true)
+            if (magazine != null) addField(guild.i18nCommand("arsenal.magazine"), "$magazine", true)
+            if (wallPenetration != null) addField(guild.i18nCommand("arsenal.penetration"), wallPenetration(guild), true)
+            addField("Info", descriptions(guild).joinToString("\n") { " • $it" }, false)
+            setImage(thumbnail)
         }
     }
 }

@@ -1,10 +1,18 @@
 {
   "name": "Operator",
-  "short": "Get cozy and you can control important ground.",
+  "short": {
+    "en": "Get cozy and you can control important ground.",
+    "es": "Poneos cómodos, porque la zona es vuestra."
+  },
   "type": "Snipers",
-  "descriptions": [
-    "A fierce bolt-action sniper rifle with high-powered dual zoom. Extremely immobile but fires an incredibly powerful round that can devastate a team with one shot."
-  ],
+  "descriptions": {
+    "en": [
+      "A fierce bolt-action sniper rifle with high-powered dual zoom. Extremely immobile but fires an incredibly powerful round that can devastate a team with one shot."
+    ],
+    "es": [
+      "El Operator es un fusil de francotirador de cerrojo muy potente con zoom dual. Cuenta con una movilidad nula, pero sus balas derribarán a cualquiera de un solo impacto."
+    ]
+  },
   "thumbnail": "https://i.imgur.com/RRMiRsR.jpg",
   "cost": 5000,
   "magazine": 5,

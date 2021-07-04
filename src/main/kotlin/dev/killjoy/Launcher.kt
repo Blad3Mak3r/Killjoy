@@ -165,11 +165,11 @@ object Launcher : Killjoy {
     }
 
     override fun getWeapon(name: String): ValorantWeapon? {
-        return arsenal.find { it.name.equals(name, true) }
+        return arsenal.find { it.names.any { w -> w.equals(name, true) } }
     }
 
     override fun getWeaponById(id: String): ValorantWeapon? {
-        return arsenal.find { it.id.equals(id, true) }
+        return arsenal.find { it.ids.any { _id -> _id.equals(id,true) } }
     }
 
     override fun getMap(name: String): ValorantMap? {
