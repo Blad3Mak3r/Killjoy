@@ -20,6 +20,9 @@ jobs:
           java-version: 13
           distribution: zulu
 
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
+
       - name: Cache Gradle packages
         uses: actions/cache@v2
         with:
