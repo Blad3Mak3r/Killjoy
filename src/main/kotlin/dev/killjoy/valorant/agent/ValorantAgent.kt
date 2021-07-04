@@ -33,6 +33,7 @@ import net.dv8tion.jda.api.entities.Guild
 import net.dv8tion.jda.api.entities.MessageEmbed
 import org.json.JSONArray
 import org.json.JSONObject
+import java.text.MessageFormat
 
 @Suppress("unused")
 class ValorantAgent(json: JSONObject) : ValorantEntity {
@@ -65,7 +66,7 @@ class ValorantAgent(json: JSONObject) : ValorantEntity {
         val stats = RiotAPI.AgentStatsAPI.getAgentStatsAsync(name.lowercase()).await()
 
         val statistics = if (stats == null) guild.i18n(I18nKey.NOT_AVAILABLE_AT_THE_MOMENT)
-        else guild.i18nCommand("agent.stats", stats.pickRate, stats.winRate, stats.kdaPerMatch, stats.kdaPerRound, stats.avgDamage, stats.avgScore)
+        else MessageFormat.format(buildStats(guild), stats.pickRate, stats.winRate, stats.kdaPerMatch, stats.kdaPerRound, stats.avgDamage, stats.avgScore)
 
         return EmbedBuilder().apply {
             setAuthor(role.locatedName(guild), null, role.iconUrl)
@@ -134,6 +135,53 @@ class ValorantAgent(json: JSONObject) : ValorantEntity {
 
             private fun buildIdentifier(str: String): String {
                 return str.trim().lowercase().replace(" ", "").replace("’", "").replace("'", "").replace("\"", "")
+            }
+        }
+    }
+
+    companion object {
+        private fun calculateMaxLength(list: List<String>, extra: Int = 5): Int {
+            var length = 0
+
+            for (item in list) {
+                if (item.length > length) length = item.length
+            }
+
+            return length+extra
+        }
+
+        private fun buildStatsHeader(str: String, maxLength: Int): String {
+            val restLength = maxLength - str.length
+
+            return buildString {
+                append(str)
+
+                if (restLength > 0) for (index in 0 until restLength) {
+                    append(" ")
+                }
+            }
+        }
+
+        private fun buildStats(guild: Guild): String {
+            val statsPickRate = guild.i18nCommand("agents.stats.pickRate")
+            val statsWinRate = guild.i18nCommand("agents.stats.winRate")
+            val statsKdaMatch = guild.i18nCommand("agents.stats.kdaMatch")
+            val statsKdaRound = guild.i18nCommand("agents.stats.kdaRound")
+            val statsAvgDamage = guild.i18nCommand("agents.stats.avgDamage")
+            val statsAvgScore = guild.i18nCommand("agents.stats.avgScore")
+
+            val maxLength = calculateMaxLength(listOf(statsPickRate, statsWinRate, statsKdaMatch, statsKdaRound,
+                statsAvgDamage, statsAvgScore))
+
+            return buildString {
+                appendLine("```kotlin")
+                appendLine("${buildStatsHeader(statsPickRate, maxLength)}{0}%")
+                appendLine("${buildStatsHeader(statsWinRate, maxLength)}{1}%")
+                appendLine("${buildStatsHeader(statsKdaMatch, maxLength)}{2}")
+                appendLine("${buildStatsHeader(statsKdaRound, maxLength)}{3}")
+                appendLine("${buildStatsHeader(statsAvgDamage, maxLength)}{4}")
+                appendLine("${buildStatsHeader(statsAvgScore, maxLength)}{5}")
+                appendLine("```")
             }
         }
     }
