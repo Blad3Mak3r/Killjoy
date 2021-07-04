@@ -22,6 +22,7 @@ COPY --from=builder /home/gradle/src/build/libs/Killjoy.jar Killjoy.jar
 
 # Setup default JAVA_OPTIONS
 ENV JAVA_OPTIONS="-Xmx1G -XX:+UseG1GC"
+ENV KILLJOY_ARGS=""
 
 # Entrypoint for container execution
-ENTRYPOINT java $JAVA_OPTIONS -jar Killjoy.jar
+ENTRYPOINT java $JAVA_OPTIONS -jar Killjoy.jar $KILLJOY_ARGS
