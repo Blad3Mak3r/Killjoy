@@ -19,7 +19,7 @@ jobs:
       with:
         java-version: 13
         distribution: zulu
-        
+
     - name: Make gradlew executable
       run: chmod +x ./gradlew
 
@@ -35,7 +35,7 @@ jobs:
 
     - name: Build with Gradle
       env:
-        BUILD_NUMBER: $ {{ github.run_number }}
+        BUILD_NUMBER: ${{ github.run_number }}
       run: ./gradlew shadowJar --no-daemon -i --stacktrace
 
     - name: Cleanup Gradle Cache
