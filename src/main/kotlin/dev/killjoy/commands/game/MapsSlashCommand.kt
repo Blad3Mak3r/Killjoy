@@ -16,6 +16,9 @@
 package dev.killjoy.commands.game
 
 import dev.killjoy.Launcher
+import dev.killjoy.apis.news.NewsRetriever
+import dev.killjoy.extensions.jda.supportedLocale
+import dev.killjoy.i18n.i18nCommand
 import dev.killjoy.slash.api.AbstractSlashCommand
 import dev.killjoy.slash.api.SlashCommandContext
 
@@ -27,20 +30,22 @@ class MapsSlashCommand : AbstractSlashCommand("maps") {
 
         val selection = ctx.getOption("map")?.asString
 
+        val mapsUrl = "https://playvalorant.com/${NewsRetriever.getLocalePath(ctx.guild.supportedLocale)}/maps/"
+
         if (selection == null) {
             ctx.sendEmbed {
-                setTitle("Valorant maps", "https://playvalorant.com/en-us/maps/")
+                setTitle(ctx.i18nCommand("maps.header"), mapsUrl)
                 for (map in Launcher.maps) {
-                    addField(map.name.capitalize(), map.description, false)
+                    addField(map.name.capitalize(), map.description(ctx.guild), false)
                 }
             }.queue()
         } else {
             val map = Launcher.getMap(selection)
-                ?: return ctx.sendNotFound("There is no map called `` $selection ``.").queue()
+                ?: return ctx.sendNotFound(ctx.i18nCommand("maps.notFound", selection)).queue()
 
             ctx.sendEmbed {
-                setTitle(map.name.capitalize(), "https://playvalorant.com/en-us/maps/")
-                setDescription(map.description)
+                setTitle(map.name.capitalize(), mapsUrl)
+                setDescription(map.description(ctx.guild))
                 setThumbnail(map.minimap)
                 setImage(map.imageUrl)
             }.queue()

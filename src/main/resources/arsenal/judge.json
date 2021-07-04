@@ -1,11 +1,20 @@
 {
   "name": "Judge",
-  "short": "Automatic, rapid fire shotgun that provides sustained high damage.",
+  "short": {
+    "en": "Automatic, rapid fire shotgun that provides sustained high damage.",
+    "es": "Una escopeta automática que proporciona mucho daño de forma fiable."
+  },
   "type": "Shotguns",
-  "descriptions": [
-    "The Judge is stable at the stand but volatile when fired rapidly.",
-    "Primary fire hammers short range targets and you’ll need to be steady to nail anything beyond an arm's-length."
-  ],
+  "descriptions": {
+    "en": [
+      "The Judge is stable at the stand but volatile when fired rapidly.",
+      "Primary fire hammers short range targets and you’ll need to be steady to nail anything beyond an arm's-length."
+    ],
+    "es": [
+      "La Judge es un arma estable, pero se vuelve volátil si se dispara con mucha rapidez.",
+      "El modo de disparo principal es perfecto para las distancias cortas; si queréis acertar a objetivos a más de un metro de distancia, tendréis que apuntar con calma y precisión."
+    ]
+  },
   "thumbnail": "https://i.imgur.com/hZuCs0m.jpg",
   "cost": 1600,
   "magazine": 7,

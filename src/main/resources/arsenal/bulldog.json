@@ -1,10 +1,18 @@
 {
   "name": "Bulldog",
-  "short": "Some kind of happiness is measured out in taking down enemies with the Bulldog.",
+  "short": {
+    "en": "Some kind of happiness is measured out in taking down enemies with the Bulldog.",
+    "es": "No hay sensación como la de acabar con un enemigo gracias al Bulldog."
+  },
   "type": "Rifles",
-  "descriptions": [
-    "A surefire beast when you can pick your shots. Alt. fire let’s you ADS and spew accurate, short bursts at anyone who tries you from medium to long-range."
-  ],
+  "descriptions": {
+    "en": [
+      "A surefire beast when you can pick your shots. Alt. fire let’s you ADS and spew accurate, short bursts at anyone who tries you from medium to long-range."
+    ],
+    "es": [
+      "Una vez que aprendéis a decidir cuándo disparar, se trata de una apuesta segura. El modo alternativo dispone de una mira que os permite disparar ráfagas cortas con precisión a media y larga distancia."
+    ]
+  },
   "thumbnail": "https://i.imgur.com/NkGyYlz.jpg",
   "cost": 2100,
   "magazine": 24,

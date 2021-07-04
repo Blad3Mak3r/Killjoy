@@ -6,39 +6,66 @@
   "origin": ":flag_au: Australia",
   "avatar": "https://i.imgur.com/JTTbc1E.jpg",
   "role": "Initiator",
-  "bio": "Hailing from Australia, Skye and her band of beasts trail-blaze the way through hostile territory. With her creations hampering the enemy, and her power to heal others, the team is strongest and safest by Skye’s side.",
+  "bio": {
+    "en": "Hailing from Australia, Skye and her band of beasts trail-blaze the way through hostile territory. With her creations hampering the enemy, and her power to heal others, the team is strongest and safest by Skye’s side.",
+    "es": "Skye y su manada de bestias se abren paso desde Australia y a través de territorio hostil. Sus creaciones obstaculizan los avances enemigos y su capacidad para curar a los demás se ocupa de que, a su lado, su equipo esté a salvo."
+  },
   "gender": "Female",
   "affiliation": "Valorant Protocol",
   "skills": [
     {
       "button": "q",
-      "name": "TRAILBLAZER",
+      "name": {
+        "en": "TRAILBLAZER",
+        "es": "PRECURSOR"
+      },
       "iconUrl": "https://i.imgur.com/Oc2AhM6.png",
-      "info": "EQUIP a Tasmanian tiger trinket. FIRE to send out and take control of the predator. While in control, FIRE to leap forward, exploding in a concussive blast and damaging directly hit enemies.",
+      "info": {
+        "en": "EQUIP a Tasmanian tiger trinket. FIRE to send out and take control of the predator. While in control, FIRE to leap forward, exploding in a concussive blast and damaging directly hit enemies.",
+        "es": "EQUIPA un amuleto de lobo marsupial. DISPARA para desplegar al depredador y controlarlo. Mientras se está controlando al lobo, DISPARAR hace que salte hacia delante y explote, lo que aturde e inflige daño a los enemigos que golpee."
+      },
       "preview": "https://i.imgur.com/pqIeCob.gif",
       "cost": "250"
     },
     {
       "button": "e",
-      "name": "GUIDING LIGHT",
+      "name": {
+        "en": "GUIDING LIGHT",
+        "es": "LUZ GUÍA"
+      },
       "iconUrl": "https://i.imgur.com/VX1QdhW.png",
-      "info": "EQUIP a hawk trinket. FIRE to send it forward. HOLD FIRE to guide the hawk in the direction of your crosshair. RE-USE while the hawk is in flight to transform it into a flash that plays a hit confirm if an enemy was within range and line of sight.",
+      "info": {
+        "en": "EQUIP a hawk trinket. FIRE to send it forward. HOLD FIRE to guide the hawk in the direction of your crosshair. RE-USE while the hawk is in flight to transform it into a flash that plays a hit confirm if an enemy was within range and line of sight.",
+        "es": "EQUIPA un amuleto de halcón. DISPARA para lanzarlo hacia adelante. MANTENER PULSADO DISPARAR guía al halcón en la dirección de la mira. VOLVER A ACTIVAR la habilidad cuando el halcón está en el aire lo transforma en un destello cegador que emite un sonido de confirmación de impacto si ha cegado a un enemigo."
+      },
       "preview": "https://i.imgur.com/pEobOAm.gif",
       "cost": "250 (x2)"
     },
     {
       "button": "c",
-      "name": "REGROWTH",
+      "name": {
+        "en": "REGROWTH",
+        "es": "REFORESTACIÓN"
+      },
       "iconUrl": "https://i.imgur.com/Qr1LnIS.png",
-      "info": "EQUIP a healing trinket. HOLD FIRE to channel, healing allies in range and line of sight. Can be reused until her healing pool is depleted. Skye cannot heal herself.",
+      "info": {
+        "en": "EQUIP a healing trinket. HOLD FIRE to channel, healing allies in range and line of sight. Can be reused until her healing pool is depleted. Skye cannot heal herself.",
+        "es": "EQUIPA un amuleto de curación. MANTENER PULSADO canaliza la habilidad, que cura a los aliados que estén dentro del alcance y del campo de visión. Se puede volver a utilizar hasta que se quede sin curación disponible. Skye no se puede curar a sí misma."
+      },
       "preview": "https://i.imgur.com/IecdVVZ.gif",
       "cost": "200 (x2)"
     },
     {
       "button": "x",
-      "name": "SEEKERS",
+      "name": {
+        "en": "SEEKERS",
+        "es": "BUSCADORES"
+      },
       "iconUrl": "https://i.imgur.com/ea7tY3u.png",
-      "info": "EQUIP a Seeker trinket. FIRE to send out three Seekers to track down the three closest enemies. If a Seeker reaches its target, it nearsights them.",
+      "info": {
+        "en": "EQUIP a Seeker trinket. FIRE to send out three Seekers to track down the three closest enemies. If a Seeker reaches its target, it nearsights them.",
+        "es": "EQUIPA un amuleto de buscador. DISPARA para desplegar tres buscadores que localizan a los tres enemigos más cercanos. Si un buscador alcanza a su objetivo, limita su visión."
+      },
       "preview": "https://i.imgur.com/pnw2OPh.gif",
       "cost": "•••••• 6 Points"
     }

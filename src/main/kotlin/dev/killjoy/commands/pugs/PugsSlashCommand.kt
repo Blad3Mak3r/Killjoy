@@ -20,6 +20,7 @@ import dev.killjoy.database.enums.ClosePugResult
 import dev.killjoy.database.enums.CreatePugResult
 import dev.killjoy.database.enums.JoinPugResult
 import dev.killjoy.database.enums.LeavePugResult
+import dev.killjoy.i18n.i18nCommand
 import dev.killjoy.slash.api.AbstractSlashCommand
 import dev.killjoy.slash.api.SlashCommandContext
 import dev.killjoy.slash.api.annotations.Permissions
@@ -27,6 +28,7 @@ import dev.killjoy.slash.api.annotations.SlashSubCommand
 import dev.killjoy.slash.utils.SlashUtils.asEphemeral
 import dev.killjoy.utils.Emojis
 import net.dv8tion.jda.api.Permission
+import net.dv8tion.jda.api.entities.Guild
 
 @Suppress("unused")
 class PugsSlashCommand : AbstractSlashCommand("pugs") {
@@ -35,9 +37,9 @@ class PugsSlashCommand : AbstractSlashCommand("pugs") {
     suspend fun current(ctx: SlashCommandContext) {
         ctx.acknowledge().queue()
         val pug = Launcher.database.pugs.findByGuild(ctx.guild)
-            ?: return ctx.send(Emojis.NoEntry, NOT_ACTIVE_PUG).setEphemeral(true).queue()
+            ?: return ctx.send(Emojis.NoEntry, notActivePug(ctx)).setEphemeral(true).queue()
 
-        ctx.send(pug.asEmbed()).queue()
+        ctx.send(pug.asEmbed(ctx.guild)).queue()
     }
 
     @SlashSubCommand("join")
@@ -45,16 +47,16 @@ class PugsSlashCommand : AbstractSlashCommand("pugs") {
         ctx.acknowledge().queue()
         when (Launcher.database.pugs.joinPug(ctx.guild, ctx.author)) {
             JoinPugResult.CantJoin -> {
-                ctx.send(Emojis.NoEntry, "You have not been able to join the PUG.").asEphemeral().queue()
+                ctx.send(Emojis.NoEntry, ctx.i18nCommand("pugs.join.cantJoin")).asEphemeral().queue()
             }
             JoinPugResult.AlreadyJoined -> {
-                ctx.send(Emojis.Success, "You are **already registered** in the PUG.").asEphemeral().queue()
+                ctx.send(Emojis.Success, ctx.i18nCommand("pugs.join.alreadyJoined")).asEphemeral().queue()
             }
             JoinPugResult.Joined -> {
-                ctx.send(Emojis.Success, "You have **joined** the PUG.").queue()
+                ctx.send(Emojis.Success, ctx.i18nCommand("pugs.join.joined")).queue()
             }
             JoinPugResult.PugDoesNotExists -> {
-                ctx.send(Emojis.NoEntry, NOT_ACTIVE_PUG).asEphemeral().queue()
+                ctx.send(Emojis.NoEntry, notActivePug(ctx)).asEphemeral().queue()
             }
         }
     }
@@ -65,16 +67,16 @@ class PugsSlashCommand : AbstractSlashCommand("pugs") {
 
         when (Launcher.database.pugs.leavePug(ctx.guild, ctx.author)) {
             LeavePugResult.CantLeft ->
-                ctx.send(Emojis.NoEntry, "You have not been able to leave the PUG.").asEphemeral().queue()
+                ctx.send(Emojis.NoEntry, ctx.i18nCommand("pugs.leave.cantLeft")).asEphemeral().queue()
 
             LeavePugResult.AlreadyLeft ->
-                ctx.send(Emojis.Success, "You are **not registered** in the PUG.").asEphemeral().queue()
+                ctx.send(Emojis.Success, ctx.i18nCommand("pugs.leave.alreadyLeft")).asEphemeral().queue()
 
             LeavePugResult.Left ->
-                ctx.send(Emojis.Success, "You have **left** the PUG.").queue()
+                ctx.send(Emojis.Success, ctx.i18nCommand("pugs.leave.left")).queue()
 
             LeavePugResult.PugDoesNotExists ->
-                ctx.send(Emojis.NoEntry, NOT_ACTIVE_PUG).asEphemeral().queue()
+                ctx.send(Emojis.NoEntry, notActivePug(ctx)).asEphemeral().queue()
         }
     }
 
@@ -84,14 +86,13 @@ class PugsSlashCommand : AbstractSlashCommand("pugs") {
         ctx.acknowledge().queue()
 
         val pug = Launcher.database.pugs.findByGuild(ctx.guild)
-            ?: return ctx.send(Emojis.NoEntry, NOT_ACTIVE_PUG).queue()
+            ?: return ctx.send(Emojis.NoEntry, notActivePug(ctx)).queue()
 
         val players = pug.taggedPlayers
 
         if (players.size < 4)
             return ctx.send(
-                Emojis.NoEntry, "There are **not enough players** to create the teams, " +
-                    "only **${players.size}** players are registered in the PUG.").queue()
+                Emojis.NoEntry, ctx.i18nCommand("pugs.teams.notEnoughPlayers", players.size)).queue()
 
         val redTeam = mutableListOf<String>()
         val blueTeam = mutableListOf<String>()
@@ -102,9 +103,9 @@ class PugsSlashCommand : AbstractSlashCommand("pugs") {
         }
 
         ctx.sendEmbed {
-            setTitle("Generated teams for the active PUG")
-            addField("Team Red", redTeam.joinToString("\n"), true)
-            addField("Team Blue", blueTeam.joinToString("\n"), true)
+            setTitle(ctx.i18nCommand("pugs.teams.header"))
+            addField(ctx.i18nCommand("pugs.teams.red"), redTeam.joinToString("\n"), true)
+            addField(ctx.i18nCommand("pugs.teams.blue"), blueTeam.joinToString("\n"), true)
         }.queue()
     }
 
@@ -115,13 +116,13 @@ class PugsSlashCommand : AbstractSlashCommand("pugs") {
 
         when (Launcher.database.pugs.create(ctx.guild, ctx.author)) {
             CreatePugResult.Opened ->
-                ctx.send(Emojis.Success, "A new PUG has been created for this guild.").queue()
+                ctx.send(Emojis.Success, ctx.i18nCommand("pugs.create.opened")).queue()
 
             CreatePugResult.CantOpen ->
-                ctx.send(Emojis.NoEntry, "It was not possible to create a PUG at this time.").queue()
+                ctx.send(Emojis.NoEntry, ctx.i18nCommand("pugs.create.cantOpen")).queue()
 
             CreatePugResult.AlreadyActivePug ->
-                ctx.send(Emojis.NoEntry, "There is currently an active PUG for this server.").queue()
+                ctx.send(Emojis.NoEntry, ctx.i18nCommand("pugs.create.alreadyActivePug")).queue()
 
         }
     }
@@ -133,16 +134,16 @@ class PugsSlashCommand : AbstractSlashCommand("pugs") {
 
         when (Launcher.database.pugs.close(ctx.guild)) {
             ClosePugResult.CantClose ->
-                ctx.send(Emojis.NoEntry, "Cannot close the active PUG at the moment.").setEphemeral(true).queue()
+                ctx.send(Emojis.NoEntry, ctx.i18nCommand("pugs.close.cantClose")).setEphemeral(true).queue()
             ClosePugResult.Closed ->
-                ctx.send(Emojis.Success, "Active PUG **has been closed** successfully.").setEphemeral(true).queue()
+                ctx.send(Emojis.Success, ctx.i18nCommand("pugs.close.closed")).setEphemeral(true).queue()
             ClosePugResult.NotActivePug ->
-                ctx.send(Emojis.NoEntry, NOT_ACTIVE_PUG).queue()
+                ctx.send(Emojis.NoEntry, notActivePug(ctx)).queue()
         }
     }
 
     companion object {
-        private const val NOT_ACTIVE_PUG = "**There is not any active PUG on this guild at the moment.**"
+        private fun notActivePug(ctx: SlashCommandContext) = ctx.i18nCommand("pugs.notActive")
     }
 
 }

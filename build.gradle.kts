@@ -21,7 +21,7 @@ val prometheusVersion = "0.11.0"
 val sentryVersion = "5.0.1"
 
 group = "dev.killjoy"
-val versionObj = Version(0, 12, 6)
+val versionObj = Version(0, 13)
 version = versionObj.build()
 
 repositories {

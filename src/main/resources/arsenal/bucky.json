@@ -1,10 +1,18 @@
 {
   "name": "Bucky",
-  "short": "Attacker. Defender. You’re the one with the pump-action shotgun.",
+  "short": {
+    "en": "Attacker. Defender. You’re the one with the pump-action shotgun.",
+    "es": "Seáis atacantes o defensores, lo que importa es que estáis armados con una escopeta de primera."
+  },
   "type": "Shotguns",
-  "descriptions": [
-    "Heavy but stable, Bucky’s primary fire is for holding tight corners or charging close quarters. Alternate fire strikes targets at medium range."
-  ],
+  "descriptions": {
+    "en": [
+      "Heavy but stable, Bucky’s primary fire is for holding tight corners or charging close quarters. Alternate fire strikes targets at medium range."
+    ],
+    "es": [
+      "Pesada pero estable, el modo de disparo principal de la Bucky ayuda a vigilar esquinas en espacios reducidos y resulta ideal para cargar contra los enemigos cuerpo contra cuerpo. El modo de disparo alternativo es preciso a media distancia."
+    ]
+  },
   "thumbnail": "https://i.imgur.com/KBTTRcx.jpg",
   "cost": 900,
   "magazine": 5,

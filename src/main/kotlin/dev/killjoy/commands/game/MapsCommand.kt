@@ -16,11 +16,14 @@
 package dev.killjoy.commands.game
 
 import dev.killjoy.Launcher
+import dev.killjoy.apis.news.NewsRetriever
+import dev.killjoy.extensions.jda.supportedLocale
 import dev.killjoy.framework.Category
 import dev.killjoy.framework.CommandContext
 import dev.killjoy.framework.abs.Command
 import dev.killjoy.framework.annotations.CommandArgument
 import dev.killjoy.framework.annotations.CommandProperties
+import dev.killjoy.i18n.i18nCommand
 
 @CommandProperties(
     name = "maps",
@@ -31,21 +34,22 @@ import dev.killjoy.framework.annotations.CommandProperties
     ])
 class MapsCommand : Command() {
     override suspend fun handle(ctx: CommandContext) {
-        if (ctx.args.isEmpty()) {
+        val mapsUrl = "https://playvalorant.com/${NewsRetriever.getLocalePath(ctx.guild.supportedLocale)}/maps/"
 
+        if (ctx.args.isEmpty()) {
             ctx.replyEmbed {
-                setTitle("Valorant maps", "https://playvalorant.com/en-us/maps/")
+                setTitle(ctx.guild.i18nCommand("maps.header"), mapsUrl)
                 for (map in Launcher.maps) {
-                    addField(map.name.capitalize(), map.description, false)
+                    addField(map.name.capitalize(), map.description(ctx.guild), false)
                 }
             }.queue()
         } else {
             val map = Launcher.getMap(ctx.args.first())
-                ?: return ctx.reply("There is no map with this name.").queue()
+                ?: return ctx.reply(ctx.guild.i18nCommand("maps.notFound", ctx.args.first())).queue()
 
             ctx.replyEmbed {
-                setTitle(map.name.capitalize(), "https://playvalorant.com/en-us/maps/")
-                setDescription(map.description)
+                setTitle(map.name.capitalize(), mapsUrl)
+                setDescription(map.description(ctx.guild))
                 setThumbnail(map.minimap)
                 setImage(map.imageUrl)
             }.queue()

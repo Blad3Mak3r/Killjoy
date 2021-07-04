@@ -6,39 +6,66 @@
   "origin": ":flag_us: United States",
   "avatar": "https://i.imgur.com/PSqfir0.jpg",
   "role": "Controller",
-  "bio": "The American chemist, Viper deploys an array of poisonous chemical devices to control the battlefield and cripple the enemy's vision. If the toxins don't kill her prey, her mind games surely will.",
+  "bio": {
+    "en": "The American chemist, Viper deploys an array of poisonous chemical devices to control the battlefield and cripple the enemy's vision. If the toxins don't kill her prey, her mind games surely will.",
+    "es": "Viper es una química estadounidense con un amplio arsenal de dispositivos venenosos que le sirven para tomar el control del campo de batalla y cegar a los enemigos. Si las toxinas no acaban con su presa, la paranoia la rematará."
+  },
   "gender": "Female",
   "affiliation": "Valorant Protocol",
   "skills": [
     {
       "button": "q",
-      "name": "POISON CLOUD",
+      "name": {
+        "en": "POISON CLOUD",
+        "es": "NUBE VENENOSA"
+      },
       "iconUrl": "https://i.imgur.com/7Ija5oh.png",
-      "info": "EQUIP a gas emitter. FIRE to throw the emitter that perpetually remains throughout the round. RE-USE the ability to create a toxic gas cloud at the cost of fuel. This ability can be RE-USED more than once and can be picked up to be REDEPLOYED.",
+      "info": {
+        "en": "EQUIP a gas emitter. FIRE to throw the emitter that perpetually remains throughout the round. RE-USE the ability to create a toxic gas cloud at the cost of fuel. This ability can be RE-USED more than once and can be picked up to be REDEPLOYED.",
+        "es": "EQUIPA una granada de gas. DISPARAD para lanzar la granada, que permanecerá toda la ronda. VOLVED A USAR la habilidad para generar una nube de gas tóxico a cambio de combustible. La granada se puede VOLVER A USAR más de una vez y se puede recoger para VOLVER A COLOCARLA."
+      },
       "preview": "https://i.imgur.com/2Ju4c8K.gif",
       "cost": "200"
     },
     {
       "button": "e",
-      "name": "TOXIC SCREEN",
+      "name": {
+        "en": "TOXIC SCREEN",
+        "es": "PANTALLA TÓXICA"
+      },
       "iconUrl": "https://i.imgur.com/8Iw1LKo.png",
-      "info": "EQUIP a gas emitter launcher. FIRE to deploy a long line of gas emitters. RE-USE the ability to create a tall wall of toxic gas at the cost of fuel. This ability can be RE-USED more than once.",
+      "info": {
+        "en": "EQUIP a gas emitter launcher. FIRE to deploy a long line of gas emitters. RE-USE the ability to create a tall wall of toxic gas at the cost of fuel. This ability can be RE-USED more than once.",
+        "es": "EQUIPA un lanzagranadas de gas. DISPARAD para desplegar una larga hilera de granadas de gas que se pueden reactivar para crear un alto muro de gas tóxico a cambio de combustible. Se puede VOLVER A USAR más de una vez."
+      },
       "preview": "https://i.imgur.com/pnUW3uh.gif",
       "cost": "Reusable"
     },
     {
       "button": "c",
-      "name": "SNAKE BITE",
+      "name": {
+        "en": "SNAKE BITE",
+        "es": "VENENO DE SERPIENTE"
+      },
       "iconUrl": "https://i.imgur.com/Lgfelyp.png",
-      "info": "EQUIP a chemical launcher. FIRE to launch a canister that shatters upon hitting the floor, creating a lingering chemical zone that damages and slows enemies.",
+      "info": {
+        "en": "EQUIP a chemical launcher. FIRE to launch a canister that shatters upon hitting the floor, creating a lingering chemical zone that damages and slows enemies.",
+        "es": "EQUIPA un lanzador químico. DISPARAD para lanzar un cartucho que se rompe al impactar contra el suelo, lo que genera una zona química persistente que daña a los enemigos."
+      },
       "preview": "https://i.imgur.com/Ueyki4M.gif",
       "cost": "200 (x2)"
     },
     {
       "button": "x",
-      "name": "VIPER’S PIT",
+      "name": {
+        "en": "VIPER’S PIT",
+        "es": "POZO DE LA VÍBORA"
+      },
       "iconUrl": "https://i.imgur.com/o8bWXui.png",
-      "info": "EQUIP a chemical sprayer. FIRE to spray a chemical cloud in all directions around Viper, creating a large cloud that reduces the vision range and maximum health of players inside of it.",
+      "info": {
+        "en": "EQUIP a chemical sprayer. FIRE to spray a chemical cloud in all directions around Viper, creating a large cloud that reduces the vision range and maximum health of players inside of it.",
+        "es": "EQUIPA un pulverizador químico. DISPARAD para pulverizar una nube química en todas direcciones alrededor de Viper, lo que genera una gran nube que reduce el alcance de la visión y la vida máxima de los jugadores que se encuentren dentro de ella."
+      },
       "preview": "https://i.imgur.com/3h9lH4q.gif",
       "cost": "••••••• 7 Points"
     }

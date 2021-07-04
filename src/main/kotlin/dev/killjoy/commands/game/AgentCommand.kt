@@ -17,6 +17,7 @@ package dev.killjoy.commands.game
 
 import dev.killjoy.Launcher
 import dev.killjoy.extensions.jda.setDefaultColor
+import dev.killjoy.extensions.jda.supportedLocale
 import dev.killjoy.framework.Category
 import dev.killjoy.framework.CommandContext
 import dev.killjoy.framework.abs.Command
@@ -40,13 +41,15 @@ class AgentCommand : Command() {
 
     override suspend fun handle(ctx: CommandContext) {
 
+        val guildLang = ctx.guild.supportedLocale.language
+
         if (ctx.args.isEmpty()) {
             val agents = Launcher.agents
 
             ctx.replyEmbed {
                 setTitle("Valorant Agents")
                 for (agent in agents) {
-                    addField("${agent.role.emoji} - ${agent.name}", agent.bio, true)
+                    addField("${agent.role.emoji} - ${agent.name}", agent.bio(ctx.guild), true)
                 }
                 setFooter("If you want to get more information about an agent use \"joy agents agent_name\"")
             }.queue()
@@ -59,7 +62,7 @@ class AgentCommand : Command() {
                 ?: return if (isInt) ctx.send(Emojis.NoEntry, "Agent with id ``$input`` does not exists...").queue()
                 else ctx.send(Emojis.NoEntry, "Agent with name ``${input.capitalize()}`` does not exists...").queue()
 
-            ctx.reply(agent.asEmbed().build()).queue()
+            ctx.reply(agent.asEmbed(ctx.guild).build()).queue()
         } else {
             val input = ctx.args[0]
             val isInt = input.isInt()
@@ -68,13 +71,13 @@ class AgentCommand : Command() {
                 ?: return if (isInt) ctx.send(Emojis.NoEntry, "Agent with id ``$input`` does not exists...").queue()
                 else ctx.send(Emojis.NoEntry, "Agent with name ``${input.capitalize()}`` does not exists...").queue()
 
-            val skill = agent.skills.find { it.button.name.equals(ctx.args[1], true) }
+            val skill = agent.abilities.find { it.button.name.equals(ctx.args[1], true) }
                 ?: return ctx.send(Emojis.NoEntry, "I have not been able to find that skill...").queue()
 
             ctx.replyEmbed {
                 setAuthor(agent.name, null, agent.avatar)
-                setTitle(skill.name)
-                setDescription(skill.info)
+                setTitle(skill.name[guildLang])
+                setDescription(skill.description[guildLang])
                 setThumbnail(skill.iconUrl)
                 setImage(skill.preview)
                 addField("Action Button", skill.button.name, true)

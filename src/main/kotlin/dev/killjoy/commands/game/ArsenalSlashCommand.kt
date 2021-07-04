@@ -16,6 +16,7 @@
 package dev.killjoy.commands.game
 
 import dev.killjoy.Launcher
+import dev.killjoy.i18n.i18nCommand
 import dev.killjoy.slash.api.AbstractSlashCommand
 import dev.killjoy.slash.api.SlashCommandContext
 
@@ -31,18 +32,16 @@ class ArsenalSlashCommand : AbstractSlashCommand("arsenal") {
             val arsenal = Launcher.arsenal
 
             ctx.sendEmbed {
-                setTitle("Valorant Arsenal")
+                setTitle(ctx.i18nCommand("arsenal.title"))
                 for (weapon in arsenal) {
-                    addField("${weapon.name} //${weapon.type.name.uppercase()}", weapon.short, true)
+                    addField("${weapon.name(ctx.guild)} //${weapon.type(ctx.guild)}", weapon.short(ctx.guild), true)
                 }
-                setFooter("If you want to get more information about an weapon use \"joy arsenal weapon_name\"")
             }.queue()
         } else {
             val weapon = Launcher.getWeapon(selection)
-                ?: Launcher.getWeaponById(selection)
-                ?: return ctx.sendNotFound("That weapon does not exists...").queue()
+                ?: return ctx.sendNotFound(ctx.i18nCommand("arsenal.notFound")).queue()
 
-            ctx.send(weapon.asEmbed()).queue()
+            ctx.send(weapon.asEmbed(ctx.guild)).queue()
         }
     }
 

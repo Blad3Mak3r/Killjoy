@@ -6,39 +6,66 @@
   "origin": ":flag_mx: México",
   "avatar": "https://i.imgur.com/TtvIYa9.jpg",
   "role": "Duelist",
-  "bio": "Forged in the heart of Mexico, Reyna dominates single combat, popping off with each kill she scores. Her capability is only limited by her raw skill, making her highly dependent on performance.",
+  "bio": {
+    "en": "Forged in the heart of Mexico, Reyna dominates single combat, popping off with each kill she scores. Her capability is only limited by her raw skill, making her highly dependent on performance.",
+    "es": "Desde el corazón de México, Reyna llega para dominar los combates uno contra uno y cada asesinato que consigue la hace más fuerte. Su potencial es prácticamente infinito, y la destreza individual es el único factor determinante de su éxito."
+  },
   "gender": "Female",
   "affiliation": "Valorant Protocol",
   "skills": [
     {
       "button": "q",
-      "name": "DEVOUR",
+      "name": {
+        "en": "DEVOUR",
+        "es": "DEVORAR"
+      },
       "iconUrl": "https://i.imgur.com/NNoIolp.png",
-      "info": "Enemies killed by Reyna leave behind Soul Orbs that last 3 seconds. INSTANTLY consume a nearby soul orb, rapidly healing for a short duration. Health gained through this skill exceeding 100 will decay over time. If EMPRESS is active, this skill will automatically cast and not consume the orb.",
+      "info": {
+        "en": "Enemies killed by Reyna leave behind Soul Orbs that last 3 seconds. INSTANTLY consume a nearby soul orb, rapidly healing for a short duration. Health gained through this skill exceeding 100 will decay over time. If EMPRESS is active, this skill will automatically cast and not consume the orb.",
+        "es": "Los enemigos asesinados por Reyna dejan tras de sí orbes de alma que duran 3 segundos. Consume INSTANTÁNEAMENTE un orbe de alma cercano y se cura durante un breve periodo. Si se obtienen más de 100 puntos de vida con esta habilidad, la cantidad adicional se irá perdiendo con el tiempo. Si EMPERATRIZ está activa, esta habilidad se lanzará de forma automática y no consumirá el orbe."
+      },
       "preview": "https://i.imgur.com/XfLWcy5.gif",
       "cost": "200"
     },
     {
       "button": "e",
-      "name": "DISMISS",
+      "name": {
+        "en": "DISMISS",
+        "es": "DESPRECIAR"
+      },
       "iconUrl": "https://i.imgur.com/mSXrrG6.png",
-      "info": "INSTANTLY consume a nearby soul orb, becoming intangible for a short duration. If EMPRESS is active, also become invisible.",
+      "info": {
+        "en": "INSTANTLY consume a nearby soul orb, becoming intangible for a short duration. If EMPRESS is active, also become invisible.",
+        "es": "Consume INSTANTÁNEAMENTE un orbe de alma cercano y se vuelve intangible durante un breve periodo. Si EMPERATRIZ está activa, se vuelve invisible también"
+      },
       "preview": "https://i.imgur.com/PmV0hG6.gif",
       "cost": "200"
     },
     {
       "button": "c",
-      "name": "LEER",
+      "name": {
+        "en": "LEER",
+        "es": "MIRADA LASCIVA"
+      },
       "iconUrl": "https://i.imgur.com/hFvNOek.png",
-      "info": "EQUIP an ethereal destructible eye. ACTIVATE to cast the eye a short distance forward. The eye will Nearsight all enemies who look at it.",
+      "info": {
+        "en": "EQUIP an ethereal destructible eye. ACTIVATE to cast the eye a short distance forward. The eye will Nearsight all enemies who look at it.",
+        "es": "EQUIPA un ojo etéreo e indestructible. ACTIVADLA para lanzar el ojo hacia delante una corta distancia. El ojo limitará la visión de todos los enemigos que lo miren."
+      },
       "preview": "https://i.imgur.com/Iffduae.gif",
       "cost": "250 (x2)"
     },
     {
       "button": "x",
-      "name": "EMPRESS",
+      "name": {
+        "en": "EMPRESS",
+        "es": "EMPERATRIZ"
+      },
       "iconUrl": "https://i.imgur.com/vcM6tND.png",
-      "info": "INSTANTLY enter a frenzy, increasing firing speed, equip and reload speed dramatically. Scoring a kill renews the duration.",
+      "info": {
+        "en": "INSTANTLY enter a frenzy, increasing firing speed, equip and reload speed dramatically. Scoring a kill renews the duration.",
+        "es": "Entra en un frenesí INSTANTÁNEO que aumenta drásticamente la velocidad de disparo, de equipamiento y de recarga. Conseguir un asesinato reinicia la duración."
+      },
       "preview": "https://i.imgur.com/ixUcPA8.gif",
       "cost": "•••••• 6 Points"
     }

@@ -1,11 +1,20 @@
 {
   "name": "Stinger",
-  "short": "They’ll know it's over when the Stinger splash hits",
+  "short": {
+    "en": "They’ll know it's over when the Stinger splash hits",
+    "es": "Cuando sientan el azote de las primeras balas, sabrán que les ha llegado su hora."
+  },
   "type": "Smgs",
-  "descriptions": [
-    "This SMG is more potent at medium to long range than its counterparts, but at the cost of firing rate and mobility.",
-    "The 20-round mag gets wasted in recoil-filled sprays, but lands lethal blows at medium distances with ADS and controlled fire."
-  ],
+  "descriptions": {
+    "en": [
+      "This SMG is more potent at medium to long range than its counterparts, but at the cost of firing rate and mobility.",
+      "The 20-round mag gets wasted in recoil-filled sprays, but lands lethal blows at medium distances with ADS and controlled fire."
+    ],
+    "es": [
+      "Este subfusil es más potente a media y larga distancia que el resto, pero para ello sacrifica parte de su velocidad de disparo y movilidad.",
+      "El cargador de 20 balas puede vaciarse en un abrir y cerrar de ojos si os dejáis llevar por el retroceso, pero también os permitirá acertar disparos letales a distancias medias con la ayuda de la mira y un disparo controlado."
+    ]
+  },
   "thumbnail": "https://i.imgur.com/mU31Egf.jpg",
   "cost": 1100,
   "magazine": 20,

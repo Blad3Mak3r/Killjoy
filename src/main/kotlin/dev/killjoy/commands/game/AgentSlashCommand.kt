@@ -17,11 +17,10 @@ package dev.killjoy.commands.game
 
 import dev.killjoy.Launcher
 import dev.killjoy.apis.riot.RiotAPI
-import dev.killjoy.extensions.jda.setDefaultColor
+import dev.killjoy.i18n.i18nCommand
 import dev.killjoy.slash.api.AbstractSlashCommand
 import dev.killjoy.slash.api.SlashCommandContext
-import dev.killjoy.valorant.ValorantAgent
-import net.dv8tion.jda.api.EmbedBuilder
+import dev.killjoy.valorant.agent.ValorantAgent
 import net.dv8tion.jda.api.entities.MessageEmbed
 
 @Suppress("unused")
@@ -46,13 +45,18 @@ class AgentSlashCommand : AbstractSlashCommand("agent") {
         if (!isCached) ctx.acknowledge().queue()
 
         val agent = findAgent(agentName)
-            ?: return ctx.sendNotFound("Agent with name or number ``$agentName`` does not exists.").queue()
+            ?: return sendAgentNotFound(ctx, agentName)
 
-        val embed = agent.asEmbed().build()
+        val embed = agent.asEmbed(ctx.guild).build()
         send(embed)
     }
 
     companion object {
+        private fun sendAgentNotFound(ctx: SlashCommandContext, agentName: String) {
+            val content = ctx.i18nCommand("agent.notFound", agentName)
+            ctx.sendNotFound(content).queue()
+        }
+
         private fun findAgent(input: String): ValorantAgent? {
             return Launcher.getAgent(input)
         }

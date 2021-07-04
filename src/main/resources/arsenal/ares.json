@@ -1,10 +1,18 @@
 {
   "name": "Ares",
-  "short": "Don’t mistake it’s size for clunk.",
+  "short": {
+    "en": "Don’t mistake it’s size for clunk.",
+    "es": "Será grande, pero de torpe no tiene un pelo."
+  },
   "type": "Heavies",
-  "descriptions": [
-    "The Ares’ large magazine means it excels at suppressive fire or dealing heavy damage to clustered groups."
-  ],
+  "descriptions": {
+    "en": [
+      "The Ares’ large magazine means it excels at suppressive fire or dealing heavy damage to clustered groups."
+    ],
+    "es": [
+      "El gran cargador de la Ares significa que se le da de maravilla el fuego continuo e infligir grandes cantidades de daño a grupos de enemigos."
+    ]
+  },
   "thumbnail": "https://i.imgur.com/irgdbZ5.jpg",
   "cost": 1600,
   "magazine": 50,

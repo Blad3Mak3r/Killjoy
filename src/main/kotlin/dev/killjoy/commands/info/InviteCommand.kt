@@ -20,6 +20,7 @@ import dev.killjoy.framework.Category
 import dev.killjoy.framework.CommandContext
 import dev.killjoy.framework.abs.Command
 import dev.killjoy.framework.annotations.CommandProperties
+import dev.killjoy.i18n.i18nCommand
 import dev.killjoy.utils.Emojis
 import java.util.concurrent.TimeUnit
 
@@ -27,7 +28,8 @@ import java.util.concurrent.TimeUnit
 class InviteCommand : Command() {
 
     override suspend fun handle(ctx: CommandContext) {
-        ctx.send(Emojis.ArrowRight, "Here is the invitation link to invite me to your servers:\n$INVITE_URL\n`` This message will be deleted in 1 min. ``")
+        val content = ctx.guild.i18nCommand("invite.message", INVITE_URL)
+        ctx.send(Emojis.ArrowRight, "$content\n`` This message will be deleted in 1 min. ``")
             .delay(1, TimeUnit.MINUTES)
             .flatMap {
                 it.delete()

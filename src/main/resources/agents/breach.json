@@ -6,39 +6,66 @@
   "origin": ":flag_se: Sweden",
   "avatar": "https://i.imgur.com/J4tVCo5.jpg",
   "role": "Initiator",
-  "bio": "Breach, the bionic Swede, fires powerful, targeted kinetic blasts to aggressively clear a path through enemy ground. The damage and disruption he inflicts ensures no fight is ever fair.",
+  "bio": {
+    "en": "Breach, the bionic Swede, fires powerful, targeted kinetic blasts to aggressively clear a path through enemy ground. The damage and disruption he inflicts ensures no fight is ever fair.",
+    "es": "Breach, el sueco biónico, dispara una serie de explosiones cinéticas controladas para abrirse paso por el territorio enemigo. Su capacidad para infligir daño y sembrar el caos garantiza que los combates siempre estén de su parte."
+  },
   "gender": "Male",
   "affiliation": "Valorant Protocol",
   "skills": [
     {
       "button": "q",
-      "name": "FLASHPOINT",
+      "name": {
+        "en": "FLASHPOINT",
+        "es": "EXPLOSIÓN CEGADORA"
+      },
       "iconUrl": "https://i.imgur.com/hrBpskk.png",
-      "info": "EQUIP a blinding charge. FIRE the charge to set fast-acting burst through the wall. The charge detonates to blind all players looking at it.",
+      "info": {
+        "en": "EQUIP a blinding charge. FIRE the charge to set fast-acting burst through the wall. The charge detonates to blind all players looking at it.",
+        "es": "EQUIPA una carga explosiva cegadora. DISPARAD la carga para liberar una rápida explosión que atraviesa la pared. Cuando detona, la carga ciega a todos los jugadores que la estén mirando."
+      },
       "preview": "https://i.imgur.com/uWDrgP4.gif",
       "cost": "250 (x2)"
     },
     {
       "button": "e",
-      "name": "FAULT LINE",
+      "name": {
+        "en": "FAULT LINE",
+        "es": "FALLA"
+      },
       "iconUrl": "https://i.imgur.com/X43pgOy.png",
-      "info": "EQUIP a seismic blast. HOLD FIRE to increase the distance. RELEASE to set off the quake, dazing all players in its zone and in a line up to the zone.",
+      "info": {
+        "en": "EQUIP a seismic blast. HOLD FIRE to increase the distance. RELEASE to set off the quake, dazing all players in its zone and in a line up to the zone.",
+        "es": "EQUIPA una bomba sísmica. MANTENED PULSADO DISPARAR para aumentar la distancia. SOLTAD para liberar un seísmo que aturdirá a todos los jugadores dentro de la zona y en una línea hasta ella."
+      },
       "preview": "https://i.imgur.com/mIFpQyW.gif",
       "cost": "35s Cooldown"
     },
     {
       "button": "c",
-      "name": "AFTERSHOCK",
+      "name": {
+        "en": "AFTERSHOCK",
+        "es": "RÉPLICA"
+      },
       "iconUrl": "https://i.imgur.com/xkDbjyM.png",
-      "info": "EQUIP a fusion charge. FIRE the charge to set a slow-acting burst through the wall. The burst does heavy damage to anyone caught in its area.",
+      "info": {
+        "en": "EQUIP a fusion charge. FIRE the charge to set a slow-acting burst through the wall. The burst does heavy damage to anyone caught in its area.",
+        "es": "EQUIPA una carga explosiva de fusión. DISPARAD la carga para liberar una explosión que atraviesa la pared tras un retardo. La explosión inflige mucho daño a cualquiera que esté dentro del área afectada."
+      },
       "preview": "https://i.imgur.com/ZnTMU2s.gif",
       "cost": "200"
     },
     {
       "button": "x",
-      "name": "ROLLING THUNDER",
+      "name": {
+        "en": "ROLLING THUNDER",
+        "es": "FRAGOR IMPARABLE"
+      },
       "iconUrl": "https://i.imgur.com/kLonqor.png",
-      "info": "EQUIP a seismic charge. FIRE to send a cascading quake through all terrain in a large cone. The quake dazes and knocks up anyone caught in it.",
+      "info": {
+        "en": "EQUIP a seismic charge. FIRE to send a cascading quake through all terrain in a large cone. The quake dazes and knocks up anyone caught in it.",
+        "es": "EQUIPA una carga explosiva sísmica. DISPARAD para liberar un seísmo que se extenderá por una gran zona en forma de cono. El seísmo aturde y lanza por los aires a todos los jugadores que estén en el interior de la zona."
+      },
       "preview": "https://i.imgur.com/YQauYNU.gif",
       "cost": "••••••• 7 Points"
     }

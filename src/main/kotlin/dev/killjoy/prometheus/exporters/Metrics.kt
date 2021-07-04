@@ -47,7 +47,7 @@ object Metrics {
         .register()
 
     private val LARGE_GUILD_COUNT: Gauge = Gauge.build()
-        .name("killjoy_LARGUE_guild_count")
+        .name("killjoy_large_guild_count")
         .help("Large Guild count (+250)")
         .labelNames("shard")
         .register()

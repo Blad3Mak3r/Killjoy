@@ -6,39 +6,66 @@
   "origin": ":flag_br: Brazil",
   "avatar": "https://i.imgur.com/g3MxHqn.jpg",
   "role": "Duelist",
-  "bio": "Raze explodes out of Brazil with her big personality and big guns. With her blunt-force-trauma playstyle, she excels at flushing entrenched enemies and clearing tight spaces with a generous dose of “boom.”",
+  "bio": {
+    "en": "Raze explodes out of Brazil with her big personality and big guns. With her blunt-force-trauma playstyle, she excels at flushing entrenched enemies and clearing tight spaces with a generous dose of “boom.”",
+    "es": "Raze llega desde Brasil con ganas de hacer que todo salte por los aires. Gracias a su estilo de juego basado en la fuerza bruta, destaca a la hora de barrer a grupos de enemigos atrincherados y de despejar áreas estrechas con explosión y sin compasión."
+  },
   "gender": "Female",
   "affiliation": "Valorant Protocol",
   "skills": [
     {
       "button": "q",
-      "name": "BLAST PACK",
+      "name": {
+        "en": "BLAST PACK",
+        "es": "FARDO EXPLOSIVO"
+      },
       "iconUrl": "https://i.imgur.com/THS7kMg.png",
-      "info": "INSTANTLY throw a Blast Pack that will stick to surfaces. RE-USE the ability after deployment to detonate, damaging and moving anything hit. Raze isn't damaged by this ability, but will still take fall damage if launched up far enough.",
+      "info": {
+        "en": "INSTANTLY throw a Blast Pack that will stick to surfaces. RE-USE the ability after deployment to detonate, damaging and moving anything hit. Raze isn't damaged by this ability, but will still take fall damage if launched up far enough.",
+        "es": "Lanza AL INSTANTE un fardo explosivo que se adhiere a las superficies. VOLVED A USAR la habilidad después de que el fardo se adhiera para detonarlo y que dañe y desplace a todo aquello que alcance. Esta habilidad no inflige daño a Raze, pero sí que recibirá daño por caída si salta lo suficientemente alto."
+      },
       "preview": "https://i.imgur.com/wWfVfGT.gif",
       "cost": "400 (x2)"
     },
     {
       "button": "e",
-      "name": "PAINT SHELLS",
+      "name": {
+        "en": "PAINT SHELLS",
+        "es": "BALAS DE PINTURA"
+      },
       "iconUrl": "https://i.imgur.com/azgkzm2.png",
-      "info": "EQUIP a cluster grenade. FIRE to throw the grenade, which does damage and creates sub-munitions, each doing damage to anyone in their range.",
+      "info": {
+        "en": "EQUIP a cluster grenade. FIRE to throw the grenade, which does damage and creates sub-munitions, each doing damage to anyone in their range.",
+        "es": "EQUIPA una granada de racimo. DISPARAD para lanzar la granada, lo que causa daño y crea submuniciones que infligen daño a cualquiera que esté dentro del rango."
+      },
       "preview": "https://i.imgur.com/bwUmyAO.gif",
       "cost": "Free"
     },
     {
       "button": "c",
-      "name": "BOOM BOT",
+      "name": {
+        "en": "BOOM BOT",
+        "es": "BOT EXPLOSIVO"
+      },
       "iconUrl": "https://i.imgur.com/7k6ykd8.png",
-      "info": "EQUIP a Boom Bot. FIRE will deploy the bot, causing it to travel in a straight line on the ground, bouncing off walls. The Boom Bot will lock on to any enemies in its frontal cone and chase them, exploding for heavy damage if it reaches them.",
+      "info": {
+        "en": "EQUIP a Boom Bot. FIRE will deploy the bot, causing it to travel in a straight line on the ground, bouncing off walls. The Boom Bot will lock on to any enemies in its frontal cone and chase them, exploding for heavy damage if it reaches them.",
+        "es": "EQUIPA un bot explosivo. DISPARAD para desplegar el bot y hacer que se desplace en línea recta por el terreno, rebotando por las paredes. El bot explosivo se fijará a los enemigos que encuentre en un cono frontal y los perseguirá. Si los alcanza, explotará e infligirá una gran cantidad de daño."
+      },
       "preview": "https://i.imgur.com/hGuH4e4.gif",
       "cost": "200"
     },
     {
       "button": "x",
-      "name": "SHOWSTOPPER",
+      "name": {
+        "en": "SHOWSTOPPER",
+        "es": "CIERRATELONES"
+      },
       "iconUrl": "https://i.imgur.com/y46R6eU.png",
-      "info": "EQUIP a rocket launcher. FIRE shoots a rocket that does massive area damage on contact with anything.",
+      "info": {
+        "en": "EQUIP a rocket launcher. FIRE shoots a rocket that does massive area damage on contact with anything.",
+        "es": "EQUIPA un lanzacohetes. DISPARAD para lanzar un cohete que inflige un daño en área masivo al entrar en contacto con cualquier cosa."
+      },
       "preview": "https://i.imgur.com/vsEs2oe.gif",
       "cost": "•••••••• 8 Points"
     }

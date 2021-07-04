@@ -6,39 +6,66 @@
   "origin": "Unknown",
   "avatar": "https://i.imgur.com/crEZkXQ.jpg",
   "role": "Controller",
-  "bio": "A phantom of a memory, Omen hunts in the shadows. He renders enemies blind, teleports across the field, then lets paranoia take hold as his foe scrambles to learn where he might strike next.",
+  "bio": {
+    "en": "A phantom of a memory, Omen hunts in the shadows. He renders enemies blind, teleports across the field, then lets paranoia take hold as his foe scrambles to learn where he might strike next.",
+    "es": "Omen es un fantasma de tiempos pasados que acecha en las sombras. Es capaz de cegar al enemigo, teleportarse a través del campo de batalla y sembrar el caos y la paranoia mientras sus rivales se preguntan dónde atacará la próxima vez."
+  },
   "gender": "Male",
   "affiliation": "Valorant Protocol",
   "skills": [
     {
       "button": "q",
-      "name": "PARANOIA",
+      "name": {
+        "en": "PARANOIA",
+        "es": "PARANOIA"
+      },
       "iconUrl": "https://i.imgur.com/jRLpluH.png",
-      "info": "INSTANTLY fire a shadow projectile forward, briefly reducing the vision range of all players it touches. This projectile can pass straight through walls.",
+      "info": {
+        "en": "INSTANTLY fire a shadow projectile forward, briefly reducing the vision range of all players it touches. This projectile can pass straight through walls.",
+        "es": "Dispara INSTANTÁNEAMENTE un proyectil sombrío hacia delante que reduce brevemente el alcance de la visión de todos los jugadores que toca. El proyectil puede atravesar paredes."
+      },
       "preview": "https://i.imgur.com/wPpJObt.gif",
       "cost": "300"
     },
     {
       "button": "e",
-      "name": "DARK COVER",
+      "name": {
+        "en": "DARK COVER",
+        "es": "VELO TENEBROSO"
+      },
       "iconUrl": "https://i.imgur.com/UL6imyE.png",
-      "info": "EQUIP a shadow orb and see its range indicator. FIRE to throw the shadow orb to the marked location, creating a long-lasting shadow sphere that blocks vision. HOLD ALTERNATE FIRE while targeting to move the marker further away. HOLD the ability key with targeting to move the market closer.",
+      "info": {
+        "en": "EQUIP a shadow orb and see its range indicator. FIRE to throw the shadow orb to the marked location, creating a long-lasting shadow sphere that blocks vision. HOLD ALTERNATE FIRE while targeting to move the marker further away. HOLD the ability key with targeting to move the market closer.",
+        "es": "EQUIPA un orbe sombrío y muestra su indicador de alcance. DISPARAD para lanzar el orbe sombrío a la ubicación señalada, lo que genera una esfera sombría de larga duración que bloquea la visión. MANTENED PULSADO EL MODO DE DISPARO ALTERNATIVO al apuntar para que el marcador se aleje más. MANTENED PULSADA la tecla de la habilidad para que el marcado se acerque más."
+      },
       "preview": "https://i.imgur.com/TTvhYlL.gif",
       "cost": "35s Cooldown"
     },
     {
       "button": "c",
-      "name": "SHROUDED STEP",
+      "name": {
+        "en": "SHROUDED STEP",
+        "es": "APARICIÓN TENEBROSA"
+      },
       "iconUrl": "https://i.imgur.com/v09gtWO.png",
-      "info": "EQUIP a shadow walk ability and see its range indicator. FIRE to begin a brief channel, then teleport to the marked location.",
+      "info": {
+        "en": "EQUIP a shadow walk ability and see its range indicator. FIRE to begin a brief channel, then teleport to the marked location.",
+        "es": "EQUIPA una habilidad para caminar entre las sombras y muestra su indicador de alcance. DISPARAD para iniciar un breve periodo de canalización y después teleportaros a la ubicación señalada."
+      },
       "preview": "https://i.imgur.com/6vADqCY.gif",
       "cost": "150 (x2)"
     },
     {
       "button": "x",
-      "name": "FROM THE SHADOWS",
+      "name": {
+        "en": "FROM THE SHADOWS",
+        "es": "DESDE LAS SOMBRAS"
+      },
       "iconUrl": "https://i.imgur.com/6UQkwaZ.png",
-      "info": "EQUIP a tactical map. FIRE to begin teleporting to the selected location. While teleporting, Omen will appear as a Shade that can be destroyed by an enemy to cancel his teleport.",
+      "info": {
+        "en": "EQUIP a tactical map. FIRE to begin teleporting to the selected location. While teleporting, Omen will appear as a Shade that can be destroyed by an enemy to cancel his teleport.",
+        "es": "EQUIPA un mapa táctico. DISPARAD para empezar a teleportaros a la ubicación seleccionada. Mientras se teleporta, Omen aparecerá como una sombra que los enemigos pueden destruir para cancelar su teleportación."
+      },
       "preview": "https://i.imgur.com/yJzIGaW.gif",
       "cost": "••••••• 7 Points"
     }

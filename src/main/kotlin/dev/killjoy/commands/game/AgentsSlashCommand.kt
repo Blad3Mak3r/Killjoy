@@ -16,13 +16,9 @@
 package dev.killjoy.commands.game
 
 import dev.killjoy.Launcher
-import dev.killjoy.apis.riot.RiotAPI
 import dev.killjoy.extensions.jda.setDefaultColor
 import dev.killjoy.slash.api.AbstractSlashCommand
 import dev.killjoy.slash.api.SlashCommandContext
-import dev.killjoy.valorant.ValorantAgent
-import net.dv8tion.jda.api.EmbedBuilder
-import net.dv8tion.jda.api.entities.MessageEmbed
 
 @Suppress("unused")
 class AgentsSlashCommand : AbstractSlashCommand("agents") {
@@ -32,7 +28,7 @@ class AgentsSlashCommand : AbstractSlashCommand("agents") {
             setDefaultColor()
             setTitle("Valorant Agents")
             for (agent in Launcher.agents) {
-                addField("${agent.role.emoji} - ${agent.name}", agent.bio, true)
+                addField("${agent.role.emoji} - ${agent.name}", agent.bio(ctx.guild), true)
             }
         }.queue()
     }

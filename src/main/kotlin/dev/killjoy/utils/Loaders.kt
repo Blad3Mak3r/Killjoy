@@ -15,10 +15,10 @@
 
 package dev.killjoy.utils
 
-import dev.killjoy.valorant.ValorantAgent
+import dev.killjoy.valorant.agent.ValorantAgent
 import dev.killjoy.valorant.ValorantEntity
-import dev.killjoy.valorant.ValorantMap
-import dev.killjoy.valorant.ValorantWeapon
+import dev.killjoy.valorant.map.ValorantMap
+import dev.killjoy.valorant.arsenal.ValorantWeapon
 import org.json.JSONObject
 import org.reflections.Reflections
 import org.reflections.ReflectionsException
@@ -54,12 +54,19 @@ object Loaders {
             .map { "/$it" }
 
         for (resource in resources) {
-            val file = this::class.java.getResource(resource) ?: error("$resource is not present")
+            try {
+                val file = this::class.java.getResource(resource) ?: error("$resource is not present")
 
-            val content = file.readText()
-            if (content.isEmpty()) error("$resource is empty")
+                val content = file.readText()
+                if (content.isEmpty()) error("$resource is empty")
 
-            entities.add(clazz.getConstructor(JSONObject::class.java).newInstance(JSONObject(content)))
+                val entity = clazz.getConstructor(JSONObject::class.java).newInstance(JSONObject(content))
+
+                entities.add(entity)
+            } catch (e: Throwable) {
+                log.error("Exception building Entity $resource")
+                throw e
+            }
         }
 
         log.info("Loaded ${entities.size} ${clazz.simpleName} entities!! [${entities.joinToString(", ") { it.name }}]")

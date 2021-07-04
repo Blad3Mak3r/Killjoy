@@ -1,11 +1,20 @@
 {
   "name": "Sheriff",
-  "short": "A modern six-shooter for the headshot searcher.",
+  "short": {
+    "en": "A modern six-shooter for the headshot searcher.",
+    "es": "Un revólver prefecto para aquellos que busquen siempre el disparo a la cabeza."
+  },
   "type": "Sidearms",
-  "descriptions": [
-    "It’s high-impact rounds pack a ton of recoil and require true grit to master.",
-    "Wield the Sheriff right, and your enemies will know they were expendable."
-  ],
+  "descriptions": {
+    "en": [
+      "It’s high-impact rounds pack a ton of recoil and require true grit to master.",
+      "Wield the Sheriff right, and your enemies will know they were expendable."
+    ],
+    "es": [
+      "Sus poderosos disparos causan un retroceso pronunciado y dominar esta arma requiere dedicación.",
+      "Si la empuñáis con precisión, vuestros enemigos correrán al veros."
+    ]
+  },
   "thumbnail": "https://i.imgur.com/ikaBpwj.jpg",
   "cost": 800,
   "magazine": 6,
