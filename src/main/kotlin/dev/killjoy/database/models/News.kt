@@ -16,6 +16,7 @@
 package dev.killjoy.database.models
 
 import dev.killjoy.Launcher
+import dev.killjoy.extensions.jda.supportedLocale
 import kotlinx.coroutines.Dispatchers
 import net.dv8tion.jda.api.entities.Guild
 import net.dv8tion.jda.api.entities.TextChannel
@@ -35,14 +36,16 @@ import java.util.*
 object PostedNewsTable : UUIDTable("news_posted") {
     val uid = varchar("uid", 255)
     val title = varchar("title", 255)
+    val locale = varchar("locale", 2)
     val createdAt = timestamp("created_at").defaultExpression(CurrentTimestamp())
 }
 
 class PostedNew(id: EntityID<UUID>) : UUIDEntity(id) {
     companion object : UUIDEntityClass<PostedNew>(PostedNewsTable) {
-        fun new(id: UUID, uid: String, title: String) = new(id) {
+        fun new(id: UUID, uid: String, title: String, locale: Locale) = new(id) {
             this.uid = uid
             this.title = title
+            this.locale = locale.language
         }
     }
 
@@ -52,6 +55,9 @@ class PostedNew(id: EntityID<UUID>) : UUIDEntity(id) {
     var title by PostedNewsTable.title
         private set
 
+    var locale by PostedNewsTable.locale
+        private set
+
     val createdAt by PostedNewsTable.createdAt
 }
 
@@ -59,6 +65,7 @@ object NewsWebhooksTable : LongIdTable("news_webhooks", "guild_id") {
     val channelId = long("channel_id")
     val hookID = long("hook_id")
     val hookToken = varchar("hook_token", 255)
+    val locale = varchar("locale", 2).default("en")
     val createdAt = timestamp("created_at").defaultExpression(CurrentTimestamp())
 }
 
@@ -68,6 +75,7 @@ class NewsWebhook(id: EntityID<Long>) : LongEntity(id) {
             channelId = channel.idLong
             hookID = id
             hookToken = token
+            locale = guild.supportedLocale.language
         }
     }
 
@@ -80,15 +88,19 @@ class NewsWebhook(id: EntityID<Long>) : LongEntity(id) {
     var hookToken by NewsWebhooksTable.hookToken
         private set
 
+    var locale by NewsWebhooksTable.locale
+        private set
+
     val url: String
         get() = "https://discord.com/api/webhooks/$hookID/$hookToken"
 
     val createdAt by NewsWebhooksTable.createdAt
 
-    suspend fun update(newId: Long, newToken: String): Boolean {
+    suspend fun update(newId: Long, newToken: String, newLocale: Locale): Boolean {
         return newSuspendedTransaction(Dispatchers.IO, Launcher.database.connection) {
             hookID = newId
             hookToken = newToken
+            locale = newLocale.language
             flush()
         }
     }
