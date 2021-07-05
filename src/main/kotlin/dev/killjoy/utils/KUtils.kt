@@ -17,6 +17,8 @@ package dev.killjoy.utils
 
 import dev.killjoy.slash.api.SlashCommandContext
 import net.dv8tion.jda.api.entities.Emoji
+import net.dv8tion.jda.api.entities.User
+import net.dv8tion.jda.api.events.interaction.ButtonClickEvent
 import net.dv8tion.jda.api.interactions.components.ActionRow
 import net.dv8tion.jda.api.interactions.components.Button
 
@@ -28,4 +30,9 @@ fun buildPaginationActionRow(ctx: SlashCommandContext): ActionRow {
         Button.secondary("${interactionID}:next", Emoji.fromUnicode("⏭️")),
         Button.danger("${interactionID}:cancel", Emoji.fromUnicode("\uD83D\uDED1"))
     )
+}
+
+fun userInteractionFilter(event: ButtonClickEvent, author: User, interactionID: String): Boolean {
+    return event.componentId.split(":")[0] == interactionID &&
+            event.user.idLong == author.idLong
 }

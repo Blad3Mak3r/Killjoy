@@ -32,6 +32,7 @@ import dev.killjoy.valorant.agent.AgentAbility
 import dev.killjoy.extensions.jda.ktx.await
 import dev.killjoy.utils.ParseUtils
 import dev.killjoy.utils.buildPaginationActionRow
+import dev.killjoy.utils.userInteractionFilter
 import kotlinx.coroutines.withTimeoutOrNull
 import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.entities.MessageEmbed
@@ -54,7 +55,30 @@ class AbilitiesSlashCommand : AbstractSlashCommand("abilities") {
         val totalPages = ceil((abilities.size.toFloat() / MAX_ABILITIES_PER_PAGE.toFloat())).toInt()
         var pageIndex = ParseUtils.getPageIndex(page, totalPages)
 
-        ctx.reply(buildEmbed(ctx, abilities, pageIndex, totalPages)).addActionRows(buildPaginationActionRow(ctx)).queue()
+        fun buildEmbed(): MessageEmbed {
+            val firstIndex = if (pageIndex <= 0) 0 else (pageIndex * MAX_ABILITIES_PER_PAGE)
+            val lastIndex = (firstIndex + MAX_ABILITIES_PER_PAGE).coerceAtMost(abilities.size)
+            val f0 = pageIndex + 1
+            val f2 = firstIndex + 1
+            val f4 = abilities.size
+
+            return EmbedBuilder().apply {
+                setTitle(ctx.i18n(I18nKey.VALORANT_ABILITIES_TITLE))
+                setDefaultColor()
+                for (index in firstIndex until lastIndex) {
+                    val ability = abilities[index]
+
+                    val body = buildString {
+                        appendLine(ability.description(ctx.guild))
+                        appendLine("**${ctx.i18n(I18nKey.ABILITY_COST)}**: ${ability.cost}")
+                    }
+                    addField("${ability.name(ctx.guild)} (${ability.agent.name})", body, false)
+                }
+                setFooter(ctx.i18nCommand("abilities.footer", f0, totalPages, f2, lastIndex, f4))
+            }.build()
+        }
+
+        ctx.reply(buildEmbed()).addActionRows(buildPaginationActionRow(ctx)).queue()
 
         val enabledButtons = AtomicBoolean(true)
 
@@ -66,37 +90,18 @@ class AbilitiesSlashCommand : AbstractSlashCommand("abilities") {
 
         while (enabledButtons.get()) {
             withTimeoutOrNull(60000) {
-                val pressed = ctx.await<ButtonClickEvent> {
-                    it.guild?.idLong == ctx.guild.idLong &&
-                            it.componentId.split(":")[0] == interactionID &&
-                            it.channel.idLong == ctx.channel.idLong &&
-                            it.user.idLong == ctx.author.idLong
-                }
+                val pressed = ctx.await<ButtonClickEvent> { userInteractionFilter(it, ctx.author, interactionID) }
                 when (pressed.componentId.split(":")[1]) {
                     "preview" -> {
                         if (pageIndex > 0) {
                             pageIndex -= 1
-                            pressed.editMessageEmbeds(
-                                buildEmbed(
-                                    ctx,
-                                    abilities,
-                                    pageIndex,
-                                    totalPages
-                                )
-                            ).queue()
+                            pressed.editMessageEmbeds(buildEmbed()).queue()
                         } else pressed.deferEdit().queue()
                     }
                     "next" -> {
                         if (pageIndex < (totalPages - 1)) {
                             pageIndex += 1
-                            pressed.editMessageEmbeds(
-                                buildEmbed(
-                                    ctx,
-                                    abilities,
-                                    pageIndex,
-                                    totalPages
-                                )
-                            ).queue()
+                            pressed.editMessageEmbeds(buildEmbed()).queue()
                         } else pressed.deferEdit().queue()
                     }
                     "cancel" -> {
@@ -120,29 +125,6 @@ class AbilitiesSlashCommand : AbstractSlashCommand("abilities") {
 
         private fun logButtonFinalAction(ctx: SlashCommandContext, trigger: String) {
             logger.info(ctx.guild, "Abilities buttons ${trigger.lowercase()} for ${ctx.author}//${ctx.hook.interaction.betterString()}")
-        }
-
-        internal fun buildEmbed(ctx: SlashCommandContext, abilities: List<AgentAbility>, pageIndex: Int = 0, totalPages: Int): MessageEmbed {
-            val firstIndex = if (pageIndex <= 0) 0 else (pageIndex * MAX_ABILITIES_PER_PAGE)
-            val lastIndex = (firstIndex + MAX_ABILITIES_PER_PAGE).coerceAtMost(abilities.size)
-            val f0 = pageIndex + 1
-            val f2 = firstIndex + 1
-            val f4 = abilities.size
-
-            return EmbedBuilder().apply {
-                setTitle(ctx.i18n(I18nKey.VALORANT_ABILITIES_TITLE))
-                setDefaultColor()
-                for (index in firstIndex until lastIndex) {
-                    val ability = abilities[index]
-
-                    val body = buildString {
-                        appendLine(ability.description(ctx.guild))
-                        appendLine("**${ctx.i18n(I18nKey.ABILITY_COST)}**: ${ability.cost}")
-                    }
-                    addField("${ability.name(ctx.guild)} (${ability.agent.name})", body, false)
-                }
-                setFooter(ctx.i18nCommand("abilities.footer", f0, totalPages, f2, lastIndex, f4))
-            }.build()
         }
     }
 }
