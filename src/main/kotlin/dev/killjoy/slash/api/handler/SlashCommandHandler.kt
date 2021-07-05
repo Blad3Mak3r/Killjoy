@@ -15,6 +15,7 @@
 
 package dev.killjoy.slash.api.handler
 
+import dev.killjoy.extensions.info
 import dev.killjoy.slash.api.AbstractSlashCommand
 import dev.killjoy.slash.utils.SlashUtils
 import net.dv8tion.jda.api.events.GenericEvent
@@ -40,7 +41,7 @@ interface SlashCommandHandler : EventListener {
                 ?: ""
             val options = event.options.map { SlashUtils.parseOptionToString(it) }
 
-            logger.info("[${event.guild!!.name}] ${event.user.asTag} uses command ${command.commandName} $subcommandName$options")
+            logger.info(event.guild!!, "${event.user.asTag} uses command ${command.commandName} $subcommandName$options")
         }
     }
 }
