@@ -27,7 +27,7 @@ import net.dv8tion.jda.api.hooks.EventListener
 import org.slf4j.LoggerFactory
 import java.time.OffsetDateTime
 
-class MainListener : EventListener {
+object MainListener : EventListener {
     override fun onEvent(event: GenericEvent) {
         when (event) {
             is GuildJoinEvent -> onGuildJoin(event)
@@ -107,7 +107,6 @@ class MainListener : EventListener {
             logger.error("Exception in JDA {}", event.jda.shardInfo.shardId, event.cause)
     }
 
-    companion object {
-        private val logger = LoggerFactory.getLogger(MainListener::class.java)
-    }
+
+    private val logger = LoggerFactory.getLogger(MainListener::class.java)
 }
