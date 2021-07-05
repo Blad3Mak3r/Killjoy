@@ -1,5 +1,12 @@
 {
   "name": "agents",
   "description": "List all the Valorant agents.",
-  "options": []
+  "options": [
+    {
+      "type": 4,
+      "name": "page",
+      "description": "Agents list page you want to access.",
+      "required": false
+    }
+  ]
 }

@@ -13,6 +13,8 @@
  * See the License for the specific language governing permissions and limitations under the License.
  ******************************************************************************/
 
+@file:Suppress("DuplicatedCode")
+
 package dev.killjoy.commands.game
 
 import dev.killjoy.Launcher
@@ -28,13 +30,12 @@ import dev.killjoy.slash.api.SlashCommandContext
 import dev.killjoy.slash.api.annotations.SlashSubCommand
 import dev.killjoy.valorant.agent.AgentAbility
 import dev.killjoy.extensions.jda.ktx.await
+import dev.killjoy.utils.ParseUtils
+import dev.killjoy.utils.buildPaginationActionRow
 import kotlinx.coroutines.withTimeoutOrNull
 import net.dv8tion.jda.api.EmbedBuilder
-import net.dv8tion.jda.api.entities.Emoji
 import net.dv8tion.jda.api.entities.MessageEmbed
 import net.dv8tion.jda.api.events.interaction.ButtonClickEvent
-import net.dv8tion.jda.api.interactions.components.ActionRow
-import net.dv8tion.jda.api.interactions.components.Button
 import org.slf4j.LoggerFactory
 import java.util.concurrent.atomic.AtomicBoolean
 import kotlin.math.ceil
@@ -51,12 +52,11 @@ class AbilitiesSlashCommand : AbstractSlashCommand("abilities") {
 
         val page = ctx.getOption("page")?.asString?.toInt() ?: 1
         val totalPages = ceil((abilities.size.toFloat() / MAX_ABILITIES_PER_PAGE.toFloat())).toInt()
-        val pageIndex = getPageIndex(page, totalPages)
+        var pageIndex = ParseUtils.getPageIndex(page, totalPages)
 
-        ctx.reply(buildEmbed(ctx, abilities, pageIndex, totalPages)).addActionRows(buildActionRow(ctx)).queue()
+        ctx.reply(buildEmbed(ctx, abilities, pageIndex, totalPages)).addActionRows(buildPaginationActionRow(ctx)).queue()
 
         val enabledButtons = AtomicBoolean(true)
-        var currentEditablePage = pageIndex
 
         suspend fun stop() {
             enabledButtons.set(false)
@@ -74,26 +74,26 @@ class AbilitiesSlashCommand : AbstractSlashCommand("abilities") {
                 pressed.deferEdit().queue()
                 when (pressed.componentId.split(":")[1]) {
                     "preview" -> {
-                        if (currentEditablePage > 0) {
-                            currentEditablePage -= 1
+                        if (pageIndex > 0) {
+                            pageIndex -= 1
                             ctx.hook.editOriginalEmbeds(
                                 buildEmbed(
                                     ctx,
                                     abilities,
-                                    currentEditablePage,
+                                    pageIndex,
                                     totalPages
                                 )
                             ).queue()
                         }
                     }
                     "next" -> {
-                        if (currentEditablePage < (totalPages - 1)) {
-                            currentEditablePage += 1
+                        if (pageIndex < (totalPages - 1)) {
+                            pageIndex += 1
                             ctx.hook.editOriginalEmbeds(
                                 buildEmbed(
                                     ctx,
                                     abilities,
-                                    currentEditablePage,
+                                    pageIndex,
                                     totalPages
                                 )
                             ).queue()
@@ -109,11 +109,6 @@ class AbilitiesSlashCommand : AbstractSlashCommand("abilities") {
                 stop()
             }
         }
-    }
-
-    private fun getPageIndex(page: Int, totalPages: Int): Int {
-        return if (totalPages <= 0 || page <= 1) 0
-        else page.coerceAtMost(totalPages) - 1
     }
 
     companion object {
@@ -147,16 +142,6 @@ class AbilitiesSlashCommand : AbstractSlashCommand("abilities") {
                 }
                 setFooter(ctx.i18nCommand("abilities.footer", f0, totalPages, f2, lastIndex, f4))
             }.build()
-        }
-
-        private fun buildActionRow(ctx: SlashCommandContext): ActionRow {
-            val interactionID = ctx.hook.interaction.id
-
-            return ActionRow.of(
-                Button.secondary("${interactionID}:preview", Emoji.fromUnicode("⏮️")),
-                Button.secondary("${interactionID}:next", Emoji.fromUnicode("⏭️")),
-                Button.danger("${interactionID}:cancel", Emoji.fromUnicode("\uD83D\uDED1"))
-            )
         }
     }
 }
