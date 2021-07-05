@@ -12,7 +12,7 @@ plugins {
     idea
 }
 
-val jdaVersion = "4.3.0_289"
+val jdaVersion = "4.3.0_293"
 val exposedVersion = "0.32.1"
 val ktorVersion = "1.6.1"
 val coroutinesVersion = "1.5.0"
@@ -21,7 +21,7 @@ val prometheusVersion = "0.11.0"
 val sentryVersion = "5.0.1"
 
 group = "dev.killjoy"
-val versionObj = Version(0, 14)
+val versionObj = Version(0, 14, 2)
 version = versionObj.build()
 
 repositories {
@@ -85,7 +85,7 @@ dependencies {
     implementation("org.jsoup:jsoup:1.13.1")
 
     //Cache
-    implementation("com.github.ben-manes.caffeine:caffeine:3.0.2")
+    implementation("com.github.ben-manes.caffeine:caffeine:3.0.3")
 
     testImplementation("junit:junit:4.13.2")
 }

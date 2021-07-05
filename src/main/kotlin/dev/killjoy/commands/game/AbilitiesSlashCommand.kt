@@ -58,9 +58,10 @@ class AbilitiesSlashCommand : AbstractSlashCommand("abilities") {
 
         val enabledButtons = AtomicBoolean(true)
 
-        suspend fun stop() {
+        suspend fun stop(event: ButtonClickEvent? = null) {
             enabledButtons.set(false)
-            ctx.hook.editOriginalComponents(emptyList()).await()
+            if (event != null) event.editComponents(emptyList()).queue()
+            else ctx.hook.editOriginalComponents(emptyList()).await()
         }
 
         while (enabledButtons.get()) {
@@ -71,12 +72,11 @@ class AbilitiesSlashCommand : AbstractSlashCommand("abilities") {
                             it.channel.idLong == ctx.channel.idLong &&
                             it.user.idLong == ctx.author.idLong
                 }
-                pressed.deferEdit().queue()
                 when (pressed.componentId.split(":")[1]) {
                     "preview" -> {
                         if (pageIndex > 0) {
                             pageIndex -= 1
-                            ctx.hook.editOriginalEmbeds(
+                            pressed.editMessageEmbeds(
                                 buildEmbed(
                                     ctx,
                                     abilities,
@@ -84,12 +84,12 @@ class AbilitiesSlashCommand : AbstractSlashCommand("abilities") {
                                     totalPages
                                 )
                             ).queue()
-                        }
+                        } else pressed.deferEdit().queue()
                     }
                     "next" -> {
                         if (pageIndex < (totalPages - 1)) {
                             pageIndex += 1
-                            ctx.hook.editOriginalEmbeds(
+                            pressed.editMessageEmbeds(
                                 buildEmbed(
                                     ctx,
                                     abilities,
@@ -97,12 +97,13 @@ class AbilitiesSlashCommand : AbstractSlashCommand("abilities") {
                                     totalPages
                                 )
                             ).queue()
-                        }
+                        } else pressed.deferEdit().queue()
                     }
                     "cancel" -> {
                         logButtonFinalAction(ctx, "canceled")
-                        stop()
+                        stop(pressed)
                     }
+                    else -> pressed.deferEdit().queue()
                 }
             } ?: run {
                 logButtonFinalAction(ctx, "timed out")
