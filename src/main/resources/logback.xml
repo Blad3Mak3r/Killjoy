@@ -16,11 +16,11 @@
 
 <configuration debug="false">
 
-    <logger name="org.reflections.Reflections" level="OFF"/>
+    <logger name="org.reflections.Reflections" level="WARN"/>
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>[ %-30.-30thread ] %white(%-15.-15logger{0}) %highlight(%6.6level) %boldWhite(-->) %msg%n</pattern>
+            <pattern>%d{yyyy-MM-dd_HH:mm:ss.SSS} [ %-30.-30thread ] %white(%-15.-15logger{0}) %highlight(%6.6level) %boldWhite(-->) %msg%n</pattern>
         </encoder>
     </appender>
 
@@ -31,7 +31,7 @@
             <maxHistory>14</maxHistory>
         </rollingPolicy>
         <encoder>
-            <pattern>[%d{HH:mm:ss}] [ %-30.-30thread ] %-15.-15logger{0} %6.6level --> %msg%n</pattern>
+            <pattern>%d{yyyy-MM-dd_HH:mm:ss.SSS} [ %-30.-30thread ] %-15.-15logger{0} %6.6level --> %msg%n</pattern>
         </encoder>
     </appender>
 
