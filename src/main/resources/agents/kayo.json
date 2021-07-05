@@ -2,70 +2,114 @@
   "id": "601DBBE7-43CE-BE57-2A40-4ABD24953621",
   "number": 16,
   "name": "KAY/O",
+  "locatedNames": {
+    "en": "KAY/O",
+    "es": "KAY/O",
+    "fr": "KAY/O",
+    "it": "KAY/O"
+  },
   "api_name": "grenadier",
   "origin": "Unknown",
   "avatar": "https://i.imgur.com/iqxXg9d.jpg",
   "role": "Initiator",
   "bio": {
     "en": "KAY/O is a machine of war built for a single purpose: neutralizing radiants. His power to suppress enemy abilities cripples his opponents' capacity to fight back, securing him and his allies the ultimate edge.",
-    "es": "KAY/O es una máquina de guerra creada con un solo propósito: neutralizar radiantes. Su poder para suprimir las habilidades enemigas neutraliza la capacidad de sus rivales para contraatacar, un aspecto que le da a él y a sus aliados la ventaja definitiva en la batalla."
+    "es": "KAY/O es una máquina de guerra creada con un solo propósito: neutralizar radiantes. Su poder para suprimir las habilidades enemigas neutraliza la capacidad de sus rivales para contraatacar, un aspecto que le da a él y a sus aliados la ventaja definitiva en la batalla.",
+    "fr": "KAY/O est une machine de guerre conçue dans un but précis : neutraliser les radiants. La neutralisation des compétences ennemies réduit les possibilités de riposte des adversaires, ce qui confère un avantage décisif à son équipe.",
+    "it": "KAY/O è una macchina da guerra costruita per un solo scopo: neutralizzare i radianti. La sua capacità di sopprimere le abilità nemiche riduce le possibilità di risposta degli avversari, dando un enorme vantaggio a lui e ai suoi alleati."
   },
   "gender": "Male",
   "affiliation": "Valorant Protocol",
   "skills": [
     {
-      "button": "q",
+      "button": {
+        "en": "q",
+        "es": "q",
+        "fr": "a",
+        "it": "q"
+      },
       "name": {
-        "en": "FLASH/DRIVE",
-        "es": "MEMORIA/FLASH"
+        "en": "FLASH/drive",
+        "es": "Memoria/FLASH",
+        "fr": "MÉMOIRE/flash",
+        "it": "FLASH//drive"
       },
-      "iconUrl": "https://i.imgur.com/8NXaqwz.png",
       "info": {
-        "en": "Equip a flash grenade. FIRE to throw. The flash grenade explodes after a short fuse, blinding anyone in line of sight.\nRight clicking the flashbang, throws a charged flash, causing it to only have to cook for 1 second, as opposed to left click throwing a flash that cooks in 1.6 seconds.",
-        "es": "EQUIPA una granada cegadora. DISPARA para lanzarla. La granada cegadora explota después de un breve periodo de tiempo y ciega a todos en la línea de visión."
+        "en": "EQUIP a flash grenade. FIRE to throw. The flash grenade explodes after a short fuse, blinding anyone in line of sight.",
+        "es": "EQUIPA una granada cegadora. DISPARA para lanzarla. La granada cegadora explota después de un breve periodo de tiempo y ciega a todos en la línea de visión.",
+        "fr": "ÉQUIPEZ-vous d'une grenade aveuglante. TIREZ pour la lancer. La grenade explose après un court instant et aveugle tous ceux qui voient l'explosion.",
+        "it": "EQUIPAGGIA una granata accecante. SPARA per lanciarla. La granata esplode dopo un breve periodo, accecando chiunque nel suo campo visivo"
       },
+      "iconUrl": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/blt83e92ae578e66b8e/60d204231e0505677a882f38/Q_FlashDrive.png",
       "preview": "https://i.imgur.com/8Fw3KXa.gif",
       "cost": "250 (x2)"
     },
     {
-      "button": "e",
-      "name": {
-        "en": "ZERO/POINT",
-        "es": "PUNTO/CERO"
+      "button": {
+        "en": "e",
+        "es": "e",
+        "fr": "e",
+        "it": "e"
       },
-      "iconUrl": "https://i.imgur.com/zLq2PBa.png",
+      "name": {
+        "en": "ZERO/point",
+        "es": "Punto/CERO",
+        "fr": "POINT/zéro",
+        "it": "ZERO//point"
+      },
       "info": {
         "en": "EQUIP a suppression blade. FIRE to throw. The blade sticks to the first surface it hits, winds up, and suppresses anyone in the radius of the explosion.",
-        "es": "EQUIPA una cuchilla de supresión. DISPARA para lanzarla. La cuchilla se pega contra la primera superficie que toca, luego explota y suprime a cualquier oponente que se encuentre en el radio de la explosión."
+        "es": "EQUIPA una cuchilla de supresión. DISPARA para lanzarla. La cuchilla se pega contra la primera superficie que toca, luego explota y suprime a cualquier oponente que se encuentre en el radio de la explosión.",
+        "fr": "ÉQUIPEZ-vous d'une lame neutralisante. TIREZ pour la lancer. La lame se colle à la première surface touchée. Après un délai, elle neutralise tous ceux dans le rayon de l'explosion.",
+        "it": "EQUIPAGGIA una lama di soppressione. SPARA per lanciarla. La lama aderisce alla prima superficie che colpisce e scoppia dopo un breve tempo di caricamento, sopprimendo chiunque si trovi nel raggio dell'esplosione"
       },
+      "iconUrl": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/blt496288e7ab899b47/60d2018db930a53616fa4882/E_ZeroPoint.png",
       "preview": "https://i.imgur.com/HpN1Weo.gif",
       "cost": "Free"
     },
     {
-      "button": "c",
-      "name": {
-        "en": "FRAG/MENT",
-        "es": "FRAG/MENTACIÓN"
+      "button": {
+        "en": "c",
+        "es": "c",
+        "fr": "c",
+        "it": "c"
       },
-      "iconUrl": "https://i.imgur.com/Ve2Xthz.png",
+      "name": {
+        "en": "FRAG/ment",
+        "es": "FRAG/mentación",
+        "fr": "FRAG/ment",
+        "it": "FRAG//ment"
+      },
       "info": {
         "en": "EQUIP an explosive fragment. FIRE to throw. The fragment sticks to the floor and explodes multiple times, dealing near lethal damage at the center with each explosion.",
-        "es": "EQUIPA un fragmento explosivo. DISPARA para lanzarlo. El fragmento se pega al suelo y explota varias veces, lo que inflige daño casi mortal en el centro con cada explosión."
+        "es": "EQUIPA un fragmento explosivo. DISPARA para lanzarlo. El fragmento se pega al suelo y explota varias veces, lo que inflige daño casi mortal en el centro con cada explosión.",
+        "fr": "ÉQUIPEZ-vous d'un fragment explosif. TIREZ pour le lancer. Le fragment se colle au sol et explose à plusieurs reprises, infligeant des dégâts quasi mortels au centre de chaque explosion.",
+        "it": "EQUIPAGGIA un frammento esplosivo. SPARA per lanciarlo. Il frammento aderisce al terreno ed esplode più volte, infliggendo danni quasi letali al centro di ogni deflagrazione"
       },
+      "iconUrl": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/blte671cefaedb07d26/60d2046483f9fe49a6fef713/C_FragMent.png",
       "preview": "https://i.imgur.com/qKRsQH3.gif",
       "cost": "250 (x2)"
     },
     {
-      "button": "x",
-      "name": {
-        "en": "NULL/CMD",
-        "es": "NULL/CMD"
+      "button": {
+        "en": "x",
+        "es": "x",
+        "fr": "x",
+        "it": "x"
       },
-      "iconUrl": "https://i.imgur.com/TZJ03Un.png",
+      "name": {
+        "en": "NULL/cmd",
+        "es": "NULL/cmd",
+        "fr": "CMD/null",
+        "it": "NULL//cmd"
+      },
       "info": {
         "en": "INSTANTLY overload with polarized radianite energy that empowers KAY/O and causes large energy pulses to emit from his location. Enemies hit with these pulses are suppressed for a short duration.",
-        "es": "Se sobrecarga AL INSTANTE con energía de radianita polarizada que le da poder a KAY/O y causa que grandes pulsos de energía emanen desde su ubicación. Los enemigos impactados por dichos pulsos quedan suprimidos durante un breve momento."
+        "es": "Se sobrecarga AL INSTANTE con energía de radianita polarizada que le da poder a KAY/O y causa que grandes pulsos de energía emanen desde su ubicación. Los enemigos impactados por dichos pulsos quedan suprimidos durante un breve momento.",
+        "fr": "Entrez INSTANTANÉMENT en surcharge. KAY/O est renforcé par de l'énergie radianite polarisée et il émet de grandes vagues d'énergie. Les ennemis touchés par ces vagues sont neutralisés pendant un court instant.",
+        "it": "KAY/O si sovraccarica ISTANTANEAMENTE con energia di radianite polarizzata che lo potenzia e provoca l'emissione di ampie scariche energetiche dalla sua posizione. I nemici colpiti dalle scariche vengono soppressi per un breve periodo"
       },
+      "iconUrl": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/bltead1f4cb9ad32e19/60d20208bcec595109d831c2/X_NullCmd.png",
       "preview": "https://i.imgur.com/AmhYlS0.gif",
       "cost": "••••••• 7 Points"
     }

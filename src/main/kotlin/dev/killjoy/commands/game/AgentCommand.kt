@@ -71,7 +71,7 @@ class AgentCommand : Command() {
                 ?: return if (isInt) ctx.send(Emojis.NoEntry, "Agent with id ``$input`` does not exists...").queue()
                 else ctx.send(Emojis.NoEntry, "Agent with name ``${input.capitalize()}`` does not exists...").queue()
 
-            val skill = agent.abilities.find { it.button.name.equals(ctx.args[1], true) }
+            val skill = agent.abilities.find { it.hasButton(ctx.args[1]) }
                 ?: return ctx.send(Emojis.NoEntry, "I have not been able to find that skill...").queue()
 
             ctx.replyEmbed {
@@ -80,7 +80,7 @@ class AgentCommand : Command() {
                 setDescription(skill.description[guildLang])
                 setThumbnail(skill.iconUrl)
                 setImage(skill.preview)
-                addField("Action Button", skill.button.name, true)
+                addField("Action Button", skill.button(ctx.guild), true)
                 addField("Usage Cost", skill.cost, true)
                 setDefaultColor()
             }.queue()

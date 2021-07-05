@@ -2,70 +2,114 @@
   "id": "EB93336A-449B-9C1B-0A54-A891F7921D69",
   "number": 2,
   "name": "Phoenix",
+  "locatedNames": {
+    "en": "Phoenix",
+    "es": "Phoenix",
+    "fr": "Phoenix",
+    "it": "Phoenix"
+  },
   "api_name": "phoenix",
   "origin": ":flag_gb: United Kingdom",
   "avatar": "https://i.imgur.com/gKSte8h.jpg",
   "role": "Duelist",
   "bio": {
     "en": "Hailing from the U.K., Phoenix's star power shines through in his fighting style, igniting the battlefield with flash and flare. Whether he's got backup or not, he'll rush into a fight on his own terms.",
-    "es": "Phoenix proviene del Reino Unido y sus poderes estelares salen a relucir con su estilo de combate, que prende fuego al campo de batalla de forma deslumbrante. No le hacen falta refuerzos; es él quién se lanza al combate y marca el ritmo."
+    "es": "Phoenix proviene del Reino Unido y sus poderes estelares salen a relucir con su estilo de combate, que prende fuego al campo de batalla de forma deslumbrante. No le hacen falta refuerzos; es él quién se lanza al combate y marca el ritmo.",
+    "fr": "En provenance du Royaume-Uni, Phoenix illumine le champ de bataille avec ses pouvoirs astraux et son style de combat flamboyant. Peu importe que les renforts arrivent ou non, il fonce au combat quand il le décide.",
+    "it": "Originario del Regno Unito, Phoenix brilla per il suo stile di combattimento, che infiamma il campo di battaglia come un lampo abbagliante. Con o senza rinforzi, è sempre pronto a gettarsi nella mischia secondo le sue regole."
   },
   "gender": "Male",
   "affiliation": "Valorant Protocol",
   "skills": [
     {
-      "button": "q",
-      "name": {
-        "en": "CURVEBALL",
-        "es": "BOLA CURVA"
+      "button": {
+        "en": "q",
+        "es": "q",
+        "fr": "a",
+        "it": "q"
       },
-      "iconUrl": "https://i.imgur.com/PADeR9B.png",
+      "name": {
+        "en": "Curveball",
+        "es": "Bola curva",
+        "fr": "Balle courbe",
+        "it": "Dardo abbagliante"
+      },
       "info": {
         "en": "EQUIP a flare orb that takes a curving path and detonates shortly after throwing. FIRE to curve the flare orb to the left, detonating and blinding any player who sees the orb. ALTERNATE FIRE to curve the flare orb to the right.",
-        "es": "EQUIPA un orbe fulgurante que dibuja una trayectoria curva y explota poco después de haberlo lanzado. DISPARAD para lanzar el orbe fulgurante hacia la izquierda, lo que hará que detone y ciegue a cualquier jugador que lo vea. ALTERNAD EL MODO DE DISPARO para lanzar el orbe fulgurante hacia la derecha."
+        "es": "EQUIPA un orbe fulgurante que dibuja una trayectoria curva y explota poco después de haberlo lanzado. DISPARAD para lanzar el orbe fulgurante hacia la izquierda, lo que hará que detone y ciegue a cualquier jugador que lo vea. ALTERNAD EL MODO DE DISPARO para lanzar el orbe fulgurante hacia la derecha.",
+        "fr": "ÉQUIPEZ-vous d'un orbe flamboyant qui explose peu après avoir été lancé, aveuglant tous les joueurs qui le regardent. TIREZ pour courber la trajectoire de l'orbe vers la gauche. Utilisez le TIR SECONDAIRE pour courber la trajectoire de l'orbe vers la droite.",
+        "it": "EQUIPAGGIA una sfera esplosiva che segue una traiettoria curva ed esplode poco dopo il lancio. SPARA per curvare la traiettoria a sinistra, facendo esplodere la sfera e accecando i giocatori che la vedono. Usa il FUOCO ALTERNATIVO per curvare la traiettoria a destra."
       },
+      "iconUrl": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/bltb125dfdcd673a9a8/5eaf85e95751b2150e57a803/TX_Pheonix_Q.png",
       "preview": "https://i.imgur.com/K4ocXDl.gif",
       "cost": "250 (x2)"
     },
     {
-      "button": "e",
-      "name": {
-        "en": "HOT HANDS",
-        "es": "COMBUSTIÓN"
+      "button": {
+        "en": "e",
+        "es": "e",
+        "fr": "e",
+        "it": "e"
       },
-      "iconUrl": "https://i.imgur.com/RDzBAfI.png",
+      "name": {
+        "en": "Hot Hands",
+        "es": "Combustión",
+        "fr": "Mains brûlantes",
+        "it": "Mani ardenti"
+      },
       "info": {
         "en": "EQUIP a fireball. FIRE to throw a fireball that explodes after a set amount of time or upon hitting the ground, creating a lingering fire zone that damages enemies.",
-        "es": "EQUIPA una bola de fuego. DISPARAD para lanzar una bola de fuego que explota transcurrido un tiempo determinado o al impactar contra el suelo, lo que crea una zona de fuego persistente que inflige daño a los enemigos."
+        "es": "EQUIPA una bola de fuego. DISPARAD para lanzar una bola de fuego que explota transcurrido un tiempo determinado o al impactar contra el suelo, lo que crea una zona de fuego persistente que inflige daño a los enemigos.",
+        "fr": "ÉQUIPEZ-vous d'une boule de feu. TIREZ pour lancer une boule de feu qui explose après un certain temps ou en touchant le sol, créant une zone enflammée persistante qui blesse les ennemis.",
+        "it": "EQUIPAGGIA una palla di fuoco. SPARA per lanciare una palla di fuoco che esplode dopo un periodo specifico o dopo aver colpito il terreno, creando una zona di fuoco persistente che danneggia i nemici."
       },
+      "iconUrl": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/bltb239d633e68d9b65/5eaf85e94398082ffe240195/TX_Pheonix_E.png",
       "preview": "https://i.imgur.com/sYBBgKf.gif",
       "cost": "2 Kills"
     },
     {
-      "button": "c",
-      "name": {
-        "en": "BLAZE",
-        "es": "LLAMARADA"
+      "button": {
+        "en": "c",
+        "es": "c",
+        "fr": "c",
+        "it": "c"
       },
-      "iconUrl": "https://i.imgur.com/j9GTBxS.png",
+      "name": {
+        "en": "Blaze",
+        "es": "Llamarada",
+        "fr": "Brasier",
+        "it": "Muro di fiamme"
+      },
       "info": {
         "en": "EQUIP a flame wall. FIRE to create a line of flame that moves forward, creating a wall of fire that blocks vision and damages players passing through it. HOLD FIRE to bend the wall in the direction of your crosshair.",
-        "es": "EQUIPA una pared de llamas. DISPARAD para crear una línea de llamas que avanza hacia adelante, lo que forma una pared de fuego que bloquea la visión e inflige daño a los jugadores enemigos que la atraviesen. MANTENED PULSADO DISPARAR para curvar la pared en la dirección de la mira."
+        "es": "EQUIPA una pared de llamas. DISPARAD para crear una línea de llamas que avanza hacia adelante, lo que forma una pared de fuego que bloquea la visión e inflige daño a los jugadores enemigos que la atraviesen. MANTENED PULSADO DISPARAR para curvar la pared en la dirección de la mira.",
+        "fr": "ÉQUIPEZ-vous d'un mur de feu. TIREZ pour créer une ligne de feu qui se déplace vers l'avant, créant un mur de feu qui bloque la vision et blesse les joueurs qui le traversent. MAINTENEZ LE TIR pour courber le mur dans la direction de votre réticule.",
+        "it": "EQUIPAGGIA un muro di fiamme. SPARA per creare una linea di fiamme che avanza, creando un muro di fuoco che blocca la visione e danneggia i giocatori che lo attraversano. TIENI PREMUTO IL PULSANTE DI FUOCO per piegare il muro nella direzione del tuo reticolo."
       },
+      "iconUrl": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/blt40cafc8e39b4fcbd/5eaf85e903f6e72ff388cc1a/TX_Pheonix_C.png",
       "preview": "https://i.imgur.com/rC69MYi.gif",
       "cost": "200"
     },
     {
-      "button": "x",
-      "name": {
-        "en": "RUN IT BACK",
-        "es": "CENIZAS"
+      "button": {
+        "en": "x",
+        "es": "x",
+        "fr": "x",
+        "it": "x"
       },
-      "iconUrl": "https://i.imgur.com/uaaSoI4.png",
+      "name": {
+        "en": "Run It Back",
+        "es": "Cenizas",
+        "fr": "Revanche",
+        "it": "Ceneri della Fenice"
+      },
       "info": {
         "en": "INSTANTLY place a marker at Phoenix’s location. While this ability is active, dying or allowing the timer to expire will end this ability and bring Phoenix back to this location with full health.",
-        "es": "Coloca INSTANTANEAMENTE un marcador en la ubicación de Phoenix. Mientras esta habilidad esté activa, morir o dejar que se agote el temporizador hará que se termine la habilidad y devolverá a Phoenix a esta ubicación con toda la vida."
+        "es": "Coloca INSTANTANEAMENTE un marcador en la ubicación de Phoenix. Mientras esta habilidad esté activa, morir o dejar que se agote el temporizador hará que se termine la habilidad y devolverá a Phoenix a esta ubicación con toda la vida.",
+        "fr": "Placez INSTANTANÉMENT un marqueur sur votre position. Tant que cette compétence est active, mourir vous renvoie à cette position avec tous vos PV (même chose si la compétence expire).",
+        "it": "Piazza ALL'ISTANTE un indicatore nella posizione di Phoenix. Quando questa abilità è attiva, morire o far scadere il timer conclude l'abilità e riporta Phoenix all'indicatore con la salute al massimo."
       },
+      "iconUrl": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/blt26ed15b080ee68b1/5eaf85e91b51e36d7c1b6ad0/TX_Pheonix_X.png",
       "preview": "https://i.imgur.com/jlLaE5f.gif",
       "cost": "•••••• 6 Points"
     }

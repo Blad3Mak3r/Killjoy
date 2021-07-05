@@ -30,7 +30,7 @@ import org.json.JSONObject
 
 data class AgentAbility(
     val agent: ValorantAgent,
-    val button: Button,
+    private val button: I18nMap,
     val name: I18nMap,
     val description: I18nMap,
     val iconUrl: String,
@@ -40,7 +40,7 @@ data class AgentAbility(
 
     constructor(agent: ValorantAgent, json: JSONObject) : this(
         agent,
-        Button.of(json.getString("button")),
+        buildI18nMap(json.getJSONObject("button"), true),
         buildI18nMap(json.getJSONObject("name"), true),
         buildI18nMap(json.getJSONObject("info")),
         json.getString("iconUrl"),
@@ -50,6 +50,9 @@ data class AgentAbility(
 
     fun name(guild: Guild) = name[guild.supportedLocale.language]!!.uppercase()
     fun description(guild: Guild) = description[guild.supportedLocale.language]!!
+    fun button(guild: Guild) = button[guild.supportedLocale.language]!!.uppercase()
+
+    fun hasButton(btn: String) = button.any { it.value.equals(btn, true) }
 
     fun asEmbedField(guild: Guild): MessageEmbed.Field {
         return MessageEmbed.Field(
@@ -67,23 +70,10 @@ data class AgentAbility(
             setDescription(description(guild))
             setThumbnail(iconUrl)
             setImage(preview)
-            addField(guild.i18n(I18nKey.ABILITY_ACTION_BUTTON), button.name, true)
+            addField(guild.i18n(I18nKey.ABILITY_ACTION_BUTTON), button(guild), true)
             addField(guild.i18n(I18nKey.ABILITY_COST), cost, true)
             setDefaultColor()
             build()
-        }
-    }
-
-    enum class Button {
-        Q,
-        E,
-        C,
-        X;
-
-        companion object {
-            fun of(str: String): Button {
-                return values().find { it.name.equals(str, true) } ?: throw IllegalArgumentException("$str is not a valid role name.")
-            }
         }
     }
 

@@ -2,70 +2,114 @@
   "id": "8E253930-4C05-31DD-1B6C-968525494517",
   "number": 10,
   "name": "Omen",
+  "locatedNames": {
+    "en": "Omen",
+    "es": "Omen",
+    "fr": "Omen",
+    "it": "Omen"
+  },
   "api_name": "wraith",
   "origin": "Unknown",
   "avatar": "https://i.imgur.com/crEZkXQ.jpg",
   "role": "Controller",
   "bio": {
     "en": "A phantom of a memory, Omen hunts in the shadows. He renders enemies blind, teleports across the field, then lets paranoia take hold as his foe scrambles to learn where he might strike next.",
-    "es": "Omen es un fantasma de tiempos pasados que acecha en las sombras. Es capaz de cegar al enemigo, teleportarse a través del campo de batalla y sembrar el caos y la paranoia mientras sus rivales se preguntan dónde atacará la próxima vez."
+    "es": "Omen es un fantasma de tiempos pasados que acecha en las sombras. Es capaz de cegar al enemigo, teleportarse a través del campo de batalla y sembrar el caos y la paranoia mientras sus rivales se preguntan dónde atacará la próxima vez.",
+    "fr": "Véritable fantôme d'un souvenir, Omen chasse dans les ténèbres. Il aveugle les ennemis, se téléporte d'un bout à l'autre du champ de bataille et laisse la peur se répandre parmi ses adversaires qui se demandent qui sera sa prochaine victime.",
+    "it": "Omen è uno spettro nato da un ricordo che caccia le sue prede nelle ombre. Acceca i nemici, si teletrasporta nel campo di battaglia e lascia che la paura si nutra dei suoi avversari, che si chiederanno chi sarà la sua prossima vittima."
   },
   "gender": "Male",
   "affiliation": "Valorant Protocol",
   "skills": [
     {
-      "button": "q",
-      "name": {
-        "en": "PARANOIA",
-        "es": "PARANOIA"
+      "button": {
+        "en": "q",
+        "es": "q",
+        "fr": "a",
+        "it": "q"
       },
-      "iconUrl": "https://i.imgur.com/jRLpluH.png",
+      "name": {
+        "en": "Paranoia",
+        "es": "Paranoia",
+        "fr": "Paranoïa",
+        "it": "Paranoia"
+      },
       "info": {
         "en": "INSTANTLY fire a shadow projectile forward, briefly reducing the vision range of all players it touches. This projectile can pass straight through walls.",
-        "es": "Dispara INSTANTÁNEAMENTE un proyectil sombrío hacia delante que reduce brevemente el alcance de la visión de todos los jugadores que toca. El proyectil puede atravesar paredes."
+        "es": "Dispara INSTANTÁNEAMENTE un proyectil sombrío hacia delante que reduce brevemente el alcance de la visión de todos los jugadores que toca. El proyectil puede atravesar paredes.",
+        "fr": "Tirez INSTANTANÉMENT un projectile d'ombre vers l'avant, ce qui réduit brièvement la portée de la vision de tous les joueurs touchés. Ce projectile peut traverser les murs.",
+        "it": "Spara ALL'ISTANTE un proiettile davanti a sé, riducendo per poco tempo la portata della visione di tutti i giocatori che tocca. Questo proiettile può attraversare i muri."
       },
+      "iconUrl": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/blt323e0178def67d36/5eaf85f4cf88d36e47cf02a5/TX_Omen_Q.png",
       "preview": "https://i.imgur.com/wPpJObt.gif",
       "cost": "300"
     },
     {
-      "button": "e",
-      "name": {
-        "en": "DARK COVER",
-        "es": "VELO TENEBROSO"
+      "button": {
+        "en": "e",
+        "es": "e",
+        "fr": "e",
+        "it": "e"
       },
-      "iconUrl": "https://i.imgur.com/UL6imyE.png",
+      "name": {
+        "en": "Dark Cover",
+        "es": "Velo tenebroso",
+        "fr": "Voile sombre",
+        "it": "Velo oscuro"
+      },
       "info": {
         "en": "EQUIP a shadow orb and see its range indicator. FIRE to throw the shadow orb to the marked location, creating a long-lasting shadow sphere that blocks vision. HOLD ALTERNATE FIRE while targeting to move the marker further away. HOLD the ability key with targeting to move the market closer.",
-        "es": "EQUIPA un orbe sombrío y muestra su indicador de alcance. DISPARAD para lanzar el orbe sombrío a la ubicación señalada, lo que genera una esfera sombría de larga duración que bloquea la visión. MANTENED PULSADO EL MODO DE DISPARO ALTERNATIVO al apuntar para que el marcador se aleje más. MANTENED PULSADA la tecla de la habilidad para que el marcado se acerque más."
+        "es": "EQUIPA un orbe sombrío y muestra su indicador de alcance. DISPARAD para lanzar el orbe sombrío a la ubicación señalada, lo que genera una esfera sombría de larga duración que bloquea la visión. MANTENED PULSADO EL MODO DE DISPARO ALTERNATIVO al apuntar para que el marcador se aleje más. MANTENED PULSADA la tecla de la habilidad para que el marcado se acerque más.",
+        "fr": "ÉQUIPEZ-vous d'un orbe d'ombre accompagné d'un indicateur de portée. TIREZ pour lancer l'orbe à l'endroit marqué, ce qui crée une sphère d'ombre durable qui bloque la vision. MAINTENEZ LE TIR SECONDAIRE tout en visant pour éloigner le marqueur. MAINTENEZ la touche de la compétence tout en visant pour rapprocher le marqueur.",
+        "it": "EQUIPAGGIA una sfera oscura e osserva il suo indicatore di gittata. SPARA per lanciare la sfera oscura nella posizione indicata, creando un globo d'ombra a lunga durata che blocca la visione. TIENI PREMUTO IL FUOCO ALTERNATIVO mentre miri per allontanare l'indicatore. TIENI PREMUTO il comando dell'abilità mentre miri per avvicinare l'indicatore."
       },
+      "iconUrl": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/blta95e6968cb32f519/5eaf85f44398082ffe24019b/TX_Omen_E.png",
       "preview": "https://i.imgur.com/TTvhYlL.gif",
       "cost": "35s Cooldown"
     },
     {
-      "button": "c",
-      "name": {
-        "en": "SHROUDED STEP",
-        "es": "APARICIÓN TENEBROSA"
+      "button": {
+        "en": "c",
+        "es": "c",
+        "fr": "c",
+        "it": "c"
       },
-      "iconUrl": "https://i.imgur.com/v09gtWO.png",
+      "name": {
+        "en": "Shrouded Step",
+        "es": "Aparición tenebrosa",
+        "fr": "Voie des ombres",
+        "it": "Passo velato"
+      },
       "info": {
         "en": "EQUIP a shadow walk ability and see its range indicator. FIRE to begin a brief channel, then teleport to the marked location.",
-        "es": "EQUIPA una habilidad para caminar entre las sombras y muestra su indicador de alcance. DISPARAD para iniciar un breve periodo de canalización y después teleportaros a la ubicación señalada."
+        "es": "EQUIPA una habilidad para caminar entre las sombras y muestra su indicador de alcance. DISPARAD para iniciar un breve periodo de canalización y después teleportaros a la ubicación señalada.",
+        "fr": "ÉQUIPEZ-vous d'une compétence de marche des ombres accompagnée d'un indicateur de portée. TIREZ pour commencer une courte canalisation avant de vous téléporter vers l'endroit marqué.",
+        "it": "EQUIPAGGIA un'abilità che ti permette di muoverti furtivo tra le ombre e osserva il suo indicatore di gittata. SPARA per entrare in una breve canalizzazione e teletrasportarti nella posizione indicata."
       },
+      "iconUrl": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/blt7016fed86331500b/5eaf85f41b51e36d7c1b6ad6/TX_Omen_C.png",
       "preview": "https://i.imgur.com/6vADqCY.gif",
       "cost": "150 (x2)"
     },
     {
-      "button": "x",
-      "name": {
-        "en": "FROM THE SHADOWS",
-        "es": "DESDE LAS SOMBRAS"
+      "button": {
+        "en": "x",
+        "es": "x",
+        "fr": "x",
+        "it": "x"
       },
-      "iconUrl": "https://i.imgur.com/6UQkwaZ.png",
+      "name": {
+        "en": "From The Shadows",
+        "es": "Desde las sombras",
+        "fr": "Depuis les ombres",
+        "it": "Viandante spettrale"
+      },
       "info": {
         "en": "EQUIP a tactical map. FIRE to begin teleporting to the selected location. While teleporting, Omen will appear as a Shade that can be destroyed by an enemy to cancel his teleport.",
-        "es": "EQUIPA un mapa táctico. DISPARAD para empezar a teleportaros a la ubicación seleccionada. Mientras se teleporta, Omen aparecerá como una sombra que los enemigos pueden destruir para cancelar su teleportación."
+        "es": "EQUIPA un mapa táctico. DISPARAD para empezar a teleportaros a la ubicación seleccionada. Mientras se teleporta, Omen aparecerá como una sombra que los enemigos pueden destruir para cancelar su teleportación.",
+        "fr": "ÉQUIPEZ-vous d'une carte tactique. TIREZ pour commencer à vous téléporter vers l'endroit sélectionné. Pendant la téléportation, vous apparaissez sous forme d'ombre. Les ennemis peuvent détruire cette ombre pour annuler votre téléportation.",
+        "it": "EQUIPAGGIA una mappa tattica. SPARA per iniziare il teletrasporto nella posizione selezionata. Durante il teletrasporto, Omen appare come un'ombra. I nemici possono annullare il teletrasporto distruggendola."
       },
+      "iconUrl": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/bltd7b44696b74076d4/5eaf85f4f66b2515dea76b2c/TX_Omen_X.png",
       "preview": "https://i.imgur.com/yJzIGaW.gif",
       "cost": "••••••• 7 Points"
     }

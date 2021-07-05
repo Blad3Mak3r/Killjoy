@@ -36,3 +36,5 @@ fun SlashCommandContext.sendI18n(key: String, vararg args: Any?) = this.send(I18
 // SlashCommandEvent
 fun SlashCommandEvent.replyI18n(key: I18nKey, vararg args: Any?) = this.reply(I18n.getTranslate(key, *args))
 fun SlashCommandEvent.sendI18n(key: I18nKey, vararg args: Any?) = this.hook.sendMessage(I18n.getTranslate(key, *args))
+
+class I18nException(override val message: String) : RuntimeException()

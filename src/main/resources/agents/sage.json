@@ -2,70 +2,114 @@
   "id": "569FDD95-4D10-43AB-CA70-79BECC718B46",
   "number": 3,
   "name": "Sage",
+  "locatedNames": {
+    "en": "Sage",
+    "es": "Sage",
+    "fr": "Sage",
+    "it": "Sage"
+  },
   "api_name": "thorne",
   "origin": ":flag_cn: China",
   "avatar": "https://i.imgur.com/n7oZkvA.jpg",
   "role": "Sentinel",
   "bio": {
     "en": "The stronghold of China, Sage creates safety for herself and her team wherever she goes. Able to revive fallen friends and stave off aggressive pushes, she provides a calm center to a hellish fight.",
-    "es": "Originaria de China, Sage destaca a la hora de crear espacios seguros para su equipo allá donde va. Sus capacidades especiales para revivir a compañeros caídos en batalla y para mantener a raya los asaltos enemigos la convierten en la calma en mitad de la tormenta para su equipo."
+    "es": "Originaria de China, Sage destaca a la hora de crear espacios seguros para su equipo allá donde va. Sus capacidades especiales para revivir a compañeros caídos en batalla y para mantener a raya los asaltos enemigos la convierten en la calma en mitad de la tormenta para su equipo.",
+    "fr": "Véritable pilier originaire de Chine, Sage assure sa sécurité et celle de son équipe où qu'elle aille. Elle peut réanimer ses alliés tombés au combat et repousser les assauts ennemis pour offrir des oasis de tranquillité sur un champ de bataille infernal.",
+    "it": "Vero bastione della Cina, Sage genera sicurezza per se stessa e per i suoi alleati ovunque vada. È in grado di rianimare i compagni caduti e può evitare gli attacchi più potenti, riuscendo così a fornire un porto sicuro anche sul campo di battaglia più infernale."
   },
   "gender": "Female",
   "affiliation": "Valorant Protocol",
   "skills": [
     {
-      "button": "q",
-      "name": {
-        "en": "SLOW ORB",
-        "es": "ORBE DE RALENTIZACIÓN"
+      "button": {
+        "en": "q",
+        "es": "q",
+        "fr": "a",
+        "it": "q"
       },
-      "iconUrl": "https://i.imgur.com/PeRyudR.png",
+      "name": {
+        "en": "Slow Orb",
+        "es": "Orbe de ralentización",
+        "fr": "Orbe de lenteur",
+        "it": "Cristallo rallentante"
+      },
       "info": {
         "en": "EQUIP a slowing orb. FIRE to throw a slowing orb forward that detonates upon landing, creating a lingering field that slows players caught inside of it.",
-        "es": "EQUIPA un orbe de ralentización. DISPARAD para lanzar hacia adelante un orbe de ralentización que explota al aterrizar, lo que genera un campo persistente que ralentiza a los jugadores que se encuentren en su interior."
+        "es": "EQUIPA un orbe de ralentización. DISPARAD para lanzar hacia adelante un orbe de ralentización que explota al aterrizar, lo que genera un campo persistente que ralentiza a los jugadores que se encuentren en su interior.",
+        "fr": "ÉQUIPEZ-vous d'un orbe ralentissant. TIREZ pour lancer l'orbe devant vous. Lorsqu'il touche le sol, l'orbe explose et crée un champ persistant qui ralentit les joueurs qui s'y trouvent.",
+        "it": "EQUIPAGGIA un cristallo rallentante. SPARA per lanciare un cristallo rallentante che esplode all'atterraggio, creando un campo persistente che rallenta i giocatori al suo interno."
       },
+      "iconUrl": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/blt295acba83a83496d/5eaf85beb8a6356e4ddc1007/TX_Sage_Q.png",
       "preview": "https://i.imgur.com/J709jsl.gif",
       "cost": "200 (x2)"
     },
     {
-      "button": "e",
-      "name": {
-        "en": "HEALING ORB",
-        "es": "ORBE DE SANACIÓN"
+      "button": {
+        "en": "e",
+        "es": "e",
+        "fr": "e",
+        "it": "e"
       },
-      "iconUrl": "https://i.imgur.com/vXisIQ4.png",
+      "name": {
+        "en": "Healing Orb",
+        "es": "Orbe de sanación",
+        "fr": "Orbe de soin",
+        "it": "Cristallo di guarigione"
+      },
       "info": {
         "en": "EQUIP a healing orb. FIRE with your crosshairs over a damaged ally to activate a heal-over-time on them. ALT FIRE while Sage is damaged to activate a self heal-over-time.",
-        "es": "EQUIPA un orbe de sanación. DISPARAD con la mira sobre un aliado herido para curarlo durante un breve periodo. ALTERNAD EL MODO DE DISPARO si Sage ha recibido daño para que se cure a sí misma durante un breve periodo."
+        "es": "EQUIPA un orbe de sanación. DISPARAD con la mira sobre un aliado herido para curarlo durante un breve periodo. ALTERNAD EL MODO DE DISPARO si Sage ha recibido daño para que se cure a sí misma durante un breve periodo.",
+        "fr": "ÉQUIPEZ-vous d'un orbe de soin. TIREZ en visant un allié blessé pour lui rendre des PV sur la durée. Si vous avez subi des dégâts, utilisez le TIR SECONDAIRE pour récupérer des PV sur la durée.",
+        "it": "EQUIPAGGIA un cristallo di guarigione. SPARA mentre punti il tuo reticolo su un alleato danneggiato per attivare su di lui una guarigione nel tempo. Usa il FUOCO ALTERNATIVO mentre Sage è danneggiata per attivare un'autoguarigione nel tempo."
       },
+      "iconUrl": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/bltc6355bb295e64ba1/5efa55c138fa326e2aaf5c3f/TX_Sage_E.png",
       "preview": "https://i.imgur.com/wy5rimG.gif",
       "cost": "45s Cooldown"
     },
     {
-      "button": "c",
-      "name": {
-        "en": "BARRIER ORB",
-        "es": "ORBE BARRERA"
+      "button": {
+        "en": "c",
+        "es": "c",
+        "fr": "c",
+        "it": "c"
       },
-      "iconUrl": "https://i.imgur.com/sNdZyEr.png",
+      "name": {
+        "en": "Barrier Orb",
+        "es": "Orbe barrera",
+        "fr": "Orbe barrière",
+        "it": "Muro di cristallo"
+      },
       "info": {
         "en": "EQUIP a barrier orb. FIRE places a solid wall. ALT FIRE rotates the targeter.",
-        "es": "EQUIPA un orbe barrera. DISPARAD para colocar una pared sólida. Alternad el MODO DE DISPARO para rotarla antes de crearla."
+        "es": "EQUIPA un orbe barrera. DISPARAD para colocar una pared sólida. Alternad el MODO DE DISPARO para rotarla antes de crearla.",
+        "fr": "ÉQUIPEZ-vous d'un orbe barrière. TIRER permet de placer un mur solide. Le TIR SECONDAIRE fait pivoter le cibleur.",
+        "it": "EQUIPAGGIA un muro di cristallo. SPARA per piazzare un muro solido. Usa il FUOCO ALTERNATIVO per ruotare l'indicatore."
       },
+      "iconUrl": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/blt368b2f4136858aed/5eaf85becf88d36e47cf029f/TX_Sage_C.png",
       "preview": "https://i.imgur.com/RmNnDtm.gif",
       "cost": "400"
     },
     {
-      "button": "x",
-      "name": {
-        "en": "RESURRECTION",
-        "es": "RESURRECCIÓN"
+      "button": {
+        "en": "x",
+        "es": "x",
+        "fr": "x",
+        "it": "x"
       },
-      "iconUrl": "https://i.imgur.com/9jJ3lBf.png",
+      "name": {
+        "en": "Resurrection",
+        "es": "Resurrección",
+        "fr": "Résurrection",
+        "it": "Respiro vitale"
+      },
       "info": {
         "en": "EQUIP a resurrection ability. FIRE with your crosshairs placed over a dead ally to begin resurrecting them. After a brief channel, the ally will be brought back to life with full health.",
-        "es": "EQUIPA una habilidad de resurrección. DISPARAD con la mira sobre un aliado muerto para empezar a resucitarlo. Tras un breve periodo de canalización, el aliado resucitará con toda la vida."
+        "es": "EQUIPA una habilidad de resurrección. DISPARAD con la mira sobre un aliado muerto para empezar a resucitarlo. Tras un breve periodo de canalización, el aliado resucitará con toda la vida.",
+        "fr": "ÉQUIPEZ-vous d'une compétence de résurrection. TIREZ en visant un allié mort pour le ramener à la vie. Après une courte canalisation, votre allié est ramené à la vie avec tous ses PV.",
+        "it": "EQUIPAGGIA un'abilità di resurrezione. SPARA mentre punti con il tuo reticolo un alleato morto per rianimarlo. Dopo una breve canalizzazione, tornerà in vita con la salute al massimo."
       },
+      "iconUrl": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/blt39a8fe8deb6389f8/5efa55d38732f51d8514604f/TX_Sage_X.png",
       "preview": "https://i.imgur.com/LlhSMOq.gif",
       "cost": "•••••••• 8 Points"
     }

@@ -2,70 +2,114 @@
   "id": "1E58DE9C-4950-5125-93E9-A0AEE9F98746",
   "number": 8,
   "name": "Killjoy",
+  "locatedNames": {
+    "en": "Killjoy",
+    "es": "Killjoy",
+    "fr": "Killjoy",
+    "it": "Killjoy"
+  },
   "api_name": "killjoy",
   "origin": ":flag_de: Germany",
   "avatar": "https://i.imgur.com/zGwli2z.jpg",
   "role": "Sentinel",
   "bio": {
     "en": "The genius of Germany. Killjoy secures the battlefield with ease using her arsenal of inventions. If the damage from her gear doesn't stop her enemies, her robots' debuff will help make short work of them.",
-    "es": "Killjoy es una brillante agente alemana que se encarga de tomar el campo de batalla con un amplio arsenal de inventos. Si el daño de sus invenciones no detiene a los enemigos, la debilitación de sus robots los convertirá en presas fáciles."
+    "es": "Killjoy es una brillante agente alemana que se encarga de tomar el campo de batalla con un amplio arsenal de inventos. Si el daño de sus invenciones no detiene a los enemigos, la debilitación de sus robots los convertirá en presas fáciles.",
+    "fr": "Le génie à l'allemande. Killjoy assure le contrôle facile du terrain grâce à son armée d'inventions. Si son équipement ne suffit pas à arrêter l'ennemi, ce sont les entraves de ses robots qui en feront du menu fretin.",
+    "it": "La teutonica geniale. Killjoy domina facilmente il campo di battaglia con il suo arsenale di invenzioni. Se il suo equipaggiamento non è abbastanza per fermare i suoi nemici, se ne sbarazza grazie all'aiuto dei suoi robot."
   },
   "gender": "Female",
   "affiliation": "Valorant Protocol",
   "skills": [
     {
-      "button": "q",
-      "name": {
-        "en": "ALARMBOT",
-        "es": "BOT DE ALARMA"
+      "button": {
+        "en": "q",
+        "es": "q",
+        "fr": "a",
+        "it": "q"
       },
-      "iconUrl": "https://i.imgur.com/zjHG8fV.png",
+      "name": {
+        "en": "Alarmbot",
+        "es": "Bot de alarma",
+        "fr": "Bot",
+        "it": "Roboallarme"
+      },
       "info": {
         "en": "EQUIP a covert Alarmbot. FIRE to deploy a bot that hunts down enemies that get in range. After reaching its target, the bot explodes, applying Vulernable. HOLD EQUIP to recall a deployed bot.",
-        "es": "EQUIPA un bot de alarma camuflado. DISPARA para desplegar un bot que dará caza a los enemigos que estén dentro del alcance. Tras alcanzar su objetivo, el bot explota y aplica vulnerabilidad. MANTÉN PULSADO EQUIPAR para recoger un bot desplegado."
+        "es": "EQUIPA un bot de alarma camuflado. DISPARA para desplegar un bot que dará caza a los enemigos que estén dentro del alcance. Tras alcanzar su objetivo, el bot explota y aplica vulnerabilidad. MANTÉN PULSADO EQUIPAR para recoger un bot desplegado.",
+        "fr": "ÉQUIPEZ-vous d'un robot d'alarme camouflé. TIREZ pour déployer un robot qui traque les ennemis à sa portée. Quand il atteint sa cible, le robot explose, infligeant l'altération d'état Vulnérable. MAINTENEZ LA TOUCHE D'ÉQUIPEMENT pour rappeler un robot déployé.",
+        "it": "EQUIPAGGIA un Roboallarme occultabile. SPARA per piazzare un bot che insegue i nemici che si avvicinano troppo. Quando raggiunge il bersaglio, il bot esplode rendendolo vulnerabile. TIENI PREMUTO EQUIPAGGIA per richiamare il bot piazzato."
       },
+      "iconUrl": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/blt143467a7379d4211/5f21feb94d73a00a2e1428d3/Copy_of_TX_KJ_Alarm.png",
       "preview": "https://i.imgur.com/mH3QegZ.gif",
       "cost": "200"
     },
     {
-      "button": "e",
-      "name": {
-        "en": "TURRET",
-        "es": "TORRETA"
+      "button": {
+        "en": "e",
+        "es": "e",
+        "fr": "e",
+        "it": "e"
       },
-      "iconUrl": "https://i.imgur.com/igHkbSQ.png",
+      "name": {
+        "en": "Turret",
+        "es": "Torreta",
+        "fr": "Tourelle",
+        "it": "Torretta"
+      },
       "info": {
         "en": "EQUIP a Turret. FIRE to deploy a turret that fires at enemies in a 180 degree cone. HOLD EQUIP to recall the deployed turret.",
-        "es": "EQUIPA una torreta. DISPARA para desplegar una torreta que dispara a los enemigos en un cono de 180 grados. MANTÉN PULSADO EQUIPAR para recoger la torreta desplegada."
+        "es": "EQUIPA una torreta. DISPARA para desplegar una torreta que dispara a los enemigos en un cono de 180 grados. MANTÉN PULSADO EQUIPAR para recoger la torreta desplegada.",
+        "fr": "ÉQUIPEZ-vous d'une tourelle. TIREZ pour déployer une tourelle qui tire sur les ennemis dans un cône de 180 degrés. MAINTENEZ LA TOUCHE D'ÉQUIPEMENT pour rappeler la tourelle déployée.",
+        "it": "EQUIPAGGIA una torretta. SPARA per piazzare una torretta che apre il fuoco contro tutti i nemici che entrano nel suo cono visivo da 180°. TIENI PREMUTO EQUIPAGGIA per richiamare la torretta piazzata."
       },
+      "iconUrl": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/blt1a4926627b38cc1a/5f2201490e38240638cd81d2/Copy_of_tx_kj_turret.png",
       "preview": "https://i.imgur.com/LJCabgf.gif",
       "cost": "Reusable"
     },
     {
-      "button": "c",
-      "name": {
-        "en": "NANOSWARM",
-        "es": "NANOENJAMBRE"
+      "button": {
+        "en": "c",
+        "es": "c",
+        "fr": "c",
+        "it": "c"
       },
-      "iconUrl": "https://i.imgur.com/HVrJZbT.png",
+      "name": {
+        "en": "Nanoswarm",
+        "es": "Nanoenjambre",
+        "fr": "Essaim de nanites",
+        "it": "Nanosciame"
+      },
       "info": {
         "en": "EQUIP a Nanoswarm grenade. FIRE to throw the grenade. Upon landing, the Nanoswarm goes covert. ACTIVATE the Nanoswarm to deploy a damaging swarm of nanobots.",
-        "es": "EQUIPA una granada de nanoenjambre. DISPARA para lanzar la granada. Cuando aterriza, la granada enjambre se camufla. ACTIVA el nanoenjambre para desplegar un enjambre de nanobots."
+        "es": "EQUIPA una granada de nanoenjambre. DISPARA para lanzar la granada. Cuando aterriza, la granada enjambre se camufla. ACTIVA el nanoenjambre para desplegar un enjambre de nanobots.",
+        "fr": "ÉQUIPEZ-vous d'une grenade à essaim de nanites. TIREZ pour lancer la grenade. À l'atterrissage, la grenade se camoufle. ACTIVEZ la grenade pour déployer un essaim de nanites.",
+        "it": "EQUIPAGGIA una granata Nanosciame. SPARA per lanciare la granata. All'impatto, il Nanosciame entra in uno stato di occultamento. ATTIVA il Nanosciame per scatenare uno sciame di nanobot che infligge danni."
       },
+      "iconUrl": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/blt4e53712407193852/5f22010d8ff50d070ad2d172/Copy_of_TX_KJ_Bees.png",
       "preview": "https://i.imgur.com/rg87btl.gif",
       "cost": "200 (x2)"
     },
     {
-      "button": "x",
-      "name": {
-        "en": "LOCKDOWN",
-        "es": "BLOQUEO"
+      "button": {
+        "en": "x",
+        "es": "x",
+        "fr": "x",
+        "it": "x"
       },
-      "iconUrl": "https://i.imgur.com/CLpyOPK.png",
+      "name": {
+        "en": "Lockdown",
+        "es": "Bloqueo",
+        "fr": "Confinement",
+        "it": "Dispositivo di blocco"
+      },
       "info": {
         "en": "EQUIP the Lockdown device. FIRE to deploy the device. After a long windup, the device Detains all enemies caught in the radius. The device can be destroyed by enemies.",
-        "es": "EQUIPA el dispositivo de bloqueo. DISPARA para desplegar el dispositivo. Tras un largo periodo de carga, el dispositivo detiene a todos los enemigos que estén dentro del radio de efecto. Los enemigos pueden destruir el dispositivo."
+        "es": "EQUIPA el dispositivo de bloqueo. DISPARA para desplegar el dispositivo. Tras un largo periodo de carga, el dispositivo detiene a todos los enemigos que estén dentro del radio de efecto. Los enemigos pueden destruir el dispositivo.",
+        "fr": "ÉQUIPEZ-vous d'un dispositif de confinement. TIREZ pour déployer le dispositif. Après un long délai d'activation, le dispositif retient tous les ennemis pris dans sa zone d'effet. Le dispositif peut être détruit par les ennemis.",
+        "it": "EQUIPAGGIA il dispositivo di blocco. SPARA per piazzare il dispositivo. Dopo un lungo periodo di attivazione, il dispositivo ostacola tutti i nemici rimasti all'interno del raggio. I nemici possono distruggere il dispositivo."
       },
+      "iconUrl": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/blt1e4113a934e67fa3/5f22018d71ec397ef9bf089e/Copy_of_TX_KJ_Lockdown.png",
       "preview": "https://i.imgur.com/7fiHtro.gif",
       "cost": "••••••• 7 Points"
     }

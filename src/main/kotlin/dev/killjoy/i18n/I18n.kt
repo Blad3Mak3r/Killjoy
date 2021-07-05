@@ -17,6 +17,7 @@ package dev.killjoy.i18n
 
 import dev.killjoy.extensions.jda.supportedLocale
 import dev.killjoy.slash.api.SlashCommandContext
+import io.sentry.Sentry
 import net.dv8tion.jda.api.entities.Guild
 import org.slf4j.LoggerFactory
 import java.lang.IllegalArgumentException
@@ -46,37 +47,48 @@ object I18n {
     }
 
     fun getTranslate(ctx: SlashCommandContext, key: I18nKey, vararg args: Any?): String {
-        return MessageFormat.format(getImpl(ctx.guild.supportedLocale, key.pattern), *args)
+        return getImpl(ctx.guild.supportedLocale, key.pattern, *args)
     }
 
     fun getTranslate(guild: Guild, key: I18nKey, vararg args: Any?): String {
-        return MessageFormat.format(getImpl(guild.supportedLocale, key.pattern), *args)
+        return getImpl(guild.supportedLocale, key.pattern, *args)
     }
 
     fun getTranslate(key: I18nKey, vararg args: Any?): String {
-        return MessageFormat.format(getImpl(DEFAULT_LOCALE, key.pattern), *args)
+        return getImpl(DEFAULT_LOCALE, key.pattern, *args)
     }
 
-    private fun getImpl(locale: Locale, key: String): String {
+    private fun getImpl(locale: Locale, key: String, vararg args: Any?): String {
         return try {
-            generalBundle[locale.language]!!.getString(key)
+            val pattern = generalBundle[locale.language]?.getString(key)
+                ?: generalBundle[DEFAULT_LOCALE.language]?.getString(key)
+                ?: throw I18nException("Key $key is null for ${locale.language} and ${DEFAULT_LOCALE.language}")
+            MessageFormat.format(pattern, *args)
         } catch (ex: Throwable) {
+            logger.error(ex.message, ex)
+            Sentry.captureException(ex)
             "%${key}%"
         }
     }
 
     fun getCommandTranslate(ctx: SlashCommandContext, key: String, vararg args: Any?): String {
-        return MessageFormat.format(getCommandImpl(ctx.guild, key), *args)
+        return getCommandImpl(ctx.guild, key, *args)
     }
 
     fun getCommandTranslate(guild: Guild, key: String, vararg args: Any?): String {
-        return MessageFormat.format(getCommandImpl(guild, key), *args)
+        return getCommandImpl(guild, key, *args)
     }
 
-    private fun getCommandImpl(guild: Guild, key: String): String {
+    private fun getCommandImpl(guild: Guild, key: String, vararg args: Any?): String {
+        val locale = guild.supportedLocale
         return try {
-            commandsBundle[guild.supportedLocale.language]!!.getString(key)
-        } catch (e: Throwable) {
+            val pattern = commandsBundle[locale.language]?.getString(key)
+                ?: commandsBundle[DEFAULT_LOCALE.language]?.getString(key)
+                ?: throw I18nException("Key $key (command) is null for ${locale.language} and ${DEFAULT_LOCALE.language}")
+            MessageFormat.format(pattern, *args)
+        } catch (ex: Throwable) {
+            logger.error(ex.message, ex)
+            Sentry.captureException(ex)
             "{${key}}"
         }
     }
