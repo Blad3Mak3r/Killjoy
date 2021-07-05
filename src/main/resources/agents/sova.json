@@ -2,43 +2,114 @@
   "id": "320B2A48-4D9B-A075-30F1-1F93A9B638FA",
   "number": 4,
   "name": "Sova",
+  "locatedNames": {
+    "en": "Sova",
+    "es": "Sova",
+    "fr": "Sova",
+    "it": "Sova"
+  },
   "api_name": "hunter",
   "origin": ":flag_ru: Russia",
   "avatar": "https://i.imgur.com/SF0eH7j.jpg",
   "role": "Initiator",
-  "bio": "Born from the eternal winter of Russia's tundra, Sova tracks, finds, and eliminates enemies with ruthless efficiency and precision. His custom bow and incredible scouting abilities ensure that even if you run, you cannot hide.",
+  "bio": {
+    "en": "Born from the eternal winter of Russia's tundra, Sova tracks, finds, and eliminates enemies with ruthless efficiency and precision. His custom bow and incredible scouting abilities ensure that even if you run, you cannot hide.",
+    "es": "Nacido en el eterno invierno de la tundra rusa, Sova destaca a la hora de localizar, perseguir y eliminar a los enemigos con una eficiencia y una precisión inclementes. Su arco personalizado junto con su sobrenatural capacidad de rastreamiento hacen que sea imposible escapar.",
+    "fr": "Né dans l'hiver éternel de la toundra russe, Sova traque, trouve et élimine ses ennemis avec une efficacité et une précision redoutables. Ses incroyables talents d'éclaireur et son arc personnalisé lui garantissent que sa cible ne fuira jamais très longtemps.",
+    "it": "Nato tra le nevi perenni della tundra russa, Sova insegue, trova ed elimina i nemici con precisione e spietata efficienza. Il suo arco modificato, combinato alle sue incredibili doti da ricognitore, lo rendono un cacciatore implacabile."
+  },
   "gender": "Male",
   "affiliation": "Valorant Protocol",
   "skills": [
     {
-      "button": "q",
-      "name": "SHOCK BOLT",
-      "iconUrl": "https://i.imgur.com/V1qj3FK.png",
-      "info": "EQUIP a bow with a shock bolt. FIRE to send the explosive forward, detonating upon collision and damaging players nearby. HOLD FIRE to extend the range of the projectile. ALTERNATE FIRE to add up to two bounces to this arrow.",
+      "button": {
+        "en": "q",
+        "es": "q",
+        "fr": "a",
+        "it": "q"
+      },
+      "name": {
+        "en": "Shock Bolt",
+        "es": "Flecha explosiva",
+        "fr": "Électroflèche",
+        "it": "Freccia elettrica"
+      },
+      "info": {
+        "en": "EQUIP a bow with a shock bolt. FIRE to send the explosive forward, detonating upon collision and damaging players nearby. HOLD FIRE to extend the range of the projectile. ALTERNATE FIRE to add up to two bounces to this arrow.",
+        "es": "EQUIPA un arco con una flecha explosiva. DISPARAD para lanzar la flecha explosiva hacia delante. Explotará cuando impacte e infligirá daño a los enemigos cercanos. MANTENED PULSADO para ampliar su alcance. ALTERNAD EL MODO DE DISPARO para añadir hasta dos rebotes a la flecha.",
+        "fr": "ÉQUIPEZ-vous d'un arc et d'une flèche électrique. TIREZ pour décocher la flèche, qui explose à l'impact et blesse les joueurs proches. MAINTENEZ LE TIR pour augmenter la portée du projectile. Utilisez le TIR SECONDAIRE pour ajouter jusqu'à deux rebonds à cette flèche.",
+        "it": "EQUIPAGGIA un arco con una freccia elettrica. SPARA per scoccare il dardo, che esplode al contatto, danneggiando i giocatori vicini. TIENI PREMUTO FUOCO per estendere la gittata della freccia. Usa il FUOCO ALTERNATIVO per aggiungere fino a due rimbalzi a questa freccia."
+      },
+      "iconUrl": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/bltebf4f748f87b2222/5eaf85dc4398082ffe24018f/TX_Sova_Q.png",
       "preview": "https://i.imgur.com/pZVie9S.gif",
       "cost": "150 (x2)"
     },
     {
-      "button": "e",
-      "name": "RECON BOLT",
-      "iconUrl": "https://i.imgur.com/U2rBNgS.png",
-      "info": "EQUIP a bow with a recon bolt. FIRE to send the recon bolt forward, activating upon collision and revealing the location of nearby enemies caught in the line of sight of the bolt. HOLD FIRE to extend the range of the projectile. ALTERNATE FIRE to add up to two bounces to this arrow.",
+      "button": {
+        "en": "e",
+        "es": "e",
+        "fr": "e",
+        "it": "e"
+      },
+      "name": {
+        "en": "Recon Bolt",
+        "es": "Proyectil de reconocimiento",
+        "fr": "Flèche de reconnaissance",
+        "it": "Freccia sonar"
+      },
+      "info": {
+        "en": "EQUIP a bow with a recon bolt. FIRE to send the recon bolt forward, activating upon collision and revealing the location of nearby enemies caught in the line of sight of the bolt. HOLD FIRE to extend the range of the projectile. ALTERNATE FIRE to add up to two bounces to this arrow.",
+        "es": "EQUIPA un arco con un proyectil de reconocimiento. DISPARAD para enviar el proyectil hacia delante. Se activará cuando impacte y revelará la posición de los enemigos que se encuentren en la línea de visión del proyectil. MANTENED PULSADO para ampliar su alcance. ALTERNAD EL MODO DE DISPARO para añadir hasta dos rebotes a la flecha.",
+        "fr": "ÉQUIPEZ-vous d'un arc et d'une flèche de reconnaissance. TIREZ pour décocher la flèche, qui s'active à l'impact et révèle la position des ennemis proches se trouvant dans sa ligne de vue. MAINTENEZ LE TIR pour augmenter la portée du projectile. Utilisez le TIR SECONDAIRE pour ajouter jusqu'à deux rebonds à cette flèche.",
+        "it": "EQUIPAGGIA un arco con una Freccia sonar. SPARA per lanciare la Freccia sonar, che si attiva al contatto e rivela la posizione dei nemici entro il suo raggio visivo. TIENI PREMUTO FUOCO per estendere la gittata della freccia. Usa il FUOCO ALTERNATIVO per aggiungere fino a due rimbalzi a questa freccia."
+      },
+      "iconUrl": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/blt5084114604f20525/5eaf85b108d37e6d82ef74ef/TX_Sova_E.png",
       "preview": "https://i.imgur.com/ZpdJxI3.gif",
       "cost": "35s Cooldown"
     },
     {
-      "button": "c",
-      "name": "OWL DRONE",
-      "iconUrl": "https://i.imgur.com/6uzrbL2.png",
-      "info": "EQUIP an owl drone. FIRE to deploy and take control of movement of the drone. While in control of the drone, FIRE to shoot a marking dart. This dart will reveal the location of any player struck by the dart.",
+      "button": {
+        "en": "c",
+        "es": "c",
+        "fr": "c",
+        "it": "c"
+      },
+      "name": {
+        "en": "Owl Drone",
+        "es": "Dron de reconocimiento",
+        "fr": "Drone rapace",
+        "it": "Drone sorvegliante"
+      },
+      "info": {
+        "en": "EQUIP an owl drone. FIRE to deploy and take control of movement of the drone. While in control of the drone, FIRE to shoot a marking dart. This dart will reveal the location of any player struck by the dart.",
+        "es": "EQUIPA un dron de reconocimiento. DISPARAD para desplegar el dron y controlar su movimiento. Cuando tengáis control del dron, DISPARAD para lanzar un dardo marcador que revelará la ubicación de cualquier jugador alcanzado.",
+        "fr": "ÉQUIPEZ-vous d'un drone rapace. TIREZ pour déployer et prendre le contrôle du drone. Quand vous contrôlez le drone, TIREZ pour envoyer une fléchette de marquage. Cette fléchette révélera la position de tout joueur qu'elle a touché.",
+        "it": "EQUIPAGGIA un drone sorvegliante. SPARA per attivare e controllare i movimenti del drone. Mentre controlli il drone, SPARA per lanciare un dardo tracciante. Questo dardo rivelerà la posizione dei giocatori colpiti."
+      },
+      "iconUrl": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/blt74a6f56b5c37edb5/5eaf85b1f66b2515dea76b26/TX_Sova_C.png",
       "preview": "https://i.imgur.com/0V6jTKr.gif",
       "cost": "400"
     },
     {
-      "button": "x",
-      "name": "HUNTER’S FURY",
-      "iconUrl": "https://i.imgur.com/qiIJ2SM.png",
-      "info": "EQUIP a bow with three long-range wall-piercing energy blasts. FIRE to release an energy blast in a line in front of Sova, dealing damage and revealing the location of enemies caught in the line. This ability can be RE-USED up to two more times while the ability timer is active.",
+      "button": {
+        "en": "x",
+        "es": "x",
+        "fr": "x",
+        "it": "x"
+      },
+      "name": {
+        "en": "Hunter’s Fury",
+        "es": "Furia del cazador",
+        "fr": "Fureur du chasseur",
+        "it": "Furia del cacciatore"
+      },
+      "info": {
+        "en": "EQUIP a bow with three long-range wall-piercing energy blasts. FIRE to release an energy blast in a line in front of Sova, dealing damage and revealing the location of enemies caught in the line. This ability can be RE-USED up to two more times while the ability timer is active.",
+        "es": "EQUIPA un arco con tres proyectiles de energía de largo alcance que atraviesan paredes. DISPARAD para lanzar un proyectil de energía en línea recta frente a Sova que infligirá daño y revelará la posición de los enemigos que se encuentren a su paso. Esta habilidad puede VOLVERSE A USAR hasta dos veces más mientras el temporizador de la habilidad esté activo.",
+        "fr": "ÉQUIPEZ-vous d'un arc et de trois projectiles d'énergie à longue portée capables de traverser les murs. TIREZ pour décocher un projectile d'énergie en ligne droite, qui inflige des dégâts et révèle la position des ennemis touchés. Cette compétence peut être RÉUTILISÉE jusqu'à deux fois de plus tant que la compétence est active.",
+        "it": "EQUIPAGGIA un arco con tre colpi a lunga gittata che perforano i muri. SPARA per rilasciare una scarica di energia davanti a Sova, infliggendo danni e rivelando la posizione dei nemici colpiti nella linea. Questa abilità può essere RIUTILIZZATA fino a due volte mentre il timer dell'abilità è attivo."
+      },
+      "iconUrl": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/blte5515bdb07fabe98/5eaf85b1b8a6356e4ddc1001/TX_Sova_X.png",
       "preview": "https://i.imgur.com/mGvxoOo.gif",
       "cost": "•••••••• 8 Points"
     }

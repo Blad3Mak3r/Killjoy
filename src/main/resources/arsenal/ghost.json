@@ -1,10 +1,18 @@
 {
   "name": "Ghost",
-  "short": "Sleek, silenced, and proficient at any range.",
+  "short": {
+    "en": "Sleek, silenced, and proficient at any range.",
+    "es": "Con silenciador, precias y estupenda a cualquier distancia."
+  },
   "type": "Sidearms",
-  "descriptions": [
-    "The Ghost is accurate and carries a large magazine if you miss. Distant targets require a controlled fire rate. Quickly tap the trigger when you can see the whites of their eyes."
-  ],
+  "descriptions": {
+    "en": [
+      "The Ghost is accurate and carries a large magazine if you miss. Distant targets require a controlled fire rate. Quickly tap the trigger when you can see the whites of their eyes."
+    ],
+    "es": [
+      "La Ghost cuenta también con un amplio cargador por si lo necesitáis. Si el objetivo está lejos, tendréis que controlar la velocidad de disparo. Pulsad el gatillo con rapidez cuando los tengáis cerca."
+    ]
+  },
   "thumbnail": "https://i.imgur.com/xLVFzLz.jpg",
   "cost": 500,
   "magazine": 15,

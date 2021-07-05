@@ -1,10 +1,18 @@
 {
   "name": "Vandal",
-  "short": "This accurate powerhouse is ferocious in small bursts.",
+  "short": {
+    "en": "This accurate powerhouse is ferocious in small bursts.",
+    "es": "Esta precisa y potente arma es temible si se dispara en ráfagas cortas."
+  },
   "type": "Rifles",
-  "descriptions": [
-    "Extended fire results in less stability, however. The Vandal retains high damage over distance and rewards those who focus single shots at a target’s head."
-  ],
+  "descriptions": {
+    "en": [
+      "Extended fire results in less stability, however. The Vandal retains high damage over distance and rewards those who focus single shots at a target’s head."
+    ],
+    "es": [
+      "Sin embargo, va perdiendo estabilidad con el tiempo. El Vandal inflige mucho daño a larga distancia y es ideal para aquellos que se centran en acertar tiros a la cabeza."
+    ]
+  },
   "thumbnail": "https://i.imgur.com/7xNUSPD.jpg",
   "cost": 2900,
   "magazine": 25,

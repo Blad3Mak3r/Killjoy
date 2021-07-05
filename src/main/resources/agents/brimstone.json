@@ -2,43 +2,114 @@
   "id": "9F0D8BA9-4140-B941-57D3-A7AD57C6B417",
   "number": 1,
   "name": "Brimstone",
+  "locatedNames": {
+    "en": "Brimstone",
+    "es": "Brimstone",
+    "fr": "Brimstone",
+    "it": "Brimstone"
+  },
   "api_name": "sarge",
   "origin": ":flag_us: United States",
   "avatar": "https://i.imgur.com/kww9EGa.jpg",
   "role": "Controller",
-  "bio": "Joining from the USA, Brimstone's orbital arsenal ensures his squad always has the advantage. His ability to deliver utility precisely and from a distance make him an unmatched boots-on-the-ground commander.",
+  "bio": {
+    "en": "Joining from the USA, Brimstone's orbital arsenal ensures his squad always has the advantage. His ability to deliver utility precisely and from a distance make him an unmatched boots-on-the-ground commander.",
+    "es": "De origen estadounidense, Brimstone cuenta con un arsenal de órbita que garantiza que su equipo siempre vaya por delante. Su capacidad para proporcionar herramientas de utilidad con precisión y desde la distancia lo convierten en un comandante ejemplar.",
+    "fr": "Tout droit venu des États-Unis d'Amérique, Brimstone possède un arsenal orbital qui permet à son escouade de toujours avoir l'avantage. La précision et la portée de ses compétences utilitaires font de lui un commandant sans égal sur le terrain.",
+    "it": "L'arsenale orbitale dello statunitense Brimstone fa in modo che la sua squadra abbia sempre un vantaggio. La sua capacità di fornire utilità con precisione e sicurezza lo rende un comandante pragmatico e impareggiabile."
+  },
   "gender": "Male",
   "affiliation": "Valorant Protocol",
   "skills": [
     {
-      "button": "q",
-      "name": "INCENDIARY",
+      "button": {
+        "en": "q",
+        "es": "q",
+        "fr": "a",
+        "it": "q"
+      },
+      "name": {
+        "en": "Incendiary",
+        "es": "Incendiario",
+        "fr": "Bombe incendiaire",
+        "it": "Incendiario"
+      },
+      "info": {
+        "en": "EQUIP an incendiary grenade launcher. FIRE to launch a grenade that detonates as it comes to a rest on the floor, creating a lingering fire zone that damages players within the zone.",
+        "es": "EQUIPA un lanzagranadas incendiarias. DISPARAD una granada que detona cuando se detiene en el suelo, lo que genera una zona de fuego persistente que daña a los jugadores que estén en su interior.",
+        "fr": "ÉQUIPEZ-vous d'un lance-grenades incendiaires. TIREZ pour lancer une grenade qui explose lorsqu'elle s'arrête au sol, créant une zone enflammée persistante qui blesse les joueurs.",
+        "it": "EQUIPAGGIA un lanciagranate incendiario. SPARA per lanciare una granata che esplode quando si ferma, creando una zona di fuoco persistente che danneggia i giocatori al suo interno."
+      },
       "iconUrl": "https://i.imgur.com/otkT6QT.png",
-      "info": "EQUIP an incendiary grenade launcher. FIRE to launch a grenade that detonates as it comes to a rest on the floor, creating a lingering fire zone that damages players within the zone.",
       "preview": "https://i.imgur.com/JOwkVkI.gif",
       "cost": "250"
     },
     {
-      "button": "e",
-      "name": "SKY SMOKE",
+      "button": {
+        "en": "e",
+        "es": "e",
+        "fr": "e",
+        "it": "e"
+      },
+      "name": {
+        "en": "Sky Smoke",
+        "es": "Cortina de humo",
+        "fr": "Frappe fumigène",
+        "it": "Cortina fumogena"
+      },
+      "info": {
+        "en": "EQUIP a tactical map. FIRE to set locations where Brimstone’s smoke clouds will land. ALTERNATE FIRE to confirm, launching long-lasting smoke clouds that block vision in the selected area.",
+        "es": "EQUIPA un mapa táctico. DISPARAD para fijar ubicaciones en las que aparecerán nubes de humo de Brimstone. ALTERNAD EL MODO DE DISPARO para confirmar. Esto liberará nubes de humo de larga duración que bloquearán la visión en la zona seleccionada.",
+        "fr": "ÉQUIPEZ-vous d'une carte tactique. TIREZ pour définir les endroits où les nuages de fumée de Brimstone atterriront. Utilisez le TIR SECONDAIRE pour confirmer, ce qui lance des nuages de fumée durables qui bloquent la vision dans la zone sélectionnée.",
+        "it": "EQUIPAGGIA una mappa tattica. SPARA per impostare i punti in cui atterreranno le nuvole di fumo di Brimstone. Usa il FUOCO ALTERNATIVO per confermare e lanciare le nuvole di fumo a lunga durata che bloccano la visione nell'area selezionata."
+      },
       "iconUrl": "https://i.imgur.com/CVJ2sBF.png",
-      "info": "EQUIP a tactical map. FIRE to set locations where Brimstone’s smoke clouds will land. ALTERNATE FIRE to confirm, launching long-lasting smoke clouds that block vision in the selected area.",
       "preview": "https://i.imgur.com/8xPBF35.gif",
       "cost": "100 (x3)"
     },
     {
-      "button": "c",
-      "name": "STIM BEACON",
+      "button": {
+        "en": "c",
+        "es": "c",
+        "fr": "c",
+        "it": "c"
+      },
+      "name": {
+        "en": "Stim Beacon",
+        "es": "Baliza estimulante",
+        "fr": "Balise stimulante",
+        "it": "Energetico"
+      },
+      "info": {
+        "en": "EQUIP a stim beacon. FIRE to toss the stim beacon in front of Brimstone. Upon landing, the stim beacon will create a field that grants players RapidFire.",
+        "es": "EQUIPA una baliza estimulante. DISPARAD para lanzar la baliza estimulante frente a Brimstone. Al aterrizar, la baliza estimulante creará un campo que otorgará Disparo rápido a los jugadores.",
+        "fr": "ÉQUIPEZ-vous d'une balise stimulante. TIREZ pour lancer la balise devant Brimstone. Lorsqu'elle touche le sol, la balise crée un champ qui confère Tir rapide aux joueurs.",
+        "it": "EQUIPAGGIA un Energetico. SPARA per lanciare l'energetico davanti a Brimstone. All'atterraggio, l'energetico crea un'area che conferisce fuoco rapido ai giocatori."
+      },
       "iconUrl": "https://i.imgur.com/AgnF1um.png",
-      "info": "EQUIP a stim beacon. FIRE to toss the stim beacon in front of Brimstone. Upon landing, the stim beacon will create a field that grants players RapidFire.",
       "preview": "https://i.imgur.com/d7P1UEy.gif",
       "cost": "100 (x2)"
     },
     {
-      "button": "x",
-      "name": "ORBITAL STRIKE",
+      "button": {
+        "en": "x",
+        "es": "x",
+        "fr": "x",
+        "it": "x"
+      },
+      "name": {
+        "en": "Orbital Strike",
+        "es": "Golpe orbital",
+        "fr": "Rayon orbital",
+        "it": "Raggio orbitale"
+      },
+      "info": {
+        "en": "EQUIP a tactical map. FIRE to launch a lingering orbital strike laser at the selected location, dealing high damage-over-time to players caught in the selected area.",
+        "es": "EQUIPA un mapa táctico. DISPARAD para lanzar un golpe orbital en la ubicación objetivo con un láser persistente, que provocará un gran daño prolongado a los jugadores que se encuentren en la zona seleccionada.",
+        "fr": "ÉQUIPEZ-vous d'une carte tactique. TIREZ pour ordonner une frappe orbitale persistante à l'endroit sélectionné, ce qui inflige d'importants dégâts sur la durée aux joueurs pris dans la zone.",
+        "it": "EQUIPAGGIA una mappa tattica. SPARA per lanciare un attacco orbitale persistente nel punto selezionato, che infligge ingenti danni nel tempo ai giocatori all'interno dell'area selezionata."
+      },
       "iconUrl": "https://i.imgur.com/eAouY05.png",
-      "info": "EQUIP a tactical map. FIRE to launch a lingering orbital strike laser at the selected location, dealing high damage-over-time to players caught in the selected area.",
       "preview": "https://i.imgur.com/8xPBF35.gif",
       "cost": "••••••• 7 Points"
     }

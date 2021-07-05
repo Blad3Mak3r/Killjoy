@@ -1,10 +1,18 @@
 {
   "name": "Guardian",
-  "short": "Shines in the hands of a patient shooter.",
+  "short": {
+    "en": "Shines in the hands of a patient shooter.",
+    "es": "Brilla en manos de los asesinos más pacientes."
+  },
   "type": "Rifles",
-  "descriptions": [
-    "The designated marksman rifle. Heavier and less mobile relative to other rifles but precise and powerful. Headhunt when enemies appear at medium to long distances."
-  ],
+  "descriptions": {
+    "en": [
+      "The designated marksman rifle. Heavier and less mobile relative to other rifles but precise and powerful. Headhunt when enemies appear at medium to long distances."
+    ],
+    "es": [
+      "Es el rifle para tiradores por excelencia. Es más pesado y cuenta con menos movilidad que los demás, pero también preciso y potente. Perfecto para cazar cabezas a larga y media distancia."
+    ]
+  },
   "thumbnail": "https://i.imgur.com/nT12CWl.jpg",
   "cost": 2400,
   "magazine": 12,

@@ -1,6 +1,9 @@
 {
   "name": "ascent",
-  "description": "An open playground for small wars of position and attrition divide two sites on Ascent. Each site can be fortified by irreversible bomb doors; once they’re down, you’ll have to destroy them or find another way. Yield as little territory as possible.",
+  "description": {
+    "en": "An open playground for small wars of position and attrition divide two sites on Ascent. Each site can be fortified by irreversible bomb doors; once they’re down, you’ll have to destroy them or find another way. Yield as little territory as possible.",
+    "es": "Un patio abierto para pequeños combates de posicionamiento y desgaste divide las dos ubicaciones de Ascent. Cada una de ellas puede fortificarse con unas puertas a prueba de bombas. Tendréis que destruirlas o buscar otro camino. La cuestión es no ceder ni un centímetro."
+  },
   "minimap": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/blt47bef6aa9e43d8ec/5ecd64df96a8996de38bbf8f/ascent-minimap-2.jpg",
   "image_url": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/blt9e24fe356d0faf81/5eabe9c497c0a55d71b7fceb/ascent2.jpg"
 }

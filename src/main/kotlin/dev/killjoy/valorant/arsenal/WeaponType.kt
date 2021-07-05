@@ -13,29 +13,24 @@
  * See the License for the specific language governing permissions and limitations under the License.
  ******************************************************************************/
 
-package dev.killjoy.valorant
+package dev.killjoy.valorant.arsenal
 
-import dev.killjoy.extensions.jda.setDefaultColor
-import net.dv8tion.jda.api.EmbedBuilder
-import net.dv8tion.jda.api.entities.MessageEmbed
+import dev.killjoy.i18n.I18nKey
 
-class AgentAbility(
-    val agent: ValorantAgent,
-    val skill: ValorantAgent.Skill
+enum class WeaponType(
+    val i18nKey: I18nKey
 ) {
+    Smgs(I18nKey.ARSENAL_TYPE_SMGS),
+    Rifles(I18nKey.ARSENAL_TYPE_RIFLES),
+    Shotguns(I18nKey.ARSENAL_TYPE_SHOTGUNS),
+    Snipers(I18nKey.ARSENAL_TYPE_SNIPERS),
+    Melee(I18nKey.ARSENAL_TYPE_MELEE),
+    Heavies(I18nKey.ARSENAL_TYPE_HEAVIES),
+    Sidearms(I18nKey.ARSENAL_TYPE_SIDEARMS);
 
-    fun asEmbed(): MessageEmbed {
-        return EmbedBuilder().run {
-            setAuthor(agent.name, null, agent.avatar)
-            setTitle(skill.name)
-            setDescription(skill.info)
-            setThumbnail(skill.iconUrl)
-            setImage(skill.preview)
-            addField("Action Button", "`${skill.button.name}`", true)
-            addField("Usage Cost", "`${skill.cost}`", true)
-            setDefaultColor()
-            build()
+    companion object {
+        fun of(str: String): WeaponType {
+            return values().find { it.name.equals(str, true) } ?: throw IllegalArgumentException("$str is not a valid type name.")
         }
     }
-
 }

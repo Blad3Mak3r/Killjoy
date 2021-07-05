@@ -12,16 +12,16 @@ plugins {
     idea
 }
 
-val jdaVersion = "4.3.0_283"
+val jdaVersion = "4.3.0_289"
 val exposedVersion = "0.32.1"
-val ktorVersion = "1.6.0"
+val ktorVersion = "1.6.1"
 val coroutinesVersion = "1.5.0-native-mt"
 val logbackVersion = "1.2.3"
 val prometheusVersion = "0.11.0"
 val sentryVersion = "5.0.1"
 
 group = "dev.killjoy"
-val versionObj = Version(0, 12, 5)
+val versionObj = Version(0, 13, 2)
 version = versionObj.build()
 
 repositories {
@@ -132,19 +132,7 @@ class Version(
         else "$major.$minor.$revision"
     }
 
-    fun build(): String {
-        val build = getBuildCI()
-        val commit = gitRevision()
-        var finalVersion = getVersion()
-
-        if (build != null || commit != null) finalVersion += "_"
-
-        if (build != null && commit != null) finalVersion += "$build+$commit"
-        else if (build != null && commit == null) finalVersion += "$build"
-        else if (build == null && commit != null) finalVersion += "$commit"
-
-        return finalVersion
-    }
+    fun build(): String = getVersion()
 }
 
 fun getBuildCI(): String? {

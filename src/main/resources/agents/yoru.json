@@ -2,43 +2,114 @@
   "id": "7F94D92C-4234-0A36-9646-3A87EB8B5C89",
   "number": 14,
   "name": "Yoru",
+  "locatedNames": {
+    "en": "Yoru",
+    "es": "Yoru",
+    "fr": "Yoru",
+    "it": "Yoru"
+  },
   "api_name": "stealth",
   "origin": ":flag_jp: Japan",
   "avatar": "https://i.imgur.com/ervI0dM.jpg",
   "role": "Duelist",
-  "bio": "Japanese native Yoru rips holes straight through reality to infiltrate enemy lines unseen. Using deception and aggression in equal measure, he gets the drop on each target before they know where to look.",
+  "bio": {
+    "en": "Japanese native, Yoru, rips holes straight through reality to infiltrate enemy lines unseen. Using deception and aggression in equal measure, he gets the drop on each target before they know where to look.",
+    "es": "Yoru, nacido en Japón, abre agujeros en el tejido de la realidad para infiltrarse tras las líneas enemigas sin ser visto. Utiliza el engaño y la agresividad por igual para acabar con sus objetivos antes de que sepan qué ha pasado.",
+    "fr": "Le Japonais Yoru perce des trous dans la réalité pour s'infiltrer derrière les lignes ennemies sans se faire repérer. En faisant preuve d'autant de ruse que d'agressivité, il prend ses cibles par surprise avant qu'elles n'aient le temps de se retourner.",
+    "it": "Yoru arriva dal Giappone per aprire squarci nella realtà e infiltrarsi furtivamente dietro le linee nemiche. Usando un mix di aggressività e sotterfugi, riesce ad avere la meglio su qualsiasi bersaglio prima ancora che si accorga della sua presenza."
+  },
   "gender": "Male",
   "affiliation": "Valorant Protocol",
   "skills": [
     {
-      "button": "q",
-      "name": "BLINDSIDE",
-      "iconUrl": "https://i.imgur.com/ewDaXpP.png",
-      "info": "EQUIP to rip an unstable dimensional fragment from reality. FIRE to throw the fragment, activating a flash that winds up once it collides with a hard surface in world.",
+      "button": {
+        "en": "q",
+        "es": "q",
+        "fr": "a",
+        "it": "q"
+      },
+      "name": {
+        "en": "Blindside",
+        "es": "PUNTO CIEGO",
+        "fr": "ANGLE MORT",
+        "it": "OFFUSCAMENTO"
+      },
+      "info": {
+        "en": "EQUIP to rip an unstable dimensional fragment from reality. FIRE to throw the fragment, activating a flash that winds up once it collides with a hard surface in the world",
+        "es": "EQUIPA para arrancar un fragmento dimensional inestable de la realidad. DISPARA para lanzar el fragmento, lo que activa un destello que se carga al impactar contra una superficie sólida.",
+        "fr": "ÉQUIPEZ-vous d'un fragment dimensionnel instable arraché à la réalité. TIREZ pour lancer le fragment, qui provoquera un éclat aveuglant peu après avoir touché une surface dure",
+        "it": "EQUIPAGGIA per strappare un frammento dimensionale instabile dalla realtà. SPARA per lanciare il frammento, attivando un lampo che si innesca dopo essere rimbalzato su una superficie."
+      },
+      "iconUrl": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/blt54759b7874fbd40c/5ff5681bb47cdf7fc7d6c3e6/Yoru_Anility_Icons_512x512_Q.png",
       "preview": "https://i.imgur.com/AJSx3L7.gif",
       "cost": "250 (x2)"
     },
     {
-      "button": "e",
-      "name": "GATECRASH",
-      "iconUrl": "https://i.imgur.com/B9whdpz.png",
-      "info": "EQUIP to harness a rift tether FIRE to send the tether out moving forward ALT FIRE to place a tether in place ACTIVATE to teleport to the tether's location.",
+      "button": {
+        "en": "e",
+        "es": "e",
+        "fr": "e",
+        "it": "e"
+      },
+      "name": {
+        "en": "Gatecrash",
+        "es": "INFILTRACIÓN",
+        "fr": "VISITE SURPRISE",
+        "it": "INFILTRAZIONE"
+      },
+      "info": {
+        "en": "EQUIP to harness a rift tether FIRE to send the tether out moving forward ALT FIRE to place a tether in place ACTIVATE to teleport to the tether's location",
+        "es": "EQUIPA para preparar un vínculo de grietas. DISPARA para lanzarlo hacia delante. ALTERNA el modo de disparo para colocarlo en el sitio. ACTIVA para teleportarte a la ubicación del vínculo.",
+        "fr": "ÉQUIPEZ-vous d'une balise dimensionnelle. TIREZ pour envoyer la balise vers l'avant. Utilisez le TIR SECONDAIRE pour poser la balise devant vous. ACTIVEZ la balise pour vous y téléporter.",
+        "it": "EQUIPAGGIA per imbrigliare una faglia dimensionale. SPARA per mandare in avanti la faglia. Usa il FUOCO ALTERNATIVO per piazzare la faglia in un punto. ATTIVA per teletrasportarti nella posizione della faglia."
+      },
+      "iconUrl": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/blt5427236bf8a82b05/5ff5685e1166ce7d2ed1bd5d/yoru_ability_icons_52x512_E.png",
       "preview": "https://i.imgur.com/QRzktKZ.gif",
       "cost": "35s Cooldown"
     },
     {
-      "button": "c",
-      "name": "FAKEOUT",
-      "iconUrl": "https://i.imgur.com/PZfcIRv.png",
-      "info": "EQUIP an echo that mimics footsteps when activated FIRE to activate and send the echo forward ALT FIRE to place an echo in place USE the inactive echo to send it forward.",
+      "button": {
+        "en": "c",
+        "es": "c",
+        "fr": "c",
+        "it": "c"
+      },
+      "name": {
+        "en": "Fakeout",
+        "es": "ENGAÑO",
+        "fr": "FEINTE",
+        "it": "INGANNO"
+      },
+      "info": {
+        "en": "EQUIP an echo that mimics footsteps when activated FIRE to activate and send the echo forward ALT FIRE to place an echo in place USE the inactive echo to send it forward",
+        "es": "EQUIPA un eco que imita el sonido de pisadas cuando se activa. DISPARA para activarlo y enviarlo hacia delante. ALTERNA el modo de disparo para colocar el eco en el sitio. UTILIZA el eco inactivo para enviarlo hacia delante.",
+        "fr": "ÉQUIPEZ-vous d'un écho qui imite vos bruits de pas une fois activé. TIREZ pour activer et envoyer l'écho vers l'avant. Utilisez le TIR SECONDAIRE pour poser l'écho devant vous sans l'activer. UTILISEZ un écho inactif pour l'envoyer vers l'avant.",
+        "it": "EQUIPAGGIA un'eco che imita il suono dei passi all'attivazione. SPARA per attivare e mandare in avanti l'eco. Usa il FUOCO ALTERNATIVO per piazzare l'eco in un punto. USA l'eco inattiva per mandarla in avanti."
+      },
+      "iconUrl": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/blt3ffa0e1858916cb8/5ff5689602fd0c7d345f45df/Yoru_Anility_Icons_512x512_C.png",
       "preview": "https://i.imgur.com/QLSCDmh.gif",
       "cost": "100 (x2)"
     },
     {
-      "button": "x",
-      "name": "DIMENSIONAL DRIFT",
-      "iconUrl": "https://i.imgur.com/N7V6okx.png",
-      "info": "EQUIP a mask that can see between dimensions FIRE to drift into Yoru's dimension, unable to be affected or seen by enemies from the outside.",
+      "button": {
+        "en": "x",
+        "es": "x",
+        "fr": "x",
+        "it": "x"
+      },
+      "name": {
+        "en": "Dimensional Drift",
+        "es": "VIAJE INTERDIMENSIONAL",
+        "fr": "TRANSFERT DIMENSIONNEL",
+        "it": "FENDITURA DIMENSIONALE"
+      },
+      "info": {
+        "en": "EQUIP a mask that can see between dimensions. FIRE to drift into Yoru's dimension, unable to be affected or seen by enemies from the outside",
+        "es": "EQUIPA una máscara que te permite ver entre dimensiones. DISPARA para adentrarte en la dimensión de Yoru. Los enemigos que estén fuera no podrán verte ni hacerte daño.",
+        "fr": "ÉQUIPEZ-vous d'un masque qui permet de voir entre les dimensions. TIREZ pour passer dans la dimension de Yoru. Les ennemis hors de la zone ne peuvent ni vous voir ni vous affecter.",
+        "it": "EQUIPAGGIA una maschera che può vedere tra le dimensioni. SPARA per scivolare nella dimensione di Yoru, in cui non può essere toccato o avvistato dai nemici all'esterno."
+      },
+      "iconUrl": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/bltceb6f71853fa7be7/5ff568b3396e65084a9e8c7c/Yoru_Anility_Icons_512x512_X.png",
       "preview": "https://i.imgur.com/f5bocHi.gif",
       "cost": "•••••• 6 Points"
     }

@@ -34,7 +34,7 @@ import java.util.concurrent.TimeUnit
 
 object RiotAPI {
 
-    const val CURRENT_ACT_ID = "52e9749a-429b-7060-99fe-4595426a0cf7"   // Episode 2 (Act 3)
+    const val CURRENT_ACT_ID = "2a27e5d2-4d30-c9e2-b15a-93b8909a442c"   // Episode 2 (Act 1) TODO(Waiting for valorant fix)
     private val LOGGER = LoggerFactory.getLogger(RiotAPI::class.java)
 
     object LeaderboardsAPI {

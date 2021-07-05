@@ -15,10 +15,13 @@
 
 package dev.killjoy.apis.news
 
+import dev.killjoy.i18n.i18nCommand
 import dev.killjoy.utils.ParseUtils
 import kong.unirest.json.JSONObject
+import net.dv8tion.jda.api.entities.Guild
 import net.dv8tion.jda.api.entities.MessageEmbed
 import org.slf4j.LoggerFactory
+import java.text.MessageFormat
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -32,16 +35,16 @@ data class ValorantNew(
     val image: String
 ) {
 
-    fun asEmbedField(): MessageEmbed.Field {
+    fun asEmbedField(guild: Guild): MessageEmbed.Field {
         return MessageEmbed.Field(
             title,
-            fieldPattern.format(description, url, date),
+            MessageFormat.format(getFieldPattern(guild), description, url, date),
             false
         )
     }
 
     companion object {
-        private const val fieldPattern = "%s\n[` Read more... `](%s) | ` Posted on %s `"
+        private fun getFieldPattern(guild: Guild) = guild.i18nCommand("news.fieldPattern")
         private val inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ENGLISH)
         private val outputFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy", Locale.ENGLISH)
         private val logger = LoggerFactory.getLogger(ValorantNew::class.java)
@@ -51,7 +54,7 @@ data class ValorantNew(
             return outputFormatter.format(formatted)
         }
 
-        fun buildFromExperimentalApi(json: JSONObject): ValorantNew? {
+        fun buildFromExperimentalApi(localePath: String, json: JSONObject): ValorantNew? {
             try {
                 val title = json.getString("title")
                 val description = json.getString("description")
@@ -63,7 +66,7 @@ data class ValorantNew(
 
                 return ValorantNew(
                     title = title,
-                    url = externalLink ?: "https://playvalorant.com/en-us$url",
+                    url = externalLink ?: "https://playvalorant.com/$localePath$url",
                     date = formatDate(json.getString("date")),
                     description = description,
                     image = banner

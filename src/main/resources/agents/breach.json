@@ -2,43 +2,114 @@
   "id": "5F8D3A7F-467B-97F3-062C-13ACF203C006",
   "number": 9,
   "name": "Breach",
+  "locatedNames": {
+    "en": "Breach",
+    "es": "Breach",
+    "fr": "Breach",
+    "it": "Breach"
+  },
   "api_name": "breach",
   "origin": ":flag_se: Sweden",
   "avatar": "https://i.imgur.com/J4tVCo5.jpg",
   "role": "Initiator",
-  "bio": "Breach, the bionic Swede, fires powerful, targeted kinetic blasts to aggressively clear a path through enemy ground. The damage and disruption he inflicts ensures no fight is ever fair.",
+  "bio": {
+    "en": "Breach, the bionic Swede, fires powerful, targeted kinetic blasts to aggressively clear a path through enemy ground. The damage and disruption he inflicts ensures no fight is ever fair.",
+    "es": "Breach, el sueco biónico, dispara una serie de explosiones cinéticas controladas para abrirse paso por el territorio enemigo. Su capacidad para infligir daño y sembrar el caos garantiza que los combates siempre estén de su parte.",
+    "fr": "Breach, le Suédois bionique, tire de puissantes décharges cinétiques pour ouvrir un chemin en territoire ennemi. Grâce aux dégâts et aux diversions ainsi provoqués, aucun combat n'est jamais en sa défaveur.",
+    "it": "Breach, lo svedese bionico, spara potenti scariche cinetiche mirate per aprire un varco in modo aggressivo in territorio nemico. I danni e la distruzione che infligge conferiscono un enorme vantaggio in ogni scontro."
+  },
   "gender": "Male",
   "affiliation": "Valorant Protocol",
   "skills": [
     {
-      "button": "q",
-      "name": "FLASHPOINT",
+      "button": {
+        "en": "q",
+        "es": "q",
+        "fr": "a",
+        "it": "q"
+      },
+      "name": {
+        "en": "Flashpoint",
+        "es": "Explosión cegadora",
+        "fr": "Point d'ignition",
+        "it": "Esplosione abbagliante"
+      },
+      "info": {
+        "en": "EQUIP a blinding charge. FIRE the charge to set  fast-acting burst through the wall. The charge detonates to blind all players looking at it.",
+        "es": "EQUIPA una carga explosiva cegadora. DISPARAD la carga para liberar una rápida explosión que atraviesa la pared. Cuando detona, la carga ciega a todos los jugadores que la estén mirando.",
+        "fr": "ÉQUIPEZ-vous d'une charge aveuglante. TIREZ pour provoquer une explosion rapide à travers le mur. La charge explose en aveuglant tous les joueurs qui la regardent.",
+        "it": "EQUIPAGGIA una carica abbagliante. SPARA per innescare un'esplosione che si propaga rapidamente attraverso il muro. La carica esplode accecando tutti i giocatori che la guardano."
+      },
       "iconUrl": "https://i.imgur.com/hrBpskk.png",
-      "info": "EQUIP a blinding charge. FIRE the charge to set fast-acting burst through the wall. The charge detonates to blind all players looking at it.",
       "preview": "https://i.imgur.com/uWDrgP4.gif",
       "cost": "250 (x2)"
     },
     {
-      "button": "e",
-      "name": "FAULT LINE",
+      "button": {
+        "en": "e",
+        "es": "e",
+        "fr": "e",
+        "it": "e"
+      },
+      "name": {
+        "en": "Fault Line",
+        "es": "Falla",
+        "fr": "Ligne de fracture",
+        "it": "Fenditura"
+      },
+      "info": {
+        "en": "EQUIP a seismic blast. HOLD FIRE to increase the distance. RELEASE to set off the quake, dazing all players in its zone and in a line up to the zone.",
+        "es": "EQUIPA una bomba sísmica. MANTENED PULSADO DISPARAR para aumentar la distancia. SOLTAD para liberar un seísmo que aturdirá a todos los jugadores dentro de la zona y en una línea hasta ella.",
+        "fr": "ÉQUIPEZ-vous d'un explosif sismique. MAINTENEZ LE TIR pour augmenter la distance. RELÂCHEZ pour provoquer un séisme qui désoriente tous les joueurs dans la zone et sur une ligne menant à la zone.",
+        "it": "EQUIPAGGIA una carica sismica. TIENI PREMUTO IL PULSANTE DI FUOCO per aumentare la distanza. RILASCIA per innescare il terremoto, stordendo tutti i giocatori nel raggio d'azione e in linea retta fino all'epicentro."
+      },
       "iconUrl": "https://i.imgur.com/X43pgOy.png",
-      "info": "EQUIP a seismic blast. HOLD FIRE to increase the distance. RELEASE to set off the quake, dazing all players in its zone and in a line up to the zone.",
       "preview": "https://i.imgur.com/mIFpQyW.gif",
       "cost": "35s Cooldown"
     },
     {
-      "button": "c",
-      "name": "AFTERSHOCK",
+      "button": {
+        "en": "c",
+        "es": "c",
+        "fr": "c",
+        "it": "c"
+      },
+      "name": {
+        "en": "Aftershock",
+        "es": "Réplica",
+        "fr": "Réplique",
+        "it": "Scossa di assestamento"
+      },
+      "info": {
+        "en": "EQUIP a fusion charge. FIRE the charge to set a slow-acting burst through the wall. The burst does heavy damage to anyone caught in its area.",
+        "es": "EQUIPA una carga explosiva de fusión. DISPARAD la carga para liberar una explosión que atraviesa la pared tras un retardo. La explosión inflige mucho daño a cualquiera que esté dentro del área afectada.",
+        "fr": "ÉQUIPEZ-vous d'une charge à fusion. TIREZ pour provoquer une explosion lente à travers le mur. L'explosion inflige d'importants dégâts à tous ceux dans la zone.",
+        "it": "EQUIPAGGIA una carica a fusione. SPARA per innescare un'esplosione che si propaga lentamente attraverso il muro. L'esplosione infligge danni ingenti a chiunque si trovi nel relativo raggio d'azione."
+      },
       "iconUrl": "https://i.imgur.com/xkDbjyM.png",
-      "info": "EQUIP a fusion charge. FIRE the charge to set a slow-acting burst through the wall. The burst does heavy damage to anyone caught in its area.",
       "preview": "https://i.imgur.com/ZnTMU2s.gif",
       "cost": "200"
     },
     {
-      "button": "x",
-      "name": "ROLLING THUNDER",
+      "button": {
+        "en": "x",
+        "es": "x",
+        "fr": "x",
+        "it": "x"
+      },
+      "name": {
+        "en": "Rolling Thunder",
+        "es": "Fragor imparable",
+        "fr": "Onde sismique",
+        "it": "Esplosione sismica"
+      },
+      "info": {
+        "en": "EQUIP a seismic charge. FIRE to send a cascading quake through all terrain in a large cone. The quake dazes and knocks up anyone caught in it.",
+        "es": "EQUIPA una carga explosiva sísmica. DISPARAD para liberar un seísmo que se extenderá por una gran zona en forma de cono. El seísmo aturde y lanza por los aires a todos los jugadores que estén en el interior de la zona.",
+        "fr": "ÉQUIPEZ-vous d'une charge sismique. TIREZ pour envoyer un séisme déferlant à travers tous les obstacles dans une large zone conique. Le séisme désoriente et projette en l'air tous ceux qu'il touche.",
+        "it": "EQUIPAGGIA una carica sismica. SPARA per innescare un terremoto a cascata che si propaga lungo tutto il terreno in un'ampia area a cono. Il terremoto stordisce e scaglia in aria chiunque venga travolto."
+      },
       "iconUrl": "https://i.imgur.com/kLonqor.png",
-      "info": "EQUIP a seismic charge. FIRE to send a cascading quake through all terrain in a large cone. The quake dazes and knocks up anyone caught in it.",
       "preview": "https://i.imgur.com/YQauYNU.gif",
       "cost": "••••••• 7 Points"
     }

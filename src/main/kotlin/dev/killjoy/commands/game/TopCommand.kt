@@ -22,6 +22,7 @@ import dev.killjoy.framework.CommandContext
 import dev.killjoy.framework.abs.Command
 import dev.killjoy.framework.annotations.CommandArgument
 import dev.killjoy.framework.annotations.CommandProperties
+import dev.killjoy.i18n.i18nCommand
 import dev.killjoy.utils.Emojis
 import java.time.Instant
 
@@ -38,22 +39,20 @@ class TopCommand : Command() {
         val arg = ctx.args.first().uppercase()
 
         val region = Region.values().firstOrNull { it.name.equals(arg, true) }
-            ?: return ctx.reply(Emojis.NoEntry, "` $arg ` is not a valid region. Valid regions: ${Region.values().joinToString(", ") { "**${it.name}**"}}").queue()
+            ?: return ctx.reply(Emojis.NoEntry, ctx.guild.i18nCommand("top.notValidRegion", arg, Region.asListed)).queue()
 
         val playersList = RiotAPI.LeaderboardsAPI.getCurrentTop20(region)
         val players = playersList.players.take(10)
 
         ctx.replyEmbed {
-            setTitle("Current Top ${players.size} players of $region)")
+            setTitle(ctx.guild.i18nCommand("top.header", region, players.size))
             setThumbnail("https://i.imgur.com/G6wcDZB.png")
             for (player in players) {
-                addField("` Top ${player.leaderboardRank} ` ${player.fullNameTag}", buildString {
-                    appendLine("**Wins**: ${player.numberOfWins}")
-                    appendLine("**Rating**: ${player.rankedRating}")
-                }, false)
+                val content = ctx.guild.i18nCommand("top.content", player.rankedRating, player.numberOfWins)
+                addField("` ${player.leaderboardRank} ` ${player.fullNameTag}", content, false)
             }
             setTimestamp(Instant.ofEpochMilli(playersList.updatedAt))
-            setFooter("Episode 2 Act 3 | Updated at")
+            setFooter(ctx.guild.i18nCommand("top.footer", 3, 1))
         }.queue()
     }
 

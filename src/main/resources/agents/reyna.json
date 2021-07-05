@@ -2,43 +2,114 @@
   "id": "A3BFB853-43B2-7238-A4F1-AD90E9E46BCC",
   "number": 7,
   "name": "Reyna",
+  "locatedNames": {
+    "en": "Reyna",
+    "es": "Reyna",
+    "fr": "Reyna",
+    "it": "Reyna"
+  },
   "api_name": "vampire",
   "origin": ":flag_mx: México",
   "avatar": "https://i.imgur.com/TtvIYa9.jpg",
   "role": "Duelist",
-  "bio": "Forged in the heart of Mexico, Reyna dominates single combat, popping off with each kill she scores. Her capability is only limited by her raw skill, making her highly dependent on performance.",
+  "bio": {
+    "en": "Forged in the heart of Mexico, Reyna dominates single combat, popping off with each kill she scores. Her capability is only limited by her raw skill, making her highly dependent on performance.",
+    "es": "Desde el corazón de México, Reyna llega para dominar los combates uno contra uno y cada asesinato que consigue la hace más fuerte. Su potencial es prácticamente infinito, y la destreza individual es el único factor determinante de su éxito.",
+    "fr": "Originaire du cœur du Mexique, Reyna est une experte des combats singuliers qui se renforce à chaque élimination qu'elle réussit. Son efficacité n'est limitée que par son habileté, ce qui la rend très dépendante de ses propres performances.",
+    "it": "Cresciuta nel cuore del Messico, Reyna domina i combattimenti in singolo e diventa più potente a ogni uccisione. L'unico limite alle sue capacità è la sua abilità, che la rende fortemente dipendente dalle proprie prestazioni."
+  },
   "gender": "Female",
   "affiliation": "Valorant Protocol",
   "skills": [
     {
-      "button": "q",
-      "name": "DEVOUR",
-      "iconUrl": "https://i.imgur.com/NNoIolp.png",
-      "info": "Enemies killed by Reyna leave behind Soul Orbs that last 3 seconds. INSTANTLY consume a nearby soul orb, rapidly healing for a short duration. Health gained through this skill exceeding 100 will decay over time. If EMPRESS is active, this skill will automatically cast and not consume the orb.",
+      "button": {
+        "en": "q",
+        "es": "q",
+        "fr": "a",
+        "it": "q"
+      },
+      "name": {
+        "en": "Devour",
+        "es": "Devorar",
+        "fr": "Dévoration",
+        "it": "Divorare"
+      },
+      "info": {
+        "en": "Enemies killed by Reyna leave behind Soul Orbs that last 3 seconds. INSTANTLY consume a nearby soul orb, rapidly healing for a short duration. Health gained through this skill exceeding 100 will decay over time. If EMPRESS is active, this skill will automatically cast and not consume the orb.",
+        "es": "Los enemigos asesinados por Reyna dejan tras de sí orbes de alma que duran 3 segundos. Consume INSTANTÁNEAMENTE un orbe de alma cercano y se cura durante un breve periodo. Si se obtienen más de 100 puntos de vida con esta habilidad, la cantidad adicional se irá perdiendo con el tiempo. Si EMPERATRIZ está activa, esta habilidad se lanzará de forma automática y no consumirá el orbe.",
+        "fr": "Les ennemis tués par Reyna laissent des orbes d'âme qui durent 3 sec. Vous consommez INSTANTANÉMENT un orbe d'âme proche pour rapidement regagner des PV pendant un court instant. Au-delà de 100 PV, les PV ainsi gagnés sont perdus progressivement. Si IMPÉRATRICE est active, cette compétence se lancera automatiquement et ne consommera pas d'orbe.",
+        "it": "I nemici uccisi da Reyna lasciano sfere dell'anima che durano 3 secondi. PREMI il comando dell'abilità per consumare ALL'ISTANTE una sfera dell'anima nelle vicinanze, curandoti rapidamente per una breve durata. Se dopo aver utilizzato l'abilità la salute supera 100, la parte in eccesso decrescerà nel tempo. Se IMPERATRICE è attiva, questa abilità verrà lanciata automaticamente senza consumare la sfera dell'anima."
+      },
+      "iconUrl": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/bltf10078de1865cc3a/5eb7cf1e241e5e628430676c/TX_Reyna_Q.png",
       "preview": "https://i.imgur.com/XfLWcy5.gif",
       "cost": "200"
     },
     {
-      "button": "e",
-      "name": "DISMISS",
-      "iconUrl": "https://i.imgur.com/mSXrrG6.png",
-      "info": "INSTANTLY consume a nearby soul orb, becoming intangible for a short duration. If EMPRESS is active, also become invisible.",
+      "button": {
+        "en": "e",
+        "es": "e",
+        "fr": "e",
+        "it": "e"
+      },
+      "name": {
+        "en": "Dismiss",
+        "es": "Despreciar",
+        "fr": "Rebuffade",
+        "it": "Negazione"
+      },
+      "info": {
+        "en": "INSTANTLY consume a nearby soul orb, becoming intangible for a short duration. If EMPRESS is active, also become invisible.",
+        "es": "Consume INSTANTÁNEAMENTE un orbe de alma cercano y se vuelve intangible durante un breve periodo. Si EMPERATRIZ está activa, se vuelve invisible también.",
+        "fr": "Vous consommez INSTANTANÉMENT un orbe d'âme proche et devenez intangible pendant un court instant. Si IMPÉRATRICE est active, vous devenez également invisible.",
+        "it": "Consumi ALL'ISTANTE una sfera dell'anima nelle vicinanze, diventando intangibile per una breve durata. Se IMPERATRICE è attiva, diventi anche invisibile."
+      },
+      "iconUrl": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/blt7f61a763092dca17/5eb7cf1e7e251a2d4a46fdb3/TX_Reyna_E.png",
       "preview": "https://i.imgur.com/PmV0hG6.gif",
       "cost": "200"
     },
     {
-      "button": "c",
-      "name": "LEER",
-      "iconUrl": "https://i.imgur.com/hFvNOek.png",
-      "info": "EQUIP an ethereal destructible eye. ACTIVATE to cast the eye a short distance forward. The eye will Nearsight all enemies who look at it.",
+      "button": {
+        "en": "c",
+        "es": "c",
+        "fr": "c",
+        "it": "c"
+      },
+      "name": {
+        "en": "Leer",
+        "es": "Mirada lasciva",
+        "fr": "Œillade",
+        "it": "Malizia"
+      },
+      "info": {
+        "en": "EQUIP an ethereal destructible eye. ACTIVATE to cast the eye a short distance forward. The eye will Nearsight all enemies who look at it.",
+        "es": "EQUIPA un ojo etéreo e indestructible. ACTIVADLA para lanzar el ojo hacia delante una corta distancia. El ojo limitará la visión de todos los enemigos que lo miren.",
+        "fr": "ÉQUIPEZ-vous d'un œil éthéré destructible. ACTIVEZ pour lancer l'œil vers l'avant sur une courte distance. L'œil rend myopes tous les ennemis qui le regardent.",
+        "it": "EQUIPAGGIA un occhio etereo e distruttibile. ATTIVA per lanciare l'occhio davanti a te per una breve distanza. L'occhio accecherà tutti i nemici che lo guardano."
+      },
+      "iconUrl": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/blt1df6153d75480d43/5eb7cf1e8682422a765fc997/TX_Reyna_C.png",
       "preview": "https://i.imgur.com/Iffduae.gif",
       "cost": "250 (x2)"
     },
     {
-      "button": "x",
-      "name": "EMPRESS",
-      "iconUrl": "https://i.imgur.com/vcM6tND.png",
-      "info": "INSTANTLY enter a frenzy, increasing firing speed, equip and reload speed dramatically. Scoring a kill renews the duration.",
+      "button": {
+        "en": "x",
+        "es": "x",
+        "fr": "x",
+        "it": "x"
+      },
+      "name": {
+        "en": "Empress",
+        "es": "Emperatriz",
+        "fr": "Impératrice",
+        "it": "Imperatrice"
+      },
+      "info": {
+        "en": "INSTANTLY enter a frenzy, increasing firing speed, equip and reload speed dramatically. Scoring a kill renews the duration.",
+        "es": "Entra en un frenesí INSTANTÁNEO que aumenta drásticamente la velocidad de disparo, de equipamiento y de recarga. Conseguir un asesinato reinicia la duración.",
+        "fr": "Entrez INSTANTANÉMENT en furie, ce qui augmente considérablement vos vitesses de tir, de changement d'arme et de rechargement. Réussir une élimination réinitialise la durée.",
+        "it": "Entri ALL'ISTANTE in uno stato di frenesia aumentando notevolmente la velocità di fuoco, equipaggiamento e ricarica. Ottenere un'uccisione ripristina la durata."
+      },
+      "iconUrl": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/blte8a8889d3b17a9b9/5eb7cf1e1ea0c32e33b95fa6/TX_Reyna_X.png",
       "preview": "https://i.imgur.com/ixUcPA8.gif",
       "cost": "•••••• 6 Points"
     }

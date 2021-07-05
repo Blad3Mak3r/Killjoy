@@ -1,10 +1,22 @@
 {
   "name": "Tactical Knife",
-  "short": "An intimate solution.",
+  "located_names": {
+    "en": "Tactical Knife",
+    "es": "Navaja Táctica"
+  },
+  "short": {
+    "en": "An intimate solution.",
+    "es": "Una solución de lo más íntima."
+  },
   "type": "Melee",
-  "descriptions": [
-    "When in doubt or out of bullets, hit them with this. Lets you run fast, destroy objects faster, or one-shot enemies in the back with alt. fire."
-  ],
+  "descriptions": {
+    "en": [
+      "When in doubt or out of bullets, hit them with this. Lets you run fast, destroy objects faster, or one-shot enemies in the back with alt. fire."
+    ],
+    "es": [
+      "Si no os quedan balas, siempre tenéis vuestra navaja. Os permite correr con rapidez, destruir objetos mucho más rápido y acabar con enemigos por la espalda de una sola cuchillada si usáis el modo alternativo."
+    ]
+  },
   "thumbnail": "https://i.imgur.com/Gc30E7J.jpg",
   "cost": 0
 }

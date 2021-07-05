@@ -1,8 +1,3 @@
-FROM gradle:7.0.2-jdk11 AS builder
-COPY --chown=gradle:gradle . /home/gradle/src
-WORKDIR /home/gradle/src
-RUN gradle shadowJar --no-daemon -i --stacktrace
-
 FROM azul/zulu-openjdk-alpine:13-jre
 LABEL org.opencontainers.image.source="https://github.com/Blad3Mak3r/Killjoy"
 
@@ -18,10 +13,11 @@ RUN mkdir /app
 WORKDIR /app
 
 # Copy Killjoy.jar from builder
-COPY --from=builder /home/gradle/src/build/libs/Killjoy.jar Killjoy.jar
+COPY build/libs/Killjoy.jar Killjoy.jar
 
 # Setup default JAVA_OPTIONS
 ENV JAVA_OPTIONS="-Xmx1G -XX:+UseG1GC"
+ENV KILLJOY_ARGS=""
 
 # Entrypoint for container execution
-ENTRYPOINT java $JAVA_OPTIONS -jar Killjoy.jar
+ENTRYPOINT java $JAVA_OPTIONS -jar Killjoy.jar $KILLJOY_ARGS

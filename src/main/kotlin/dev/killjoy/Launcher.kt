@@ -21,7 +21,9 @@ import dev.killjoy.apis.stats.Website
 import dev.killjoy.database.Database
 import dev.killjoy.database.DatabaseConnection
 import dev.killjoy.database.buildDatabaseConnection
+import dev.killjoy.extensions.jda.supportedLocale
 import dev.killjoy.framework.CommandRegistry
+import dev.killjoy.i18n.I18n
 import dev.killjoy.listeners.MainListener
 import dev.killjoy.prometheus.Prometheus
 import dev.killjoy.slash.api.handler.DefaultSlashCommandHandler
@@ -31,13 +33,14 @@ import dev.killjoy.utils.Loaders
 import dev.killjoy.utils.SentryUtils
 import dev.killjoy.utils.Utils
 import dev.killjoy.utils.extensions.isInt
-import dev.killjoy.valorant.AgentAbility
-import dev.killjoy.valorant.ValorantAgent
-import dev.killjoy.valorant.ValorantMap
-import dev.killjoy.valorant.ValorantWeapon
+import dev.killjoy.valorant.agent.AgentAbility
+import dev.killjoy.valorant.agent.ValorantAgent
+import dev.killjoy.valorant.map.ValorantMap
+import dev.killjoy.valorant.arsenal.ValorantWeapon
 import dev.killjoy.webhook.WebhookUtils
 import net.dv8tion.jda.api.entities.Activity
 import net.dv8tion.jda.api.entities.ApplicationInfo
+import net.dv8tion.jda.api.entities.Guild
 import net.dv8tion.jda.api.requests.GatewayIntent
 import net.dv8tion.jda.api.sharding.DefaultShardManagerBuilder
 import net.dv8tion.jda.api.sharding.ShardManager
@@ -98,6 +101,8 @@ object Launcher : Killjoy {
         SentryUtils.init()
 
         database = buildDatabaseConnection()
+
+        I18n.init()
 
         // Load entities after banner
         agents = Loaders.loadAgents()
@@ -160,11 +165,11 @@ object Launcher : Killjoy {
     }
 
     override fun getWeapon(name: String): ValorantWeapon? {
-        return arsenal.find { it.name.equals(name, true) }
+        return arsenal.find { it.names.any { w -> w.equals(name, true) } }
     }
 
     override fun getWeaponById(id: String): ValorantWeapon? {
-        return arsenal.find { it.id.equals(id, true) }
+        return arsenal.find { it.ids.any { _id -> _id.equals(id,true) } }
     }
 
     override fun getMap(name: String): ValorantMap? {
@@ -180,10 +185,11 @@ object Launcher : Killjoy {
     }
 
     override fun getAbility(name: String): AgentAbility? {
-        return getAbilities().find { it.skill.name.equals(name, true) }
+        val n = name.lowercase()
+        return getAbilities().find {
+            it.name.containsValue(n) || it.name.containsValue(n.replace("_", " "))
+        }
     }
-
-    fun getSkills() = agents.map { it.skills }.reduce { acc, list -> acc + list }
 
     private fun enableListing() {
         try {

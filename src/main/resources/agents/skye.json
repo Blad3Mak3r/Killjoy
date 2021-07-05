@@ -2,43 +2,114 @@
   "id": "6F2A04CA-43E0-BE17-7F36-B3908627744D",
   "number": 13,
   "name": "Skye",
+  "locatedNames": {
+    "en": "Skye",
+    "es": "Skye",
+    "fr": "Skye",
+    "it": "Skye"
+  },
   "api_name": "guide",
   "origin": ":flag_au: Australia",
   "avatar": "https://i.imgur.com/JTTbc1E.jpg",
   "role": "Initiator",
-  "bio": "Hailing from Australia, Skye and her band of beasts trail-blaze the way through hostile territory. With her creations hampering the enemy, and her power to heal others, the team is strongest and safest by Skye’s side.",
+  "bio": {
+    "en": "Hailing from Australia, Skye and her band of beasts trail-blaze the way through hostile territory. With her creations hampering the enemy, and her power to heal others, the team is strongest and safest by Skye’s side.",
+    "es": "Skye y su manada de bestias se abren paso desde Australia y a través de territorio hostil. Sus creaciones obstaculizan los avances enemigos y su capacidad para curar a los demás se ocupa de que, a su lado, su equipo esté a salvo.",
+    "fr": "Originaire d'Australie, Skye et sa bande de bêtes sauvages ouvrent la voie à travers les territoires hostiles. Grâce à ses créations qui entravent l'ennemi et à sa faculté à soigner les autres, l'équipe est plus forte et plus en sécurité quand elle compte Skye dans ses rangs.",
+    "it": "L'australiana Skye e il suo branco di animali aprono la strada nel territorio ostile. Con le sue creazioni che ostacolano il nemico e le sue capacità curative, la squadra è più forte e più al sicuro al fianco di Skye."
+  },
   "gender": "Female",
   "affiliation": "Valorant Protocol",
   "skills": [
     {
-      "button": "q",
-      "name": "TRAILBLAZER",
-      "iconUrl": "https://i.imgur.com/Oc2AhM6.png",
-      "info": "EQUIP a Tasmanian tiger trinket. FIRE to send out and take control of the predator. While in control, FIRE to leap forward, exploding in a concussive blast and damaging directly hit enemies.",
+      "button": {
+        "en": "q",
+        "es": "q",
+        "fr": "a",
+        "it": "q"
+      },
+      "name": {
+        "en": "Trailblazer",
+        "es": "Precursor",
+        "fr": "Éclaireur",
+        "it": "Apripista"
+      },
+      "info": {
+        "en": "EQUIP a Tasmanian tiger trinket. FIRE to send out and take control of the predator. While in control, FIRE to leap forward, exploding in a concussive blast and damaging directly hit enemies.",
+        "es": "EQUIPA un amuleto de lobo marsupial. DISPARA para desplegar al depredador y controlarlo. Mientras se está controlando al lobo, DISPARAR hace que salte hacia delante y explote, lo que aturde e inflige daño a los enemigos que golpee.",
+        "fr": "ÉQUIPEZ-vous d'une breloque Tigre de Tasmanie. TIREZ pour lancer et prendre le contrôle du prédateur. Lorsque vous le contrôlez, TIREZ pour bondir en avant, ce qui provoque une explosion qui désoriente et blesse les ennemis directement touchés.",
+        "it": "EQUIPAGGIA un tilacino cristallizzato. SPARA per mandare in missione il predatore e prenderne il controllo. Una volta assunto il controllo, SPARA per balzare in avanti, provocando un'esplosione stordente e danneggiando i nemici colpiti direttamente."
+      },
+      "iconUrl": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/blta3c0de454b776542/5f7fa772e69fa40ef3183bda/SKye-abilities-_0000s_0003_ICONS_0000_Layer-1.png",
       "preview": "https://i.imgur.com/pqIeCob.gif",
       "cost": "250"
     },
     {
-      "button": "e",
-      "name": "GUIDING LIGHT",
-      "iconUrl": "https://i.imgur.com/VX1QdhW.png",
-      "info": "EQUIP a hawk trinket. FIRE to send it forward. HOLD FIRE to guide the hawk in the direction of your crosshair. RE-USE while the hawk is in flight to transform it into a flash that plays a hit confirm if an enemy was within range and line of sight.",
+      "button": {
+        "en": "e",
+        "es": "e",
+        "fr": "e",
+        "it": "e"
+      },
+      "name": {
+        "en": "Guiding Light",
+        "es": "Luz guía",
+        "fr": "Guide éclatant",
+        "it": "Luce Guida"
+      },
+      "info": {
+        "en": "EQUIP a hawk trinket. FIRE to send it forward. HOLD FIRE to guide the hawk in the direction of your crosshair. RE-USE while the hawk is in flight to transform it into a flash that plays a hit confirm if an enemy was within range and line of sight.",
+        "es": "EQUIPA un amuleto de halcón. DISPARA para lanzarlo hacia adelante. MANTENER PULSADO DISPARAR guía al halcón en la dirección de la mira. VOLVER A ACTIVAR la habilidad cuando el halcón está en el aire lo transforma en un destello cegador que emite un sonido de confirmación de impacto si ha cegado a un enemigo.",
+        "fr": "ÉQUIPEZ-vous d'une breloque Faucon. TIREZ pour lancer l'oiseau devant vous. MAINTENEZ LE TIR pour guider le faucon dans la direction de votre réticule. RÉUTILISEZ la compétence pendant que le faucon est dans les airs pour le transformer en lumière qui envoie une confirmation d'impact si un ennemi était à portée et en ligne de mire.",
+        "it": "EQUIPAGGIA un falco cristallizzato. SPARA per mandarlo in missione. TIENI PREMUTO IL PULSANTE DI FUOCO per guidare il falco nella direzione del tuo reticolo. USA DI NUOVO mentre il falco è in volo per trasformarlo in un lampo che emette un suono di conferma se ha accecato un nemico."
+      },
+      "iconUrl": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/blt7243683c6daf467d/5f7fa7729d46c20f09177ab7/SKye-abilities-_0000s_0002_ICONS_0001_Layer-2.png",
       "preview": "https://i.imgur.com/pEobOAm.gif",
       "cost": "250 (x2)"
     },
     {
-      "button": "c",
-      "name": "REGROWTH",
-      "iconUrl": "https://i.imgur.com/Qr1LnIS.png",
-      "info": "EQUIP a healing trinket. HOLD FIRE to channel, healing allies in range and line of sight. Can be reused until her healing pool is depleted. Skye cannot heal herself.",
+      "button": {
+        "en": "c",
+        "es": "c",
+        "fr": "c",
+        "it": "c"
+      },
+      "name": {
+        "en": "Regrowth",
+        "es": "Reforestación",
+        "fr": "Revitalisation",
+        "it": "Ricrescita"
+      },
+      "info": {
+        "en": "EQUIP a healing trinket. HOLD FIRE to channel, healing allies in range and line of sight. Can be reused until her healing pool is depleted. Skye cannot heal herself.",
+        "es": "EQUIPA un amuleto de curación. MANTENER PULSADO canaliza la habilidad, que cura a los aliados que estén dentro del alcance y del campo de visión. Se puede volver a utilizar hasta que se quede sin curación disponible. Skye no se puede curar a sí misma.",
+        "fr": "ÉQUIPEZ-vous d'une breloque de soin. MAINTENEZ LE TIR pour effectuer une canalisation qui soigne les alliés à portée et dans la ligne de mire. Peut être réutilisé jusqu'à épuisement de la capacité de soin. Skye ne peut pas se soigner.",
+        "it": "EQUIPAGGIA un cristallo di guarigione. TIENI PREMUTO IL PULSANTE DI FUOCO per entrare in una canalizzazione e curare gli alleati a portata e nel campo visivo. Riutilizzabile finché non esaurisce la carica di guarigione. Skye non può guarirsi da sola."
+      },
+      "iconUrl": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/bltaa1ff9d900a13d3a/5f7fa772f98ad40e91dc75e4/SKye-abilities-_0000s_0001_ICONS_0002_Layer-3.png",
       "preview": "https://i.imgur.com/IecdVVZ.gif",
       "cost": "200 (x2)"
     },
     {
-      "button": "x",
-      "name": "SEEKERS",
-      "iconUrl": "https://i.imgur.com/ea7tY3u.png",
-      "info": "EQUIP a Seeker trinket. FIRE to send out three Seekers to track down the three closest enemies. If a Seeker reaches its target, it nearsights them.",
+      "button": {
+        "en": "x",
+        "es": "x",
+        "fr": "x",
+        "it": "x"
+      },
+      "name": {
+        "en": "Seekers",
+        "es": "Buscadores",
+        "fr": "Traqueurs",
+        "it": "Cercatori"
+      },
+      "info": {
+        "en": "EQUIP a Seeker trinket. FIRE to send out three Seekers to track down the three closest enemies. If a Seeker reaches its target, it nearsights them.",
+        "es": "EQUIPA un amuleto de buscador. DISPARA para desplegar tres buscadores que localizan a los tres enemigos más cercanos. Si un buscador alcanza a su objetivo, limita su visión.",
+        "fr": "ÉQUIPEZ-vous d'une breloque Traqueurs. TIREZ pour lancer trois traqueurs qui pourchasseront les trois ennemis les plus proches. Si un traqueur atteint sa cible, il réduit le champ de vision de celle-ci.",
+        "it": "EQUIPAGGIA un Cercatore cristallizzato. SPARA per inviare tre Cercatori a inseguire i tre nemici più vicini. Se un Cercatore raggiunge il suo bersaglio, lo annebbia."
+      },
+      "iconUrl": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/bltce2ce64e31a00348/5f7fa77202e6b80ebf902384/SKye-abilities-_0000s_0000_ICONS_0003_Layer-4.png",
       "preview": "https://i.imgur.com/pnw2OPh.gif",
       "cost": "•••••• 6 Points"
     }

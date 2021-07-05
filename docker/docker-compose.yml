@@ -2,13 +2,18 @@ version: "3.9"
 
 services:
   bot:
-    container_name: killjoy-bot
     image: blademaker/killjoy
     volumes:
       - ./credentials.conf:/app/credentials.conf:ro
       - killjoy-logs:/app/logs
-    restart: on-failure
     network_mode: host
+    restart: on-failure
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+        reservations:
+          memory: 128M
 
 volumes:
   killjoy-logs:

@@ -1,10 +1,18 @@
 {
   "name": "Classic",
-  "short": "Lightweight and versatile, the default weapon for all is an instant classic.",
+  "short": {
+    "en": "Lightweight and versatile, the default weapon for all is an instant classic.",
+    "es": "Ligera y versátil, el arma por defecto es todo un clásico."
+  },
   "type": "Sidearms",
-  "descriptions": [
-    "Primary fire lands precise shots when still, and is equipped with an alternate burst-firing mode for close encounters."
-  ],
+  "descriptions": {
+    "en": [
+      "Primary fire lands precise shots when still, and is equipped with an alternate burst-firing mode for close encounters."
+    ],
+    "es": [
+      "El modo de disparo principal es preciso si no se está en movimiento, y también dispone de un modo de disparo en ráfaga para los encuentros cuerpo a cuerpo."
+    ]
+  },
   "thumbnail": "https://i.imgur.com/exUFQs4.jpg",
   "cost": 0,
   "magazine": 12,

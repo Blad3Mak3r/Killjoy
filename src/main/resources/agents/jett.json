@@ -2,43 +2,114 @@
   "id": "ADD6443A-41BD-E414-F6AD-E58D267F4E95",
   "number": 11,
   "name": "Jett",
+  "locatedNames": {
+    "en": "Jett",
+    "es": "Jett",
+    "fr": "Jett",
+    "it": "Jett"
+  },
   "api_name": "wushu",
   "origin": ":flag_kr: Shout Korea",
   "avatar": "https://i.imgur.com/ePEFhEH.jpg",
   "role": "Duelist",
-  "bio": "Representing her home country of South Korea, Jett's agile and evasive fighting style lets her take risks no one else can. She runs circles around every skirmish, cutting enemies before they even know what hit them.",
+  "bio": {
+    "en": "Representing her home country of South Korea, Jett's agile and evasive fighting style lets her take risks no one else can. She runs circles around every skirmish, cutting enemies before they even know what hit them.",
+    "es": "Jett viene de Corea del Sur, y su estilo de lucha ágil y evasivo le permite asumir grandes riesgos. Corre y salta de aquí para allá en las refriegas y hace trizas a los enemigos con una rapidez espectacular.",
+    "fr": "Représentante de sa patrie, la Corée du Sud, Jett dispose d'un style de combat basé sur l'agilité et l'esquive, qui lui permet de prendre des risques qu'elle seule peut se permettre de prendre. Elle tourne autour des affrontements et découpe ses ennemis avant même qu'ils ne s'en rendent compte.",
+    "it": "Pronta a rappresentare la sua patria, la Corea del Sud, Jett ha uno stile di combattimento agile e sfuggente che le permette di affrontare rischi che nessun altro potrebbe correre. Aggira ogni scontro ed elimina i nemici prima ancora che possano rendersene conto."
+  },
   "gender": "Female",
   "affiliation": "Valorant Protocol",
   "skills": [
     {
-      "button": "q",
-      "name": "UPDRAFT",
-      "iconUrl": "https://i.imgur.com/HFkRJSL.png",
-      "info": "INSTANTLY propel Jett high into the air.",
+      "button": {
+        "en": "q",
+        "es": "q",
+        "fr": "a",
+        "it": "q"
+      },
+      "name": {
+        "en": "Updraft",
+        "es": "Vendaval",
+        "fr": "Courant ascendant",
+        "it": "Corrente ascensionale"
+      },
+      "info": {
+        "en": "INSTANTLY propel Jett high into the air.",
+        "es": "Propulsa INSTANTÁNEAMENTE a Jett a mucha altura hacia arriba.",
+        "fr": "Vous vous propulsez INSTANTANÉMENT dans les airs.",
+        "it": "Lancia ALL'ISTANTE Jett in aria."
+      },
+      "iconUrl": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/bltce7928301a67a33a/5eaf861103f6e72ff388cc20/TX_Jett_Q.png",
       "preview": "https://i.imgur.com/SavOZ7d.gif",
       "cost": "150 (x2)"
     },
     {
-      "button": "e",
-      "name": "TAILWIND",
-      "iconUrl": "https://i.imgur.com/yObh8n2.png",
-      "info": "INSTANTLY propel Jett in the direction she is moving. If Jett is standing still, she will propel forward.",
+      "button": {
+        "en": "e",
+        "es": "e",
+        "fr": "e",
+        "it": "e"
+      },
+      "name": {
+        "en": "Tailwind",
+        "es": "Viento de cola",
+        "fr": "Vent arrière",
+        "it": "Folata"
+      },
+      "info": {
+        "en": "INSTANTLY propel Jett in the direction she is moving. If Jett is standing still, she will propel forward.",
+        "es": "Propulsa a Jett INSTANTÁNEAMENTE en la dirección en la que se esté moviendo. Si está quieta, se propulsará hacia delante.",
+        "fr": "Vous vous propulsez INSTANTANÉMENT dans la direction vers laquelle vous vous dirigez. Si vous êtes immobile, vous vous propulsez vers l'avant.",
+        "it": "Spingi ALL'ISTANTE Jett nella direzione in cui si sta muovendo. Se Jett è ferma, verrà spinta in avanti."
+      },
+      "iconUrl": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/blta0beeaa4a7e1ed78/5eaf8611b8a6356e4ddc1013/TX_Jett_E.png",
       "preview": "https://i.imgur.com/OgRvGEs.gif",
       "cost": "2 Kills"
     },
     {
-      "button": "c",
-      "name": "CLOUDBURST",
-      "iconUrl": "https://i.imgur.com/LViadRc.png",
-      "info": "INSTANTLY throw a projectile that expands into a brief vision-blocking cloud on impact with a surface. HOLD the ability key to curve the smoke in the direction of your crosshair.",
+      "button": {
+        "en": "c",
+        "es": "c",
+        "fr": "c",
+        "it": "c"
+      },
+      "name": {
+        "en": "Cloudburst",
+        "es": "Borrasca",
+        "fr": "Averse",
+        "it": "Nuvola di fumo"
+      },
+      "info": {
+        "en": "INSTANTLY throw a projectile that expands into a brief vision-blocking cloud on impact with a surface. HOLD the ability key to curve the smoke in the direction of your crosshair.",
+        "es": "Lanza un proyectil INSTANTÁNEAMENTE que se expande para crear una nube que bloquea la visión brevemente al impactar contra una superficie. MANTENED PULSADO el botón de la habilidad para que el humo se curve en la dirección de la mira.",
+        "fr": "Lancez INSTANTANÉMENT un projectile. Lorsqu'il touche une surface, il libère un nuage qui bloque la vision pendant un court instant. MAINTENEZ la touche de la compétence pour courber la fumée dans la direction de votre réticule.",
+        "it": "Spara ALL'ISTANTE un proiettile che si espande brevemente in una nuvola che blocca brevemente la visione all'impatto con una superficie. TIENI PREMUTO il comando dell'abilità per curvare il proiettile di fumo in direzione del tuo reticolo."
+      },
+      "iconUrl": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/bltf137993847c71770/5eaf8611d4b10d15d3e8db4e/TX_Jett_C.png",
       "preview": "https://i.imgur.com/C7JgXOV.gif",
       "cost": "200 (x3)"
     },
     {
-      "button": "x",
-      "name": "BLADE STORM",
-      "iconUrl": "https://i.imgur.com/Zp4WIKi.png",
-      "info": "EQUIP a set of highly accurate knives that recharge on killing an opponent. FIRE to throw a single knife at your target. ALTERNATE FIRE to throw all remaining daggers at your target.",
+      "button": {
+        "en": "x",
+        "es": "x",
+        "fr": "x",
+        "it": "x"
+      },
+      "name": {
+        "en": "Blade Storm",
+        "es": "Tormenta de cuchillas",
+        "fr": "Tempête de lames",
+        "it": "Tempesta di lame"
+      },
+      "info": {
+        "en": "EQUIP a set of highly accurate knives that recharge on killing an opponent. FIRE to throw a single knife at your target. ALTERNATE FIRE to throw all remaining daggers at your target.",
+        "es": "EQUIPA un conjunto de cuchillos de alta precisión que se recargan cuando acaban con un oponente. DISPARAD para lanzar un único cuchillo a vuestro objetivo. ALTERNAD EL MODO DE DISPARO para lanzar todos los cuchillos que os queden a vuestro objetivo.",
+        "fr": "ÉQUIPEZ-vous d'un ensemble de couteaux extrêmement précis qui se rechargent lorsque vous éliminez un ennemi. TIREZ pour lancer un seul couteau sur votre cible. Utilisez le TIR SECONDAIRE pour lancer toutes les dagues restantes sur votre cible.",
+        "it": "EQUIPAGGIA un set di precisissimi coltelli da lancio che si ricaricano quando uccidi un nemico. Usa il FUOCO ALTERNATIVO per lanciare tutti i coltelli rimasti verso il tuo bersaglio."
+      },
+      "iconUrl": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/bltb3e956f9fb96318e/5eaf86112b79652f27c32a06/TX_Jett_X.png",
       "preview": "https://i.imgur.com/7Wuenma.gif",
       "cost": "••••••• 7 Points"
     }

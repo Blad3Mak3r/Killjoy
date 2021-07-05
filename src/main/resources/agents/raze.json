@@ -2,43 +2,114 @@
   "id": "F94C3B30-42BE-E959-889C-5AA313DBA261",
   "number": 12,
   "name": "Raze",
+  "locatedNames": {
+    "en": "Raze",
+    "es": "Raze",
+    "fr": "Raze",
+    "it": "Raze"
+  },
   "api_name": "clay",
   "origin": ":flag_br: Brazil",
   "avatar": "https://i.imgur.com/g3MxHqn.jpg",
   "role": "Duelist",
-  "bio": "Raze explodes out of Brazil with her big personality and big guns. With her blunt-force-trauma playstyle, she excels at flushing entrenched enemies and clearing tight spaces with a generous dose of “boom.”",
+  "bio": {
+    "en": "Raze explodes out of Brazil with her big personality and big guns. With her blunt-force-trauma playstyle, she excels at flushing entrenched enemies and clearing tight spaces with a generous dose of “boom.”",
+    "es": "Raze llega desde Brasil con ganas de hacer que todo salte por los aires. Gracias a su estilo de juego basado en la fuerza bruta, destaca a la hora de barrer a grupos de enemigos atrincherados y de despejar áreas estrechas con explosión y sin compasión.",
+    "fr": "Armée de sa personnalité et de sa grosse artillerie, Raze fait une entrée explosive depuis le Brésil. Grâce à sa force brute, elle excelle à débusquer les ennemis retranchés et à faire le ménage dans les espaces étroits, le tout avec une bonne dose de « boum ».",
+    "it": "La personalità della brasiliana Raze è pericolosa tanto quanto le sue armi. Con il suo stile di gioco brutale, è bravissima ad annientare i nemici trincerati e a liberare spazi angusti con una sana dose di \"boom\"."
+  },
   "gender": "Female",
   "affiliation": "Valorant Protocol",
   "skills": [
     {
-      "button": "q",
-      "name": "BLAST PACK",
-      "iconUrl": "https://i.imgur.com/THS7kMg.png",
-      "info": "INSTANTLY throw a Blast Pack that will stick to surfaces. RE-USE the ability after deployment to detonate, damaging and moving anything hit. Raze isn't damaged by this ability, but will still take fall damage if launched up far enough.",
+      "button": {
+        "en": "q",
+        "es": "q",
+        "fr": "a",
+        "it": "q"
+      },
+      "name": {
+        "en": "Blast Pack",
+        "es": "Fardo explosivo",
+        "fr": "Pack explosif",
+        "it": "Pacco esplosivo"
+      },
+      "info": {
+        "en": "INSTANTLY throw a Blast Pack that will stick to surfaces. RE-USE the ability after deployment to detonate, damaging and moving anything hit. Raze isn't damaged by this ability, but will still take fall damage if launched up far enough.",
+        "es": "Lanza AL INSTANTE un fardo explosivo que se adhiere a las superficies. VOLVED A USAR la habilidad después de que el fardo se adhiera para detonarlo y que dañe y desplace a todo aquello que alcance. Esta habilidad no inflige daño a Raze, pero sí que recibirá daño por caída si salta lo suficientemente alto.",
+        "fr": "Lancez INSTANTANÉMENT un pack explosif qui se colle aux surfaces. RÉUTILISEZ la compétence pour déclencher l'explosion, ce qui blesse et déplace tous ceux pris dans le souffle. Raze n'est pas blessée par cette compétence, mais elle subit des dégâts de chute si elle tombe d'assez haut.",
+        "it": "Lancia ALL'ISTANTE un pacco esplosivo che aderisce alle superfici. Una volta piazzato, USA DI NUOVO l'abilità per farlo esplodere, danneggiando e spostando tutto quello che viene colpito. Raze è immune ai danni di questa abilità, ma subirà comunque danni da caduta se cade da altezze troppo elevate."
+      },
+      "iconUrl": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/bltdb74f287eee9fe76/5eaf862a248a28605479c91f/TX_Raze_Q.png",
       "preview": "https://i.imgur.com/wWfVfGT.gif",
       "cost": "400 (x2)"
     },
     {
-      "button": "e",
-      "name": "PAINT SHELLS",
-      "iconUrl": "https://i.imgur.com/azgkzm2.png",
-      "info": "EQUIP a cluster grenade. FIRE to throw the grenade, which does damage and creates sub-munitions, each doing damage to anyone in their range.",
+      "button": {
+        "en": "e",
+        "es": "e",
+        "fr": "e",
+        "it": "e"
+      },
+      "name": {
+        "en": "Paint Shells",
+        "es": "Balas de pintura",
+        "fr": "Grenade gigogne",
+        "it": "Granate colorate"
+      },
+      "info": {
+        "en": "EQUIP a cluster grenade. FIRE to throw the grenade, which does damage and creates sub-munitions, each doing damage to anyone in their range.",
+        "es": "EQUIPA una granada de racimo. DISPARAD para lanzar la granada, lo que causa daño y crea submuniciones que infligen daño a cualquiera que esté dentro del rango.",
+        "fr": "ÉQUIPEZ-vous d'une grenade à sous-munitions. TIREZ pour lancer la grenade. Elle inflige des dégâts et crée des sous-munitions qui blessent tous ceux qui sont à leur portée.",
+        "it": "EQUIPAGGIA una granata a grappolo. SPARA per lanciare la granata, che infligge danni e crea esplosioni secondarie che danneggiano a loro volta chiunque si trovi a portata."
+      },
+      "iconUrl": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/bltb0eb89e122c1f4ea/5eaf862ad238e314f259fa8b/TX_Raze_E.png",
       "preview": "https://i.imgur.com/bwUmyAO.gif",
       "cost": "Free"
     },
     {
-      "button": "c",
-      "name": "BOOM BOT",
-      "iconUrl": "https://i.imgur.com/7k6ykd8.png",
-      "info": "EQUIP a Boom Bot. FIRE will deploy the bot, causing it to travel in a straight line on the ground, bouncing off walls. The Boom Bot will lock on to any enemies in its frontal cone and chase them, exploding for heavy damage if it reaches them.",
+      "button": {
+        "en": "c",
+        "es": "c",
+        "fr": "c",
+        "it": "c"
+      },
+      "name": {
+        "en": "Boom Bot",
+        "es": "Bot explosivo",
+        "fr": "Boum Bot",
+        "it": "Bot esplosivo"
+      },
+      "info": {
+        "en": "EQUIP a Boom Bot. FIRE will deploy the bot, causing it to travel in a straight line on the ground, bouncing off walls. The Boom Bot will lock on to any enemies in its frontal cone and chase them, exploding for heavy damage if it reaches them.",
+        "es": "EQUIPA un bot explosivo. DISPARAD para desplegar el bot y hacer que se desplace en línea recta por el terreno, rebotando por las paredes. El bot explosivo se fijará a los enemigos que encuentre en un cono frontal y los perseguirá. Si los alcanza, explotará e infligirá una gran cantidad de daño.",
+        "fr": "ÉQUIPEZ-vous d'un Boum Bot. TIREZ pour déployer le bot, ce qui le propulse en ligne droite sur le sol. Il rebondit contre les murs. Les Boum Bots se verrouillent sur les ennemis situés dans un cône face à eux et les chassent, explosant quand ils les atteignent en infligeant de lourds dégâts.",
+        "it": "EQUIPAGGIA un bot esplosivo. SPARA per rilasciare il bot, che viaggerà in linea retta sul terreno rimbalzando quando tocca i muri. Il bot esplosivo punterà i nemici che si trovano in un'area conica di fronte a sé e li inseguirà; se li raggiunge, esploderà infliggendo ingenti danni."
+      },
+      "iconUrl": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/blt44acc030d4d60182/5eaf862aa20afe612d82fb4e/TX_Raze_C.png",
       "preview": "https://i.imgur.com/hGuH4e4.gif",
       "cost": "200"
     },
     {
-      "button": "x",
-      "name": "SHOWSTOPPER",
-      "iconUrl": "https://i.imgur.com/y46R6eU.png",
-      "info": "EQUIP a rocket launcher. FIRE shoots a rocket that does massive area damage on contact with anything.",
+      "button": {
+        "en": "x",
+        "es": "x",
+        "fr": "x",
+        "it": "x"
+      },
+      "name": {
+        "en": "Showstopper",
+        "es": "Cierratelones",
+        "fr": "Bouquet final",
+        "it": "Sensazionale"
+      },
+      "info": {
+        "en": "EQUIP a rocket launcher. FIRE shoots a rocket that does massive area damage on contact with anything.",
+        "es": "EQUIPA un lanzacohetes. DISPARAD para lanzar un cohete que inflige un daño en área masivo al entrar en contacto con cualquier cosa.",
+        "fr": "ÉQUIPEZ-vous d'un lance-roquettes. TIREZ pour lancer une roquette qui inflige de lourds dégâts de zone au premier contact.",
+        "it": "EQUIPAGGIA un lanciarazzi. SPARA per lanciare un razzo che infligge ingenti danni ad area all'impatto."
+      },
+      "iconUrl": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/blt60023b671f330740/5eaf862ae6f6795e530a2717/TX_Raze_X.png",
       "preview": "https://i.imgur.com/vsEs2oe.gif",
       "cost": "•••••••• 8 Points"
     }

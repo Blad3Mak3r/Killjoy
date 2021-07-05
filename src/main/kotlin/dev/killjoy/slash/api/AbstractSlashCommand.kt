@@ -15,6 +15,8 @@
 
 package dev.killjoy.slash.api
 
+import dev.killjoy.i18n.I18nKey
+import dev.killjoy.i18n.i18n
 import dev.killjoy.slash.api.annotations.Permissions
 import dev.killjoy.slash.api.annotations.SlashSubCommand
 import dev.killjoy.slash.utils.SlashUtils
@@ -67,11 +69,11 @@ abstract class AbstractSlashCommand(val commandName: String, vararg defaultCheck
 
                 subCommand.execute(this, ctx)
             } catch (e: Exception) {
-                val message = "Exception executing handler for option $subCommandName... **${e.message}**"
+                val message = ctx.i18n(I18nKey.EXCEPTION_HANDLING_SLASH_COMMAND_OPTION, ctx.event.commandPath, e.message)
                 LOGGER.error(message, e)
                 Sentry.captureEvent(SentryEvent().apply {
                     this.message = Message().apply {
-                        this.message = "Exception executing handler for option $subCommandName, ${e.message}"
+                        this.message = "Exception executing handler for ${ctx.event.commandPath}, ${e.message}"
                     }
                     throwable = e
                 })

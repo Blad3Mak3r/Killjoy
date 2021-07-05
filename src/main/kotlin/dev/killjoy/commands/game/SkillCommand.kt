@@ -17,11 +17,14 @@ package dev.killjoy.commands.game
 
 import dev.killjoy.Launcher
 import dev.killjoy.extensions.jda.setDefaultColor
+import dev.killjoy.extensions.jda.supportedLocale
 import dev.killjoy.framework.Category
 import dev.killjoy.framework.CommandContext
 import dev.killjoy.framework.abs.Command
 import dev.killjoy.framework.annotations.CommandArgument
 import dev.killjoy.framework.annotations.CommandProperties
+import dev.killjoy.i18n.I18nKey
+import dev.killjoy.i18n.i18n
 import dev.killjoy.utils.Emojis
 import dev.killjoy.utils.Utils
 
@@ -36,21 +39,12 @@ class SkillCommand : Command() {
     override suspend fun handle(ctx: CommandContext) {
         if (ctx.args.isEmpty()) return Utils.Commands.replyWrongUsage(ctx, this)
 
-        val skill = Launcher.getSkills().find { it.id.equals(ctx.args[0], true) }
-            ?: return ctx.send(Emojis.NoEntry, "I have not been able to find that skill...").queue()
+        val input = ctx.args.joinToString(" ")
 
-        val agent = Launcher.agents.find { it.skills.any { s -> s === skill } }!!
+        val skill = Launcher.getAbility(input)
+            ?: return ctx.send(Emojis.NoEntry, ctx.guild.i18n(I18nKey.ABILITY_NOT_FOUND, input)).queue()
 
-        ctx.replyEmbed {
-            setAuthor(agent.name, null, agent.avatar)
-            setTitle(skill.name)
-            setDescription(skill.info)
-            setThumbnail(skill.iconUrl)
-            setImage(skill.preview)
-            addField("Action Button", skill.button.name, true)
-            addField("Usage Cost", skill.cost, true)
-            setDefaultColor()
-        }.queue()
+        ctx.reply(skill.asEmbed(ctx.guild)).queue()
     }
 
     override val help: String = "Get information about a skill from a Valorant agent"

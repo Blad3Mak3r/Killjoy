@@ -1,11 +1,20 @@
 {
   "name": "Spectre",
-  "short": "When in doubt, the Spectre is your number one.",
+  "short": {
+    "en": "When in doubt, the Spectre is your number one.",
+    "es": "Ante la duda, apostad por el Spectre."
+  },
   "type": "Smgs",
-  "descriptions": [
-    "A jack-of-all-trades weapon with a great balance of damage, fire rate, and accuracy—at both short and mid range.",
-    "It haunts the corners of every map and requires only steady aim to drop foes at long distance."
-  ],
+  "descriptions": {
+    "en": [
+      "A jack-of-all-trades weapon with a great balance of damage, fire rate, and accuracy—at both short and mid range.",
+      "It haunts the corners of every map and requires only steady aim to drop foes at long distance."
+    ],
+    "es": [
+      "Es un arma todoterreno con estadísticas de daño, velocidad de disparo y precisión muy equilibradas tanto a distancias cortas como medias.",
+      "Acecha en las esquinas de todos los mapas y, si tenéis buen pulso, os permitirá acabar con vuestros enemigos desde lejos."
+    ]
+  },
   "thumbnail": "https://i.imgur.com/U2cY14b.jpg",
   "cost": 1600,
   "magazine": 30,

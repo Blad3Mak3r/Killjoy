@@ -13,21 +13,28 @@
  * See the License for the specific language governing permissions and limitations under the License.
  ******************************************************************************/
 
-package dev.killjoy.valorant
+package dev.killjoy.valorant.map
 
+import dev.killjoy.extensions.jda.supportedLocale
+import dev.killjoy.valorant.I18nMap
+import dev.killjoy.valorant.ValorantEntity
+import dev.killjoy.valorant.buildI18nMap
+import net.dv8tion.jda.api.entities.Guild
 import org.json.JSONObject
 
 @Suppress("unused")
 data class ValorantMap(
     override val name: String,
-    val description: String,
+    private val description: I18nMap,
     val minimap: String,
     val imageUrl: String
 ) : ValorantEntity {
     constructor(jsonObject: JSONObject) : this(
         jsonObject.getString("name"),
-        jsonObject.getString("description"),
+        buildI18nMap(jsonObject.getJSONObject("description")),
         jsonObject.getString("minimap"),
         jsonObject.getString("image_url")
     )
+
+    fun description(guild: Guild) = description[guild.supportedLocale.language]!!
 }

@@ -21,6 +21,7 @@ import dev.killjoy.framework.CommandContext
 import dev.killjoy.framework.abs.Command
 import dev.killjoy.framework.annotations.CommandArgument
 import dev.killjoy.framework.annotations.CommandProperties
+import dev.killjoy.i18n.i18nCommand
 import dev.killjoy.utils.Emojis
 
 @CommandProperties(
@@ -37,9 +38,9 @@ class ArsenalCommand : Command() {
             val arsenal = Launcher.arsenal
 
             ctx.replyEmbed {
-                setTitle("Valorant Arsenal")
+                setTitle(ctx.guild.i18nCommand("arsenal.title"))
                 for (weapon in arsenal) {
-                    addField("${weapon.name} //${weapon.type.name.uppercase()}", weapon.short, true)
+                    addField("${weapon.name(ctx.guild)} //${weapon.type(ctx.guild)}", weapon.short(ctx.guild), true)
                 }
                 setFooter("If you want to get more information about an weapon use \"joy arsenal weapon_name\"")
             }.queue()
@@ -47,9 +48,9 @@ class ArsenalCommand : Command() {
         } else {
             val weapon = Launcher.getWeapon(ctx.args.joinToString(" "))
                 ?: Launcher.getWeaponById(ctx.args[0])
-                ?: return ctx.send(Emojis.NoEntry, "That weapon does not exists...").queue()
+                ?: return ctx.send(Emojis.NoEntry, ctx.guild.i18nCommand("arsenal.notFound")).queue()
 
-            ctx.reply(weapon.asEmbed().build()).queue()
+            ctx.reply(weapon.asEmbed(ctx.guild).build()).queue()
         }
     }
 

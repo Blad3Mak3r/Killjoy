@@ -16,10 +16,12 @@
 package dev.killjoy.commands.game
 
 import dev.killjoy.apis.news.NewsRetriever
+import dev.killjoy.extensions.jda.supportedLocale
 import dev.killjoy.framework.Category
 import dev.killjoy.framework.CommandContext
 import dev.killjoy.framework.abs.Command
 import dev.killjoy.framework.annotations.CommandProperties
+import dev.killjoy.i18n.i18nCommand
 
 @CommandProperties(
     name = "news",
@@ -27,14 +29,14 @@ import dev.killjoy.framework.annotations.CommandProperties
 )
 class NewsCommand : Command() {
     override suspend fun handle(ctx: CommandContext) {
-        val latestNews = NewsRetriever.lastNews()
+        val latestNews = NewsRetriever.lastNews(ctx.guild.supportedLocale)
 
         ctx.replyEmbed {
-            setTitle("Latest Valorant news")
-            setDescription("This articles are from the official PlayValorant website.")
+            setTitle(ctx.guild.i18nCommand("news.header"))
+            setDescription(ctx.guild.i18nCommand("news.info"))
 
             for (new in latestNews) {
-                addField(new.asEmbedField())
+                addField(new.asEmbedField(ctx.guild))
             }
 
             setImage(latestNews.firstOrNull()?.image)

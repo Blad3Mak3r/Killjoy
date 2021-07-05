@@ -16,6 +16,8 @@
 package dev.killjoy.slash.api
 
 import dev.killjoy.extensions.jda.setDefaultColor
+import dev.killjoy.i18n.I18nKey
+import dev.killjoy.i18n.i18n
 import dev.killjoy.slash.utils.SlashUtils.asEphemeral
 import dev.killjoy.utils.Emojis
 import net.dv8tion.jda.api.EmbedBuilder
@@ -67,10 +69,10 @@ class SlashCommandContext(
         return event.deferReply(ephemeral)
     }
 
-    fun sendNotFound(description: String = "I couldn't find what you were looking for."): RestAction<*> {
+    fun sendNotFound(description: String = i18n(I18nKey.CONTENT_NOT_FOUND_DESCRIPTION)): RestAction<*> {
         val embed = EmbedBuilder().run {
             setDefaultColor()
-            setAuthor("Content not found", null, "https://cdn.discordapp.com/emojis/690093935233990656.png")
+            setAuthor(i18n(I18nKey.CONTENT_NOT_FOUND), null, "https://cdn.discordapp.com/emojis/690093935233990656.png")
             setThumbnail("https://i.imgur.com/P3p4EEG.png")
             setDescription(description)
             build()
