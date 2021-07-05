@@ -21,7 +21,6 @@ import dev.killjoy.apis.stats.Website
 import dev.killjoy.database.Database
 import dev.killjoy.database.DatabaseConnection
 import dev.killjoy.database.buildDatabaseConnection
-import dev.killjoy.extensions.jda.supportedLocale
 import dev.killjoy.framework.CommandRegistry
 import dev.killjoy.i18n.I18n
 import dev.killjoy.listeners.MainListener
@@ -38,9 +37,15 @@ import dev.killjoy.valorant.agent.ValorantAgent
 import dev.killjoy.valorant.map.ValorantMap
 import dev.killjoy.valorant.arsenal.ValorantWeapon
 import dev.killjoy.webhook.WebhookUtils
+import dev.minn.jda.ktx.CoroutineEventManager
+import dev.minn.jda.ktx.injectKTX
+import dev.minn.jda.ktx.listener
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.SupervisorJob
 import net.dv8tion.jda.api.entities.Activity
 import net.dv8tion.jda.api.entities.ApplicationInfo
-import net.dv8tion.jda.api.entities.Guild
+import net.dv8tion.jda.api.events.GenericEvent
+import net.dv8tion.jda.api.events.interaction.SlashCommandEvent
 import net.dv8tion.jda.api.requests.GatewayIntent
 import net.dv8tion.jda.api.sharding.DefaultShardManagerBuilder
 import net.dv8tion.jda.api.sharding.ShardManager
@@ -122,13 +127,13 @@ object Launcher : Killjoy {
 
         shardManager = DefaultShardManagerBuilder.createLight(Credentials.token)
             .setShardsTotal(-1)
+            .injectKTX()
             .setActivityProvider { Activity.competing("Valorant /help") }
             .setEnableShutdownHook(true)
-            .addEventListeners(
-                MainListener(),
-                slashCommandHandler
-            )
-            .setEventPool(Utils.newThreadFactory("jda-event-worker-%d", 4, 20, 6L, TimeUnit.MINUTES))
+            .setEventManagerProvider {
+                val executor = Utils.newCoroutineDispatcher("event-manager-worker-%d", 4, 20, 6L, TimeUnit.MINUTES)
+                CoroutineEventManager(CoroutineScope(executor + SupervisorJob()))
+            }
             .setCompression(Compression.ZLIB)
             .enableIntents(
                 GatewayIntent.GUILD_MESSAGES,
@@ -148,6 +153,12 @@ object Launcher : Killjoy {
             )
             .build()
 
+        shardManager.listener<GenericEvent> { event ->
+            when (event) {
+                is SlashCommandEvent -> slashCommandHandler.onSlashCommandEvent(event)
+                else -> MainListener.onEvent(event)
+            }
+        }
         enableListing()
     }
 

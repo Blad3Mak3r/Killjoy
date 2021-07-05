@@ -15,7 +15,7 @@ plugins {
 val jdaVersion = "4.3.0_289"
 val exposedVersion = "0.32.1"
 val ktorVersion = "1.6.1"
-val coroutinesVersion = "1.5.0-native-mt"
+val coroutinesVersion = "1.5.0"
 val logbackVersion = "1.2.3"
 val prometheusVersion = "0.11.0"
 val sentryVersion = "5.0.1"
@@ -46,6 +46,7 @@ dependencies {
     implementation("net.dv8tion:JDA:$jdaVersion") { exclude(module = "opus-java") }
     implementation("ch.qos.logback:logback-classic:$logbackVersion")
     implementation("io.sentry:sentry:$sentryVersion")
+    implementation("com.github.minndevelopment:jda-ktx:d460e2a")
 
     //Database
     implementation("com.zaxxer:HikariCP:4.0.3")
