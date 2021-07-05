@@ -127,7 +127,6 @@ object Launcher : Killjoy {
 
         shardManager = DefaultShardManagerBuilder.createLight(Credentials.token)
             .setShardsTotal(-1)
-            .injectKTX()
             .setActivityProvider { Activity.competing("Valorant /help") }
             .setEnableShutdownHook(true)
             .setEventManagerProvider {
