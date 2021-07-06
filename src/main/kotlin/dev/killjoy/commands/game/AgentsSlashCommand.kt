@@ -73,10 +73,10 @@ class AgentsSlashCommand : AbstractSlashCommand("agents") {
 
         val enabledButtons = AtomicBoolean(true)
 
-        suspend fun stop(event: ButtonClickEvent? = null) {
+        fun stop(event: ButtonClickEvent? = null) {
             enabledButtons.set(false)
-            if (event != null) event.editComponents(emptyList()).queue()
-            else ctx.hook.editOriginalComponents(emptyList()).await()
+            if (event != null) event.editComponents(emptyList()).queue({}, {})
+            else ctx.hook.editOriginalComponents(emptyList()).queue({}, {})
         }
 
         while (enabledButtons.get()) {
