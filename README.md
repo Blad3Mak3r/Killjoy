@@ -26,7 +26,7 @@ At the moment the bot is pretty straightforward, but we have great ideas for it,
 | /**abilities** [`page`] | List all the abilities in the game.                                                    |
 | /**ability** (`name`)   | Get information about an ability.                                                      |
 | /**agent** (`name`)     | Get information and statistics about a Valorant agent.                                 |
-| /**agents**             | List all the Valorant agents.                                                          |
+| /**agents** [`page` ]   | List all the Valorant agents.                                                          |
 | /**arsenal** [`weapon`] | Get information and statistics about a Valorant weapon or the entire arsenal.          |
 | /**debug**              | Useful for debugging.                                                                  |
 | /**help**               | Did you need help?                                                                     |
@@ -60,9 +60,9 @@ At the moment the bot is pretty straightforward, but we have great ideas for it,
 
 To make KillJOY connect to discord you need your Discord app login token, you can get it [here][devs_application] by creating a new Bot Application.
 
-This token has to be passed to KILLJOY through a configuration file called [**killjoy.conf**](/credentials.conf.example).
+This token has to be passed to KILLJOY through a configuration file called [**credentials.conf**](/credentials.conf.example).
 
-Copy the content of [``killjoy.conf.example``](credentials.conf.example) to ``killjoy.conf`` where the Killjoy executable is placed.
+Copy the content of [``credentials.conf.example``](credentials.conf.example) to ``credentials.conf`` where the Killjoy executable is placed.
 ```shell
 java -jar KilljoyAI.jar
 ```
@@ -74,8 +74,9 @@ java -jar KilljoyAI.jar
 docker run -it -d \
   --name=killjoy \
   --restart=always \
-  --volume credentials.conf:/app/credentials.conf \
-  blademaker/killjoy:0.8
+  --volume ./credentials.conf:/app/credentials.conf \
+  --colume ./logs:/app/logs
+  blademaker/killjoy:latest
 ```
 
 **SystemD (Linux)**
@@ -86,7 +87,7 @@ $ adduser killjoy
 $ mkdir /opt/killjoy
 $ chown killjoy:killjoy /opt/killjoy
 $ cd /opt/killjoy
-$ wget https://github.com/Blad3Mak3r/KILLJOY/releases/download/v0.8/KilljoyAI.jar
+$ wget https://github.com/Blad3Mak3r/KILLJOY/releases/download/0.14/Killjoy.jar
 ```
 
 Create a ``killjoy.service`` file in ``/etc/systemd/system``
@@ -95,7 +96,7 @@ $ nano /etc/systemd/system/killjoy.service
 ```
 ```shell
 [Unit]
-Description=KilljoyAI Service
+Description=Killjoy Service
 After=network.target
 
 [Service]
@@ -124,3 +125,7 @@ $ systemctl enable killjoy.service
 
 [devs_application]: https://discord.com/developers/applications
 [invitation]: https://discord.com/api/oauth2/authorize?client_id=706887214088323092&permissions=321600&scope=bot+applications.commands
+
+## Thanks to
+
+<img src="https://www.jetbrains.com/company/brand/img/jetbrains_logo.png" height="200" />
