@@ -16,7 +16,7 @@
 package dev.killjoy.framework
 
 import dev.killjoy.utils.Emojis
-import dev.killjoy.utils.extensions.sendMessage
+import dev.killjoy.extensions.jda.sendMessage
 import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.MessageBuilder

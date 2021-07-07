@@ -13,12 +13,12 @@
  * See the License for the specific language governing permissions and limitations under the License.
  ******************************************************************************/
 
-package dev.killjoy.slash.api
+package tv.blademaker.slash.api
 
 import dev.killjoy.extensions.jda.setDefaultColor
 import dev.killjoy.i18n.I18nKey
 import dev.killjoy.i18n.i18n
-import dev.killjoy.slash.utils.SlashUtils.asEphemeral
+import tv.blademaker.slash.utils.SlashUtils.asEphemeral
 import dev.killjoy.utils.Emojis
 import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.JDA

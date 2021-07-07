@@ -15,7 +15,7 @@
 
 package dev.killjoy.utils
 
-import dev.killjoy.slash.api.SlashCommandContext
+import tv.blademaker.slash.api.SlashCommandContext
 import net.dv8tion.jda.api.entities.Emoji
 import net.dv8tion.jda.api.entities.User
 import net.dv8tion.jda.api.events.interaction.ButtonClickEvent

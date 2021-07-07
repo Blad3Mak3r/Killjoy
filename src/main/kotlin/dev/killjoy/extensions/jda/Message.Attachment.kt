@@ -13,8 +13,14 @@
  * See the License for the specific language governing permissions and limitations under the License.
  ******************************************************************************/
 
-package dev.killjoy.utils.extensions
+package dev.killjoy.extensions.jda
 
-import net.dv8tion.jda.api.MessageBuilder
+import net.dv8tion.jda.api.entities.Message
 
-fun MessageBuilder.appendBold(msg: String) = this.append("**$msg**")
+private val AUDIO_EXTENSIONS = setOf("flac", "mkv", "mp4", "mp3", "ogg", "wav")
+
+val Message.Attachment.isAudio: Boolean
+    get() {
+        val extension = this.fileExtension
+        return extension != null && AUDIO_EXTENSIONS.contains(extension.lowercase())
+    }

@@ -16,8 +16,8 @@
 package dev.killjoy.commands.info
 
 import dev.killjoy.extensions.jda.await
-import dev.killjoy.slash.api.AbstractSlashCommand
-import dev.killjoy.slash.api.SlashCommandContext
+import tv.blademaker.slash.api.AbstractSlashCommand
+import tv.blademaker.slash.api.SlashCommandContext
 import dev.killjoy.utils.Emojis
 
 @Suppress("unused")

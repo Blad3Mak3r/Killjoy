@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and limitations under the License.
  ******************************************************************************/
 
-package dev.killjoy.slash.api
+package tv.blademaker.slash.api
 
 import dev.killjoy.i18n.I18nKey
 import dev.killjoy.i18n.i18n
-import dev.killjoy.slash.api.annotations.Permissions
-import dev.killjoy.slash.api.annotations.SlashSubCommand
-import dev.killjoy.slash.utils.SlashUtils
+import tv.blademaker.slash.api.annotations.Permissions
+import tv.blademaker.slash.api.annotations.SlashSubCommand
+import tv.blademaker.slash.utils.SlashUtils
 import dev.killjoy.utils.Emojis
 import io.sentry.Sentry
 import io.sentry.SentryEvent

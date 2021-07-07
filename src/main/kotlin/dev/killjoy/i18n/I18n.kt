@@ -16,11 +16,10 @@
 package dev.killjoy.i18n
 
 import dev.killjoy.extensions.jda.supportedLocale
-import dev.killjoy.slash.api.SlashCommandContext
+import tv.blademaker.slash.api.SlashCommandContext
 import io.sentry.Sentry
 import net.dv8tion.jda.api.entities.Guild
 import org.slf4j.LoggerFactory
-import java.lang.IllegalArgumentException
 import java.text.MessageFormat
 import java.util.*
 import java.util.concurrent.atomic.AtomicBoolean

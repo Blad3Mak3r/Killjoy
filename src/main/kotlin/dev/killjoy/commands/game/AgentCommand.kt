@@ -24,7 +24,7 @@ import dev.killjoy.framework.abs.Command
 import dev.killjoy.framework.annotations.CommandArgument
 import dev.killjoy.framework.annotations.CommandProperties
 import dev.killjoy.utils.Emojis
-import dev.killjoy.utils.extensions.isInt
+import dev.killjoy.extensions.jda.isInt
 
 @CommandProperties(
     name = "agents",

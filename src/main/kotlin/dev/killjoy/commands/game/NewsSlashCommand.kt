@@ -19,10 +19,8 @@ import dev.killjoy.apis.news.NewsRetriever
 import dev.killjoy.extensions.jda.setDefaultColor
 import dev.killjoy.extensions.jda.supportedLocale
 import dev.killjoy.i18n.i18nCommand
-import dev.killjoy.slash.api.AbstractSlashCommand
-import dev.killjoy.slash.api.SlashCommandContext
-import dev.killjoy.utils.ParseUtils
-import dev.killjoy.utils.Utils
+import tv.blademaker.slash.api.AbstractSlashCommand
+import tv.blademaker.slash.api.SlashCommandContext
 import net.dv8tion.jda.api.EmbedBuilder
 
 @Suppress("unused")

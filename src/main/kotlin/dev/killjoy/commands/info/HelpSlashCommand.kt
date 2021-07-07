@@ -21,8 +21,8 @@ import dev.killjoy.*
 import dev.killjoy.extensions.jda.supportedLocale
 import dev.killjoy.i18n.I18n
 import dev.killjoy.i18n.i18nCommand
-import dev.killjoy.slash.api.AbstractSlashCommand
-import dev.killjoy.slash.api.SlashCommandContext
+import tv.blademaker.slash.api.AbstractSlashCommand
+import tv.blademaker.slash.api.SlashCommandContext
 import net.dv8tion.jda.api.entities.Guild
 import net.dv8tion.jda.api.interactions.components.ActionRow
 import net.dv8tion.jda.api.interactions.components.Button

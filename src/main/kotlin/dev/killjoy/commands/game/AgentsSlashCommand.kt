@@ -23,8 +23,8 @@ import dev.killjoy.extensions.jda.betterString
 import dev.killjoy.extensions.jda.ktx.await
 import dev.killjoy.extensions.jda.setDefaultColor
 import dev.killjoy.i18n.i18nCommand
-import dev.killjoy.slash.api.AbstractSlashCommand
-import dev.killjoy.slash.api.SlashCommandContext
+import tv.blademaker.slash.api.AbstractSlashCommand
+import tv.blademaker.slash.api.SlashCommandContext
 import dev.killjoy.utils.ParseUtils
 import dev.killjoy.utils.paginationButtons
 import dev.killjoy.utils.userInteractionFilter

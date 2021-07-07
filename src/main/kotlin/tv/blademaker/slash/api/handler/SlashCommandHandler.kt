@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and limitations under the License.
  ******************************************************************************/
 
-package dev.killjoy.slash.api.handler
+package tv.blademaker.slash.api.handler
 
 import dev.killjoy.extensions.info
-import dev.killjoy.slash.api.AbstractSlashCommand
-import dev.killjoy.slash.utils.SlashUtils
+import tv.blademaker.slash.api.AbstractSlashCommand
+import tv.blademaker.slash.utils.SlashUtils
 import net.dv8tion.jda.api.events.GenericEvent
 import net.dv8tion.jda.api.events.interaction.SlashCommandEvent
 import net.dv8tion.jda.api.hooks.EventListener

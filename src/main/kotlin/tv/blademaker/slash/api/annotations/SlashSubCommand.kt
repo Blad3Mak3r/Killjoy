@@ -13,14 +13,11 @@
  * See the License for the specific language governing permissions and limitations under the License.
  ******************************************************************************/
 
-package dev.killjoy.utils.extensions
+package tv.blademaker.slash.api.annotations
 
-import net.dv8tion.jda.api.entities.Message
-
-private val AUDIO_EXTENSIONS = setOf("flac", "mkv", "mp4", "mp3", "ogg", "wav")
-
-val Message.Attachment.isAudio: Boolean
-    get() {
-        val extension = this.fileExtension
-        return extension != null && AUDIO_EXTENSIONS.contains(extension.lowercase())
-    }
+@Target(AnnotationTarget.FUNCTION)
+@Retention(AnnotationRetention.RUNTIME)
+annotation class SlashSubCommand(
+    val name: String = "",
+    val group: String = ""
+)

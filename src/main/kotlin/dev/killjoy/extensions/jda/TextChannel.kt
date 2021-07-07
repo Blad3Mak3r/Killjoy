@@ -13,9 +13,14 @@
  * See the License for the specific language governing permissions and limitations under the License.
  ******************************************************************************/
 
-package dev.killjoy.utils.extensions
+package dev.killjoy.extensions.jda
 
-import net.dv8tion.jda.api.entities.User
+import dev.killjoy.utils.Emojis
+import net.dv8tion.jda.api.EmbedBuilder
+import net.dv8tion.jda.api.MessageBuilder
+import net.dv8tion.jda.api.entities.TextChannel
 
-val User.isSelf: Boolean
-    get() = this.id == this.jda.selfUser.id
+inline fun TextChannel.sendEmbed(builder: EmbedBuilder.() -> Unit) = this.sendMessage(EmbedBuilder().apply(builder).build())
+inline fun TextChannel.sendMessage(builder: MessageBuilder.() -> Unit) = this.sendMessage(MessageBuilder().apply(builder).build())
+
+fun TextChannel.sendMessage(emojis: Emojis, message: CharSequence) = this.sendMessage("${emojis.getCode()} $message")

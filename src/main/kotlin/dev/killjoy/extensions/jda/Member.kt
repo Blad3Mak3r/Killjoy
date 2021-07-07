@@ -13,13 +13,22 @@
  * See the License for the specific language governing permissions and limitations under the License.
  ******************************************************************************/
 
-package dev.killjoy.slash.api.annotations
+package dev.killjoy.extensions.jda
 
 import net.dv8tion.jda.api.Permission
+import net.dv8tion.jda.api.entities.Member
 
-@Target(AnnotationTarget.FIELD, AnnotationTarget.FUNCTION, AnnotationTarget.CLASS)
-@Retention(AnnotationRetention.RUNTIME)
-annotation class Permissions(
-    val user: Array<Permission> = [],
-    val bot: Array<Permission> = []
-)
+/*val Member.isBotOwner: Boolean
+    get() = Config.owners.any { it == this.id }*/
+
+val Member.isSelf: Boolean
+    get() = this.jda.selfUser.id == this.user.id
+
+val Member.isDeafened: Boolean
+    get() = this.voiceState!!.isDeafened
+
+val Member.isManager: Boolean
+    get() = hasPermission(Permission.MANAGE_SERVER)
+
+val Member.isAdmin: Boolean
+    get() = hasPermission(Permission.ADMINISTRATOR)

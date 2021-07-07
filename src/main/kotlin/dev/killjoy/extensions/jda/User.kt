@@ -28,11 +28,9 @@
  * See the License for the specific language governing permissions and limitations under the License.
  ******************************************************************************/
 
-package dev.killjoy.extensions.jda.ktx
+package dev.killjoy.extensions.jda
 
-import tv.blademaker.slash.api.SlashCommandContext
-import dev.minn.jda.ktx.await
-import net.dv8tion.jda.api.events.GenericEvent
+import net.dv8tion.jda.api.entities.User
 
-suspend inline fun <reified T : GenericEvent> SlashCommandContext.await(crossinline filter: (T) -> Boolean = { true }) =
-    this.jda.shardManager!!.await(filter)
+val User.isSelf: Boolean
+    get() = this.id == this.jda.selfUser.id

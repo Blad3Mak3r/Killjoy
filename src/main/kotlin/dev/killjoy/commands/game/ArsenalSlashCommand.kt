@@ -17,8 +17,8 @@ package dev.killjoy.commands.game
 
 import dev.killjoy.Launcher
 import dev.killjoy.i18n.i18nCommand
-import dev.killjoy.slash.api.AbstractSlashCommand
-import dev.killjoy.slash.api.SlashCommandContext
+import tv.blademaker.slash.api.AbstractSlashCommand
+import tv.blademaker.slash.api.SlashCommandContext
 
 @Suppress("unused")
 class ArsenalSlashCommand : AbstractSlashCommand("arsenal") {

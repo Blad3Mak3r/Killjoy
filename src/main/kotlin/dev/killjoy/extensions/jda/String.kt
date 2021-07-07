@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and limitations under the License.
  ******************************************************************************/
 
-package dev.killjoy.utils.extensions
+package dev.killjoy.extensions.jda
 
 import dev.killjoy.utils.Utils
 

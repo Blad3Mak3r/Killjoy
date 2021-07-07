@@ -17,8 +17,8 @@ package dev.killjoy.commands.misc
 
 import dev.killjoy.apis.memes.Memes4K
 import dev.killjoy.extensions.jda.setDefaultColor
-import dev.killjoy.slash.api.AbstractSlashCommand
-import dev.killjoy.slash.api.SlashCommandContext
+import tv.blademaker.slash.api.AbstractSlashCommand
+import tv.blademaker.slash.api.SlashCommandContext
 import dev.killjoy.utils.Emojis
 
 @Suppress("unused")

@@ -19,8 +19,8 @@ import dev.killjoy.Launcher
 import dev.killjoy.apis.news.NewsRetriever
 import dev.killjoy.extensions.jda.supportedLocale
 import dev.killjoy.i18n.i18nCommand
-import dev.killjoy.slash.api.AbstractSlashCommand
-import dev.killjoy.slash.api.SlashCommandContext
+import tv.blademaker.slash.api.AbstractSlashCommand
+import tv.blademaker.slash.api.SlashCommandContext
 
 @Suppress("unused")
 class MapsSlashCommand : AbstractSlashCommand("maps") {

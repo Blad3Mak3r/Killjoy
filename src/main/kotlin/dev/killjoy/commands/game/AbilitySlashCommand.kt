@@ -18,10 +18,9 @@ package dev.killjoy.commands.game
 import dev.killjoy.Launcher
 import dev.killjoy.i18n.I18nKey
 import dev.killjoy.i18n.i18n
-import dev.killjoy.slash.api.AbstractSlashCommand
-import dev.killjoy.slash.api.SlashCommandContext
-import dev.killjoy.slash.api.annotations.SlashSubCommand
-import kotlin.math.ceil
+import tv.blademaker.slash.api.AbstractSlashCommand
+import tv.blademaker.slash.api.SlashCommandContext
+import tv.blademaker.slash.api.annotations.SlashSubCommand
 
 @Suppress("unused")
 class AbilitySlashCommand : AbstractSlashCommand("ability") {

@@ -13,21 +13,19 @@
  * See the License for the specific language governing permissions and limitations under the License.
  ******************************************************************************/
 
-package dev.killjoy.slash.api.handler
+package tv.blademaker.slash.api.handler
 
-import dev.killjoy.extensions.jda.setDefaultColor
 import dev.killjoy.i18n.I18nKey
 import dev.killjoy.i18n.i18n
 import dev.killjoy.i18n.replyI18n
-import dev.killjoy.slash.api.SlashCommandContext
-import dev.killjoy.slash.utils.SlashUtils
+import tv.blademaker.slash.api.SlashCommandContext
+import tv.blademaker.slash.utils.SlashUtils
 import dev.killjoy.utils.Emojis
 import dev.killjoy.utils.Utils
 import io.sentry.Sentry
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.events.interaction.SlashCommandEvent
 import org.slf4j.LoggerFactory
 import kotlin.coroutines.CoroutineContext
