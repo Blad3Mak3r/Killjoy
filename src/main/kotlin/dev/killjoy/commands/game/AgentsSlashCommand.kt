@@ -19,7 +19,6 @@ package dev.killjoy.commands.game
 
 import dev.killjoy.Launcher
 import dev.killjoy.extensions.info
-import dev.killjoy.extensions.jda.await
 import dev.killjoy.extensions.jda.betterString
 import dev.killjoy.extensions.jda.ktx.await
 import dev.killjoy.extensions.jda.setDefaultColor
@@ -27,12 +26,11 @@ import dev.killjoy.i18n.i18nCommand
 import dev.killjoy.slash.api.AbstractSlashCommand
 import dev.killjoy.slash.api.SlashCommandContext
 import dev.killjoy.utils.ParseUtils
-import dev.killjoy.utils.buildPaginationActionRow
+import dev.killjoy.utils.paginationButtons
 import dev.killjoy.utils.userInteractionFilter
 import kotlinx.coroutines.withTimeoutOrNull
 import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.entities.MessageEmbed
-import net.dv8tion.jda.api.entities.User
 import net.dv8tion.jda.api.events.interaction.ButtonClickEvent
 import org.slf4j.LoggerFactory
 import java.util.concurrent.atomic.AtomicBoolean
@@ -69,17 +67,20 @@ class AgentsSlashCommand : AbstractSlashCommand("agents") {
             }.build()
         }
 
-        ctx.reply(buildEmbed()).addActionRows(buildPaginationActionRow(ctx)).queue()
+        val enabledButtons = paginationButtons(ctx, false)
+        val disabledButtons = paginationButtons(ctx, true)
 
-        val enabledButtons = AtomicBoolean(true)
+        ctx.reply(buildEmbed()).addActionRows(enabledButtons).queue()
+
+        val buttonsState = AtomicBoolean(true)
 
         fun stop(event: ButtonClickEvent? = null) {
-            enabledButtons.set(false)
-            if (event != null) event.editComponents(emptyList()).queue({}, {})
-            else ctx.hook.editOriginalComponents(emptyList()).queue({}, {})
+            buttonsState.set(false)
+            if (event != null) event.editComponents(disabledButtons).queue({}, {})
+            else ctx.hook.editOriginalComponents(disabledButtons).queue({}, {})
         }
 
-        while (enabledButtons.get()) {
+        while (buttonsState.get()) {
             withTimeoutOrNull(60000) {
                 val pressed = ctx.await<ButtonClickEvent> { userInteractionFilter(it, ctx.author, interactionID) }
                 when (pressed.componentId.split(":")[1]) {

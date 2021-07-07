@@ -22,13 +22,13 @@ import net.dv8tion.jda.api.events.interaction.ButtonClickEvent
 import net.dv8tion.jda.api.interactions.components.ActionRow
 import net.dv8tion.jda.api.interactions.components.Button
 
-fun buildPaginationActionRow(ctx: SlashCommandContext): ActionRow {
+fun paginationButtons(ctx: SlashCommandContext, disabled: Boolean = false): ActionRow {
     val interactionID = ctx.hook.interaction.id
 
     return ActionRow.of(
-        Button.secondary("${interactionID}:preview", Emoji.fromUnicode("⏮️")),
-        Button.secondary("${interactionID}:next", Emoji.fromUnicode("⏭️")),
-        Button.danger("${interactionID}:cancel", Emoji.fromUnicode("\uD83D\uDED1"))
+        Button.secondary("${interactionID}:preview", Emoji.fromUnicode("⏮️")).withDisabled(disabled),
+        Button.secondary("${interactionID}:next", Emoji.fromUnicode("⏭️")).withDisabled(disabled),
+        Button.danger("${interactionID}:cancel", Emoji.fromUnicode("\uD83D\uDED1")).withDisabled(disabled)
     )
 }
 
