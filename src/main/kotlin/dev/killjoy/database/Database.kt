@@ -44,7 +44,7 @@ class Database(
 
             addDataSourceProperty("sslMode", "allow")
             addDataSourceProperty("serverName", this@Database.host)
-            addDataSourceProperty("portNumber", this@Database.port)
+            if (port > 0) addDataSourceProperty("portNumber", this@Database.port)
             addDataSourceProperty("user", this@Database.user)
             addDataSourceProperty("password", this@Database.password)
             addDataSourceProperty("databaseName", this@Database.name)
