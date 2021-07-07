@@ -15,6 +15,8 @@
 
 package dev.killjoy.apis.stats
 
+import dev.minn.jda.ktx.listener
+import net.dv8tion.jda.api.events.ReadyEvent
 import net.dv8tion.jda.api.sharding.ShardManager
 import okhttp3.OkHttpClient
 import org.slf4j.LoggerFactory
@@ -41,10 +43,19 @@ class StatsPosting private constructor(
 
     private val totalShards = shardManager.shardsTotal
 
+    private val readyShards = AtomicInteger(0)
+
     init {
         logger.info("Enabled guild count for ${websites.joinToString(", ") { it.id }}!")
 
-        shardManager.addEventListener(ReadyListener(shardManager, this))
+        shardManager.listener<ReadyEvent> {
+            val current = readyShards.incrementAndGet()
+
+            if (current >= totalShards) {
+                task = createTask()
+                shardManager.removeEventListener(this)
+            }
+        }
     }
 
     internal fun createTask(): ScheduledFuture<*> {
