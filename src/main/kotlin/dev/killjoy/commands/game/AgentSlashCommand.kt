@@ -17,7 +17,9 @@ package dev.killjoy.commands.game
 
 import dev.killjoy.Launcher
 import dev.killjoy.apis.riot.RiotAPI
+import dev.killjoy.extensions.jda.supportedLocale
 import dev.killjoy.i18n.i18nCommand
+import dev.killjoy.utils.FuzzyScore
 import tv.blademaker.slash.api.AbstractSlashCommand
 import tv.blademaker.slash.api.SlashCommandContext
 import dev.killjoy.valorant.agent.ValorantAgent
@@ -33,11 +35,6 @@ class AgentSlashCommand : AbstractSlashCommand("agent") {
             else ctx.reply(content).queue()
         }
 
-        fun send(content: String) {
-            if (ctx.isAcknowledged) ctx.send(content).queue()
-            else ctx.reply(content).queue()
-        }
-
         val isCached = RiotAPI.AgentStatsAPI.cached
 
         val agentName = ctx.getOption("name")!!.asString
@@ -45,10 +42,14 @@ class AgentSlashCommand : AbstractSlashCommand("agent") {
         if (!isCached) ctx.acknowledge().queue()
 
         val agent = findAgent(agentName)
-            ?: return sendAgentNotFound(ctx, agentName)
 
-        val embed = agent.asEmbed(ctx.guild).build()
-        send(embed)
+        if (agent != null) return send(agent.asEmbed(ctx.guild).build())
+
+        val similar = FuzzyScore.similar(agentName, Launcher.agents.map { it.name }, ctx.guild.supportedLocale)
+
+        if (similar.isEmpty()) return sendAgentNotFound(ctx, agentName)
+
+        sendAgentNotFoundWithSimilar(ctx, agentName, similar)
     }
 
     companion object {
@@ -57,8 +58,17 @@ class AgentSlashCommand : AbstractSlashCommand("agent") {
             ctx.sendNotFound(content).queue()
         }
 
+        private fun sendAgentNotFoundWithSimilar(ctx: SlashCommandContext, agentName: String, similar: List<String>) {
+            val content = ctx.i18nCommand("agent.notFoundWithSimilar", agentName, normalizeList(similar))
+            ctx.sendNotFound(content).queue()
+        }
+
         private fun findAgent(input: String): ValorantAgent? {
             return Launcher.getAgent(input)
+        }
+
+        private fun normalizeList(list: List<String>): String {
+            return list.joinToString("\n") { "• `$it`" }
         }
     }
 }

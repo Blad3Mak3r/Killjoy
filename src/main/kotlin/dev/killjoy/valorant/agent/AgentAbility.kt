@@ -49,6 +49,9 @@ data class AgentAbility(
     )
 
     fun name(guild: Guild) = name[guild.supportedLocale.language]!!.uppercase()
+    fun names(): List<String> {
+        return name.map { it.value }
+    }
     fun description(guild: Guild) = description[guild.supportedLocale.language]!!
     fun button(guild: Guild) = button[guild.supportedLocale.language]!!.uppercase()
 

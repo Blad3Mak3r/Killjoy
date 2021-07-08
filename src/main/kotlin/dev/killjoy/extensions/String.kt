@@ -15,6 +15,8 @@
 
 package dev.killjoy.extensions
 
+import java.util.*
+
 val String.isInt: Boolean
     get() {
         return try {
@@ -24,3 +26,5 @@ val String.isInt: Boolean
             false
         }
     }
+
+fun String.capital() = this.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
