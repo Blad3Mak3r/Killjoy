@@ -30,10 +30,8 @@ class AbilitySlashCommand : AbstractSlashCommand("ability") {
 
         val option = ctx.getOption("name")!!.asString
 
-        val ability = Launcher.getAbility(option)
+        Launcher.getAbility(option)?.also { ctx.reply(it.asEmbed(ctx.guild)).queue() }
             ?: return ctx.sendNotFound(ctx.i18n(I18nKey.ABILITY_NOT_FOUND, option)).queue()
-
-        ctx.reply(ability.asEmbed(ctx.guild)).queue()
     }
 
     companion object {

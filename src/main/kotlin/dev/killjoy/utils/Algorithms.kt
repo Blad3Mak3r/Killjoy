@@ -20,17 +20,19 @@ import kotlin.math.floor
 
 object Algorithms {
 
+    private fun String.removeSpaces() = this.lowercase().replace("\\s+".toRegex(), "")
+
     private const val REQUIRE_MINIMUM_DISTANCE = 0.75
 
     fun dictionarySimilar(term: String, dictionary: List<String>): List<String> {
         val resultList = mutableListOf<String>()
 
         for (item in dictionary) {
-            val distance = JaroWinkler.distance(term, item)
+            val distance = JaroWinkler.distance(term.removeSpaces(), item.removeSpaces())
             if (distance >= REQUIRE_MINIMUM_DISTANCE) {
                 resultList.add(item)
             } else {
-                val anagram = Anagram.of(term, item)
+                val anagram = Anagram.of(term.removeSpaces(), item.removeSpaces())
                 if (anagram) resultList.add(item)
             }
         }
@@ -40,8 +42,8 @@ object Algorithms {
 
     object Anagram {
         fun of(s1: String, s2: String): Boolean {
-            val a1 = s1.lowercase().replace("\\s+".toRegex(), "").split("").toTypedArray()
-            val a2 = s2.lowercase().replace("\\s+".toRegex(), "").split("").toTypedArray()
+            val a1 = s1.removeSpaces().split("").toTypedArray()
+            val a2 = s2.removeSpaces().split("").toTypedArray()
 
             Arrays.sort(a1)
             Arrays.sort(a2)
