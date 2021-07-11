@@ -73,7 +73,7 @@ class CommandContext(
     fun reply(msg: String) = message.reply(msg)
 
     fun reply(embed: MessageEmbed): MessageAction {
-        return message.reply(embed)
+        return message.replyEmbeds(embed)
     }
 
     fun reply(emoji: Emojis, msg: String): MessageAction {
@@ -87,7 +87,7 @@ class CommandContext(
     fun reply(emoji: Emojis, embed: MessageEmbed): MessageAction {
         return message.reply(MessageBuilder()
             .append(emoji.getCode(this@CommandContext))
-            .setEmbed(embed).build())
+            .setEmbeds(embed).build())
     }
 
     fun replyError(error: Throwable): MessageAction {
@@ -105,7 +105,7 @@ class CommandContext(
                 .setAuthor("An unexpected exception occurred.")
                 .setDescription("```\n$error\n```").setColor(Color.RED).build()
 
-        return message.reply(embed)
+        return message.replyEmbeds(embed)
     }
 
     fun send(emoji: Emojis, msg: String): MessageAction {
@@ -120,7 +120,7 @@ class CommandContext(
 
     fun send(msg: Message) = channel.sendMessage(msg)
 
-    fun send(embed: MessageEmbed) = channel.sendMessage(embed)
+    fun send(embed: MessageEmbed) = channel.sendMessageEmbeds(embed)
 
     inline fun send(builder: MessageBuilder.() -> Unit) = channel.sendMessage { apply(builder) }
 
@@ -136,13 +136,13 @@ class CommandContext(
     }
 
     inline fun embed(embed: EmbedBuilder.() -> Unit) =
-            channel.sendMessage(EmbedBuilder()
+            channel.sendMessageEmbeds(EmbedBuilder()
                     .setColor(getEmbedColor(selfMember))
                     .apply(embed)
                     .build())
 
     inline fun replyEmbed(embed: EmbedBuilder.() -> Unit) =
-        message.reply(EmbedBuilder()
+        message.replyEmbeds(EmbedBuilder()
             .setColor(getEmbedColor(selfMember))
             .apply(embed)
             .build())

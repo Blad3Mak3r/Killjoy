@@ -18,6 +18,7 @@
 package dev.killjoy.commands.info
 
 import dev.killjoy.*
+import dev.killjoy.extensions.capital
 import dev.killjoy.extensions.jda.supportedLocale
 import dev.killjoy.i18n.I18n
 import dev.killjoy.i18n.i18nCommand
@@ -46,11 +47,11 @@ class HelpSlashCommand : AbstractSlashCommand("help") {
             val isSupported = I18n.isSupported(guild.locale)
             return guild.locale.getDisplayLanguage(guild.locale).let {
                 if (!isSupported) it.plus(" (Not Supported)") else it
-            }.capitalize(guild.locale)
+            }.capital(guild.locale)
         }
 
         private fun killjoyLocale(guild: Guild): String {
-            return guild.supportedLocale.getDisplayLanguage(guild.locale).capitalize(guild.locale)
+            return guild.supportedLocale.getDisplayLanguage(guild.locale).capital(guild.locale)
         }
 
         fun buildActionRows(guild: Guild) = ActionRow.of(

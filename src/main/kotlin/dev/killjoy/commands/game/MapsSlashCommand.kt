@@ -17,6 +17,7 @@ package dev.killjoy.commands.game
 
 import dev.killjoy.Launcher
 import dev.killjoy.apis.news.NewsRetriever
+import dev.killjoy.extensions.capital
 import dev.killjoy.extensions.jda.supportedLocale
 import dev.killjoy.i18n.i18nCommand
 import tv.blademaker.slash.api.AbstractSlashCommand
@@ -36,7 +37,7 @@ class MapsSlashCommand : AbstractSlashCommand("maps") {
             ctx.sendEmbed {
                 setTitle(ctx.i18nCommand("maps.header"), mapsUrl)
                 for (map in Launcher.maps) {
-                    addField(map.name.capitalize(), map.description(ctx.guild), false)
+                    addField(map.name.capital(), map.description(ctx.guild), false)
                 }
             }.queue()
         } else {
@@ -44,7 +45,7 @@ class MapsSlashCommand : AbstractSlashCommand("maps") {
                 ?: return ctx.sendNotFound(ctx.i18nCommand("maps.notFound", selection)).queue()
 
             ctx.sendEmbed {
-                setTitle(map.name.capitalize(), mapsUrl)
+                setTitle(map.name.capital(), mapsUrl)
                 setDescription(map.description(ctx.guild))
                 setThumbnail(map.minimap)
                 setImage(map.imageUrl)

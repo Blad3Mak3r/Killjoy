@@ -90,6 +90,15 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
 }
 
+abstract class GenerateAgentsContent : DefaultTask() {
+
+    @TaskAction
+    fun execute() {
+        println("Generating agents contents...")
+    }
+
+}
+
 tasks {
     named<ShadowJar>("shadowJar") {
         println("Building version ${project.version}")
@@ -120,6 +129,8 @@ tasks {
     withType<KotlinCompile> {
         kotlinOptions.jvmTarget = "11"
     }
+
+    register<GenerateAgentsContent>("generateAgentsContent")
 }
 
 class Version(

@@ -27,4 +27,5 @@ val String.isInt: Boolean
         }
     }
 
-fun String.capital() = this.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
+fun String.capital() = this.lowercase().replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
+fun String.capital(locale: Locale) = this.lowercase().replaceFirstChar { if (it.isLowerCase()) it.titlecase(locale) else it.toString() }

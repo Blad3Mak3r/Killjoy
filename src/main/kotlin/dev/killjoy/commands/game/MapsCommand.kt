@@ -17,6 +17,7 @@ package dev.killjoy.commands.game
 
 import dev.killjoy.Launcher
 import dev.killjoy.apis.news.NewsRetriever
+import dev.killjoy.extensions.capital
 import dev.killjoy.extensions.jda.supportedLocale
 import dev.killjoy.framework.Category
 import dev.killjoy.framework.CommandContext
@@ -40,7 +41,7 @@ class MapsCommand : Command() {
             ctx.replyEmbed {
                 setTitle(ctx.guild.i18nCommand("maps.header"), mapsUrl)
                 for (map in Launcher.maps) {
-                    addField(map.name.capitalize(), map.description(ctx.guild), false)
+                    addField(map.name.capital(), map.description(ctx.guild), false)
                 }
             }.queue()
         } else {
@@ -48,7 +49,7 @@ class MapsCommand : Command() {
                 ?: return ctx.reply(ctx.guild.i18nCommand("maps.notFound", ctx.args.first())).queue()
 
             ctx.replyEmbed {
-                setTitle(map.name.capitalize(), mapsUrl)
+                setTitle(map.name.capital(), mapsUrl)
                 setDescription(map.description(ctx.guild))
                 setThumbnail(map.minimap)
                 setImage(map.imageUrl)

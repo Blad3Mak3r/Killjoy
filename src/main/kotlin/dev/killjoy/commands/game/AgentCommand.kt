@@ -16,6 +16,7 @@
 package dev.killjoy.commands.game
 
 import dev.killjoy.Launcher
+import dev.killjoy.extensions.capital
 import dev.killjoy.extensions.jda.setDefaultColor
 import dev.killjoy.extensions.jda.supportedLocale
 import dev.killjoy.framework.Category
@@ -60,7 +61,7 @@ class AgentCommand : Command() {
 
             val agent = Launcher.getAgent(input)
                 ?: return if (isInt) ctx.send(Emojis.NoEntry, "Agent with id ``$input`` does not exists...").queue()
-                else ctx.send(Emojis.NoEntry, "Agent with name ``${input.capitalize()}`` does not exists...").queue()
+                else ctx.send(Emojis.NoEntry, "Agent with name ``${input.capital(ctx.guild.supportedLocale)}`` does not exists...").queue()
 
             ctx.reply(agent.asEmbed(ctx.guild).build()).queue()
         } else {
@@ -69,7 +70,7 @@ class AgentCommand : Command() {
 
             val agent = Launcher.getAgent(input)
                 ?: return if (isInt) ctx.send(Emojis.NoEntry, "Agent with id ``$input`` does not exists...").queue()
-                else ctx.send(Emojis.NoEntry, "Agent with name ``${input.capitalize()}`` does not exists...").queue()
+                else ctx.send(Emojis.NoEntry, "Agent with name ``${input.capital(ctx.guild.supportedLocale)}`` does not exists...").queue()
 
             val skill = agent.abilities.find { it.hasButton(ctx.args[1]) }
                 ?: return ctx.send(Emojis.NoEntry, "I have not been able to find that skill...").queue()

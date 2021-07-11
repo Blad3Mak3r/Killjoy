@@ -19,6 +19,7 @@ package dev.killjoy.utils
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder
 import dev.killjoy.Versions
+import dev.killjoy.extensions.capital
 import dev.killjoy.framework.CommandContext
 import dev.killjoy.framework.abs.Command
 import dev.killjoy.framework.abs.SubCommand
@@ -137,7 +138,7 @@ object Utils {
 
     object StringUtils {
         @JvmStatic
-        fun capitalize(str: String) = str.capitalize()
+        fun capitalize(str: String) = str.capital()
     }
 
     object Validation {
