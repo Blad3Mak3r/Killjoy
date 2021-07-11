@@ -19,9 +19,10 @@ val coroutinesVersion = "1.5.0"
 val logbackVersion = "1.2.3"
 val prometheusVersion = "0.11.0"
 val sentryVersion = "5.0.1"
+val commonsLang = "3.12.0"
 
 group = "dev.killjoy"
-val versionObj = Version(0, 14, 4)
+val versionObj = Version(0, 14, 5)
 version = versionObj.build()
 
 repositories {

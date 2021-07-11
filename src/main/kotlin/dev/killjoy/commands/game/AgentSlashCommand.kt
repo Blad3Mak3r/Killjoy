@@ -17,9 +17,8 @@ package dev.killjoy.commands.game
 
 import dev.killjoy.Launcher
 import dev.killjoy.apis.riot.RiotAPI
-import dev.killjoy.extensions.jda.supportedLocale
 import dev.killjoy.i18n.i18nCommand
-import dev.killjoy.utils.FuzzyScore
+import dev.killjoy.utils.Algorithms
 import tv.blademaker.slash.api.AbstractSlashCommand
 import tv.blademaker.slash.api.SlashCommandContext
 import dev.killjoy.valorant.agent.ValorantAgent
@@ -45,7 +44,7 @@ class AgentSlashCommand : AbstractSlashCommand("agent") {
 
         if (agent != null) return send(agent.asEmbed(ctx.guild).build())
 
-        val similar = FuzzyScore.similar(agentName, Launcher.agents.map { it.name }, ctx.guild.supportedLocale)
+        val similar = Algorithms.dictionarySimilar(agentName, Launcher.agents.map { it.name })
 
         if (similar.isEmpty()) return sendAgentNotFound(ctx, agentName)
 
