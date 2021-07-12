@@ -83,7 +83,7 @@ dependencies {
     implementation("com.typesafe:config:1.4.1")
     implementation("org.json:json:20210307")
 
-    implementation("org.jsoup:jsoup:1.13.1")
+    implementation("org.jsoup:jsoup:1.14.1")
 
     //Cache
     implementation("com.github.ben-manes.caffeine:caffeine:3.0.3")
