@@ -15,7 +15,7 @@ plugins {
 val jdaVersion = "4.3.0_293"
 val exposedVersion = "0.32.1"
 val ktorVersion = "1.6.1"
-val coroutinesVersion = "1.5.0"
+val coroutinesVersion = "1.5.1-native-mt"
 val logbackVersion = "1.2.3"
 val prometheusVersion = "0.11.0"
 val sentryVersion = "5.0.1"
