@@ -16,8 +16,6 @@
 package dev.killjoy
 
 import com.typesafe.config.ConfigException
-import dev.killjoy.apis.stats.StatsPosting
-import dev.killjoy.apis.stats.Website
 import dev.killjoy.database.Database
 import dev.killjoy.database.DatabaseConnection
 import dev.killjoy.database.buildDatabaseConnection
@@ -157,7 +155,6 @@ object Launcher : Killjoy {
                 else -> MainListener.onEvent(event)
             }
         }
-        enableListing()
     }
 
     override fun getShardManager(): ShardManager {
@@ -197,26 +194,6 @@ object Launcher : Killjoy {
         val n = name.lowercase()
         return getAbilities().find {
             it.name.containsValue(n) || it.name.containsValue(n.replace("_", " "))
-        }
-    }
-
-    private fun enableListing() {
-        try {
-            val websites = Credentials.getNullableConfigList("listing")?.map { Website(it) }
-
-            if (websites == null || websites.isEmpty()) {
-                log.info("Listing is not enabled.")
-            } else {
-                StatsPosting.Builder()
-                    .withShardManager(shardManager)
-                    .addWebsites(websites)
-                    .withInitialDelay(1)
-                    .withRepetitionPeriod(30)
-                    .withTimeUnit(TimeUnit.MINUTES)
-                    .build()
-            }
-        } catch (e: Exception) {
-            log.error("Listing is not enabled.", e)
         }
     }
 
