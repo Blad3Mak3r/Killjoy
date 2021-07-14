@@ -18,8 +18,8 @@ package dev.killjoy
 import dev.killjoy.database.DatabaseConnection
 import dev.killjoy.valorant.agent.AgentAbility
 import dev.killjoy.valorant.agent.ValorantAgent
-import dev.killjoy.valorant.map.ValorantMap
 import dev.killjoy.valorant.arsenal.ValorantWeapon
+import dev.killjoy.valorant.map.ValorantMap
 import net.dv8tion.jda.api.sharding.ShardManager
 
 interface Killjoy {

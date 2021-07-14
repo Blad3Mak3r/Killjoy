@@ -17,7 +17,6 @@ package dev.killjoy.valorant.agent
 
 import dev.killjoy.extensions.jda.setDefaultColor
 import dev.killjoy.extensions.jda.supportedLocale
-import dev.killjoy.i18n.I18n
 import dev.killjoy.i18n.I18nKey
 import dev.killjoy.i18n.i18n
 import dev.killjoy.valorant.I18nMap

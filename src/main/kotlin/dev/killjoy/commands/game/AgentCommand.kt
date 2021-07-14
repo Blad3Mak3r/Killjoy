@@ -17,6 +17,7 @@ package dev.killjoy.commands.game
 
 import dev.killjoy.Launcher
 import dev.killjoy.extensions.capital
+import dev.killjoy.extensions.jda.isInt
 import dev.killjoy.extensions.jda.setDefaultColor
 import dev.killjoy.extensions.jda.supportedLocale
 import dev.killjoy.framework.Category
@@ -25,7 +26,6 @@ import dev.killjoy.framework.abs.Command
 import dev.killjoy.framework.annotations.CommandArgument
 import dev.killjoy.framework.annotations.CommandProperties
 import dev.killjoy.utils.Emojis
-import dev.killjoy.extensions.jda.isInt
 
 @CommandProperties(
     name = "agents",

@@ -16,7 +16,6 @@
 package dev.killjoy.valorant.arsenal
 
 import dev.killjoy.i18n.I18nKey
-import io.ktor.util.*
 import org.json.JSONObject
 
 enum class WallPenetration(val i18nKey: I18nKey) {

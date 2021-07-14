@@ -15,11 +15,10 @@
 
 package dev.killjoy.i18n
 
-import tv.blademaker.slash.api.SlashCommandContext
 import net.dv8tion.jda.api.entities.Guild
 import net.dv8tion.jda.api.events.interaction.SlashCommandEvent
+import tv.blademaker.slash.api.SlashCommandContext
 import java.util.*
-import kotlin.collections.HashMap
 
 typealias I18nBundle = HashMap<String, ResourceBundle>
 

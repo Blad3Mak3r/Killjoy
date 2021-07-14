@@ -17,16 +17,19 @@
 
 package dev.killjoy.commands.info
 
-import dev.killjoy.*
+import dev.killjoy.GUIDES_URL
+import dev.killjoy.INVITE_URL
+import dev.killjoy.VOTE_URL
+import dev.killjoy.WEBSITE_URL
 import dev.killjoy.extensions.capital
 import dev.killjoy.extensions.jda.supportedLocale
 import dev.killjoy.i18n.I18n
 import dev.killjoy.i18n.i18nCommand
-import tv.blademaker.slash.api.AbstractSlashCommand
-import tv.blademaker.slash.api.SlashCommandContext
 import net.dv8tion.jda.api.entities.Guild
 import net.dv8tion.jda.api.interactions.components.ActionRow
 import net.dv8tion.jda.api.interactions.components.Button
+import tv.blademaker.slash.api.AbstractSlashCommand
+import tv.blademaker.slash.api.SlashCommandContext
 
 class HelpSlashCommand : AbstractSlashCommand("help") {
 

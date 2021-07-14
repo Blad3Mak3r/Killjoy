@@ -28,7 +28,6 @@ import org.jetbrains.exposed.dao.id.UUIDTable
 import org.jetbrains.exposed.sql.LongColumnType
 import org.jetbrains.exposed.sql.`java-time`.CurrentTimestamp
 import org.jetbrains.exposed.sql.`java-time`.timestamp
-import java.time.Instant
 import java.util.*
 
 object PugsTable : UUIDTable("pugs") {

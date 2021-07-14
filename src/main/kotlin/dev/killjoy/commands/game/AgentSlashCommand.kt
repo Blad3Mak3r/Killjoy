@@ -19,10 +19,10 @@ import dev.killjoy.Launcher
 import dev.killjoy.apis.riot.RiotAPI
 import dev.killjoy.i18n.i18nCommand
 import dev.killjoy.utils.Algorithms
-import tv.blademaker.slash.api.AbstractSlashCommand
-import tv.blademaker.slash.api.SlashCommandContext
 import dev.killjoy.valorant.agent.ValorantAgent
 import net.dv8tion.jda.api.entities.MessageEmbed
+import tv.blademaker.slash.api.AbstractSlashCommand
+import tv.blademaker.slash.api.SlashCommandContext
 
 @Suppress("unused")
 class AgentSlashCommand : AbstractSlashCommand("agent") {

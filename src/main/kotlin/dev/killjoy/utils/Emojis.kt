@@ -15,8 +15,8 @@
 package dev.killjoy.utils
 
 import dev.killjoy.framework.CommandContext
-import tv.blademaker.slash.api.SlashCommandContext
 import net.dv8tion.jda.api.Permission
+import tv.blademaker.slash.api.SlashCommandContext
 
 @Suppress("MemberVisibilityCanBePrivate")
 enum class Emojis(private val custom: String?, private val def: String) {

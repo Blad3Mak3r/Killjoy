@@ -18,8 +18,6 @@ package tv.blademaker.slash.api.handler
 import dev.killjoy.i18n.I18nKey
 import dev.killjoy.i18n.i18n
 import dev.killjoy.i18n.replyI18n
-import tv.blademaker.slash.api.SlashCommandContext
-import tv.blademaker.slash.utils.SlashUtils
 import dev.killjoy.utils.Emojis
 import dev.killjoy.utils.Utils
 import io.sentry.Sentry
@@ -28,6 +26,8 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import net.dv8tion.jda.api.events.interaction.SlashCommandEvent
 import org.slf4j.LoggerFactory
+import tv.blademaker.slash.api.SlashCommandContext
+import tv.blademaker.slash.utils.SlashUtils
 import kotlin.coroutines.CoroutineContext
 
 class DefaultSlashCommandHandler(packageName: String) : SlashCommandHandler, CoroutineScope {

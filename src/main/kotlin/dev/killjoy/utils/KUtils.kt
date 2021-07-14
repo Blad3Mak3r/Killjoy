@@ -15,12 +15,12 @@
 
 package dev.killjoy.utils
 
-import tv.blademaker.slash.api.SlashCommandContext
 import net.dv8tion.jda.api.entities.Emoji
 import net.dv8tion.jda.api.entities.User
 import net.dv8tion.jda.api.events.interaction.ButtonClickEvent
 import net.dv8tion.jda.api.interactions.components.ActionRow
 import net.dv8tion.jda.api.interactions.components.Button
+import tv.blademaker.slash.api.SlashCommandContext
 
 fun paginationButtons(ctx: SlashCommandContext, disabled: Boolean = false): ActionRow {
     val interactionID = ctx.hook.interaction.id

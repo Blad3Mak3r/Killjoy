@@ -18,8 +18,6 @@ package dev.killjoy.valorant
 import dev.killjoy.i18n.I18n
 import dev.killjoy.valorant.arsenal.ValorantWeapon
 import org.json.JSONObject
-import java.util.*
-import kotlin.collections.HashMap
 
 typealias I18nMap = Map<String, String>
 

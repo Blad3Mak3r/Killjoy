@@ -15,10 +15,10 @@
 
 package dev.killjoy.utils
 
-import dev.killjoy.valorant.agent.ValorantAgent
 import dev.killjoy.valorant.ValorantEntity
-import dev.killjoy.valorant.map.ValorantMap
+import dev.killjoy.valorant.agent.ValorantAgent
 import dev.killjoy.valorant.arsenal.ValorantWeapon
+import dev.killjoy.valorant.map.ValorantMap
 import org.json.JSONObject
 import org.reflections.Reflections
 import org.reflections.ReflectionsException

@@ -16,12 +16,12 @@
 package tv.blademaker.slash.api.handler
 
 import dev.killjoy.extensions.info
-import tv.blademaker.slash.api.AbstractSlashCommand
-import tv.blademaker.slash.utils.SlashUtils
 import net.dv8tion.jda.api.events.GenericEvent
 import net.dv8tion.jda.api.events.interaction.SlashCommandEvent
 import net.dv8tion.jda.api.hooks.EventListener
 import org.slf4j.Logger
+import tv.blademaker.slash.api.AbstractSlashCommand
+import tv.blademaker.slash.utils.SlashUtils
 
 interface SlashCommandHandler : EventListener {
     val registry: List<AbstractSlashCommand>

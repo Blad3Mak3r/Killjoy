@@ -17,14 +17,14 @@ package tv.blademaker.slash.api
 
 import dev.killjoy.i18n.I18nKey
 import dev.killjoy.i18n.i18n
-import tv.blademaker.slash.api.annotations.Permissions
-import tv.blademaker.slash.api.annotations.SlashSubCommand
-import tv.blademaker.slash.utils.SlashUtils
 import dev.killjoy.utils.Emojis
 import io.sentry.Sentry
 import io.sentry.SentryEvent
 import io.sentry.protocol.Message
 import org.slf4j.LoggerFactory
+import tv.blademaker.slash.api.annotations.Permissions
+import tv.blademaker.slash.api.annotations.SlashSubCommand
+import tv.blademaker.slash.utils.SlashUtils
 import java.util.function.Predicate
 import kotlin.reflect.KFunction
 import kotlin.reflect.KVisibility

@@ -23,8 +23,6 @@ import dev.killjoy.extensions.jda.betterString
 import dev.killjoy.extensions.jda.ktx.await
 import dev.killjoy.extensions.jda.setDefaultColor
 import dev.killjoy.i18n.i18nCommand
-import tv.blademaker.slash.api.AbstractSlashCommand
-import tv.blademaker.slash.api.SlashCommandContext
 import dev.killjoy.utils.ParseUtils
 import dev.killjoy.utils.paginationButtons
 import dev.killjoy.utils.userInteractionFilter
@@ -33,6 +31,8 @@ import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.entities.MessageEmbed
 import net.dv8tion.jda.api.events.interaction.ButtonClickEvent
 import org.slf4j.LoggerFactory
+import tv.blademaker.slash.api.AbstractSlashCommand
+import tv.blademaker.slash.api.SlashCommandContext
 import java.util.concurrent.atomic.AtomicBoolean
 import kotlin.math.ceil
 

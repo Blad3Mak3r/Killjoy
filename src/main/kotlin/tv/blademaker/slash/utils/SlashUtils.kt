@@ -16,9 +16,6 @@
 package tv.blademaker.slash.utils
 
 import dev.killjoy.extensions.toHuman
-import tv.blademaker.slash.api.AbstractSlashCommand
-import tv.blademaker.slash.api.SlashCommandContext
-import tv.blademaker.slash.api.annotations.Permissions
 import net.dv8tion.jda.api.Permission
 import net.dv8tion.jda.api.entities.Member
 import net.dv8tion.jda.api.interactions.commands.OptionMapping
@@ -29,6 +26,9 @@ import net.dv8tion.jda.api.requests.restaction.interactions.ReplyAction
 import org.reflections.Reflections
 import org.reflections.scanners.SubTypesScanner
 import org.slf4j.LoggerFactory
+import tv.blademaker.slash.api.AbstractSlashCommand
+import tv.blademaker.slash.api.SlashCommandContext
+import tv.blademaker.slash.api.annotations.Permissions
 import java.lang.reflect.Modifier
 
 object SlashUtils {

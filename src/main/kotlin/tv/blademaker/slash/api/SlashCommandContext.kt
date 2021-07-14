@@ -18,7 +18,6 @@ package tv.blademaker.slash.api
 import dev.killjoy.extensions.jda.setDefaultColor
 import dev.killjoy.i18n.I18nKey
 import dev.killjoy.i18n.i18n
-import tv.blademaker.slash.utils.SlashUtils.asEphemeral
 import dev.killjoy.utils.Emojis
 import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.JDA
@@ -30,6 +29,7 @@ import net.dv8tion.jda.api.interactions.commands.OptionMapping
 import net.dv8tion.jda.api.requests.RestAction
 import net.dv8tion.jda.api.requests.restaction.WebhookMessageAction
 import net.dv8tion.jda.api.requests.restaction.interactions.ReplyAction
+import tv.blademaker.slash.utils.SlashUtils.asEphemeral
 
 @Suppress("unused")
 class SlashCommandContext(

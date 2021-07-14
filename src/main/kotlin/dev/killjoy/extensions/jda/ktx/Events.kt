@@ -30,9 +30,9 @@
 
 package dev.killjoy.extensions.jda.ktx
 
-import tv.blademaker.slash.api.SlashCommandContext
 import dev.minn.jda.ktx.await
 import net.dv8tion.jda.api.events.GenericEvent
+import tv.blademaker.slash.api.SlashCommandContext
 
 suspend inline fun <reified T : GenericEvent> SlashCommandContext.await(crossinline filter: (T) -> Boolean = { true }) =
     this.jda.shardManager!!.await(filter)

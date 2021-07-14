@@ -16,13 +16,11 @@
 package dev.killjoy.apis.news
 
 import dev.killjoy.i18n.i18nCommand
-import dev.killjoy.utils.ParseUtils
 import kong.unirest.json.JSONObject
 import net.dv8tion.jda.api.entities.Guild
 import net.dv8tion.jda.api.entities.MessageEmbed
 import org.slf4j.LoggerFactory
 import java.text.MessageFormat
-import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.*

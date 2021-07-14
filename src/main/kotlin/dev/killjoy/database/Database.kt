@@ -20,7 +20,6 @@ import com.zaxxer.hikari.HikariDataSource
 import dev.killjoy.Credentials
 import dev.killjoy.database.models.ShardStats
 import dev.killjoy.database.repositories.PugsRepository
-import kotlinx.coroutines.CompletableDeferred
 import net.dv8tion.jda.api.JDA
 import org.jetbrains.exposed.sql.transactions.transaction
 import org.slf4j.LoggerFactory

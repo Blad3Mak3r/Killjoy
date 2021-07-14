@@ -18,12 +18,12 @@
 package dev.killjoy.valorant.agent
 
 import dev.killjoy.apis.riot.RiotAPI
+import dev.killjoy.extensions.jda.isUrl
 import dev.killjoy.extensions.jda.setDefaultColor
 import dev.killjoy.extensions.jda.supportedLocale
 import dev.killjoy.i18n.I18nKey
 import dev.killjoy.i18n.i18n
 import dev.killjoy.i18n.i18nCommand
-import dev.killjoy.extensions.jda.isUrl
 import dev.killjoy.valorant.I18nMap
 import dev.killjoy.valorant.ValorantEntity
 import dev.killjoy.valorant.buildI18nMap

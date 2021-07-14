@@ -26,8 +26,6 @@ import java.util.*
 import java.util.concurrent.CompletableFuture
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.TimeUnit
-import java.util.concurrent.atomic.AtomicReference
-import kotlin.collections.HashMap
 
 object NewsRetriever {
     private val cacheV2 = ConcurrentHashMap<String, I18nCachedNews>()
