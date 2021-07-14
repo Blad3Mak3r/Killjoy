@@ -4,7 +4,7 @@ import org.gradle.language.jvm.tasks.ProcessResources
 import org.apache.tools.ant.filters.ReplaceTokens
 
 plugins {
-    kotlin("jvm") version "1.5.20"
+    kotlin("jvm") version "1.5.21"
     id("com.github.johnrengelman.shadow") version "7.0.0"
 
     application
@@ -12,17 +12,17 @@ plugins {
     idea
 }
 
-val jdaVersion = "4.3.0_293"
+val jdaVersion = "4.3.0_296"
 val exposedVersion = "0.32.1"
 val ktorVersion = "1.6.1"
-val coroutinesVersion = "1.5.0"
+val coroutinesVersion = "1.5.1-native-mt"
 val logbackVersion = "1.2.3"
 val prometheusVersion = "0.11.0"
 val sentryVersion = "5.0.1"
 val commonsLang = "3.12.0"
 
 group = "dev.killjoy"
-val versionObj = Version(0, 14, 5)
+val versionObj = Version(0, 14, 6)
 version = versionObj.build()
 
 repositories {
@@ -34,9 +34,9 @@ repositories {
 
 dependencies {
     //Kotlin
-    implementation(kotlin("stdlib", "1.5.20"))
-    implementation(kotlin("serialization", "1.5.20"))
-    implementation(kotlin("reflect", "1.5.20"))
+    implementation(kotlin("stdlib", "1.5.21"))
+    implementation(kotlin("serialization", "1.5.21"))
+    implementation(kotlin("reflect", "1.5.21"))
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:$coroutinesVersion")
 
@@ -83,7 +83,7 @@ dependencies {
     implementation("com.typesafe:config:1.4.1")
     implementation("org.json:json:20210307")
 
-    implementation("org.jsoup:jsoup:1.13.1")
+    implementation("org.jsoup:jsoup:1.14.1")
 
     //Cache
     implementation("com.github.ben-manes.caffeine:caffeine:3.0.3")
