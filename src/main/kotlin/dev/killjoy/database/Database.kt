@@ -17,8 +17,14 @@ package dev.killjoy.database
 
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
+import dev.killjoy.Credentials
+import dev.killjoy.database.models.ShardStats
 import dev.killjoy.database.repositories.PugsRepository
+import kotlinx.coroutines.CompletableDeferred
+import net.dv8tion.jda.api.JDA
+import org.jetbrains.exposed.sql.transactions.transaction
 import org.slf4j.LoggerFactory
+import java.util.concurrent.CompletableFuture
 
 class Database(
     private val host: String = "localhost",
@@ -53,6 +59,28 @@ class Database(
         connection = DatabaseConnection.connect(HikariDataSource(config))
 
         pugs = PugsRepository(connection)
+    }
+
+    fun postShardStats(shard: JDA) {
+        val isEnabled = Credentials.getOrDefault("sharding.stats", false)
+        if (!isEnabled) return
+
+        val shardID = shard.shardInfo.shardId
+
+        CompletableFuture.runAsync {
+            transaction(connection) {
+                val found = ShardStats.findById(shardID)
+
+                if (found != null) {
+                    found.updateStats(shard)
+                } else {
+                    ShardStats.new(shard)
+                }
+            }
+        }.whenCompleteAsync { _, t ->
+            if (t != null) logger.error("Cannot post shard stats for shard#${shardID}", t)
+            else logger.info("Updated stats for shard#${shardID}!")
+        }
     }
 
     companion object {

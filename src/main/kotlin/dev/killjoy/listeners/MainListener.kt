@@ -56,12 +56,14 @@ object MainListener : EventListener {
 
         logger.info("Joined Guild: ${event.guild.name}::${event.guild.id} with a total of ${event.guild.memberCount} members.")
         WebhookUtils.sendJoinGuild(event.guild)
+        Launcher.database.postShardStats(event.jda)
         Metrics.updateShardStats(event.jda)
     }
 
     private fun onGuildLeave(event: GuildLeaveEvent) {
         logger.info("Left Guild: ${event.guild.name}::${event.guild.id}.")
         WebhookUtils.sendLeaveGuild(event.guild)
+        Launcher.database.postShardStats(event.jda)
         Metrics.updateShardStats(event.jda)
     }
 
@@ -79,6 +81,7 @@ object MainListener : EventListener {
 
         WebhookUtils.sendShardReady(event)
         Metrics.updateShardStats(event.jda)
+        Launcher.database.postShardStats(event.jda)
     }
 
     private fun onReconnected(event: ReconnectedEvent) {
@@ -103,6 +106,7 @@ object MainListener : EventListener {
 
     private fun onException(event: ExceptionEvent) {
         Sentry.captureException(event.cause)
+        Launcher.database.postShardStats(event.jda)
         if (!event.isLogged)
             logger.error("Exception in JDA {}", event.jda.shardInfo.shardId, event.cause)
     }
