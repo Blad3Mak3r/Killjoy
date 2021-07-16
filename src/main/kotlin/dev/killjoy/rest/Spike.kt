@@ -21,7 +21,9 @@ import dev.killjoy.rest.models.DefaultResponse
 import dev.killjoy.rest.models.VoteHook
 import io.ktor.application.*
 import io.ktor.features.*
+import io.ktor.http.*
 import io.ktor.request.*
+import io.ktor.request.ContentTransformationException
 import io.ktor.response.*
 import io.ktor.routing.*
 import io.ktor.serialization.*
@@ -30,6 +32,8 @@ import io.ktor.server.netty.*
 import io.prometheus.client.CollectorRegistry
 import io.prometheus.client.exporter.common.TextFormat
 import io.prometheus.client.hotspot.DefaultExports
+import io.sentry.Sentry
+import kotlinx.serialization.SerializationException
 import org.json.JSONObject
 import org.slf4j.LoggerFactory
 import java.io.StringWriter
@@ -68,10 +72,19 @@ object Spike {
                 call.respondText("API enabled")
             }
             post("/vote") {
-                val vote = call.receive<VoteHook>()
-                logger.info(vote.toString())
-                Launcher.database.vote.upvote(vote)
-                call.respondText("Ok")
+                try {
+                    val vote = call.receive<VoteHook>()
+                    logger.info(vote.toString())
+                    if (vote.type == VoteHook.Type.upvote) Launcher.database.vote.upvote(vote)
+                    call.respondText("Ok")
+                } catch (e: SerializationException) {
+                    Sentry.captureException(e)
+                    call.respond(HttpStatusCode.BadRequest, "Body is not valid.")
+                } catch (e: Exception) {
+                    Sentry.captureException(e)
+                    logger.error("Exception handling /vote: ${e.message}", e)
+                    call.respond(HttpStatusCode.InternalServerError, "Internal server error")
+                }
             }
         }
     }
