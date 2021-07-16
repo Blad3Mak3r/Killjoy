@@ -20,6 +20,7 @@ import com.zaxxer.hikari.HikariDataSource
 import dev.killjoy.Credentials
 import dev.killjoy.database.models.ShardStats
 import dev.killjoy.database.repositories.PugsRepository
+import dev.killjoy.database.repositories.VoteRepository
 import net.dv8tion.jda.api.JDA
 import org.jetbrains.exposed.sql.transactions.transaction
 import org.slf4j.LoggerFactory
@@ -36,6 +37,7 @@ class Database(
     internal val connection: DatabaseConnection
 
     val pugs: PugsRepository
+    val vote: VoteRepository
 
     init {
         logger.info("Initializing database connection...")
@@ -58,6 +60,7 @@ class Database(
         connection = DatabaseConnection.connect(HikariDataSource(config))
 
         pugs = PugsRepository(connection)
+        vote = VoteRepository(connection)
     }
 
     fun postShardStats(shard: JDA) {

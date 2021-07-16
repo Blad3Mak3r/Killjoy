@@ -70,7 +70,7 @@ object Spike {
             post("/vote") {
                 val vote = call.receive<VoteHook>()
                 logger.info(vote.toString())
-                Launcher.database
+                Launcher.database.vote.upvote(vote)
                 call.respondText("Ok")
             }
         }
