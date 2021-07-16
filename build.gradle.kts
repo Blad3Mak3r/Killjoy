@@ -5,6 +5,7 @@ import org.apache.tools.ant.filters.ReplaceTokens
 
 plugins {
     kotlin("jvm") version "1.5.21"
+    kotlin("plugin.serialization") version "1.5.21"
     id("com.github.johnrengelman.shadow") version "7.0.0"
 
     application
@@ -66,15 +67,17 @@ dependencies {
 
     implementation("com.google.guava:guava:30.1.1-jre")
 
-    //HTTP Clients
+    //Ktor
+    implementation("io.ktor:ktor-server-netty:$ktorVersion")
+    implementation("io.ktor:ktor-serialization:$ktorVersion")
     implementation("io.ktor:ktor-client-core:$ktorVersion")
     implementation("io.ktor:ktor-client-cio:$ktorVersion")
     implementation("io.ktor:ktor-client-jackson:$ktorVersion")
+
     implementation("com.squareup.okhttp3:okhttp:4.9.1")
     implementation("com.konghq:unirest-java:3.11.11")
 
     //Prometheus
-    implementation("io.ktor:ktor-server-netty:$ktorVersion")
     implementation("io.prometheus:simpleclient:$prometheusVersion")
     implementation("io.prometheus:simpleclient_hotspot:$prometheusVersion")
     implementation("io.prometheus:simpleclient_common:$prometheusVersion")

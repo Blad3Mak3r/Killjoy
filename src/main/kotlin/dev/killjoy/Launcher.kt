@@ -24,6 +24,7 @@ import dev.killjoy.framework.CommandRegistry
 import dev.killjoy.i18n.I18n
 import dev.killjoy.listeners.MainListener
 import dev.killjoy.prometheus.Prometheus
+import dev.killjoy.rest.Spike
 import dev.killjoy.utils.CooldownManager
 import dev.killjoy.utils.Loaders
 import dev.killjoy.utils.SentryUtils
@@ -116,8 +117,8 @@ object Launcher : Killjoy {
 
         cooldownManager = CooldownManager(15, TimeUnit.SECONDS)
 
-        if (Credentials.getOrDefault("prometheus.enabled", false)) {
-            Prometheus()
+        if (Credentials.getOrDefault("spike.enabled", false)) {
+            Spike.start()
         }
 
         Credentials.getOrNull<String>("webhook_url")?.let { WebhookUtils.init(it) }
