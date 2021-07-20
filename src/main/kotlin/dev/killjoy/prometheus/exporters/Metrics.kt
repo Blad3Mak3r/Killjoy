@@ -90,7 +90,7 @@ object Metrics {
         if (userCollection.isNotEmpty()) {
             USER_COUNT
                 .labels("${shard.shardInfo.shardId}")
-                .set(shard.guildCache.map { it.memberCount }.reduce { acc, i -> acc + i }.toDouble())
+                .set(userCollection.reduce { acc, i -> acc + i }.toDouble())
         }
     }
 }
