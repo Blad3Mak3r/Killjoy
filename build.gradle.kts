@@ -71,7 +71,7 @@ dependencies {
     implementation("io.ktor:ktor-client-cio:$ktorVersion")
     implementation("io.ktor:ktor-client-jackson:$ktorVersion")
     implementation("com.squareup.okhttp3:okhttp:4.9.1")
-    implementation("com.konghq:unirest-java:3.11.11")
+    implementation("com.konghq:unirest-java:3.11.12")
 
     //Prometheus
     implementation("io.ktor:ktor-server-netty:$ktorVersion")
