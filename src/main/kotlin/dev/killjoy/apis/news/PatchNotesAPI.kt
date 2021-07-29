@@ -52,7 +52,10 @@ object PatchNotesAPI {
 
     private suspend fun getArticle(url: String): PatchNotes {
 
-        val res = HttpUtils.await(JSONObject::class.java, PATCH_NOTES_URL.format(url))
+        val finalURL = "https://playvalorant.com/page-data${url}page-data.json"
+        println(finalURL)
+
+        val res = HttpUtils.await(JSONObject::class.java, finalURL)
 
         if (!res.isSuccessful) throw IllegalStateException("Code: ${res.code}")
         if (res.content == null) throw IllegalStateException("Empty body.")
@@ -62,7 +65,7 @@ object PatchNotesAPI {
 
     suspend fun latest(locale: Locale): PatchNotes {
         val url = getFirstArticleURL(locale)
-
+        println(url)
         return getArticle(url)
     }
 }

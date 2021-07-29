@@ -76,7 +76,9 @@ object HttpUtils {
     }
 
     private fun <T> newInstance(clazz: Class<T>, body: ResponseBody): T {
-        return clazz.getDeclaredConstructor(String::class.java).newInstance(body.string())
+        val content = body.string()
+        println(content)
+        return clazz.getDeclaredConstructor(String::class.java).newInstance(content)
     }
 
     private class EmptyEnqueue : Callback {
