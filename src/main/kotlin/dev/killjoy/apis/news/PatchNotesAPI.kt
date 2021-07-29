@@ -15,8 +15,8 @@
 
 package dev.killjoy.apis.news
 
-import dev.killjoy.Launcher
 import dev.killjoy.apis.news.NewsRetriever.getLocalePath
+import dev.killjoy.utils.HttpUtils
 import kotlinx.coroutines.future.await
 import okhttp3.Call
 import okhttp3.Callback
@@ -32,99 +32,37 @@ object PatchNotesAPI {
     private const val BASE_URL = "https://playvalorant.com/page-data/%s/news"
     private const val PATCH_NOTES_URL = "${BASE_URL}/tags/patch-notes/page-data.json"
 
-    private fun getFirstArticleURL(locale: Locale): CompletableFuture<String> {
-        val future = CompletableFuture<String>()
-
+    private suspend fun getFirstArticleURL(locale: Locale): String {
         val localePath = getLocalePath(locale)
         val url = PATCH_NOTES_URL.format(localePath)
 
-        val request = Request.Builder().run {
-            url(url)
-            build()
-        }
+        val res = HttpUtils.await(JSONObject::class.java, url)
 
-        Launcher.httpClient.newCall(request).enqueue(object : Callback {
-            override fun onFailure(call: Call, e: IOException) {
-                future.completeExceptionally(e)
-            }
+        if (!res.isSuccessful) throw IllegalStateException("Code: ${res.code}")
+        if (res.content == null) throw IllegalStateException("Empty body.")
 
-            override fun onResponse(call: Call, response: Response) {
-                response.use { r ->
-                    if (!r.isSuccessful) {
-                        future.completeExceptionally(IllegalStateException("Received non-successful status code."))
-                        return
-                    }
-
-                    val body = r.body?.string()
-                    if (body == null) {
-                        future.completeExceptionally(IllegalStateException("Body is empty."))
-                        return
-                    }
-
-                    val content = JSONObject(body)
-
-                    val articles = content
-                        .getJSONObject("results")
-                        .getJSONObject("pageContext")
-                        .getJSONObject("data")
-                        .getJSONArray("articles").map { it as JSONObject }
-
-                    if (articles.isEmpty()) {
-                        future.completeExceptionally(IllegalStateException("Articles are empty."))
-                        return
-                    }
-
-                    val first = articles.first()
-
-                    future.complete(first.getJSONObject("url").getString("url"))
-                }
-            }
-        })
-
-        return future
+        return res.content
+            .getJSONObject("result")
+            .getJSONObject("pageContext")
+            .getJSONObject("data")
+            .getJSONArray("articles").map { it as JSONObject }
+            .firstOrNull()
+            ?.getJSONObject("url")?.getString("url") ?: throw IllegalStateException("Articles are empty.")
     }
 
-    private fun getArticle(url: String): CompletableFuture<PatchNotes> {
-        val future = CompletableFuture<PatchNotes>()
+    private suspend fun getArticle(url: String): PatchNotes {
 
-        val req = Request.Builder().run {
-            build()
-        }
+        val res = HttpUtils.await(JSONObject::class.java, PATCH_NOTES_URL.format(url))
 
-        Launcher.httpClient.newCall(req).enqueue(object : Callback {
-            override fun onFailure(call: Call, e: IOException) {
-                future.completeExceptionally(e)
-            }
+        if (!res.isSuccessful) throw IllegalStateException("Code: ${res.code}")
+        if (res.content == null) throw IllegalStateException("Empty body.")
 
-            override fun onResponse(call: Call, response: Response) {
-                response.use { r ->
-                    if (!r.isSuccessful) {
-                        future.completeExceptionally(IllegalStateException("Received non-successful status code."))
-                        return
-                    }
-
-                    val body = r.body?.string()
-
-                    if (body == null) {
-                        future.completeExceptionally(IllegalStateException("Received empty body."))
-                        return
-                    }
-
-                    val content = JSONObject(body)
-
-                    val article = PatchNotes()
-                }
-            }
-
-        })
-
-
-        return future
+        return PatchNotes(res.content)
     }
 
     suspend fun latest(locale: Locale): PatchNotes {
-        val url = getFirstArticleURL(locale).await()
+        val url = getFirstArticleURL(locale)
 
-        return getArticle(url).await()
+        return getArticle(url)
     }
 }
