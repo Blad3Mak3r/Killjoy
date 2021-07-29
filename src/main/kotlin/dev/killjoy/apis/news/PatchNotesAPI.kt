@@ -41,31 +41,30 @@ object PatchNotesAPI {
         if (!res.isSuccessful) throw IllegalStateException("Code: ${res.code}")
         if (res.content == null) throw IllegalStateException("Empty body.")
 
-        return res.content
+        val path =  res.content
             .getJSONObject("result")
             .getJSONObject("pageContext")
             .getJSONObject("data")
             .getJSONArray("articles").map { it as JSONObject }
             .firstOrNull()
-            ?.getJSONObject("url")?.getString("url") ?: throw IllegalStateException("Articles are empty.")
+            ?.getJSONObject("url")?.getString("url")
+            ?: throw IllegalStateException("Articles are empty.")
+
+        return "https://playvalorant.com/page-data/${localePath}${path}page-data.json"
     }
 
     private suspend fun getArticle(url: String): PatchNotes {
-
-        val finalURL = "https://playvalorant.com/page-data${url}page-data.json"
-        println(finalURL)
-
-        val res = HttpUtils.await(JSONObject::class.java, finalURL)
+        val res = HttpUtils.await(JSONObject::class.java, url)
 
         if (!res.isSuccessful) throw IllegalStateException("Code: ${res.code}")
         if (res.content == null) throw IllegalStateException("Empty body.")
 
+        println(res.content)
         return PatchNotes(res.content)
     }
 
     suspend fun latest(locale: Locale): PatchNotes {
         val url = getFirstArticleURL(locale)
-        println(url)
         return getArticle(url)
     }
 }
