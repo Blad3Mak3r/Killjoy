@@ -15,13 +15,28 @@
 
 package dev.killjoy.commands.game
 
+import dev.killjoy.apis.news.PatchNotesAPI
+import dev.killjoy.extensions.jda.supportedLocale
+import net.dv8tion.jda.api.EmbedBuilder
 import tv.blademaker.slash.api.AbstractSlashCommand
 import tv.blademaker.slash.api.SlashCommandContext
 
+@Suppress("unused")
 class PatchNotesSlashCommand : AbstractSlashCommand("patchnotes") {
 
     override suspend fun handle(ctx: SlashCommandContext) {
-        super.handle(ctx)
+        ctx.acknowledge().queue()
+
+        val latest = PatchNotesAPI.latest(ctx.guild.supportedLocale)
+
+        ctx.sendEmbed {
+            setTitle(latest.title)
+            setDescription(latest.description)
+            for(field in latest.parsed()) {
+                addField(field)
+            }
+            setImage(latest.bannerURL)
+        }.queue()
     }
 
 }
