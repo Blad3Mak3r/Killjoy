@@ -42,20 +42,29 @@ class PatchNotes(
         val list = mutableListOf<MessageEmbed.Field>()
 
         for (line in body) {
-            list.add(parseLine(line))
+            list.addAll(parseLine(line))
         }
 
         return list
     }
 
-    private fun parseLine(line: String): MessageEmbed.Field {
+    private fun parseLine(line: String): List<MessageEmbed.Field> {
+        val list = mutableListOf<MessageEmbed.Field>()
         val document = Jsoup.parse(line)
 
         val titles = document.getElementsByTag("h2")
         val bodies = document.getElementsByTag("div")
         val lists = document.getElementsByTag("ul")
 
-        if (titles.isEmpty() || bodies.isEmpty() || lists.isEmpty()) return MessageEmbed.Field(null, line, false)
+        if (titles.isEmpty() || bodies.isEmpty() || lists.isEmpty()) {
+            list.add(MessageEmbed.Field(null, line, false))
+        } else {
+            for (title in titles) {
+
+            }
+        }
+
+        return list
     }
 
     val parsedBody: String
