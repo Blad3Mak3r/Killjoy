@@ -18,6 +18,10 @@ package dev.killjoy.apis.news
 import net.dv8tion.jda.api.entities.MessageEmbed
 import org.json.JSONObject
 import org.jsoup.Jsoup
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.util.*
+import kotlin.collections.HashMap
 
 class PatchNotes(
     val id: String,
@@ -28,43 +32,29 @@ class PatchNotes(
     val date: String,
     val body: List<String>
 ) {
+
     constructor(json: JSONObject) : this(
         json.getString("id"),
         json.getString("uid"),
         json.getString("title"),
         json.getString("description"),
         json.getJSONObject("banner").getString("url"),
-        json.getString("date"),
+        formatDate(json.getString("date")),
         json.getJSONArray("article_body").map { it as JSONObject; it.getJSONObject("rich_text_editor").getString("rich_text_editor") }
     )
 
-    fun parsed(): List<MessageEmbed.Field> {
-        val list = mutableListOf<MessageEmbed.Field>()
+    fun parsed(): List<String> {
+        val list = mutableListOf<String>()
 
         for (line in body) {
-            list.addAll(parseLine(line))
+            list.add(parseLine(line))
         }
 
         return list
     }
 
-    private fun parseLine(line: String): List<MessageEmbed.Field> {
-        val list = mutableListOf<MessageEmbed.Field>()
-        val document = Jsoup.parse(line)
-
-        val titles = document.getElementsByTag("h2")
-        val bodies = document.getElementsByTag("div")
-        val lists = document.getElementsByTag("ul")
-
-        if (titles.isEmpty() || bodies.isEmpty() || lists.isEmpty()) {
-            list.add(MessageEmbed.Field(null, line, false))
-        } else {
-            for (title in titles) {
-
-            }
-        }
-
-        return list
+    private fun parseLine(line: String): String {
+        return line.replace("</?p>".toRegex(), "")
     }
 
     val parsedBody: String
@@ -74,9 +64,29 @@ class PatchNotes(
             }
         }
 
-    private fun convertHtmlToMarkdown(str: String): String {
-        return str.replace("</?p>".toRegex(), "")
-            .replace("</?b>".toRegex(), "**")
-            .replace("</?a>".toRegex(), "")
+    companion object {
+        private val inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ENGLISH)
+        private val outputFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy", Locale.ENGLISH)
+
+        private fun formatDate(date: String): String {
+            val formatted = LocalDate.parse(date, inputFormatter)
+            return outputFormatter.format(formatted)
+        }
+
+        private fun convertHtmlToMarkdown(str: String): String {
+            return str.replace("</?(p|div|a|ul|em)>".toRegex(), "")
+                .replace("</?b>".toRegex(), "**")
+                .replace("<h[1-2]>".toRegex(), "\n** // ")
+                .replace("<h[3-5]>".toRegex(), "**")
+                .replace("</h[1-5]>".toRegex(), "**")
+                .replace("<li>".toRegex(), "\n- ")
+                .replace("</li>".toRegex(), "")
+        }
+
+        private val ESCAPES = mapOf(
+            Regex("</?h2>") to "**",
+            Regex("</?p>") to "",
+            Regex("</?div>") to ""
+        )
     }
 }

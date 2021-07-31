@@ -32,9 +32,7 @@ class PatchNotesSlashCommand : AbstractSlashCommand("patchnotes") {
         ctx.sendEmbed {
             setTitle(latest.title)
             setDescription(latest.description)
-            for(field in latest.parsed()) {
-                addField(field)
-            }
+            appendDescription(latest.parsedBody)
             setImage(latest.bannerURL)
         }.queue()
     }
