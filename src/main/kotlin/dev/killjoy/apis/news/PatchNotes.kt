@@ -15,9 +15,11 @@
 
 package dev.killjoy.apis.news
 
+import net.dv8tion.jda.api.entities.MessageEmbed
 import org.json.JSONObject
+import org.jsoup.Jsoup
 
-data class PatchNotes(
+class PatchNotes(
     val id: String,
     val uid: String,
     val title: String,
@@ -36,10 +38,36 @@ data class PatchNotes(
         json.getJSONArray("article_body").map { it as JSONObject; it.getJSONObject("rich_text_editor").getString("rich_text_editor") }
     )
 
+    fun parsed(): List<MessageEmbed.Field> {
+        val list = mutableListOf<MessageEmbed.Field>()
+
+        for (line in body) {
+            list.add(parseLine(line))
+        }
+
+        return list
+    }
+
+    private fun parseLine(line: String): MessageEmbed.Field {
+        val document = Jsoup.parse(line)
+
+        val titles = document.getElementsByTag("h2")
+        val bodies = document.getElementsByTag("div")
+        val lists = document.getElementsByTag("ul")
+
+        if (titles.isEmpty() || bodies.isEmpty() || lists.isEmpty()) return MessageEmbed.Field(null, line, false)
+    }
+
     val parsedBody: String
         get() = buildString {
             for (b in body) {
-                appendLine(b)
+                appendLine(convertHtmlToMarkdown(b))
             }
         }
+
+    private fun convertHtmlToMarkdown(str: String): String {
+        return str.replace("</?p>".toRegex(), "")
+            .replace("</?b>".toRegex(), "**")
+            .replace("</?a>".toRegex(), "")
+    }
 }
