@@ -43,20 +43,6 @@ class PatchNotes(
         json.getJSONArray("article_body").map { it as JSONObject; it.getJSONObject("rich_text_editor").getString("rich_text_editor") }
     )
 
-    fun parsed(): List<String> {
-        val list = mutableListOf<String>()
-
-        for (line in body) {
-            list.add(parseLine(line))
-        }
-
-        return list
-    }
-
-    private fun parseLine(line: String): String {
-        return line.replace("</?p>".toRegex(), "")
-    }
-
     val parsedBody: String
         get() = buildString {
             for (b in body) {
