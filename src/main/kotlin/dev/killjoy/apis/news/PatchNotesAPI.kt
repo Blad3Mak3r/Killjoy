@@ -59,8 +59,16 @@ object PatchNotesAPI {
         if (!res.isSuccessful) throw IllegalStateException("Code: ${res.code}")
         if (res.content == null) throw IllegalStateException("Empty body.")
 
-        println(res.content)
-        return PatchNotes(res.content)
+        val article = res.content
+            .getJSONObject("result")
+            .getJSONObject("data")
+            .getJSONObject("allContentstackArticles")
+            .getJSONArray("nodes")
+            .map { it as JSONObject }
+            .firstOrNull()
+            ?: throw IllegalStateException("Article not found")
+
+        return PatchNotes(article)
     }
 
     suspend fun latest(locale: Locale): PatchNotes {

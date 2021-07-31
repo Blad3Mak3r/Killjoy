@@ -33,7 +33,7 @@ data class PatchNotes(
         json.getString("description"),
         json.getJSONObject("banner").getString("url"),
         json.getString("date"),
-        json.getJSONArray("article_body").map { it as JSONObject; it.getString("rich_text_editor") }
+        json.getJSONArray("article_body").map { it as JSONObject; it.getJSONObject("rich_text_editor").getString("rich_text_editor") }
     )
 
     val parsedBody: String
