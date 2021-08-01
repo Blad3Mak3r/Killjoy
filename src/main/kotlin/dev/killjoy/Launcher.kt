@@ -47,6 +47,7 @@ import net.dv8tion.jda.api.sharding.ShardManager
 import net.dv8tion.jda.api.utils.Compression
 import net.dv8tion.jda.api.utils.cache.CacheFlag
 import net.hugebot.ratelimiter.RateLimiter
+import okhttp3.OkHttpClient
 import org.slf4j.LoggerFactory
 import tv.blademaker.slash.api.handler.DefaultSlashCommandHandler
 import tv.blademaker.slash.api.handler.SlashCommandHandler
@@ -56,6 +57,8 @@ import kotlin.properties.Delegates
 
 @Suppress("MemberVisibilityCanBePrivate", "SpellCheckingInspection")
 object Launcher : Killjoy {
+
+    val httpClient: OkHttpClient = OkHttpClient()
 
     lateinit var database: Database
         private set
