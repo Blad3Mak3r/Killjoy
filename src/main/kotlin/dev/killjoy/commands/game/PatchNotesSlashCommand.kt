@@ -18,7 +18,6 @@ package dev.killjoy.commands.game
 import dev.killjoy.apis.news.PatchNotesAPI
 import dev.killjoy.extensions.jda.supportedLocale
 import dev.killjoy.i18n.i18nCommand
-import net.dv8tion.jda.api.EmbedBuilder
 import tv.blademaker.slash.api.AbstractSlashCommand
 import tv.blademaker.slash.api.SlashCommandContext
 
