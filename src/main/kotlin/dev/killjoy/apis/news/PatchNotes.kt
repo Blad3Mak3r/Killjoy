@@ -16,10 +16,8 @@
 package dev.killjoy.apis.news
 
 import org.json.JSONObject
+import java.text.SimpleDateFormat
 import java.time.Instant
-import java.time.LocalDate
-import java.time.ZoneId
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 data class PatchNotes(
@@ -50,20 +48,23 @@ data class PatchNotes(
         }
 
     companion object {
-        private val inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ENGLISH)
+        private val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ENGLISH)
 
-        private fun formatDate(date: String) = LocalDate.parse(date, inputFormatter)
-            .atStartOfDay(ZoneId.systemDefault()).toInstant()
+        private fun formatDate(date: String) = sdf.parse(date).toInstant()
 
         private fun convertHtmlToMarkdown(str: String): String {
-            return str.replace("</?(p|div|a|ul|em)>".toRegex(), "")
+            return str
+                .replace("\\n".toRegex(), "")
+                .replace("\\t".toRegex(), "")
+                .replace("\\r".toRegex(), "")
+                .replace("</?(p|div|a|ul|em)>".toRegex(), "")
                 .replace("</?b>".toRegex(), "**")
-                .replace("<h[1-2]>".toRegex(), "\n** // ")
-                .replace("<h[3-5]>".toRegex(), "**")
-                .replace("</h[1-5]>".toRegex(), "**")
-                .replace("<li>".toRegex(), "\n- ")
+                .replace("<h[1-2]>".toRegex(), "\n\n** // ")
+                .replace("</h[1-2]>".toRegex(), "**\n")
+                .replace("<h[3-5]>".toRegex(), "\n**")
+                .replace("</h[3-5]>".toRegex(), "**\n")
+                .replace("<li>".toRegex(), "\n\t- ")
                 .replace("</li>".toRegex(), "")
-                .replace("\\n\\n", "\\n")
         }
     }
 }
