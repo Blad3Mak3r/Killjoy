@@ -15,17 +15,14 @@
 
 package dev.killjoy.apis.news
 
-import net.dv8tion.jda.api.entities.MessageEmbed
 import org.json.JSONObject
-import org.jsoup.Jsoup
 import java.time.Instant
 import java.time.LocalDate
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.util.*
-import kotlin.collections.HashMap
 
-class PatchNotes(
+data class PatchNotes(
     val id: String,
     val url: String,
     val title: String,
@@ -67,6 +64,7 @@ class PatchNotes(
                 .replace("</h[1-5]>".toRegex(), "**")
                 .replace("<li>".toRegex(), "\n- ")
                 .replace("</li>".toRegex(), "")
+                .replace("\\n\\n", "\\n")
         }
 
         private val ESCAPES = mapOf(
