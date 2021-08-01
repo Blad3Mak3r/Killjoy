@@ -68,7 +68,7 @@ object PatchNotesAPI {
             .firstOrNull()
             ?: throw IllegalStateException("Article not found")
 
-        return PatchNotes(article)
+        return PatchNotes(article, url.replace("/page-data(\\.json)?".toRegex(), ""))
     }
 
     suspend fun latest(locale: Locale): PatchNotes {

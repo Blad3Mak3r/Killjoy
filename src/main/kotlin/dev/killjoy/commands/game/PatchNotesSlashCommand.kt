@@ -17,6 +17,7 @@ package dev.killjoy.commands.game
 
 import dev.killjoy.apis.news.PatchNotesAPI
 import dev.killjoy.extensions.jda.supportedLocale
+import dev.killjoy.i18n.i18nCommand
 import net.dv8tion.jda.api.EmbedBuilder
 import tv.blademaker.slash.api.AbstractSlashCommand
 import tv.blademaker.slash.api.SlashCommandContext
@@ -29,11 +30,21 @@ class PatchNotesSlashCommand : AbstractSlashCommand("patchnotes") {
 
         val latest = PatchNotesAPI.latest(ctx.guild.supportedLocale)
 
+        val fullDescription = buildString {
+            appendLine(latest.description)
+            appendLine(latest.parsedBody)
+        }.let {
+            if (it.length > 4096) {
+                it.substring(0, 3900).plus("...\n**[READ MORE](${latest.url})**")
+            } else it
+        }
+
         ctx.sendEmbed {
             setTitle(latest.title)
-            setDescription(latest.description)
-            appendDescription(latest.parsedBody)
+            setDescription(fullDescription)
             setImage(latest.bannerURL)
+            setFooter(ctx.i18nCommand("patchnotes.publishedAt"))
+            setTimestamp(latest.date)
         }.queue()
     }
 

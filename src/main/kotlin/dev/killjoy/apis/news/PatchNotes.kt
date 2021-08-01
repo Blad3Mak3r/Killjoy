@@ -18,24 +18,26 @@ package dev.killjoy.apis.news
 import net.dv8tion.jda.api.entities.MessageEmbed
 import org.json.JSONObject
 import org.jsoup.Jsoup
+import java.time.Instant
 import java.time.LocalDate
+import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.collections.HashMap
 
 class PatchNotes(
     val id: String,
-    val uid: String,
+    val url: String,
     val title: String,
     val description: String,
     val bannerURL: String,
-    val date: String,
+    val date: Instant,
     val body: List<String>
 ) {
 
-    constructor(json: JSONObject) : this(
+    constructor(json: JSONObject, url: String) : this(
         json.getString("id"),
-        json.getString("uid"),
+        url,
         json.getString("title"),
         json.getString("description"),
         json.getJSONObject("banner").getString("url"),
@@ -54,10 +56,8 @@ class PatchNotes(
         private val inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ENGLISH)
         private val outputFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy", Locale.ENGLISH)
 
-        private fun formatDate(date: String): String {
-            val formatted = LocalDate.parse(date, inputFormatter)
-            return outputFormatter.format(formatted)
-        }
+        private fun formatDate(date: String) = LocalDate.parse(date, inputFormatter)
+            .atStartOfDay(ZoneId.systemDefault()).toInstant()
 
         private fun convertHtmlToMarkdown(str: String): String {
             return str.replace("</?(p|div|a|ul|em)>".toRegex(), "")
