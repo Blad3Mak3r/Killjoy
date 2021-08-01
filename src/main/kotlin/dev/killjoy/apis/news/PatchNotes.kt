@@ -51,7 +51,6 @@ data class PatchNotes(
 
     companion object {
         private val inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ENGLISH)
-        private val outputFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy", Locale.ENGLISH)
 
         private fun formatDate(date: String) = LocalDate.parse(date, inputFormatter)
             .atStartOfDay(ZoneId.systemDefault()).toInstant()
@@ -66,11 +65,5 @@ data class PatchNotes(
                 .replace("</li>".toRegex(), "")
                 .replace("\\n\\n", "\\n")
         }
-
-        private val ESCAPES = mapOf(
-            Regex("</?h2>") to "**",
-            Regex("</?p>") to "",
-            Regex("</?div>") to ""
-        )
     }
 }
