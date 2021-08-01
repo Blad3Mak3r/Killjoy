@@ -12,11 +12,11 @@ plugins {
     idea
 }
 
-val jdaVersion = "4.3.0_298"
+val jdaVersion = "4.3.0_299"
 val exposedVersion = "0.32.1"
-val ktorVersion = "1.6.1"
+val ktorVersion = "1.6.2"
 val coroutinesVersion = "1.5.1-native-mt"
-val logbackVersion = "1.2.4"
+val logbackVersion = "1.2.5"
 val prometheusVersion = "0.11.0"
 val sentryVersion = "5.0.1"
 val commonsLang = "3.12.0"
