@@ -16,17 +16,17 @@
 package dev.killjoy.apis.riot
 
 import com.github.benmanes.caffeine.cache.Caffeine
+import dev.killjoy.Credentials
 import dev.killjoy.apis.riot.entities.AgentStats
 import dev.killjoy.apis.riot.entities.RankedPlayer
 import dev.killjoy.apis.riot.entities.RankedPlayerList
 import dev.killjoy.apis.riot.entities.Region
-import kong.unirest.Unirest
-import kong.unirest.json.JSONObject
+import dev.killjoy.utils.HttpUtils
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
-import kotlinx.coroutines.future.await
 import kotlinx.coroutines.withContext
+import org.json.JSONObject
 import org.jsoup.Jsoup
 import org.slf4j.LoggerFactory
 import java.time.Duration
@@ -49,25 +49,17 @@ object RiotAPI {
 
             LOGGER.info("Retrieving fresh leaderboards for ${region.name.uppercase()}")
 
-            val url = "https://dgxfkpkb4zk5c.cloudfront.net/leaderboards/affinity/${region.name.uppercase()}/queue/competitive/act/$CURRENT_ACT_ID?startIndex=0&size=10"
-            val r = Unirest.get(url).asJsonAsync().await()
+            val req = HttpUtils.await(JSONObject::class.java) {
+                url("https://${region.name.lowercase()}.api.riotgames.com/val/ranked/v1/leaderboards/by-act/$CURRENT_ACT_ID?startIndex=0&size=10")
+                addHeader("X-Riot-Token", Credentials["riot.api_key"])
+            }
+            val content = req.content
 
-            check(r.isSuccess) { "Not success status: ${r.status}" }
-
-            val content = r.body.`object`
+            check(req.isSuccessful) { "Not success status: ${req.code}" }
+            check(content != null) { "Received empty body." }
 
             val list = content.getJSONArray("players")
-                .map {
-                    it as JSONObject
-                    RankedPlayer(
-                        it.getString("puuid"),
-                        it.getString("gameName"),
-                        it.getString("tagLine"),
-                        it.getInt("leaderboardRank"),
-                        it.getInt("rankedRating"),
-                        it.getInt("numberOfWins")
-                    )
-                }
+                .mapNotNull { RankedPlayer.opt(it as JSONObject) }
                 .sortedBy { p -> p.leaderboardRank }
 
             val rankedList = RankedPlayerList(System.currentTimeMillis(), list)
@@ -130,7 +122,7 @@ object RiotAPI {
 
             check(matcher.find(2)) { "Script does not matches regular expresion $SCRIPT_REGEX" }
 
-            val array = convertStatsObjectToList(org.json.JSONObject(matcher.group(2)))
+            val array = convertStatsObjectToList(JSONObject(matcher.group(2)))
 
             val agentStats = array.map { AgentStats(it) }
 
@@ -143,8 +135,8 @@ object RiotAPI {
             LOGGER.info("A total of ${agentStats.size} agents stats has been updated.")
         }
 
-        private fun convertStatsObjectToList(jsonObject: org.json.JSONObject): List<org.json.JSONObject> {
-            val jsonArray = mutableListOf<org.json.JSONObject>()
+        private fun convertStatsObjectToList(jsonObject: JSONObject): List<JSONObject> {
+            val jsonArray = mutableListOf<JSONObject>()
             for (name in jsonObject.names().map { it as String }) {
                 jsonArray.add(jsonObject.getJSONObject(name))
             }

@@ -15,6 +15,7 @@
 
 package dev.killjoy.apis.riot.entities
 
+import com.github.killjoybot.api.dto.ranked.Player
 import org.json.JSONObject
 
 data class RankedPlayer(
@@ -35,6 +36,13 @@ data class RankedPlayer(
     )
 
     val fullNameTag = "$gameName#$tagLine"
+
+    companion object {
+        fun opt(json: JSONObject): RankedPlayer? {
+            return if (!json.has("puuid")) null
+            else RankedPlayer(json)
+        }
+    }
 }
 
 data class RankedPlayerList(

@@ -33,8 +33,8 @@ class TopSlashCommand : AbstractSlashCommand("top") {
 
         ctx.event.deferReply().queue()
 
-        val playersList = RiotAPI.LeaderboardsAPI.getCurrentTop20(region)
-        val players = playersList.players.take(10)
+        val leaderboard = RiotAPI.LeaderboardsAPI.getCurrentTop20(region)
+        val players = leaderboard.players
 
         ctx.sendEmbed {
             setTitle(ctx.i18nCommand("top.header", region, players.size))
@@ -43,9 +43,8 @@ class TopSlashCommand : AbstractSlashCommand("top") {
                 val content = ctx.i18nCommand("top.content", player.rankedRating, player.numberOfWins)
                 addField("` ${player.leaderboardRank} ` ${player.fullNameTag}", content, false)
             }
-            setTimestamp(Instant.ofEpochMilli(playersList.updatedAt))
+            setTimestamp(Instant.ofEpochMilli(leaderboard.updatedAt))
             setFooter(ctx.i18nCommand("top.footer", 3, 1))
         }.queue()
     }
-
 }

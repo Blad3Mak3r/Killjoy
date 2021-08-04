@@ -16,11 +16,11 @@
 package dev.killjoy.apis.news
 
 import dev.killjoy.i18n.I18n
+import dev.killjoy.utils.HttpUtils
 import kong.unirest.Unirest
 import kong.unirest.json.JSONObject
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.*
 import kotlinx.coroutines.future.await
-import kotlinx.coroutines.withContext
 import org.slf4j.LoggerFactory
 import java.util.*
 import java.util.concurrent.CompletableFuture
@@ -39,21 +39,26 @@ object NewsRetriever {
 
     suspend fun lastNews(locale: Locale): List<ValorantNew> = withContext(Dispatchers.IO) {
         if (!isCached(locale)) {
-            retrieveExperimentalValorantNews(locale).await()
+            retrieveNewsAsync(locale)
         } else {
             cacheV2[locale.language]!!.news
         }
     }
 
-    private fun retrieveExperimentalValorantNews(locale: Locale): CompletableFuture<List<ValorantNew>> = CompletableFuture.supplyAsync {
+    private suspend fun retrieveNewsAsync(locale: Locale): List<ValorantNew> {
         logger.info("Retrieving fresh Valorant news from data api for locale ${locale.language} ...")
 
         val localePath = getLocalePath(locale)
-        val response = Unirest.get("https://playvalorant.com/page-data/$localePath/news/page-data.json").asJson()
+        val response = HttpUtils.await(JSONObject::class.java) {
+            url("https://playvalorant.com/page-data/$localePath/news/page-data.json")
+        }
 
-        if (!response.isSuccess) throw IllegalStateException("Non-successful status code: ${response.status}")
+        val content = response.content
 
-        val contentArray = response.body.`object`
+        check(content != null) { "Received empty body." }
+        check(response.isSuccessful) { "Non-successful status code: ${response.code}" }
+
+        val contentArray = content
             .getJSONObject("result")
             .getJSONObject("data")
             .getJSONObject("allContentstackArticles")
@@ -72,7 +77,8 @@ object NewsRetriever {
         }
 
         logger.info("Successfully retrieved valorant news.")
-        mappedResults
+
+        return mappedResults
     }
 
     fun getLocalePath(locale: Locale): String {

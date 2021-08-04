@@ -34,7 +34,7 @@ import java.time.Instant
     ])
 class TopCommand : Command() {
     override suspend fun handle(ctx: CommandContext) {
-        if (ctx.args.isEmpty()) return ctx.reply("Specifies the game region. ${Region.values().map { it.name.lowercase() }}").queue()
+        if (ctx.args.isEmpty()) return ctx.reply("Specifies the game region. ${Region.asListed}").queue()
 
         val arg = ctx.args.first().uppercase()
 
