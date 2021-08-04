@@ -41,7 +41,7 @@ class TopCommand : Command() {
         val region = Region.values().firstOrNull { it.name.equals(arg, true) }
             ?: return ctx.reply(Emojis.NoEntry, ctx.guild.i18nCommand("top.notValidRegion", arg, Region.asListed)).queue()
 
-        val playersList = RiotAPI.LeaderboardsAPI.getCurrentTop20(region)
+        val playersList = RiotAPI.LeaderboardsAPI.top10(region)
         val players = playersList.players.take(10)
 
         ctx.replyEmbed {

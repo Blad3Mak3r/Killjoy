@@ -42,7 +42,11 @@ object RiotAPI {
             .expireAfterWrite(15, TimeUnit.MINUTES)
             .build<String, RankedPlayerList>()
 
-        suspend fun getCurrentTop20(region: Region): RankedPlayerList {
+        private fun buildURL(region: Region, actID: String): String {
+            return "https://dgxfkpkb4zk5c.cloudfront.net/leaderboards/affinity/${region.name.lowercase()}/queue/competitive/act/$actID?startIndex=0&size=10"
+        }
+
+        suspend fun top10(region: Region): RankedPlayerList {
 
             val cached = leaderboardsCache.getIfPresent(region.name.uppercase())
             if (cached != null) return cached
@@ -50,8 +54,7 @@ object RiotAPI {
             LOGGER.info("Retrieving fresh leaderboards for ${region.name.uppercase()}")
 
             val req = HttpUtils.await(JSONObject::class.java) {
-                url("https://${region.name.lowercase()}.api.riotgames.com/val/ranked/v1/leaderboards/by-act/$CURRENT_ACT_ID?startIndex=0&size=10")
-                addHeader("X-Riot-Token", Credentials["riot.api_key"])
+                url(buildURL(region, CURRENT_ACT_ID))
             }
             val content = req.content
 

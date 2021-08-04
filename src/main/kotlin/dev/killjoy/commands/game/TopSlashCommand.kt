@@ -33,7 +33,7 @@ class TopSlashCommand : AbstractSlashCommand("top") {
 
         ctx.event.deferReply().queue()
 
-        val leaderboard = RiotAPI.LeaderboardsAPI.getCurrentTop20(region)
+        val leaderboard = RiotAPI.LeaderboardsAPI.top10(region)
         val players = leaderboard.players
 
         ctx.sendEmbed {
