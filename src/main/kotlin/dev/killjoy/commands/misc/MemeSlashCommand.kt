@@ -15,7 +15,7 @@
 
 package dev.killjoy.commands.misc
 
-import dev.killjoy.apis.memes.Memes4K
+import dev.killjoy.apis.memes.RedditMemes
 import dev.killjoy.extensions.jda.setDefaultColor
 import dev.killjoy.utils.Emojis
 import tv.blademaker.slash.api.AbstractSlashCommand
@@ -27,7 +27,9 @@ class MemeSlashCommand : AbstractSlashCommand("meme") {
     override suspend fun handle(ctx: SlashCommandContext) {
         ctx.acknowledge().queue()
 
-        val meme = Memes4K.getMeme("ValorantMemes")
+        val subreddit = ctx.getOption("subreddit")!!.asString
+
+        val meme = RedditMemes.get(subreddit)
             ?: return ctx.send(Emojis.Outage, "Cannot get any meme at the moment, try again latter...").queue()
 
         ctx.sendEmbed {

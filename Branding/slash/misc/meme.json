@@ -1,5 +1,31 @@
 {
   "name": "meme",
-  "description": "Funny Valorant memes stolen from Reddit.",
-  "options": []
+  "description": "Hottest Reddit memes.",
+  "options": [
+    {
+      "type": 3,
+      "name": "subreddit",
+      "description": "The subreddit you want the hottest memes from.",
+      "required": true,
+      "choices": [
+        {
+          "name": "r/ValorantMemes",
+          "value": "ValorantMemes",
+          "default": true
+        },
+        {
+          "name": "r/Memes",
+          "value": "memes"
+        },
+        {
+          "name": "r/DankMemes",
+          "value": "DankMemes"
+        },
+        {
+          "name": "r/MeIrl",
+          "value": "MeIrl"
+        }
+      ]
+    }
+  ]
 }

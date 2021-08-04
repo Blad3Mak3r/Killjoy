@@ -69,7 +69,7 @@ data class Meme (
                 }
             }
 
-            throw IllegalArgumentException()
+            error("Cannot found post with images at this moment...")
         }
 
         private fun isImage(str: String? = null): Boolean {

@@ -67,9 +67,6 @@ dependencies {
     implementation("com.google.guava:guava:30.1.1-jre")
 
     //HTTP Clients
-    implementation("io.ktor:ktor-client-core:$ktorVersion")
-    implementation("io.ktor:ktor-client-cio:$ktorVersion")
-    implementation("io.ktor:ktor-client-jackson:$ktorVersion")
     implementation("com.squareup.okhttp3:okhttp:4.9.1")
 
     //Prometheus

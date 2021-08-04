@@ -16,7 +16,7 @@
 package dev.killjoy.commands.misc
 
 
-import dev.killjoy.apis.memes.Memes4K
+import dev.killjoy.apis.memes.RedditMemes
 import dev.killjoy.extensions.jda.setDefaultColor
 import dev.killjoy.framework.Category
 import dev.killjoy.framework.CommandContext
@@ -28,7 +28,7 @@ import dev.killjoy.utils.Emojis
 class MemeCommand : Command() {
 
     override suspend fun handle(ctx: CommandContext) {
-        val meme = Memes4K.getMeme("ValorantMemes")
+        val meme = RedditMemes.get("ValorantMemes")
             ?: return ctx.reply(Emojis.Outage, "Cannot get any meme at the moment, try again latter...").queue()
 
         ctx.embed {
