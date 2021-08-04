@@ -12,7 +12,7 @@ plugins {
     idea
 }
 
-val jdaVersion = "4.3.0_301"
+val jdaVersion = "4.3.0_304"
 val exposedVersion = "0.32.1"
 val ktorVersion = "1.6.2"
 val coroutinesVersion = "1.5.1-native-mt"
@@ -58,7 +58,7 @@ dependencies {
     implementation("org.jetbrains.exposed:exposed-java-time:$exposedVersion")
 
     //Webhooks
-    implementation("club.minnced:discord-webhooks:0.5.7")
+    implementation("club.minnced:discord-webhooks:0.5.8")
 
     //HugeBot dependencies
     implementation("net.hugebot:RateLimiter:1.1")
