@@ -17,13 +17,10 @@ package dev.killjoy.apis.news
 
 import dev.killjoy.i18n.I18n
 import dev.killjoy.utils.HttpUtils
-import kong.unirest.Unirest
-import kong.unirest.json.JSONObject
 import kotlinx.coroutines.*
-import kotlinx.coroutines.future.await
+import org.json.JSONObject
 import org.slf4j.LoggerFactory
 import java.util.*
-import java.util.concurrent.CompletableFuture
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.TimeUnit
 
@@ -63,7 +60,6 @@ object NewsRetriever {
             .getJSONObject("data")
             .getJSONObject("allContentstackArticles")
             .getJSONArray("nodes")
-            .toList()
             .map { it as JSONObject }
 
         val mappedResults = contentArray.take(5).mapNotNull { ValorantNew.buildFromExperimentalApi(localePath, it) }
