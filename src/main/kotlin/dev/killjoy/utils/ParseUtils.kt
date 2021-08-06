@@ -133,6 +133,7 @@ object ParseUtils {
 
     // SNOWFLAKES
 
+    @Suppress("MemberVisibilityCanBePrivate")
     fun parseSnowflakeToTimestamp(snowflake: Long) = (snowflake shr 22) + 1420070400000L
 
     fun parseSnowflakeToDateFormat(snowflake: Long): String {

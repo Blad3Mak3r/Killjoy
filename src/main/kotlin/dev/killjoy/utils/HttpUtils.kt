@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package dev.killjoy.utils
 
 import dev.killjoy.extensions.okhttp.submit

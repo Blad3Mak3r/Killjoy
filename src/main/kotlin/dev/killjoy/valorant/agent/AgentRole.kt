@@ -19,6 +19,7 @@ import dev.killjoy.i18n.I18n
 import dev.killjoy.i18n.I18nKey
 import net.dv8tion.jda.api.entities.Guild
 
+@Suppress("unused")
 enum class AgentRole(val emoji: String, val iconUrl: String, private val i18nKey: I18nKey) {
     Controller("<:controller:754676227809214485>", "https://i.imgur.com/V4Ci1Oh.png", I18nKey.AGENT_CLASS_CONTROLLER),
     Duelist("<:duelist:754676227952083025>", "https://i.imgur.com/rs0d2qx.png", I18nKey.AGENT_CLASS_DUELIST),

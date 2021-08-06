@@ -15,7 +15,6 @@
 
 package dev.killjoy.apis.riot.entities
 
-import com.github.killjoybot.api.dto.ranked.Player
 import org.json.JSONObject
 
 data class RankedPlayer(

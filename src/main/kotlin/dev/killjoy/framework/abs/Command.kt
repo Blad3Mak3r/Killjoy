@@ -19,6 +19,7 @@ import dev.killjoy.framework.annotations.CommandArgument
 import dev.killjoy.framework.annotations.CommandProperties
 import net.dv8tion.jda.api.Permission
 
+@Suppress("unused")
 abstract class Command {
     @JvmField
     val props: CommandProperties = this.javaClass.getAnnotation(CommandProperties::class.java)
@@ -54,6 +55,7 @@ abstract class Command {
 
     private val subCommands: MutableList<SubCommand> = mutableListOf()
     fun getSubCommands(): List<SubCommand> = subCommands
+
     internal fun registerSubCommand(subCommand: SubCommand) {
         check(!(subCommands.any { it.props.name == subCommand.props.name })) {
             "Sub-command with name ${subCommand.props.name} is already registered in command ${props.name}"

@@ -16,7 +16,6 @@
 package dev.killjoy.apis.riot
 
 import com.github.benmanes.caffeine.cache.Caffeine
-import dev.killjoy.Credentials
 import dev.killjoy.apis.riot.entities.AgentStats
 import dev.killjoy.apis.riot.entities.RankedPlayer
 import dev.killjoy.apis.riot.entities.RankedPlayerList

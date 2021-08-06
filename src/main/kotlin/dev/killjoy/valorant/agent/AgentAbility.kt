@@ -48,6 +48,8 @@ data class AgentAbility(
     )
 
     fun name(guild: Guild) = name[guild.supportedLocale.language]!!.uppercase()
+
+    @Suppress("unused")
     fun names(): List<String> {
         return name.map { it.value }
     }
