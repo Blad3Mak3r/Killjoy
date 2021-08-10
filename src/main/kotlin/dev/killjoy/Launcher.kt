@@ -35,22 +35,28 @@ import dev.killjoy.valorant.map.ValorantMap
 import dev.killjoy.webhook.WebhookUtils
 import dev.minn.jda.ktx.CoroutineEventManager
 import dev.minn.jda.ktx.listener
+import io.sentry.Sentry
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
+import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.entities.Activity
 import net.dv8tion.jda.api.entities.ApplicationInfo
 import net.dv8tion.jda.api.events.GenericEvent
 import net.dv8tion.jda.api.events.interaction.SlashCommandEvent
 import net.dv8tion.jda.api.requests.GatewayIntent
+import net.dv8tion.jda.api.requests.RestAction
 import net.dv8tion.jda.api.sharding.DefaultShardManagerBuilder
 import net.dv8tion.jda.api.sharding.ShardManager
+import net.dv8tion.jda.api.utils.ChunkingFilter
 import net.dv8tion.jda.api.utils.Compression
+import net.dv8tion.jda.api.utils.MemberCachePolicy
 import net.dv8tion.jda.api.utils.cache.CacheFlag
 import net.hugebot.ratelimiter.RateLimiter
 import org.slf4j.LoggerFactory
 import tv.blademaker.slash.api.handler.DefaultSlashCommandHandler
 import tv.blademaker.slash.api.handler.SlashCommandHandler
 import java.util.concurrent.TimeUnit
+import java.util.concurrent.TimeoutException
 import javax.security.auth.login.LoginException
 import kotlin.properties.Delegates
 
@@ -91,11 +97,21 @@ object Launcher : Killjoy {
         .setExpirationTime(1, TimeUnit.MINUTES)
         .build()
 
+    private val RESTACTION_DEFAULT_FAILURE = RestAction.getDefaultFailure()
+
     @JvmStatic
     @Throws(LoginException::class, ConfigException::class)
     fun main(args: Array<String>) {
 
         pid = ProcessHandle.current().pid()
+
+        RestAction.setPassContext(false)
+        RestAction.setDefaultTimeout(7, TimeUnit.SECONDS)
+        RestAction.setDefaultFailure {
+            if (it !is TimeoutException) {
+                RESTACTION_DEFAULT_FAILURE.accept(it)
+            }
+        }
 
         Utils.printBanner(pid, log)
 
@@ -125,7 +141,6 @@ object Launcher : Killjoy {
         shardManager = DefaultShardManagerBuilder.createLight(Credentials.token)
             .setShardsTotal(-1)
             .setActivityProvider { Activity.competing("Valorant /help") }
-            .setEnableShutdownHook(true)
             .setEventManagerProvider {
                 val executor = Utils.newCoroutineDispatcher("event-manager-worker-%d", 4, 20, 6L, TimeUnit.MINUTES)
                 CoroutineEventManager(CoroutineScope(executor + SupervisorJob()))
@@ -145,8 +160,13 @@ object Launcher : Killjoy {
                 CacheFlag.VOICE_STATE,
                 CacheFlag.ACTIVITY,
                 CacheFlag.EMOTE,
-                CacheFlag.CLIENT_STATUS
+                CacheFlag.CLIENT_STATUS,
+                CacheFlag.ONLINE_STATUS,
+                CacheFlag.ROLE_TAGS
             )
+            .setBulkDeleteSplittingEnabled(false)
+            .setChunkingFilter(ChunkingFilter.NONE)
+            .setMemberCachePolicy(MemberCachePolicy.NONE)
             .build()
 
         shardManager.listener<GenericEvent> { event ->
@@ -154,6 +174,30 @@ object Launcher : Killjoy {
                 is SlashCommandEvent -> slashCommandHandler.onSlashCommandEvent(event)
                 else -> MainListener.onEvent(event)
             }
+        }
+
+        Runtime.getRuntime().addShutdownHook(Thread {
+            Thread.currentThread().name = "shutdown-thread"
+
+            shutdown(0)
+        })
+    }
+
+    private fun shutdown(code: Int = 0) {
+        try {
+            log.info("Shutting down Killjoy with code $code...")
+
+            commandRegistry.shutdown()
+
+            for (jda in shardManager.shardCache) {
+                shardManager.shutdown(jda.shardInfo.shardId)
+            }
+
+            shardManager.shutdown()
+        } catch (e: Exception) {
+            Sentry.captureException(e)
+            log.error("Exception shutting down Killjoy.", e)
+            Runtime.getRuntime().halt(code)
         }
     }
 

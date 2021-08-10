@@ -47,10 +47,6 @@ class CommandRegistry {
     private val commands: HashMap<String, Command> = HashMap()
 
     init {
-        Runtime.getRuntime().addShutdownHook(Thread {
-            log.info("Shutting down...")
-            executor.shutdown()
-        })
         addCommands(
             //Information commands
             HelpCommand(),
@@ -68,6 +64,10 @@ class CommandRegistry {
             //Misc
             MemeCommand(),
         )
+    }
+
+    fun shutdown() {
+        executor.shutdown()
     }
 
     fun onGuildMessageReceived(event: GuildMessageReceivedEvent) {
