@@ -113,4 +113,6 @@ interface Killjoy {
         return if (collection.isNotEmpty()) collection.reduce { acc, i -> acc+i }
         else 0
     }
+
+    fun shutdown(code: Int = 0)
 }

@@ -183,7 +183,7 @@ object Launcher : Killjoy {
         })
     }
 
-    private fun shutdown(code: Int = 0) {
+    override fun shutdown(code: Int) {
         try {
             log.info("Shutting down Killjoy with code $code...")
 
