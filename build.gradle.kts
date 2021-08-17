@@ -12,8 +12,8 @@ plugins {
     idea
 }
 
-val jdaVersion = "4.3.0_307"
-val exposedVersion = "0.32.1"
+val jdaVersion = "4.3.0_309"
+val exposedVersion = "0.33.1"
 val ktorVersion = "1.6.2"
 val coroutinesVersion = "1.5.1-native-mt"
 val logbackVersion = "1.2.5"
@@ -79,7 +79,7 @@ dependencies {
     implementation("com.typesafe:config:1.4.1")
     implementation("org.json:json:20210307")
 
-    implementation("org.jsoup:jsoup:1.14.1")
+    implementation("org.jsoup:jsoup:1.14.2")
 
     //Cache
     implementation("com.github.ben-manes.caffeine:caffeine:3.0.3")
