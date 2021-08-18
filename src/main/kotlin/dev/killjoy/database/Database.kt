@@ -20,7 +20,13 @@ import com.zaxxer.hikari.HikariDataSource
 import dev.killjoy.Credentials
 import dev.killjoy.database.models.ShardStats
 import dev.killjoy.database.repositories.PugsRepository
+import dev.killjoy.utils.Scopes
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import net.dv8tion.jda.api.JDA
+import org.jetbrains.exposed.sql.transactions.experimental.newSuspendedTransaction
+import org.jetbrains.exposed.sql.transactions.experimental.suspendedTransactionAsync
 import org.jetbrains.exposed.sql.transactions.transaction
 import org.slf4j.LoggerFactory
 import java.util.concurrent.CompletableFuture
@@ -66,19 +72,17 @@ class Database(
 
         val shardID = shard.shardInfo.shardId
 
-        CompletableFuture.runAsync {
-            transaction(connection) {
-                val found = ShardStats.findById(shardID)
-
-                if (found != null) {
-                    found.updateStats(shard)
-                } else {
-                    ShardStats.new(shard)
+        Scopes.IO.launch {
+            try {
+                newSuspendedTransaction {
+                    ShardStats.findById(shardID)
+                        ?.updateStats(shard)
+                        ?: ShardStats.new(shard)
                 }
+                logger.info("Updated stats for shard#${shardID}!")
+            } catch (e: Exception) {
+                logger.error("Cannot post shard stats for shard#${shardID}", e)
             }
-        }.whenCompleteAsync { _, t ->
-            if (t != null) logger.error("Cannot post shard stats for shard#${shardID}", t)
-            else logger.info("Updated stats for shard#${shardID}!")
         }
     }
 

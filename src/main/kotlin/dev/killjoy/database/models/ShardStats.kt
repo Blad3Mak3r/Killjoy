@@ -42,6 +42,6 @@ class ShardStats(id: EntityID<Int>) : IntEntity(id) {
 
     fun updateStats(shard: JDA) {
         this.guildCount = shard.guildCache.size().toInt()
-        this.userCount = shard.guildCache.map { it.memberCount }.reduce { acc, i -> acc + i }
+        this.userCount = shard.guildCache.map { it.memberCount }.takeIf { it.isNotEmpty() }?.reduce { acc, i -> acc + i } ?: 0
     }
 }

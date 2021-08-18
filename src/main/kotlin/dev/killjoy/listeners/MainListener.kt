@@ -16,14 +16,21 @@
 package dev.killjoy.listeners
 
 import dev.killjoy.Launcher
+import dev.killjoy.commands.info.HelpSlashCommand
+import dev.killjoy.extensions.jda.sendEmbed
+import dev.killjoy.extensions.jda.sendMessage
+import dev.killjoy.i18n.I18nKey
+import dev.killjoy.i18n.i18n
 import dev.killjoy.prometheus.exporters.Metrics
 import dev.killjoy.webhook.WebhookUtils
 import io.sentry.Sentry
+import net.dv8tion.jda.api.Permission
 import net.dv8tion.jda.api.events.*
 import net.dv8tion.jda.api.events.guild.GuildJoinEvent
 import net.dv8tion.jda.api.events.guild.GuildLeaveEvent
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
 import net.dv8tion.jda.api.hooks.EventListener
+import net.dv8tion.jda.api.requests.restaction.MessageAction
 import org.slf4j.LoggerFactory
 import java.time.OffsetDateTime
 
@@ -58,6 +65,29 @@ object MainListener : EventListener {
         WebhookUtils.sendJoinGuild(event.guild)
         Launcher.database.postShardStats(event.jda)
         Metrics.updateShardStats(event.jda)
+
+        val channel = event.guild.defaultChannel?.takeIf { it.canTalk() } ?: event.guild.textChannels.firstOrNull { it.canTalk() }
+            ?: return
+
+        val messageTitle = event.guild.i18n(I18nKey.GUILD_JOIN_TITLE)
+        val messageContent = event.guild.i18n(I18nKey.GUILD_JOIN_CONTENT)
+
+        val action: MessageAction = if (event.guild.selfMember.hasPermission(channel, Permission.MESSAGE_EMBED_LINKS)) {
+            channel.sendEmbed {
+                setTitle(messageTitle)
+                setDescription(messageContent)
+            }
+        } else {
+            channel.sendMessage {
+                appendLine("**${messageTitle}**")
+                appendLine()
+                appendLine(messageContent)
+            }
+        }
+
+        action.setActionRows(HelpSlashCommand.buildActionRows(event.guild)).queue({}, {
+            logger.error("Cannot send welcome message to guild ${event.guild}", it)
+        })
     }
 
     private fun onGuildLeave(event: GuildLeaveEvent) {
