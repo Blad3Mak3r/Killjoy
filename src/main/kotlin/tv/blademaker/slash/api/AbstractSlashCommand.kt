@@ -98,7 +98,7 @@ abstract class AbstractSlashCommand(val commandName: String) {
     }
 
     internal open suspend fun handle(ctx: SlashCommandContext) {
-        ctx.event.reply("Slash command not yeet implemented by developer.").queue()
+        ctx.reply(ctx.i18n(I18nKey.COMMAND_NOT_IMPLEMENTED)).queue()
     }
 
     class SubCommand private constructor(

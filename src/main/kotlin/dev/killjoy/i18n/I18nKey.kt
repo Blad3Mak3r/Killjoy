@@ -45,6 +45,7 @@ enum class I18nKey(
     CONTENT_NOT_FOUND("contentNotFound"),
     CONTENT_NOT_FOUND_DESCRIPTION("contentNotFoundDescription"),
     COMMAND_CANNOT_USE_OUTSIDE_GUILD("commandCannotUseOutsideGuild"),
+    COMMAND_NOT_IMPLEMENTED("commandNotImplemented"),
     EXCEPTION_HANDLING_SLASH_COMMAND_OPTION("exceptionHandlingSlashCommandOption"),
     NOT_AVAILABLE_AT_THE_MOMENT("notAvailableAtTheMoment")
 }

@@ -15,6 +15,7 @@
 
 package tv.blademaker.slash.api.handler
 
+import dev.killjoy.extensions.info
 import dev.killjoy.i18n.I18nKey
 import dev.killjoy.i18n.i18n
 import dev.killjoy.i18n.replyI18n
@@ -44,13 +45,13 @@ class DefaultSlashCommandHandler(packageName: String) : SlashCommandHandler, Cor
     }
 
     private suspend fun handleSuspend(event: SlashCommandEvent) {
-        if (event.guild == null)
+        if (!event.isFromGuild)
             return event.replyI18n(I18nKey.COMMAND_CANNOT_USE_OUTSIDE_GUILD).queue()
 
         val command = getCommand(event.name) ?: return
         val context = SlashCommandContext(event)
 
-        logCommand(event, command, LOGGER)
+        LOGGER.info(event.guild!!, "${event.user.asTag} uses command ${event.commandString}")
 
         try {
             command.execute(context)

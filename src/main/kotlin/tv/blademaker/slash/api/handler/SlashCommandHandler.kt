@@ -35,13 +35,6 @@ interface SlashCommandHandler : EventListener {
     fun getCommand(name: String) = registry.firstOrNull { it.commandName.equals(name, true) }
 
     fun logCommand(event: SlashCommandEvent, command: AbstractSlashCommand, logger: Logger) {
-        kotlin.runCatching {
-            val subcommandName = event.subcommandName
-                ?: event.subcommandGroup
-                ?: ""
-            val options = event.options.map { SlashUtils.parseOptionToString(it) }
-
-            logger.info(event.guild!!, "${event.user.asTag} uses command ${command.commandName} $subcommandName$options")
-        }
+        logger.info(event.guild!!, "${event.user.asTag} uses command ${event.commandString}")
     }
 }
