@@ -1,4 +1,4 @@
-name: Publish Docker image (Release)
+name: Compile Release (Docker and GitHub Release)
 
 on:
   release:
