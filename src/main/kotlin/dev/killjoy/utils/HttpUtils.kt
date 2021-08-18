@@ -7,6 +7,7 @@ import kotlinx.coroutines.future.await
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
 import org.json.JSONObject
+import org.slf4j.LoggerFactory
 import java.io.IOException
 import java.util.concurrent.CompletableFuture
 
@@ -20,6 +21,8 @@ object HttpUtils {
 
         val typeString = type.toString()
     }
+
+    private val logger = LoggerFactory.getLogger(HttpUtils::class.java)
 
     private val client = OkHttpClient.Builder().build()
 
@@ -88,6 +91,12 @@ object HttpUtils {
         override fun onResponse(call: Call, response: Response) {
             response.close()
         }
+    }
+
+    fun shutdown() {
+        logger.info("Shutting down HttpUtils...")
+        client.connectionPool.evictAll()
+        client.dispatcher.cancelAll()
     }
 
     data class HttpResponse<T>(

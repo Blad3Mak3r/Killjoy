@@ -24,10 +24,7 @@ import dev.killjoy.framework.CommandRegistry
 import dev.killjoy.i18n.I18n
 import dev.killjoy.listeners.MainListener
 import dev.killjoy.prometheus.Prometheus
-import dev.killjoy.utils.CooldownManager
-import dev.killjoy.utils.Loaders
-import dev.killjoy.utils.SentryUtils
-import dev.killjoy.utils.Utils
+import dev.killjoy.utils.*
 import dev.killjoy.valorant.agent.AgentAbility
 import dev.killjoy.valorant.agent.ValorantAgent
 import dev.killjoy.valorant.arsenal.ValorantWeapon
@@ -38,7 +35,6 @@ import dev.minn.jda.ktx.listener
 import io.sentry.Sentry
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
-import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.entities.Activity
 import net.dv8tion.jda.api.entities.ApplicationInfo
 import net.dv8tion.jda.api.events.GenericEvent
@@ -188,6 +184,8 @@ object Launcher : Killjoy {
             log.info("Shutting down Killjoy with code $code...")
 
             commandRegistry.shutdown()
+            WebhookUtils.shutdown()
+            HttpUtils.shutdown()
 
             for (jda in shardManager.shardCache) {
                 shardManager.shutdown(jda.shardInfo.shardId)

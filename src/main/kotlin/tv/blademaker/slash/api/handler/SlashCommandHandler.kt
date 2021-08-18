@@ -13,15 +13,14 @@
  * See the License for the specific language governing permissions and limitations under the License.
  ******************************************************************************/
 
+@file:Suppress("unused")
+
 package tv.blademaker.slash.api.handler
 
-import dev.killjoy.extensions.info
 import net.dv8tion.jda.api.events.GenericEvent
 import net.dv8tion.jda.api.events.interaction.SlashCommandEvent
 import net.dv8tion.jda.api.hooks.EventListener
-import org.slf4j.Logger
 import tv.blademaker.slash.api.AbstractSlashCommand
-import tv.blademaker.slash.utils.SlashUtils
 
 interface SlashCommandHandler : EventListener {
     val registry: List<AbstractSlashCommand>
@@ -34,7 +33,4 @@ interface SlashCommandHandler : EventListener {
 
     fun getCommand(name: String) = registry.firstOrNull { it.commandName.equals(name, true) }
 
-    fun logCommand(event: SlashCommandEvent, command: AbstractSlashCommand, logger: Logger) {
-        logger.info(event.guild!!, "${event.user.asTag} uses command ${event.commandString}")
-    }
 }

@@ -21,15 +21,10 @@ import dev.killjoy.Credentials
 import dev.killjoy.database.models.ShardStats
 import dev.killjoy.database.repositories.PugsRepository
 import dev.killjoy.utils.Scopes
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import net.dv8tion.jda.api.JDA
 import org.jetbrains.exposed.sql.transactions.experimental.newSuspendedTransaction
-import org.jetbrains.exposed.sql.transactions.experimental.suspendedTransactionAsync
-import org.jetbrains.exposed.sql.transactions.transaction
 import org.slf4j.LoggerFactory
-import java.util.concurrent.CompletableFuture
 
 class Database(
     private val host: String = "localhost",

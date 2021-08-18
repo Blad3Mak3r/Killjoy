@@ -22,7 +22,7 @@ val sentryVersion = "5.1.0"
 val commonsLang = "3.12.0"
 
 group = "dev.killjoy"
-val versionObj = Version(0, 14, 9)
+val versionObj = Version(0, 15)
 version = versionObj.build()
 
 repositories {

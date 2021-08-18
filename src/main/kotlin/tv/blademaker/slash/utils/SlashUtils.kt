@@ -108,10 +108,6 @@ object SlashUtils {
         return commands
     }
 
-    fun parseOptionToString(option: OptionMapping): String {
-        return "${option.name} (${optionToString(option)})"
-    }
-
     private fun optionToString(option: OptionMapping): String {
         return try {
             when (option.type) {
