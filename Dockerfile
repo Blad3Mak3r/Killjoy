@@ -1,4 +1,4 @@
-FROM azul/zulu-openjdk-alpine:13-jre
+FROM azul/zulu-openjdk-alpine:13.0.7-jre-headless
 LABEL org.opencontainers.image.source="https://github.com/Blad3Mak3r/Killjoy"
 
 # Fix vulnerability CVE-2021-31535 [libx11/libx11]
