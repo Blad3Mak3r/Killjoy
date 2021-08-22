@@ -22,8 +22,16 @@
           "value": "DankMemes"
         },
         {
+          "name": "r/funny",
+          "value": "funny"
+        },
+        {
           "name": "r/MeIrl",
           "value": "MeIrl"
+        },
+        {
+          "name": "r/Wholesomememes",
+          "value": "wholesomememes"
         }
       ]
     }
