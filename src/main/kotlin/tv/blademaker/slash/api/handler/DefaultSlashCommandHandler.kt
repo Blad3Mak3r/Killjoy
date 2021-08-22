@@ -51,7 +51,7 @@ class DefaultSlashCommandHandler(packageName: String) : SlashCommandHandler, Cor
         val command = getCommand(event.name) ?: return
         val context = SlashCommandContext(event)
 
-        LOGGER.info(event.guild!!, "${event.user.asTag} uses command ${event.commandString}")
+        LOGGER.info(event.guild!!, "${event.user.asTag} uses command \u001B[33m${event.commandString}\u001B[0m")
 
         try {
             command.execute(context)
