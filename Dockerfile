@@ -1,10 +1,10 @@
-FROM blademaker/jre:latest
+FROM azul/zulu-openjdk-alpine:13.0.8-jre-headless
 
 LABEL org.opencontainers.image.source="https://github.com/Blad3Mak3r/Killjoy"
-LABEL org.opencontainers.image.authors="Juan Luis Caro Benito <blademaker.live@gmail.com>"
 
-# Expose default Prometheus port
-EXPOSE 8080
+# Update and upgrade Alpine
+RUN apk --no-cache update && apk --no-cache upgrade
+RUN rm -vrf /var/cache/apk/*
 
 # Create app directory and use it as workdir
 RUN mkdir /app
