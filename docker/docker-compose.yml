@@ -1,13 +1,25 @@
-version: "3.9"
-
 services:
+  db:
+    image: postgres:alpine
+    hostname: killjoy_db
+    restart: on-failure
+    expose:
+      - 5432
+    environment:
+      POSTGRES_USERNAME: DB_USERNAME
+      POSTGRES_PASSWORD: DB_PASSWORD
+      POSTGRES_DB: DB_NAME
+    volumes:
+      - killjoy-data:/var/lib/postgresql/data
+
   bot:
     image: blademaker/killjoy
     volumes:
       - ./credentials.conf:/app/credentials.conf:ro
       - killjoy-logs:/app/logs
-    network_mode: host
     restart: on-failure
+    ports:
+      - "8080:8080"
     deploy:
       resources:
         limits:
@@ -18,3 +30,4 @@ services:
 volumes:
   killjoy-logs:
     external: true
+  killjoy-data: { }

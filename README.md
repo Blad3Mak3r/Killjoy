@@ -87,6 +87,7 @@ database {
 ```
 
 Create a file called ``docker-compose.yml``:
+
 ```yml
 version: "3.9"
 
@@ -102,7 +103,7 @@ services:
       POSTGRES_PASSWORD: YOUR_PASSWORD
       POSTGRES_DB: YOUR_DBNAME
     volumes:
-    - killjoy-data:/var/lib/postgresql/data
+      - killjoy-data:/var/lib/postgresql/data
     
   bot:
     image: blademaker/killjoy
@@ -111,7 +112,7 @@ services:
       - ./logs:/app/logs
     restart: on-failure
     ports:
-    - 8080:8080
+      - "8080:8080"
     deploy:
       resources:
         limits:
@@ -120,8 +121,8 @@ services:
           memory: 128M
 
 volumes:
-  killjoy-data: {}
-  
+  killjoy-data: { }
+
 ```
 
 ### SystemD (Linux)

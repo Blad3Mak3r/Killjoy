@@ -1,9 +1,10 @@
-FROM azul/zulu-openjdk-alpine:13.0.7-jre-headless
+FROM azul/zulu-openjdk-alpine:13.0.8-jre-headless
+
 LABEL org.opencontainers.image.source="https://github.com/Blad3Mak3r/Killjoy"
+LABEL org.opencontainers.image.authors="Juan Luis Caro Benito <blademaker.live@gmail.com>"
 
 # Fix vulnerability CVE-2021-31535 [libx11/libx11]
-RUN apk update --no-cache && \
-    apk upgrade --no-cache libx11
+RUN apk upgrade --no-cache libx11
 
 # Expose default Prometheus port
 EXPOSE 8080

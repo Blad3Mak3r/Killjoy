@@ -3,6 +3,11 @@ name: Publish Docker image (development/latest)
 on:
   push:
     branches: [ development ]
+    paths:
+    - "src"
+    - "build.gradle.kts"
+    - "Dockerfile"
+    - ".github/workflows/docker-build-latest.yml"
 
 jobs:
 
