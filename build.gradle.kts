@@ -22,7 +22,7 @@ val sentryVersion = "5.1.1"
 val commonsLang = "3.12.0"
 
 group = "dev.killjoy"
-val versionObj = Version(0, 15, 2)
+val versionObj = Version(0, 15, 3)
 version = versionObj.build()
 
 repositories {
@@ -133,12 +133,12 @@ tasks {
 class Version(
     private val major: Int,
     private val minor: Int,
-    private val revision: Int? = null
+    private val patch: Int? = null
 ) {
 
     private fun getVersion(): String {
-        return if (revision == null) "$major.$minor"
-        else "$major.$minor.$revision"
+        return if (patch == null) "$major.$minor"
+        else "$major.$minor.$patch"
     }
 
     fun build(): String = getVersion()

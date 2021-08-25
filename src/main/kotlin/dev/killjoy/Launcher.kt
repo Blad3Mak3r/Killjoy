@@ -19,6 +19,7 @@ import com.typesafe.config.ConfigException
 import dev.killjoy.database.Database
 import dev.killjoy.database.DatabaseConnection
 import dev.killjoy.database.buildDatabaseConnection
+import dev.killjoy.extensions.jda.Intents
 import dev.killjoy.extensions.jda.isInt
 import dev.killjoy.framework.CommandRegistry
 import dev.killjoy.i18n.I18n
@@ -142,15 +143,8 @@ object Launcher : Killjoy {
                 CoroutineEventManager(CoroutineScope(executor + SupervisorJob()))
             }
             .setCompression(Compression.ZLIB)
-            .enableIntents(
-                GatewayIntent.GUILD_MESSAGES,
-                GatewayIntent.GUILD_MESSAGE_REACTIONS,
-                GatewayIntent.DIRECT_MESSAGES
-            )
-            .disableIntents(
-                GatewayIntent.GUILD_VOICE_STATES,
-                GatewayIntent.GUILD_PRESENCES
-            )
+            .disableIntents(Intents.allIntents)
+            .enableIntents(Intents.enabledIntents)
             .enableCache(CacheFlag.MEMBER_OVERRIDES)
             .disableCache(
                 CacheFlag.VOICE_STATE,
