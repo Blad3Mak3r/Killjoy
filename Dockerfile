@@ -5,8 +5,10 @@ WORKDIR /app
 
 RUN apk upgrade --no-cache
 
-COPY --chmod=+x docker/entrypoint.sh entrypoint.sh
-COPY --chmod=+x build/libs/Killjoy.jar Killjoy.jar
+COPY docker/entrypoint.sh entrypoint.sh
+COPY build/libs/Killjoy.jar Killjoy.jar
+
+RUN chmod+x entrypoint.sh && chmod +x Killjoy.jar
 
 ENV KILLJOY_JVM_OPTIONS="-Xmx1G -XX:+UseG1GC"
 
