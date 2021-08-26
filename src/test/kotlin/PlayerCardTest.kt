@@ -5,6 +5,7 @@ import dev.killjoy.valorant.agent.ValorantAgent
 import org.junit.Test
 import java.io.ByteArrayInputStream
 import java.io.File
+import java.nio.file.Files
 import javax.imageio.ImageIO
 
 /*******************************************************************************
@@ -80,7 +81,19 @@ class PlayerCardTest {
         val imageByteArray = PlayerCard.generate("BladeMaker", "TTV", agent, null).get()
         val inputStream = ByteArrayInputStream(imageByteArray)
         val image = ImageIO.read(inputStream)
+
+        buildDir()
+
         ImageIO.write(image, "png", File("player-card-testing/${agent.name.lowercase().replace("/", "")}.png"))
+    }
+
+    private fun buildDir() {
+        val dir = File("player-card-testing")
+
+        if (!dir.exists()) {
+            println("Creating test dir")
+            Files.createDirectory(dir.toPath())
+        }
     }
 
 }
