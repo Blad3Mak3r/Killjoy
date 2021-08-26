@@ -1,7 +1,7 @@
 # Self-hosting
 
 **Prerequisites:**
-- [Discord Application Token](devs_application)
+- [Discord Application Token][devs_application]
 - [Java 11](https://openjdk.java.net/projects/jdk/11/)
 - [Docker](https://www.docker.com/) (optional)
 - [Riot Games Production API Key](https://developer.riotgames.com/app-type)
@@ -26,6 +26,12 @@ database {
   user: YOUR_USERNAME
   password: YOUR_PASSWORD
 }
+
+redis {
+  host: killjoy_cache
+  port: 6379
+  pass: YOUR_PASS
+}
 ```
 
 Create a file called ``docker-compose.yml``:
@@ -34,6 +40,17 @@ Create a file called ``docker-compose.yml``:
 version: "3.9"
 
 services:
+  cache:
+    image: redis:alpine
+    hostname: killjoy_cache
+    restart: on-failure
+    healthcheck:
+      test: [ "CMD", "redis-cli","ping" ]
+    expose:
+      - 6379
+    volumes:
+      - killjoy-cache:/data
+
   db:
     image: postgres:alpine
     hostname: killjoy_db
@@ -41,20 +58,32 @@ services:
     expose:
       - 5432
     environment:
-      POSTGRES_USERNAME: YOUR_USERNAME
-      POSTGRES_PASSWORD: YOUR_PASSWORD
-      POSTGRES_DB: YOUR_DBNAME
+      POSTGRES_USER: killjoy
+      POSTGRES_PASSWORD: killjoy
+      POSTGRES_DB: killjoy
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     volumes:
       - killjoy-data:/var/lib/postgresql/data
-    
+
   bot:
     image: blademaker/killjoy
     volumes:
       - ./credentials.conf:/app/credentials.conf:ro
-      - ./logs:/app/logs
+      - killjoy-logs:/app/logs
     restart: on-failure
     ports:
       - "8080:8080"
+    links:
+      - db
+    depends_on:
+      cache:
+        condition: service_healthy
+      db:
+        condition: service_healthy
     deploy:
       resources:
         limits:
@@ -63,7 +92,10 @@ services:
           memory: 128M
 
 volumes:
+  killjoy-logs:
+    external: true
   killjoy-data: { }
+  killjoy-cache: { }
 ```
 
 Now run ``docker-compose up -d``

@@ -26,24 +26,9 @@ import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.TimeUnit
 
 object NewsRetriever {
-    private val cacheV2 = ConcurrentHashMap<String, I18nCachedNews>()
     private val logger = LoggerFactory.getLogger(NewsRetriever::class.java)
 
-    fun isCached(locale: Locale): Boolean {
-        val cached = cacheV2[locale.language] ?: return false
-
-        return cached.timestamp > System.currentTimeMillis()
-    }
-
-    suspend fun lastNews(locale: Locale): List<ValorantNew> = withContext(Dispatchers.IO) {
-        if (!isCached(locale)) {
-            retrieveNewsAsync(locale)
-        } else {
-            cacheV2[locale.language]!!.news
-        }
-    }
-
-    private suspend fun retrieveNewsAsync(locale: Locale): List<ValorantNew> {
+    suspend fun retrieveNews(locale: Locale): List<ValorantNew> {
         logger.info("Retrieving fresh Valorant news from data api for locale ${locale.language} ...")
 
         val localePath = getLocalePath(locale)
@@ -64,14 +49,6 @@ object NewsRetriever {
             .map { it as JSONObject }
 
         val mappedResults = contentArray.take(5).mapNotNull { ValorantNew.buildFromExperimentalApi(localePath, it) }
-
-        if (mappedResults.isNotEmpty()) {
-            val newsObj = I18nCachedNews(
-                news = mappedResults,
-                timestamp = System.currentTimeMillis() + TimeUnit.HOURS.toMillis(1)
-            )
-            cacheV2[locale.language] = newsObj
-        }
 
         logger.info("Successfully retrieved valorant news.")
 
