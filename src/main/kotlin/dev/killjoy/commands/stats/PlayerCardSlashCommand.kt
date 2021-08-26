@@ -18,6 +18,7 @@ package dev.killjoy.commands.stats
 import dev.killjoy.Launcher
 import dev.killjoy.services.PlayerCard
 import kotlinx.coroutines.future.await
+import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.Permission
 import tv.blademaker.slash.api.AbstractSlashCommand
 import tv.blademaker.slash.api.SlashCommandContext
@@ -42,8 +43,7 @@ class PlayerCardSlashCommand : AbstractSlashCommand("playercard") {
         val agent = Launcher.getAgent(agentName)
             ?: error("Agent with name $agentName not found.")
 
-        val image = PlayerCard.generate(accountWithStats, agent).await()
-
+        val image = Launcher.cache.playerCards.get(user, accountWithStats, agent)
         ctx.hook.sendFile(image, "playerCard-${user.asTag}.png").queue()
     }
 
