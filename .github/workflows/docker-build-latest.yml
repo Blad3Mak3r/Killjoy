@@ -7,7 +7,7 @@ on:
     - "src"
     - "build.gradle.kts"
     - "Dockerfile"
-    - "docker/entrypoint.sh"
+    - "docker-entrypoint.sh"
     - ".github/workflows/docker-build-latest.yml"
 
 jobs:

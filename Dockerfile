@@ -5,7 +5,7 @@ LABEL org.opencontainers.image.source="https://github.com/Blad3Mak3r/Killjoy"
 
 RUN apk upgrade --no-cache
 
-COPY docker/entrypoint.sh entrypoint.sh
+COPY docker-entrypoint.sh entrypoint.sh
 COPY build/libs/Killjoy.jar Killjoy.jar
 
 RUN chmod +x entrypoint.sh && \
