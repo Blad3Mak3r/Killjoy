@@ -19,6 +19,7 @@ import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
 import dev.killjoy.Credentials
 import dev.killjoy.database.models.ShardStats
+import dev.killjoy.database.repositories.AccountConnectionRepository
 import dev.killjoy.database.repositories.PugsRepository
 import dev.killjoy.utils.Scopes
 import kotlinx.coroutines.launch
@@ -37,6 +38,7 @@ class Database(
     internal val connection: DatabaseConnection
 
     val pugs: PugsRepository
+    val account: AccountConnectionRepository
 
     init {
         logger.info("Initializing database connection...")
@@ -59,6 +61,7 @@ class Database(
         connection = DatabaseConnection.connect(HikariDataSource(config))
 
         pugs = PugsRepository(connection)
+        account = AccountConnectionRepository(connection)
     }
 
     fun postShardStats(shard: JDA) {

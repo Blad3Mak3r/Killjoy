@@ -6,6 +6,8 @@ logs
 target
 out
 
+player-card-testing
+
 # Ignore Gradle GUI config
 gradle-app.setting
 

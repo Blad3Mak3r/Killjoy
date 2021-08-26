@@ -1,5 +1,5 @@
+
 import dev.killjoy.services.PlayerCard
-import dev.killjoy.services.PlayerStats
 import dev.killjoy.utils.Loaders
 import dev.killjoy.valorant.agent.ValorantAgent
 import org.junit.Test
@@ -22,18 +22,65 @@ import javax.imageio.ImageIO
  * See the License for the specific language governing permissions and limitations under the License.
  ******************************************************************************/
 
+val agents = Loaders.loadAgents()
+
 class PlayerCardTest {
 
-    val agents = Loaders.loadAgents()
+    @Test
+    fun `Astra Player Card`() = generate(agent("astra"))
 
     @Test
-    fun `Generate Killjoy Profile`() {
-        val agent = agents.find { it.name.equals("killjoy", true) }!!
-        val stats = PlayerStats("Killjoy", "BOT", 1, 2, 3, 4, 5)
-        val imageByteArray = PlayerCard.generate(agent, stats).get()
+    fun `Breach Player Card`() = generate(agent("breach"))
+
+    @Test
+    fun `Brimstone Player Card`() = generate(agent("brimstone"))
+
+    @Test
+    fun `Cypher Player Card`() = generate(agent("cypher"))
+
+    @Test
+    fun `Jett Player Card`() = generate(agent("jett"))
+
+    @Test
+    fun `KAYO Player Card`() = generate(agent("kay/o"))
+
+    @Test
+    fun `Killjoy Player Card`() = generate(agent("killjoy"))
+
+    @Test
+    fun `Omen Player Card`() = generate(agent("omen"))
+
+    @Test
+    fun `Phoenix Player Card`() = generate(agent("phoenix"))
+
+    @Test
+    fun `Raze Player Card`() = generate(agent("raze"))
+
+    @Test
+    fun `Reyna Player Card`() = generate(agent("reyna"))
+
+    @Test
+    fun `Sage Player Card`() = generate(agent("sage"))
+
+    @Test
+    fun `Skye Player Card`() = generate(agent("skye"))
+
+    @Test
+    fun `Sova Player Card`() = generate(agent("sova"))
+
+    @Test
+    fun `Viper Player Card`() = generate(agent("viper"))
+
+    @Test
+    fun `Yoru Player Card`() = generate(agent("yoru"))
+
+    private fun agent(name: String) = agents.find { it.name.equals(name, true) }!!
+
+    private fun generate(agent: ValorantAgent) {
+        val imageByteArray = PlayerCard.generate("BladeMaker", "TTV", agent, null).get()
         val inputStream = ByteArrayInputStream(imageByteArray)
         val image = ImageIO.read(inputStream)
-        ImageIO.write(image, "png", File("killjoy.png"))
+        ImageIO.write(image, "png", File("player-card-testing/${agent.name.lowercase().replace("/", "")}.png"))
     }
 
 }

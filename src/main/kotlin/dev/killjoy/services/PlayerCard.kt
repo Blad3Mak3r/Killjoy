@@ -17,11 +17,13 @@
 
 package dev.killjoy.services
 
+import dev.killjoy.database.models.AccountWithStats
+import dev.killjoy.database.models.PlayerStats
 import dev.killjoy.valorant.agent.ValorantAgent
+import org.slf4j.LoggerFactory
 import java.awt.Color
 import java.awt.Font
-import java.awt.Graphics
-import java.awt.Rectangle
+import java.awt.Graphics2D
 import java.awt.font.TextAttribute
 import java.awt.image.BufferedImage
 import java.io.ByteArrayOutputStream
@@ -31,52 +33,55 @@ import java.util.concurrent.CompletableFuture
 import javax.imageio.ImageIO
 import kotlin.math.abs
 
-
-data class PlayerStats(
-    val name: String,
-    val tag: String,
-    val kills: Int,
-    val deaths: Int,
-    val wins: Int,
-    val loses: Int,
-    val mmr: Int? = null
-)
-
 object PlayerCard {
 
-    private const val MAX_AGENT_HEIGHT = 1400
+    private val logger = LoggerFactory.getLogger(PlayerCard::class.java)
+    private const val MAX_AGENT_HEIGHT = 1390
 
-    fun generate(agent: ValorantAgent, playerStats: PlayerStats) = CompletableFuture.supplyAsync {
+    private val OPEN_SANS = Font.getFont("Open Sans")
+    private val OPEN_SANS_STATS = Font("Open Sans", Font.BOLD, 69)
+
+    fun generate(aws: AccountWithStats, agent: ValorantAgent) = generate(aws.account.username, aws.account.gameTag, agent, aws.stats)
+
+    fun generate(
+        username: String,
+        gameTag: String,
+        agent: ValorantAgent,
+        playerStats: PlayerStats? = null
+    ): CompletableFuture<ByteArray> = CompletableFuture.supplyAsync {
+
         val image = ImageIO.read(getBackGroundImage())
-        val g = image.graphics
+        val g = image.createGraphics()
 
-        drawPlayerName(g, playerStats)
+        drawPlayerName(g, username, gameTag)
         drawAgentImage(g, agent)
 
-        addRectangle(g, image.width, image.height)
+        drawStats(g, image.width, playerStats)
 
-        val out = ByteArrayOutputStream()
-        ImageIO.write(image, "png", out)
-        out.toByteArray()
+        drawBorder(g, image.width, image.height)
+
+        ByteArrayOutputStream().use {
+            ImageIO.write(image, "png", it)
+            it
+        }.toByteArray()
     }
 
     private fun getBackGroundImage(): InputStream? {
         return this::class.java.getResourceAsStream("/images/player-card.png")
     }
 
-    private fun drawPlayerName(g: Graphics, playerStats: PlayerStats) {
-        val openSans = Font.getFont("Open Sans")
+    private fun drawPlayerName(g: Graphics2D, username: String, gameTag: String) {
 
-        val name = AttributedString(playerStats.name.uppercase())
-        name.addAttribute(TextAttribute.FONT, openSans)
+        val name = AttributedString(username.uppercase())
+        name.addAttribute(TextAttribute.FONT, OPEN_SANS)
         name.addAttribute(TextAttribute.FOREGROUND, Color.WHITE)
         name.addAttribute(TextAttribute.WEIGHT, TextAttribute.WEIGHT_EXTRABOLD)
         name.addAttribute(TextAttribute.SIZE, 86)
 
         g.drawString(name.iterator, 64, 130)
 
-        val tag = AttributedString(playerStats.tag.uppercase())
-        tag.addAttribute(TextAttribute.FONT, openSans)
+        val tag = AttributedString(gameTag.uppercase())
+        tag.addAttribute(TextAttribute.FONT, OPEN_SANS)
         tag.addAttribute(TextAttribute.FOREGROUND, Color.WHITE)
         tag.addAttribute(TextAttribute.WEIGHT, TextAttribute.WEIGHT_EXTRABOLD)
         tag.addAttribute(TextAttribute.SIZE, 86)
@@ -84,12 +89,9 @@ object PlayerCard {
         g.drawString(tag.iterator, 130, 215)
     }
 
-    private fun drawAgentImage(g: Graphics, agent: ValorantAgent) {
-        val image = this::class.java.getResourceAsStream("/images/agents/${agent.name.lowercase()}.png").use {
-            ImageIO.read(it)
-        }
-
-        val bgImage = this::class.java.getResourceAsStream("/images/agents/${agent.name.lowercase()}.png").use {
+    private fun drawAgentImage(g: Graphics2D, agent: ValorantAgent) {
+        val image = this::class.java.getResourceAsStream("/images/agents/${agent.name.lowercase().replace("/", "-")}.png").use {
+            if (it == null) error("Cannot found agent image for ${agent.name}")
             ImageIO.read(it)
         }
 
@@ -99,33 +101,35 @@ object PlayerCard {
 
         val width = (image.width + (distance / ratio)).toInt()
         val height = image.height + distance
-
-        println("Ratio: $ratio")
-        println("Width: ${image.width} > $width")
-        println("Height: ${image.height} > $height")
-
-        g.drawImage(colorImage(bgImage), -312, 250, width, height, null)
         g.drawImage(image, -292, 250, width, height, null)
     }
 
-    private fun colorImage(image: BufferedImage, pixel0: Int = 0, pixel1: Int = 0, pixel2: Int = 0): BufferedImage {
+    private fun drawStats(g: Graphics2D, width: Int, stats: PlayerStats? = null) {
+        val winsText = stats?.wins?.toString() ?: "NaN"
+        val wins = AttributedString(winsText)
+        wins.addAttribute(TextAttribute.FONT, OPEN_SANS_STATS)
+        wins.addAttribute(TextAttribute.FOREGROUND, Color.WHITE)
+        wins.addAttribute(TextAttribute.WEIGHT, TextAttribute.WEIGHT_EXTRABOLD)
 
-        val width = image.width
-        val height = image.height
-        val raster = image.raster
-        for (xx in 0 until width) {
-            for (yy in 0 until height) {
-                val pixels = raster.getPixel(xx, yy, null as IntArray?)
-                pixels[0] = pixel0
-                pixels[1] = pixel1
-                pixels[2] = pixel2
-                raster.setPixel(xx, yy, pixels)
-            }
-        }
-        return image
+        val losesText = stats?.loses?.toString() ?: "NaN"
+        val loses = AttributedString(losesText)
+        loses.addAttribute(TextAttribute.FONT, OPEN_SANS_STATS)
+        loses.addAttribute(TextAttribute.FOREGROUND, Color.WHITE)
+        loses.addAttribute(TextAttribute.WEIGHT, TextAttribute.WEIGHT_EXTRABOLD)
+
+        logger.info(winsText)
+        logger.info(losesText)
+
+        val fontMetrics = g.getFontMetrics(OPEN_SANS_STATS)
+
+        val winsWidth = fontMetrics.stringWidth(winsText)
+        val losesWidth = fontMetrics.stringWidth(losesText)
+
+        g.drawString(wins.iterator, (width-winsWidth)-60, 567)
+        g.drawString(loses.iterator, (width-losesWidth)-60, 730)
     }
 
-    private fun addRectangle(g: Graphics, width: Int, height: Int) {
+    private fun drawBorder(g: Graphics2D, width: Int, height: Int) {
         g.color = Color.decode("#ff4753")
 
         g.fillRect(0, 0, width, 24)
