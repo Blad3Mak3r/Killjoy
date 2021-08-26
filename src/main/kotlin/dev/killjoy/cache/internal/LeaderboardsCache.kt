@@ -24,9 +24,10 @@ import org.redisson.api.RedissonClient
 import org.slf4j.LoggerFactory
 import java.util.concurrent.TimeUnit
 
-class LeaderboardsCache(override val client: RedissonClient,
-                        override val expirationTTL: Long = 10L,
-                        override val expirationTTLUnit: TimeUnit = TimeUnit.MINUTES
+class LeaderboardsCache(
+    override val client: RedissonClient,
+    override val expirationTTL: Long = 10L,
+    override val expirationTTLUnit: TimeUnit = TimeUnit.MINUTES
 ) : IRedisCache {
 
     private fun getBucket(region: Region) = client.getBucket<RankedPlayerList>("killjoy:leaderboard:${region.name.lowercase()}")

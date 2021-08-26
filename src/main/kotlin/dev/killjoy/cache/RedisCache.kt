@@ -21,6 +21,7 @@ import dev.killjoy.apis.riot.entities.AgentStats
 import dev.killjoy.apis.riot.entities.RankedPlayerList
 import dev.killjoy.apis.riot.entities.Region
 import dev.killjoy.cache.internal.LeaderboardsCache
+import dev.killjoy.cache.internal.NewsCache
 import dev.killjoy.extensions.redisson.awaitSuspend
 import io.sentry.Sentry
 import org.redisson.Redisson
@@ -33,6 +34,7 @@ class RedisCache private constructor(config: Config) {
     private val client = Redisson.create(config)
 
     val leaderboards = LeaderboardsCache(client)
+    val news = NewsCache(client)
 
     private val agentStatsMap = client.getMap<String, AgentStats>("killjoy:agent-stats")
 
