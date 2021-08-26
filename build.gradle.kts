@@ -83,7 +83,7 @@ dependencies {
 
     //Cache
     implementation("com.github.ben-manes.caffeine:caffeine:3.0.3")
-
+    implementation("org.redisson:redisson:3.16.1")
     testImplementation("junit:junit:4.13.2")
 }
 
