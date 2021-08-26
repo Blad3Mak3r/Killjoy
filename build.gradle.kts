@@ -4,7 +4,7 @@ import org.gradle.language.jvm.tasks.ProcessResources
 import org.apache.tools.ant.filters.ReplaceTokens
 
 plugins {
-    kotlin("jvm") version "1.5.21"
+    kotlin("jvm") version "1.5.30"
     id("com.github.johnrengelman.shadow") version "7.0.0"
 
     application
@@ -34,9 +34,9 @@ repositories {
 
 dependencies {
     //Kotlin
-    implementation(kotlin("stdlib", "1.5.21"))
-    implementation(kotlin("serialization", "1.5.21"))
-    implementation(kotlin("reflect", "1.5.21"))
+    implementation(kotlin("stdlib", "1.5.30"))
+    implementation(kotlin("serialization", "1.5.30"))
+    implementation(kotlin("reflect", "1.5.30"))
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:$coroutinesVersion")
 
