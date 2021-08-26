@@ -16,7 +16,6 @@
 package dev.killjoy.commands.game
 
 import dev.killjoy.Launcher
-import dev.killjoy.apis.riot.RiotAPI
 import dev.killjoy.i18n.i18nCommand
 import dev.killjoy.utils.Algorithms
 import dev.killjoy.valorant.agent.ValorantAgent
