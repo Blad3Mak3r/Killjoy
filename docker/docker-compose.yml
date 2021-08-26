@@ -6,9 +6,14 @@ services:
     expose:
       - 5432
     environment:
-      POSTGRES_USERNAME: DB_USERNAME
-      POSTGRES_PASSWORD: DB_PASSWORD
-      POSTGRES_DB: DB_NAME
+      POSTGRES_USER: killjoy
+      POSTGRES_PASSWORD: killjoy
+      POSTGRES_DB: killjoy
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     volumes:
       - killjoy-data:/var/lib/postgresql/data
 
@@ -20,6 +25,11 @@ services:
     restart: on-failure
     ports:
       - "8080:8080"
+    links:
+      - db
+    depends_on:
+      db:
+        condition: service_healthy
     deploy:
       resources:
         limits:
