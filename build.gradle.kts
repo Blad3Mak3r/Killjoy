@@ -4,7 +4,7 @@ import org.gradle.language.jvm.tasks.ProcessResources
 import org.apache.tools.ant.filters.ReplaceTokens
 
 plugins {
-    kotlin("jvm") version "1.5.21"
+    kotlin("jvm") version "1.5.30"
     id("com.github.johnrengelman.shadow") version "7.0.0"
 
     application
@@ -14,15 +14,15 @@ plugins {
 
 val jdaVersion = "4.3.0_310"
 val exposedVersion = "0.33.1"
-val ktorVersion = "1.6.2"
+val ktorVersion = "1.6.3"
 val coroutinesVersion = "1.5.1-native-mt"
 val logbackVersion = "1.2.5"
 val prometheusVersion = "0.11.0"
-val sentryVersion = "5.1.1"
+val sentryVersion = "5.1.2"
 val commonsLang = "3.12.0"
 
 group = "dev.killjoy"
-val versionObj = Version(0, 15, 5)
+val versionObj = Version(0, 15, 6)
 version = versionObj.build()
 
 repositories {
@@ -34,9 +34,9 @@ repositories {
 
 dependencies {
     //Kotlin
-    implementation(kotlin("stdlib", "1.5.21"))
-    implementation(kotlin("serialization", "1.5.21"))
-    implementation(kotlin("reflect", "1.5.21"))
+    implementation(kotlin("stdlib", "1.5.30"))
+    implementation(kotlin("serialization", "1.5.30"))
+    implementation(kotlin("reflect", "1.5.30"))
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:$coroutinesVersion")
 

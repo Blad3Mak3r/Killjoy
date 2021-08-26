@@ -18,8 +18,6 @@ package dev.killjoy.cache
 import dev.killjoy.Credentials
 import dev.killjoy.apis.riot.RiotAPI
 import dev.killjoy.apis.riot.entities.AgentStats
-import dev.killjoy.apis.riot.entities.RankedPlayerList
-import dev.killjoy.apis.riot.entities.Region
 import dev.killjoy.cache.internal.LeaderboardsCache
 import dev.killjoy.cache.internal.NewsCache
 import dev.killjoy.cache.internal.PlayerCardCache

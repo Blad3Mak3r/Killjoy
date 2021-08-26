@@ -17,13 +17,9 @@ package dev.killjoy.apis.news
 
 import dev.killjoy.i18n.I18n
 import dev.killjoy.utils.HttpUtils
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import org.json.JSONObject
 import org.slf4j.LoggerFactory
 import java.util.*
-import java.util.concurrent.ConcurrentHashMap
-import java.util.concurrent.TimeUnit
 
 object NewsRetriever {
     private val logger = LoggerFactory.getLogger(NewsRetriever::class.java)

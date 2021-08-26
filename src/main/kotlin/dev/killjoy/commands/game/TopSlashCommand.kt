@@ -16,7 +16,6 @@
 package dev.killjoy.commands.game
 
 import dev.killjoy.Launcher
-import dev.killjoy.apis.riot.RiotAPI
 import dev.killjoy.apis.riot.entities.Region
 import dev.killjoy.i18n.i18nCommand
 import tv.blademaker.slash.api.AbstractSlashCommand

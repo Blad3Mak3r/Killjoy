@@ -16,7 +16,6 @@
 package dev.killjoy.commands.game
 
 import dev.killjoy.Launcher
-import dev.killjoy.apis.news.NewsRetriever
 import dev.killjoy.extensions.jda.setDefaultColor
 import dev.killjoy.extensions.jda.supportedLocale
 import dev.killjoy.i18n.i18nCommand
