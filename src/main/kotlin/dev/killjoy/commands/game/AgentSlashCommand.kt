@@ -34,11 +34,9 @@ class AgentSlashCommand : AbstractSlashCommand("agent") {
             else ctx.reply(content).queue()
         }
 
-        val isCached = RiotAPI.AgentStatsAPI.cached
-
         val agentName = ctx.getOption("name")!!.asString
 
-        if (!isCached) ctx.acknowledge().queue()
+        if (!Launcher.cache.agentStatsExists()) ctx.acknowledge().queue()
 
         val agent = findAgent(agentName)
 

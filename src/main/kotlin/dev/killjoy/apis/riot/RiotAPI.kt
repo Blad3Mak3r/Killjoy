@@ -84,20 +84,10 @@ object RiotAPI {
         private val outdated: Boolean
             get() = lastUpdate < System.currentTimeMillis()
 
-        private fun getAgentStats(): List<AgentStats> {
-            if (agentStatsCache.isEmpty() || outdated) {
-                updateAgentStats()
-            }
+        private fun getAgentStats() = fetchAgentStats()
 
-            return agentStatsCache.values.toList()
-        }
-
-        private fun getAgentStats(agent: String): AgentStats? {
-            if (agentStatsCache.isEmpty() || outdated) {
-                updateAgentStats()
-            }
-
-            return agentStatsCache[agent.lowercase().replace("/", "")]
+        private fun getAgentStats(agent: String) = fetchAgentStats().find {
+            it.key.equals(agent.lowercase().replace("/", ""), true)
         }
 
         suspend fun getAgentStatsAsync(): Deferred<List<AgentStats>> = withContext(Dispatchers.IO) {
@@ -108,8 +98,7 @@ object RiotAPI {
             async { getAgentStats(agent) }
         }
 
-        @Synchronized
-        private fun updateAgentStats() {
+        private fun fetchAgentStats(): List<AgentStats> {
             val doc = Jsoup.connect("https://dak.gg/valorant/statistics/agents")
                 .timeout(10000)
                 .get()
@@ -126,15 +115,7 @@ object RiotAPI {
 
             val array = convertStatsObjectToList(JSONObject(matcher.group(2)))
 
-            val agentStats = array.map { AgentStats(it) }
-
-            for (stat in agentStats) {
-                agentStatsCache[stat.key.lowercase()] = stat
-            }
-
-            lastUpdate = (System.currentTimeMillis() + Duration.ofMinutes(10).toMillis())
-
-            LOGGER.info("A total of ${agentStats.size} agents stats has been updated.")
+            return array.map { AgentStats(it) }
         }
 
         private fun convertStatsObjectToList(jsonObject: JSONObject): List<JSONObject> {
