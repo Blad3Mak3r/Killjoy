@@ -122,7 +122,6 @@ object Launcher : Killjoy {
         database = buildDatabaseConnection()
         cache = RedisCache.createSingleServer(
             {
-                this.threads = Credentials.getOrDefault("redis.threads", 5)
                 this.nettyThreads = Credentials.getOrDefault("redis.nettyThreads", 5)
             },
             {
