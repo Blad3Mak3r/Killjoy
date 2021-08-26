@@ -29,7 +29,7 @@ class LeaderboardsCache(override val client: RedissonClient,
                         override val expirationTTLUnit: TimeUnit = TimeUnit.MINUTES
 ) : IRedisCache {
 
-    private fun getBucket(region: Region) = client.getBucket<RankedPlayerList>("leaderboards-${region.name.lowercase()}")
+    private fun getBucket(region: Region) = client.getBucket<RankedPlayerList>("killjoy:leaderboard:${region.name.lowercase()}")
 
     suspend fun get(region: Region): RankedPlayerList {
         val cached = getBucket(region)

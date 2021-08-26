@@ -34,7 +34,7 @@ class RedisCache private constructor(config: Config) {
 
     val leaderboards = LeaderboardsCache(client)
 
-    private val agentStatsMap = client.getMap<String, AgentStats>("agent-stats")
+    private val agentStatsMap = client.getMap<String, AgentStats>("killjoy:agent-stats")
 
     suspend fun agentStatsExists(): Boolean = agentStatsMap.isExistsAsync.awaitSuspend()
 
