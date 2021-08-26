@@ -16,6 +16,7 @@
 package dev.killjoy.apis.riot.entities
 
 import org.json.JSONObject
+import java.io.Serializable
 
 data class AgentStats(
     val key: String,
@@ -26,7 +27,7 @@ data class AgentStats(
     val kd: Double,
     val kdaPerMatch: KDA,
     val kdaPerRound: KDA
-) {
+) : Serializable {
 
     constructor(json: JSONObject) : this (
         json.getString("key"),
@@ -51,7 +52,7 @@ data class AgentStats(
         val kills: Double,
         val deaths: Double,
         val assists: Double
-    ) {
+    ) : Serializable {
 
         override fun toString(): String {
             return "$kills/$deaths/$assists"

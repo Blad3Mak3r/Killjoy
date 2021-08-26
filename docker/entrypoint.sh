@@ -17,4 +17,4 @@
 
 VM_OPTIONS="${KILLJOY_JVM_OPTIONS:--Xmx1G -XX:+UseG1GC}"
 
-java -jar $VM_OPTIONS Killjoy.jar "$@"
+exec java -jar $VM_OPTIONS Killjoy.jar "$@"

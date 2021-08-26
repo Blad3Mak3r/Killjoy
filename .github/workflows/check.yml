@@ -5,9 +5,12 @@ name: Run checks
 
 on:
   push:
+    branches:
+      - "development"
+      - "feature/**"
     paths:
     - ".github/workflows/check.yml"
-    - "src"
+    - "src/**"
     - "build.gradle.kts"
 
 jobs:

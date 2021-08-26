@@ -20,6 +20,7 @@ import net.dv8tion.jda.api.entities.Guild
 import net.dv8tion.jda.api.entities.MessageEmbed
 import org.json.JSONObject
 import org.slf4j.LoggerFactory
+import java.io.Serializable
 import java.text.MessageFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -31,7 +32,7 @@ data class ValorantNew(
     val description: String,
     val date: String,
     val image: String
-) {
+) : Serializable {
 
     fun asEmbedField(guild: Guild): MessageEmbed.Field {
         return MessageEmbed.Field(

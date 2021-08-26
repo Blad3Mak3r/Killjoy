@@ -1,4 +1,17 @@
+version: "3.9"
+
 services:
+  cache:
+    image: redis:alpine
+    hostname: killjoy_cache
+    restart: on-failure
+    healthcheck:
+      test: [ "CMD", "redis-cli","ping" ]
+    expose:
+      - 6379
+    volumes:
+      - killjoy-cache:/data
+
   db:
     image: postgres:alpine
     hostname: killjoy_db
@@ -10,7 +23,7 @@ services:
       POSTGRES_PASSWORD: killjoy
       POSTGRES_DB: killjoy
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready"]
+      test: [ "CMD-SHELL", "pg_isready" ]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -28,6 +41,8 @@ services:
     links:
       - db
     depends_on:
+      cache:
+        condition: service_healthy
       db:
         condition: service_healthy
     deploy:
@@ -41,3 +56,4 @@ volumes:
   killjoy-logs:
     external: true
   killjoy-data: { }
+  killjoy-cache: { }

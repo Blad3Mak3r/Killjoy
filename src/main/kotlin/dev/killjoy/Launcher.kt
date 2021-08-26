@@ -16,6 +16,7 @@
 package dev.killjoy
 
 import com.typesafe.config.ConfigException
+import dev.killjoy.cache.RedisCache
 import dev.killjoy.database.Database
 import dev.killjoy.database.DatabaseConnection
 import dev.killjoy.database.buildDatabaseConnection
@@ -61,6 +62,9 @@ import kotlin.properties.Delegates
 object Launcher : Killjoy {
 
     lateinit var database: Database
+        private set
+
+    lateinit var cache: RedisCache
         private set
 
     private lateinit var shardManager: ShardManager
@@ -116,6 +120,16 @@ object Launcher : Killjoy {
         SentryUtils.init()
 
         database = buildDatabaseConnection()
+        cache = RedisCache.createSingleServer(
+            {
+                this.nettyThreads = Credentials.getOrDefault("redis.nettyThreads", 5)
+            },
+            {
+                this.address = RedisCache.buildUrl()
+                this.password = Credentials.getOrNull<String>("redis.pass")
+                this.database = Credentials.getOrDefault("redis.db", 0)
+            }
+        )
 
         I18n.init()
 
@@ -186,6 +200,7 @@ object Launcher : Killjoy {
             }
 
             shardManager.shutdown()
+            cache.shutdown()
         } catch (e: Exception) {
             Sentry.captureException(e)
             log.error("Exception shutting down Killjoy.", e)

@@ -15,6 +15,7 @@
 
 package dev.killjoy.commands.game
 
+import dev.killjoy.Launcher
 import dev.killjoy.apis.news.NewsRetriever
 import dev.killjoy.extensions.jda.supportedLocale
 import dev.killjoy.framework.Category
@@ -29,7 +30,7 @@ import dev.killjoy.i18n.i18nCommand
 )
 class NewsCommand : Command() {
     override suspend fun handle(ctx: CommandContext) {
-        val latestNews = NewsRetriever.lastNews(ctx.guild.supportedLocale)
+        val latestNews = Launcher.cache.news.get(ctx.guild.supportedLocale)
 
         ctx.replyEmbed {
             setTitle(ctx.guild.i18nCommand("news.header"))
