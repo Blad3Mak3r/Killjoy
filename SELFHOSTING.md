@@ -1,7 +1,7 @@
 # Self-hosting
 
 **Prerequisites:**
-- [Discord Application Token](devs_application)
+- [Discord Application Token][devs_application]
 - [Java 11](https://openjdk.java.net/projects/jdk/11/)
 - [Docker](https://www.docker.com/) (optional)
 - [Riot Games Production API Key](https://developer.riotgames.com/app-type)
