@@ -15,7 +15,6 @@
 
 package dev.killjoy.apis.riot
 
-import com.github.benmanes.caffeine.cache.Caffeine
 import dev.killjoy.apis.riot.entities.AgentStats
 import dev.killjoy.apis.riot.entities.RankedPlayer
 import dev.killjoy.apis.riot.entities.RankedPlayerList
@@ -28,8 +27,6 @@ import kotlinx.coroutines.withContext
 import org.json.JSONObject
 import org.jsoup.Jsoup
 import org.slf4j.LoggerFactory
-import java.time.Duration
-import java.util.concurrent.TimeUnit
 
 object RiotAPI {
 
@@ -37,19 +34,11 @@ object RiotAPI {
     private val LOGGER = LoggerFactory.getLogger(RiotAPI::class.java)
 
     object LeaderboardsAPI {
-        private val leaderboardsCache = Caffeine.newBuilder()
-            .expireAfterWrite(15, TimeUnit.MINUTES)
-            .build<String, RankedPlayerList>()
-
         private fun buildURL(region: Region, actID: String): String {
             return "https://dgxfkpkb4zk5c.cloudfront.net/leaderboards/affinity/${region.name.lowercase()}/queue/competitive/act/$actID?startIndex=0&size=10"
         }
 
         suspend fun top10(region: Region): RankedPlayerList {
-
-            val cached = leaderboardsCache.getIfPresent(region.name.uppercase())
-            if (cached != null) return cached
-
             LOGGER.info("Retrieving fresh leaderboards for ${region.name.uppercase()}")
 
             val req = HttpUtils.await(JSONObject::class.java) {
@@ -64,9 +53,7 @@ object RiotAPI {
                 .mapNotNull { RankedPlayer.opt(it as JSONObject) }
                 .sortedBy { p -> p.leaderboardRank }
 
-            val rankedList = RankedPlayerList(System.currentTimeMillis(), list)
-            leaderboardsCache.put(region.name.uppercase(), rankedList)
-            return rankedList
+            return RankedPlayerList(System.currentTimeMillis(), list)
         }
     }
 

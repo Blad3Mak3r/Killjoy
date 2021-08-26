@@ -15,6 +15,7 @@
 
 package dev.killjoy.commands.game
 
+import dev.killjoy.Launcher
 import dev.killjoy.apis.riot.RiotAPI
 import dev.killjoy.apis.riot.entities.Region
 import dev.killjoy.i18n.i18nCommand
@@ -33,7 +34,7 @@ class TopSlashCommand : AbstractSlashCommand("top") {
 
         ctx.event.deferReply().queue()
 
-        val leaderboard = RiotAPI.LeaderboardsAPI.top10(region)
+        val leaderboard = Launcher.cache.leaderboards.get(region)
         val players = leaderboard.players
 
         ctx.sendEmbed {

@@ -15,7 +15,7 @@
 
 package dev.killjoy.commands.game
 
-import dev.killjoy.apis.riot.RiotAPI
+import dev.killjoy.Launcher
 import dev.killjoy.apis.riot.entities.Region
 import dev.killjoy.framework.Category
 import dev.killjoy.framework.CommandContext
@@ -41,7 +41,7 @@ class TopCommand : Command() {
         val region = Region.values().firstOrNull { it.name.equals(arg, true) }
             ?: return ctx.reply(Emojis.NoEntry, ctx.guild.i18nCommand("top.notValidRegion", arg, Region.asListed)).queue()
 
-        val playersList = RiotAPI.LeaderboardsAPI.top10(region)
+        val playersList = Launcher.cache.leaderboards.get(region)
         val players = playersList.players.take(10)
 
         ctx.replyEmbed {

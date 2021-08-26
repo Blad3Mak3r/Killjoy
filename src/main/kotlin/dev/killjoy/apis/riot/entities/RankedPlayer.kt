@@ -16,6 +16,7 @@
 package dev.killjoy.apis.riot.entities
 
 import org.json.JSONObject
+import java.io.Serializable
 
 data class RankedPlayer(
     val puuid: String,
@@ -24,7 +25,7 @@ data class RankedPlayer(
     val leaderboardRank: Int,
     val rankedRating: Int,
     val numberOfWins: Int
-) {
+) : Serializable {
     constructor(json: JSONObject) : this(
         json.getString("puuid"),
         json.getString("gameName"),
@@ -47,4 +48,4 @@ data class RankedPlayer(
 data class RankedPlayerList(
     val updatedAt: Long,
     val players: List<RankedPlayer>
-)
+) : Serializable
