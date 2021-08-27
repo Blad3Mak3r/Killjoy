@@ -16,8 +16,7 @@
 package dev.killjoy.database
 
 import dev.killjoy.Credentials
-import dev.killjoy.database.models.PugsTable
-import dev.killjoy.database.models.ShardStatsTable
+import dev.killjoy.database.models.*
 import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.transactions.transaction
 
@@ -38,6 +37,8 @@ internal fun buildDatabaseConnection(): Database {
 
     if (synchronize) transaction(db.connection) {
         SchemaUtils.createMissingTablesAndColumns(
+            AccountConnectionTable,
+            PlayerStatsTable,
             PugsTable,
             ShardStatsTable
         )
