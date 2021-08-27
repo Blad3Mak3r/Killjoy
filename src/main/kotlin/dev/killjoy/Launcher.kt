@@ -103,10 +103,8 @@ object Launcher : Killjoy {
 
     private val RESTACTION_DEFAULT_FAILURE = RestAction.getDefaultFailure()
 
-    @JvmStatic
     @Throws(LoginException::class, ConfigException::class)
-    fun main(args: Array<String>) {
-
+    fun init() {
         pid = ProcessHandle.current().pid()
 
         RestAction.setPassContext(false)
@@ -188,6 +186,12 @@ object Launcher : Killjoy {
 
             shutdown(0)
         })
+    }
+
+    @JvmStatic
+    @Throws(LoginException::class, ConfigException::class)
+    fun main(args: Array<String>) {
+        init()
     }
 
     override fun shutdown(code: Int) {
