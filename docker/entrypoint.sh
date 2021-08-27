@@ -15,6 +15,6 @@
 # See the License for the specific language governing permissions and limitations under the License.
 ################################################################################
 
-VM_OPTIONS="${KILLJOY_JVM_OPTIONS:--Xmx1G -XX:+UseG1GC}"
+VM_OPTIONS="${JAVA_OPTIONS:--Xmx1G -XX:+UseG1GC}"
 
 exec java -jar $VM_OPTIONS Killjoy.jar "$@"
