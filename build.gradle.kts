@@ -78,7 +78,7 @@ dependencies {
     //Config
     implementation("com.typesafe:config:1.4.1")
     implementation("org.json:json:20210307")
-
+    implementation("com.xenomachina:kotlin-argparser:2.0.7")
     implementation("org.jsoup:jsoup:1.14.2")
 
     //Cache

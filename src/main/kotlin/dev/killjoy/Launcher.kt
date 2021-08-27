@@ -16,6 +16,7 @@
 package dev.killjoy
 
 import com.typesafe.config.ConfigException
+import com.xenomachina.argparser.ArgParser
 import dev.killjoy.apis.news.ValorantNew
 import dev.killjoy.apis.riot.entities.RankedPlayerList
 import dev.killjoy.apis.riot.entities.Region
@@ -30,6 +31,7 @@ import dev.killjoy.i18n.I18n
 import dev.killjoy.listeners.MainListener
 import dev.killjoy.prometheus.Prometheus
 import dev.killjoy.utils.*
+import dev.killjoy.utils.ShardingStrategy.Companion.setShardingStrategy
 import dev.killjoy.valorant.agent.AgentAbility
 import dev.killjoy.valorant.agent.ValorantAgent
 import dev.killjoy.valorant.arsenal.ValorantWeapon
@@ -41,7 +43,6 @@ import io.sentry.Sentry
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import net.dv8tion.jda.api.entities.Activity
-import net.dv8tion.jda.api.entities.ApplicationInfo
 import net.dv8tion.jda.api.events.GenericEvent
 import net.dv8tion.jda.api.events.interaction.SlashCommandEvent
 import net.dv8tion.jda.api.requests.RestAction
@@ -70,12 +71,11 @@ object Launcher : Killjoy {
     lateinit var cache: RedisCache
         private set
 
+    private lateinit var shardingStrategy: ShardingStrategy
+
     private lateinit var shardManager: ShardManager
 
     var pid by Delegates.notNull<Long>()
-        private set
-
-    lateinit var info: ApplicationInfo
         private set
 
     lateinit var commandRegistry: CommandRegistry
@@ -104,8 +104,10 @@ object Launcher : Killjoy {
     private val RESTACTION_DEFAULT_FAILURE = RestAction.getDefaultFailure()
 
     @Throws(LoginException::class, ConfigException::class)
-    fun init() {
+    fun init(args: ApplicationArguments) {
         pid = ProcessHandle.current().pid()
+
+        shardingStrategy = ShardingStrategy.create(args)
 
         RestAction.setPassContext(false)
         RestAction.setDefaultTimeout(7, TimeUnit.SECONDS)
@@ -150,18 +152,20 @@ object Launcher : Killjoy {
 
         Credentials.getOrNull<String>("webhook_url")?.let { WebhookUtils.init(it) }
 
-        shardManager = DefaultShardManagerBuilder.createLight(Credentials.token)
-            .setShardsTotal(-1)
-            .setActivityProvider { Activity.competing("Valorant /help") }
-            .setEventManagerProvider {
+        shardManager = DefaultShardManagerBuilder.createLight(Credentials.token).apply {
+            setActivityProvider { Activity.competing("Valorant /help") }
+            setEventManagerProvider {
                 val executor = Utils.newCoroutineDispatcher("event-manager-worker-%d", 4, 20, 6L, TimeUnit.MINUTES)
                 CoroutineEventManager(CoroutineScope(executor + SupervisorJob()))
             }
-            .setCompression(Compression.ZLIB)
-            .disableIntents(Intents.allIntents)
-            .enableIntents(Intents.enabledIntents)
-            .enableCache(CacheFlag.MEMBER_OVERRIDES)
-            .disableCache(
+
+            setCompression(Compression.ZLIB)
+
+            disableIntents(Intents.allIntents)
+            enableIntents(Intents.enabledIntents)
+
+            enableCache(CacheFlag.MEMBER_OVERRIDES)
+            disableCache(
                 CacheFlag.VOICE_STATE,
                 CacheFlag.ACTIVITY,
                 CacheFlag.EMOTE,
@@ -169,10 +173,13 @@ object Launcher : Killjoy {
                 CacheFlag.ONLINE_STATUS,
                 CacheFlag.ROLE_TAGS
             )
-            .setBulkDeleteSplittingEnabled(false)
-            .setChunkingFilter(ChunkingFilter.NONE)
-            .setMemberCachePolicy(MemberCachePolicy.NONE)
-            .build()
+
+            setBulkDeleteSplittingEnabled(false)
+            setChunkingFilter(ChunkingFilter.NONE)
+            setMemberCachePolicy(MemberCachePolicy.NONE)
+
+            setShardingStrategy(shardingStrategy)
+        }.build()
 
         shardManager.listener<GenericEvent> { event ->
             when (event) {
@@ -191,7 +198,9 @@ object Launcher : Killjoy {
     @JvmStatic
     @Throws(LoginException::class, ConfigException::class)
     fun main(args: Array<String>) {
-        init()
+        val parsedArgs = ArgParser(args).parseInto(::ApplicationArguments)
+
+        init(parsedArgs)
     }
 
     override fun shutdown(code: Int) {
