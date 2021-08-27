@@ -31,7 +31,7 @@ class NewsSlashCommand : AbstractSlashCommand("news") {
 
         if (!isCached) ctx.acknowledge().queue()
 
-        val latestNews = Launcher.cache.news.get(ctx.guild.supportedLocale)
+        val latestNews = Launcher.getNews(ctx.guild.supportedLocale)
 
         val embed = EmbedBuilder().run {
             setDefaultColor()

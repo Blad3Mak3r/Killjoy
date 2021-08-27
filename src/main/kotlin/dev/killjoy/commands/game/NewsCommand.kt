@@ -29,7 +29,7 @@ import dev.killjoy.i18n.i18nCommand
 )
 class NewsCommand : Command() {
     override suspend fun handle(ctx: CommandContext) {
-        val latestNews = Launcher.cache.news.get(ctx.guild.supportedLocale)
+        val latestNews = Launcher.getNews(ctx.guild.supportedLocale)
 
         ctx.replyEmbed {
             setTitle(ctx.guild.i18nCommand("news.header"))

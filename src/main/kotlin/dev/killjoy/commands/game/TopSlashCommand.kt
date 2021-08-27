@@ -33,7 +33,7 @@ class TopSlashCommand : AbstractSlashCommand("top") {
 
         ctx.event.deferReply().queue()
 
-        val leaderboard = Launcher.cache.leaderboards.get(region)
+        val leaderboard = Launcher.getLeaderboard(region)
         val players = leaderboard.players
 
         ctx.sendEmbed {

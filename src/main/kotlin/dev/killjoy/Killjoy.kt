@@ -15,12 +15,16 @@
 
 package dev.killjoy
 
+import dev.killjoy.apis.news.ValorantNew
+import dev.killjoy.apis.riot.entities.RankedPlayerList
+import dev.killjoy.apis.riot.entities.Region
 import dev.killjoy.database.DatabaseConnection
 import dev.killjoy.valorant.agent.AgentAbility
 import dev.killjoy.valorant.agent.ValorantAgent
 import dev.killjoy.valorant.arsenal.ValorantWeapon
 import dev.killjoy.valorant.map.ValorantMap
 import net.dv8tion.jda.api.sharding.ShardManager
+import java.util.*
 
 interface Killjoy {
 
@@ -113,6 +117,10 @@ interface Killjoy {
         return if (collection.isNotEmpty()) collection.reduce { acc, i -> acc+i }
         else 0
     }
+
+    suspend fun getLeaderboard(region: Region): RankedPlayerList
+
+    suspend fun getNews(locale: Locale): List<ValorantNew>
 
     fun shutdown(code: Int = 0)
 }

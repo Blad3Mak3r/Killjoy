@@ -16,6 +16,9 @@
 package dev.killjoy
 
 import com.typesafe.config.ConfigException
+import dev.killjoy.apis.news.ValorantNew
+import dev.killjoy.apis.riot.entities.RankedPlayerList
+import dev.killjoy.apis.riot.entities.Region
 import dev.killjoy.cache.RedisCache
 import dev.killjoy.database.Database
 import dev.killjoy.database.DatabaseConnection
@@ -52,6 +55,7 @@ import net.hugebot.ratelimiter.RateLimiter
 import org.slf4j.LoggerFactory
 import tv.blademaker.slash.api.handler.DefaultSlashCommandHandler
 import tv.blademaker.slash.api.handler.SlashCommandHandler
+import java.util.*
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.TimeoutException
 import javax.security.auth.login.LoginException
@@ -245,6 +249,14 @@ object Launcher : Killjoy {
         return getAbilities().find {
             it.name.containsValue(n) || it.name.containsValue(n.replace("_", " "))
         }
+    }
+
+    override suspend fun getLeaderboard(region: Region): RankedPlayerList {
+        return cache.leaderboards.get(region)
+    }
+
+    override suspend fun getNews(locale: Locale): List<ValorantNew> {
+        return cache.news.get(locale)
     }
 
     private val log = LoggerFactory.getLogger(Launcher::class.java)
