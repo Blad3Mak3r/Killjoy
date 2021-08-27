@@ -26,7 +26,7 @@ suspend fun <V> RFuture<V>.awaitSuspend() = suspendCancellableCoroutine<V> { con
     }
 
     this.thenAccept {
-        cont.resume(it)
+        cont.resumeWith(Result.success(it))
     }.exceptionally {
         cont.resumeWithException(it)
         null
