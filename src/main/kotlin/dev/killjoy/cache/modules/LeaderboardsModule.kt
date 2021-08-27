@@ -22,7 +22,6 @@ import dev.killjoy.cache.RedisCache
 import dev.killjoy.extensions.redisson.awaitSuspend
 import io.sentry.Sentry
 import org.redisson.api.RedissonClient
-import org.slf4j.LoggerFactory
 import java.util.concurrent.TimeUnit
 
 class LeaderboardsModule(

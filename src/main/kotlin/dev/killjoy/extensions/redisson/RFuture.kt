@@ -17,7 +17,6 @@ package dev.killjoy.extensions.redisson
 
 import kotlinx.coroutines.suspendCancellableCoroutine
 import org.redisson.api.RFuture
-import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 
 suspend fun <V> RFuture<V>.awaitSuspend() = suspendCancellableCoroutine<V> { cont ->

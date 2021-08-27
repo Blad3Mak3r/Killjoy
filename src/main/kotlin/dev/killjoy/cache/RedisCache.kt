@@ -16,18 +16,14 @@
 package dev.killjoy.cache
 
 import dev.killjoy.Credentials
-import dev.killjoy.apis.riot.RiotAPI
-import dev.killjoy.apis.riot.entities.AgentStats
+
 import dev.killjoy.cache.modules.AgentStatsModule
 import dev.killjoy.cache.modules.LeaderboardsModule
 import dev.killjoy.cache.modules.NewsModule
-import dev.killjoy.extensions.redisson.awaitSuspend
-import io.sentry.Sentry
 import org.redisson.Redisson
 import org.redisson.config.Config
 import org.redisson.config.SingleServerConfig
 import org.slf4j.LoggerFactory
-import java.util.concurrent.TimeUnit
 
 class RedisCache private constructor(config: Config) {
     private val client = Redisson.create(config)
@@ -52,9 +48,6 @@ class RedisCache private constructor(config: Config) {
 
             return "redis://$host:$port"
         }
-
-        private const val AGENT_STATS_TTL = 1L
-        private val AGENT_STATS_TTL_UNIT = TimeUnit.HOURS
 
         internal val logger = LoggerFactory.getLogger(RedisCache::class.java)
     }
