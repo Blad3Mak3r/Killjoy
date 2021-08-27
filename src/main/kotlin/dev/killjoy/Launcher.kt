@@ -71,7 +71,8 @@ object Launcher : Killjoy {
     lateinit var cache: RedisCache
         private set
 
-    private lateinit var shardingStrategy: ShardingStrategy
+    lateinit var shardingStrategy: ShardingStrategy
+        private set
 
     private lateinit var shardManager: ShardManager
 
@@ -123,14 +124,18 @@ object Launcher : Killjoy {
         SentryUtils.init()
 
         database = buildDatabaseConnection()
+
         cache = RedisCache.createSingleServer(
             {
-                this.nettyThreads = Credentials.getOrDefault("redis.nettyThreads", 5)
+                this.nettyThreads = 5
+                this.threads = 1
             },
             {
                 this.address = RedisCache.buildUrl()
                 this.password = Credentials.getOrNull<String>("redis.pass")
                 this.database = Credentials.getOrDefault("redis.db", 0)
+                this.clientName = "killjoy-node-#${shardingStrategy.nodeID}"
+                this.connectionMinimumIdleSize = shardingStrategy.shardsPerNode
             }
         )
 
