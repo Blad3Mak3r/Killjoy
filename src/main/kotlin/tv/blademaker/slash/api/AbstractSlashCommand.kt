@@ -18,6 +18,7 @@ package tv.blademaker.slash.api
 import dev.killjoy.i18n.I18nKey
 import dev.killjoy.i18n.i18n
 import dev.killjoy.utils.Emojis
+import dev.killjoy.utils.SentryUtils
 import io.sentry.Sentry
 import io.sentry.SentryEvent
 import io.sentry.protocol.Message
@@ -69,17 +70,8 @@ abstract class AbstractSlashCommand(val commandName: String) {
 
                 subCommand.execute(this, ctx)
             } catch (e: Exception) {
-                val message = ctx.i18n(I18nKey.EXCEPTION_HANDLING_SLASH_COMMAND_OPTION, ctx.event.commandPath, e.message)
-                LOGGER.error(message, e)
-                Sentry.captureEvent(SentryEvent().apply {
-                    this.message = Message().apply {
-                        this.message = "Exception executing handler for ${ctx.event.commandPath}, ${e.message}"
-                    }
-                    throwable = e
-                })
+                SentryUtils.captureSlashCommandException(ctx, e)
 
-                if (ctx.event.isAcknowledged) ctx.send(Emojis.Cancel, message).setEphemeral(true).queue()
-                else ctx.reply(Emojis.Cancel, message).setEphemeral(true).queue()
                 return true
             }
             return true

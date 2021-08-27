@@ -20,8 +20,11 @@ import dev.killjoy.i18n.I18nKey
 import dev.killjoy.i18n.i18n
 import dev.killjoy.i18n.replyI18n
 import dev.killjoy.utils.Emojis
+import dev.killjoy.utils.SentryUtils
 import dev.killjoy.utils.Utils
 import io.sentry.Sentry
+import io.sentry.SentryEvent
+import io.sentry.protocol.Message
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
@@ -56,13 +59,7 @@ class DefaultSlashCommandHandler(packageName: String) : SlashCommandHandler, Cor
         try {
             command.execute(context)
         } catch (e: Exception) {
-            Sentry.captureException(e)
-            LOGGER.error("Exception executing command ${command.commandName}.", e)
-
-            val message = context.i18n(I18nKey.EXCEPTION_HANDLING_SLASH_COMMAND_OPTION, context.event.commandPath, e.message)
-
-            if (context.event.isAcknowledged) context.send(Emojis.Cancel, message).setEphemeral(true).queue()
-            else context.reply(Emojis.Cancel, message).setEphemeral(true).queue()
+            SentryUtils.captureSlashCommandException(context, e)
         }
     }
 
