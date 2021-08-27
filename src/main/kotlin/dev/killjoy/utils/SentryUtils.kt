@@ -97,15 +97,10 @@ object SentryUtils {
 
         val errorMessage = "Exception executing handler for ${ctx.event.commandPath}, ${e.message}"
 
-        fun getUserType(): String {
-            val isSystem = ctx.author.isSystem
-            val isBot = ctx.author.isBot
-
-            return when {
-                isSystem -> "System"
-                isBot -> "Bot"
-                else -> "User"
-            }
+        val userType: String = when {
+            ctx.author.isSystem -> "System"
+            ctx.author.isBot -> "Bot"
+            else -> "User"
         }
 
         Sentry.captureEvent(SentryEvent().apply {
@@ -115,7 +110,7 @@ object SentryUtils {
             this.user = User().apply {
                 this.id = ctx.author.id
                 this.username = ctx.author.asTag
-                this.others = mapOf("type" to getUserType())
+                this.others = mapOf("type" to userType)
             }
             this.setExtra("Guild", "${ctx.guild.name} (${ctx.guild.id})")
             this.setExtra("Command Path", ctx.event.commandPath)
