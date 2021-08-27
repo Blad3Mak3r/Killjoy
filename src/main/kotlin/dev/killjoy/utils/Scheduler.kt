@@ -15,7 +15,6 @@
 
 package dev.killjoy.utils
 
-import com.google.common.util.concurrent.ThreadFactoryBuilder
 import io.sentry.Sentry
 import java.util.concurrent.Executors
 import java.util.concurrent.ScheduledExecutorService
@@ -87,6 +86,6 @@ object Scheduler {
      * Creates a new ScheduledExecutorService
      */
     fun newScheduledExecutor(name: String, threads: Int = 1): ScheduledExecutorService {
-        return Executors.newScheduledThreadPool(threads, ThreadFactoryBuilder().setNameFormat(name).build())
+        return Executors.newScheduledThreadPool(threads, Utils.CustomThreadFactory(name, false))
     }
 }

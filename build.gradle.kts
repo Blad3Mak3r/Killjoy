@@ -64,8 +64,6 @@ dependencies {
     implementation("net.hugebot:RateLimiter:1.1")
     implementation("com.github.killjoybot:Valorant.API:0.1")
 
-    implementation("com.google.guava:guava:30.1.1-jre")
-
     //HTTP Clients
     implementation("com.squareup.okhttp3:okhttp:4.9.1")
 
@@ -82,7 +80,13 @@ dependencies {
     implementation("org.jsoup:jsoup:1.14.2")
 
     //Cache
-    implementation("org.redisson:redisson:3.16.1")
+    implementation("org.redisson:redisson:3.16.1") {
+        exclude(module = "byte-buddy")
+        exclude(module = "jodd-bean")
+        exclude(module = "cache-api")
+        exclude(module = "reactor-core")
+        exclude(module = "rxjava")
+    }
 
     //Test
     testImplementation("junit:junit:4.13.2")

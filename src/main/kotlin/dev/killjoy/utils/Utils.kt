@@ -17,24 +17,53 @@
 
 package dev.killjoy.utils
 
-import com.google.common.util.concurrent.ThreadFactoryBuilder
 import dev.killjoy.Versions
 import dev.killjoy.extensions.capital
 import dev.killjoy.framework.CommandContext
 import dev.killjoy.framework.abs.Command
 import dev.killjoy.framework.abs.SubCommand
+import io.sentry.Sentry
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.asCoroutineDispatcher
 import net.dv8tion.jda.api.entities.Guild
 import net.dv8tion.jda.api.entities.Role
 import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import java.net.MalformedURLException
 import java.net.URL
 import java.util.concurrent.LinkedBlockingQueue
+import java.util.concurrent.ThreadFactory
 import java.util.concurrent.ThreadPoolExecutor
 import java.util.concurrent.TimeUnit
+import java.util.concurrent.atomic.AtomicInteger
 
 object Utils {
+
+    object UncaughtExceptionHandler : Thread.UncaughtExceptionHandler {
+
+        private val logger = LoggerFactory.getLogger(UncaughtExceptionHandler::class.java)
+
+        override fun uncaughtException(t: Thread, e: Throwable) {
+            logger.error("Caught exception in thread $t", e)
+            Sentry.captureException(e)
+        }
+
+    }
+
+    open class CustomThreadFactory(
+        private val name: String,
+        private val daemon: Boolean = false
+    ) : ThreadFactory {
+        private val threadNumber = AtomicInteger(1)
+
+        override fun newThread(r: Runnable): Thread {
+            val t = Thread(r)
+            t.name = String.format(name, threadNumber.getAndIncrement())
+            t.isDaemon = daemon
+            t.uncaughtExceptionHandler = UncaughtExceptionHandler
+            return t
+        }
+    }
 
     fun printBanner(pid: Long, logger: Logger) {
         val content = """
@@ -69,7 +98,7 @@ object Utils {
             corePoolSize, maximumPoolSize,
             keepAliveTime, unit,
             LinkedBlockingQueue(),
-            ThreadFactoryBuilder().setNameFormat(name).setDaemon(daemon).build())
+            CustomThreadFactory(name, daemon))
     }
 
     fun newCoroutineDispatcher(name: String,
@@ -79,11 +108,7 @@ object Utils {
                          unit: TimeUnit = TimeUnit.MINUTES,
                          daemon: Boolean = true
     ): CoroutineDispatcher {
-        return ThreadPoolExecutor(
-            corePoolSize, maximumPoolSize,
-            keepAliveTime, unit,
-            LinkedBlockingQueue(),
-            ThreadFactoryBuilder().setNameFormat(name).setDaemon(daemon).build()).asCoroutineDispatcher()
+        return newThreadFactory(name, corePoolSize, maximumPoolSize, keepAliveTime, unit, daemon).asCoroutineDispatcher()
     }
 
     @JvmStatic
