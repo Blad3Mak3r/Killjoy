@@ -13,12 +13,12 @@
  * See the License for the specific language governing permissions and limitations under the License.
  ******************************************************************************/
 
-package dev.killjoy.cache.internal
+package dev.killjoy.cache.modules
 
 import org.redisson.api.RedissonClient
 import java.util.concurrent.TimeUnit
 
-interface IRedisCache {
+interface IRedisModule {
     val client: RedissonClient
     val expirationTTL: Long
     val expirationTTLUnit: TimeUnit

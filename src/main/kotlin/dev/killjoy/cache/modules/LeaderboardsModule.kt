@@ -13,22 +13,23 @@
  * See the License for the specific language governing permissions and limitations under the License.
  ******************************************************************************/
 
-package dev.killjoy.cache.internal
+package dev.killjoy.cache.modules
 
 import dev.killjoy.apis.riot.RiotAPI
 import dev.killjoy.apis.riot.entities.RankedPlayerList
 import dev.killjoy.apis.riot.entities.Region
+import dev.killjoy.cache.RedisCache
 import dev.killjoy.extensions.redisson.awaitSuspend
 import io.sentry.Sentry
 import org.redisson.api.RedissonClient
 import org.slf4j.LoggerFactory
 import java.util.concurrent.TimeUnit
 
-class LeaderboardsCache(
+class LeaderboardsModule(
     override val client: RedissonClient,
     override val expirationTTL: Long = 10L,
     override val expirationTTLUnit: TimeUnit = TimeUnit.MINUTES
-) : IRedisCache {
+) : IRedisModule {
 
     private fun getBucket(region: Region) = client.getBucket<RankedPlayerList>("killjoy:leaderboard:${region.name.lowercase()}")
 
@@ -57,6 +58,6 @@ class LeaderboardsCache(
     }
 
     companion object {
-        private val logger = LoggerFactory.getLogger(LeaderboardsCache::class.java)
+        private val logger = RedisCache.logger
     }
 }

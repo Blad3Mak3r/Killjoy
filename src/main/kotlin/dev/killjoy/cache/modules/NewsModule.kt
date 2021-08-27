@@ -13,10 +13,11 @@
  * See the License for the specific language governing permissions and limitations under the License.
  ******************************************************************************/
 
-package dev.killjoy.cache.internal
+package dev.killjoy.cache.modules
 
 import dev.killjoy.apis.news.NewsRetriever
 import dev.killjoy.apis.news.ValorantNew
+import dev.killjoy.cache.RedisCache
 import dev.killjoy.extensions.redisson.awaitSuspend
 import io.sentry.Sentry
 import org.redisson.api.RedissonClient
@@ -24,11 +25,11 @@ import org.slf4j.LoggerFactory
 import java.util.*
 import java.util.concurrent.TimeUnit
 
-class NewsCache(
+class NewsModule(
     override val client: RedissonClient,
     override val expirationTTL: Long = 30,
     override val expirationTTLUnit: TimeUnit = TimeUnit.MINUTES
-) : IRedisCache {
+) : IRedisModule {
 
     private fun getLocatedList(locale: Locale) = client.getList<ValorantNew>("killjoy:news:${locale.language.lowercase()}")
 
@@ -68,7 +69,7 @@ class NewsCache(
     }
 
     companion object {
-        private val logger = LoggerFactory.getLogger(NewsCache::class.java)
+        private val logger = RedisCache.logger
     }
 
 }

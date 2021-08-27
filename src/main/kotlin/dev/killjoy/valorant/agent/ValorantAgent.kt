@@ -62,7 +62,7 @@ class ValorantAgent(json: JSONObject) : ValorantEntity {
     }
 
     suspend fun asEmbed(guild: Guild): EmbedBuilder {
-        val stats = Launcher.cache.getAgentStats(name.lowercase())
+        val stats = Launcher.cache.agentStats.get(name.lowercase())
 
         val statistics = if (stats == null) guild.i18n(I18nKey.NOT_AVAILABLE_AT_THE_MOMENT)
         else MessageFormat.format(buildStats(guild), stats.pickRate, stats.winRate, stats.kdaPerMatch, stats.kdaPerRound, stats.avgDamage, stats.avgScore)

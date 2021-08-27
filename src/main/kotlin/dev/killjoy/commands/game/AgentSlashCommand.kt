@@ -35,7 +35,7 @@ class AgentSlashCommand : AbstractSlashCommand("agent") {
 
         val agentName = ctx.getOption("name")!!.asString
 
-        if (!Launcher.cache.agentStatsExists()) ctx.acknowledge().queue()
+        if (!Launcher.cache.agentStats.exists()) ctx.acknowledge().queue()
 
         val agent = findAgent(agentName)
 
