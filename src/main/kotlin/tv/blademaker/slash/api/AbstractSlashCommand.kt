@@ -17,11 +17,8 @@ package tv.blademaker.slash.api
 
 import dev.killjoy.i18n.I18nKey
 import dev.killjoy.i18n.i18n
-import dev.killjoy.utils.Emojis
 import dev.killjoy.utils.SentryUtils
 import io.sentry.Sentry
-import io.sentry.SentryEvent
-import io.sentry.protocol.Message
 import org.slf4j.LoggerFactory
 import tv.blademaker.slash.api.annotations.Permissions
 import tv.blademaker.slash.api.annotations.SlashSubCommand
@@ -70,7 +67,7 @@ abstract class AbstractSlashCommand(val commandName: String) {
 
                 subCommand.execute(this, ctx)
             } catch (e: Exception) {
-                SentryUtils.captureSlashCommandException(ctx, e)
+                SentryUtils.captureSlashCommandException(ctx, e, LOGGER)
 
                 return true
             }

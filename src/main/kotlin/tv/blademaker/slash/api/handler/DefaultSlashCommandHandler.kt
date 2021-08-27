@@ -17,14 +17,9 @@ package tv.blademaker.slash.api.handler
 
 import dev.killjoy.extensions.info
 import dev.killjoy.i18n.I18nKey
-import dev.killjoy.i18n.i18n
 import dev.killjoy.i18n.replyI18n
-import dev.killjoy.utils.Emojis
 import dev.killjoy.utils.SentryUtils
 import dev.killjoy.utils.Utils
-import io.sentry.Sentry
-import io.sentry.SentryEvent
-import io.sentry.protocol.Message
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
@@ -59,7 +54,7 @@ class DefaultSlashCommandHandler(packageName: String) : SlashCommandHandler, Cor
         try {
             command.execute(context)
         } catch (e: Exception) {
-            SentryUtils.captureSlashCommandException(context, e)
+            SentryUtils.captureSlashCommandException(context, e, LOGGER)
         }
     }
 
