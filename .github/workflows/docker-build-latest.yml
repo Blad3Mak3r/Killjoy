@@ -10,6 +10,10 @@ on:
     - "docker/entrypoint.sh"
     - ".github/workflows/docker-build-latest.yml"
 
+env:
+  BUILD_NUMBER: ${{ github.run_number }}
+  
+
 jobs:
 
   push:
@@ -40,8 +44,6 @@ jobs:
           ${{ runner.os }}-gradle-
 
     - name: Build with Gradle
-      env:
-        BUILD_NUMBER: ${{ github.run_number }}
       run: ./gradlew shadowJar --no-daemon -i --stacktrace
 
     - name: Cleanup Gradle Cache
@@ -66,7 +68,7 @@ jobs:
         context: .
         push: true
         platforms: linux/amd64
-        tags: ghcr.io/blad3ma3r/killjoy:latest
+        tags: ghcr.io/blad3mak3r/killjoy:latest
         cache-from: type=local,src=/tmp/.buildx-cache
         cache-to: type=local,dest=/tmp/.buildx-cache-new
         
