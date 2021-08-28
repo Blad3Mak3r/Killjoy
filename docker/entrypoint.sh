@@ -17,4 +17,5 @@
 
 VM_OPTIONS="${JAVA_OPTIONS:--Xmx1G -XX:+UseG1GC}"
 
+# shellcheck disable=SC2086
 exec java -jar $VM_OPTIONS Killjoy.jar "$@"
