@@ -1,6 +1,8 @@
 FROM azul/zulu-openjdk-alpine:13.0.8-jre-headless
 LABEL org.opencontainers.image.source="https://github.com/Blad3Mak3r/Killjoy"
 
+WORKDIR /app
+
 RUN apk upgrade --no-cache
 
 COPY --chmod=+x docker/entrypoint.sh entrypoint.sh
