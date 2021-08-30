@@ -30,7 +30,7 @@ object HttpUtils {
 
     suspend fun getJsonObject(request: Request.Builder.() -> Unit): JSONObject {
         return await(JSONObject::class.java, request).content
-            ?: throw IllegalStateException("Received empty body on request.")
+            ?: error("Received empty body on request.")
     }
 
     fun empty(request: Request.Builder.() -> Unit) {
