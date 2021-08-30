@@ -16,6 +16,7 @@
 package dev.killjoy.apis.memes
 
 import org.json.JSONObject
+import java.io.Serializable
 import kotlin.random.Random
 
 data class Meme (
@@ -30,9 +31,9 @@ data class Meme (
     val comments: Int,
     val isNsfw: Boolean,
     val createdAt: Long
-    ) {
+    ) : Serializable {
 
-    private constructor(obj: JSONObject) : this(
+    internal constructor(obj: JSONObject) : this(
         obj.getString("id"),
         obj.getString("subreddit"),
         obj.getString("title"),
@@ -46,9 +47,11 @@ data class Meme (
         obj.getLong("created_utc")
     )
 
-    val title: String = if (_title.length > 256) _title.substring(0, 255) else _title
+    val title: String
+        get() = if (_title.length > 256) _title.substring(0, 255) else _title
 
-    val permanentLink = "https://reddit.com/$id"
+    val permanentLink: String
+        get() = "https://reddit.com/$id"
 
     override fun toString(): String {
         return "Meme(id='$id', subReddit='$subReddit', title='$title', author='$author', image='$image', ups=$ups, downs=$downs, score=$score, comments=$comments, isNsfw=$isNsfw, createdAt=$createdAt)"
@@ -64,7 +67,7 @@ data class Meme (
                 val random = Random.nextInt(posts.length())
 
                 val selected = posts.getJSONObject(random).getJSONObject("data")
-                if (isImage(selected.getString("url"))) {
+                if (hasImage(selected.getString("url"))) {
                     return Meme(selected)
                 }
             }
@@ -72,7 +75,7 @@ data class Meme (
             error("Cannot found post with images at this moment...")
         }
 
-        private fun isImage(str: String? = null): Boolean {
+        internal fun hasImage(str: String? = null): Boolean {
             if (str == null) return false
             return str.endsWith(".png") || str.endsWith(".jpg") || str.endsWith(".jpeg") || str.endsWith(".gif")
         }

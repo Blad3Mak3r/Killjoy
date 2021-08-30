@@ -16,6 +16,7 @@
 package dev.killjoy.commands.misc
 
 
+import dev.killjoy.Launcher
 import dev.killjoy.apis.memes.RedditMemes
 import dev.killjoy.extensions.jda.setDefaultColor
 import dev.killjoy.framework.Category
@@ -28,15 +29,18 @@ import dev.killjoy.utils.Emojis
 class MemeCommand : Command() {
 
     override suspend fun handle(ctx: CommandContext) {
-        val meme = RedditMemes.get("ValorantMemes")
-            ?: return ctx.reply(Emojis.Outage, "Cannot get any meme at the moment, try again latter...").queue()
+        try {
+            val meme = Launcher.cache.memes.get("ValorantMemes")
 
-        ctx.embed {
-            setTitle(meme.title, meme.permanentLink)
-            setImage(meme.image)
-            setFooter("\uD83D\uDC4D\uD83C\uDFFB ${meme.score} | \uD83D\uDCAC ${meme.comments}")
-            setDefaultColor()
-        }.queue()
+            ctx.embed {
+                setTitle(meme.title, meme.permanentLink)
+                setImage(meme.image)
+                setFooter("\uD83D\uDC4D\uD83C\uDFFB ${meme.score} | \uD83D\uDCAC ${meme.comments}")
+                setDefaultColor()
+            }.queue()
+        } catch (e: Exception) {
+            ctx.reply(Emojis.Outage, "Cannot get any meme at the moment, try again latter...").queue()
+        }
     }
 
     override val help = "Just Valorant related memes."

@@ -19,6 +19,7 @@ import dev.killjoy.Credentials
 
 import dev.killjoy.cache.modules.AgentStatsModule
 import dev.killjoy.cache.modules.LeaderboardsModule
+import dev.killjoy.cache.modules.MemesModule
 import dev.killjoy.cache.modules.NewsModule
 import org.redisson.Redisson
 import org.redisson.config.Config
@@ -30,6 +31,7 @@ class RedisCache private constructor(config: Config) {
 
     val agentStats = AgentStatsModule(client)
     val leaderboards = LeaderboardsModule(client)
+    val memes = MemesModule(client)
     val news = NewsModule(client)
 
     fun shutdown() = client.shutdown()

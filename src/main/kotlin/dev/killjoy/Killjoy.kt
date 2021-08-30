@@ -15,6 +15,7 @@
 
 package dev.killjoy
 
+import dev.killjoy.apis.memes.Meme
 import dev.killjoy.apis.news.ValorantNew
 import dev.killjoy.apis.riot.entities.RankedPlayerList
 import dev.killjoy.apis.riot.entities.Region
@@ -121,6 +122,8 @@ interface Killjoy {
     suspend fun getLeaderboard(region: Region): RankedPlayerList
 
     suspend fun getNews(locale: Locale): List<ValorantNew>
+
+    suspend fun getMeme(subreddit: String): Meme
 
     fun shutdown(code: Int = 0)
 }

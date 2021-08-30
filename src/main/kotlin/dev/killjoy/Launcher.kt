@@ -17,6 +17,7 @@ package dev.killjoy
 
 import com.typesafe.config.ConfigException
 import com.xenomachina.argparser.ArgParser
+import dev.killjoy.apis.memes.Meme
 import dev.killjoy.apis.news.ValorantNew
 import dev.killjoy.apis.riot.entities.RankedPlayerList
 import dev.killjoy.apis.riot.entities.Region
@@ -275,6 +276,10 @@ object Launcher : Killjoy {
 
     override suspend fun getNews(locale: Locale): List<ValorantNew> {
         return cache.news.get(locale)
+    }
+
+    override suspend fun getMeme(subreddit: String): Meme {
+        return cache.memes.get(subreddit)
     }
 
     private val log = LoggerFactory.getLogger(Launcher::class.java)

@@ -15,6 +15,7 @@
 
 package dev.killjoy.commands.misc
 
+import dev.killjoy.Launcher
 import dev.killjoy.apis.memes.RedditMemes
 import dev.killjoy.extensions.jda.setDefaultColor
 import dev.killjoy.utils.Emojis
@@ -29,8 +30,7 @@ class MemeSlashCommand : AbstractSlashCommand("meme") {
 
         val subreddit = ctx.getOption("subreddit")!!.asString
 
-        val meme = RedditMemes.get(subreddit)
-            ?: return ctx.send(Emojis.Outage, "Cannot get any meme at the moment, try again latter...").queue()
+        val meme = Launcher.cache.memes.get(subreddit)
 
         ctx.sendEmbed {
             setTitle(meme.title, meme.permanentLink)

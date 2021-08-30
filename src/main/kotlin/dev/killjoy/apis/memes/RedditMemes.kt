@@ -19,24 +19,53 @@ import dev.killjoy.utils.HttpUtils
 import io.ktor.util.*
 import org.json.JSONObject
 import org.slf4j.LoggerFactory
+import kotlin.random.Random
 
 object RedditMemes {
 
     @Throws(IllegalStateException::class)
     suspend fun get(subreddit: String): Meme? {
         return try {
-            val r = HttpUtils.await(JSONObject::class.java) {
-                url(baseURL(subreddit))
-            }
-            val json = r.content
-
-            check(r.isSuccessful) { "Non-successful status code ${r.code}" }
-            check(json != null) { "Received empty body." }
+            val json = doRequest(subreddit)
             Meme.buildFromJson(json)
         } catch (e: Throwable) {
             logger.error(e)
             null
         }
+    }
+
+    suspend fun retrieveValidMemes(subreddit: String): List<Meme> {
+        val json = doRequest(subreddit).getJSONObject("data").getJSONArray("children")
+
+        val validMemes = json.map {
+            it as JSONObject; it.getJSONObject("data")
+        }.filter {
+            it.has("url") && Meme.hasImage(it.getString("url"))
+        }.map {
+            Meme(it)
+        }
+
+        if (validMemes.isEmpty()) error("Memes not received...")
+
+        return validMemes
+    }
+
+    fun select(memes: List<Meme>): Meme {
+        if (memes.isEmpty()) error("Meme list is empty.")
+
+        return memes[Random.nextInt(memes.size)]
+    }
+
+    private suspend fun doRequest(subreddit: String): JSONObject {
+        val r = HttpUtils.await(JSONObject::class.java) {
+            url(baseURL(subreddit))
+        }
+        val json = r.content
+
+        check(r.isSuccessful) { "Non-successful status code ${r.code}" }
+        check(json != null) { "Received empty body." }
+
+        return json
     }
 
     private const val BASE_URL = "https://www.reddit.com/r/%s/hot/.json?count=100"
