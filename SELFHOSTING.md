@@ -70,7 +70,7 @@ services:
       - killjoy-data:/var/lib/postgresql/data
 
   bot:
-    image: blademaker/killjoy
+    image: ghcr.io/blad3mak3r/killjoy:latest
     volumes:
       - ./credentials.conf:/app/credentials.conf:ro
       - killjoy-logs:/app/logs
