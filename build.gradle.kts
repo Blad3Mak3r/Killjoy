@@ -17,7 +17,7 @@ val exposedVersion = "0.33.1"
 val ktorVersion = "1.6.3"
 val coroutinesVersion = "1.5.1"
 val logbackVersion = "1.2.5"
-val prometheusVersion = "0.11.0"
+val prometheusVersion = "0.12.0"
 val sentryVersion = "5.1.2"
 val commonsLang = "3.12.0"
 
