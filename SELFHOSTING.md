@@ -6,6 +6,10 @@
 - [Docker](https://www.docker.com/) (optional)
 - [Riot Games Production API Key](https://developer.riotgames.com/app-type)
 
+## ⚠️IF YOU WILL NOT USE DOCKER YOU NEED THIS TO
+- [Redis](https://redis.io/download)
+- [Postgres](https://www.postgresql.org/download/)
+
 To make KillJOY connect to discord you need your Discord app login token, you can get it [here][devs_application] by creating a new Bot Application.
 
 This token has to be passed to KILLJOY through a configuration file called [**credentials.conf**](/credentials.conf.example).
@@ -92,8 +96,7 @@ services:
           memory: 128M
 
 volumes:
-  killjoy-logs:
-    external: true
+  killjoy-logs: { }
   killjoy-data: { }
   killjoy-cache: { }
 ```
