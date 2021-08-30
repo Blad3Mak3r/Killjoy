@@ -2,6 +2,7 @@
 
 package dev.killjoy.utils
 
+import dev.killjoy.Launcher
 import dev.killjoy.extensions.okhttp.submit
 import kotlinx.coroutines.future.await
 import okhttp3.*
@@ -24,7 +25,7 @@ object HttpUtils {
 
     private val logger = LoggerFactory.getLogger(HttpUtils::class.java)
 
-    private val client = OkHttpClient.Builder().build()
+    val client = OkHttpClient()
 
     suspend fun getJsonObject(url: String) = getJsonObject { url(url) }
 

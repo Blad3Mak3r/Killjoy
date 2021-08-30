@@ -54,6 +54,8 @@ import net.dv8tion.jda.api.utils.Compression
 import net.dv8tion.jda.api.utils.MemberCachePolicy
 import net.dv8tion.jda.api.utils.cache.CacheFlag
 import net.hugebot.ratelimiter.RateLimiter
+import okhttp3.OkHttp
+import okhttp3.OkHttpClient
 import org.slf4j.LoggerFactory
 import tv.blademaker.slash.api.handler.DefaultSlashCommandHandler
 import tv.blademaker.slash.api.handler.SlashCommandHandler
@@ -159,6 +161,7 @@ object Launcher : Killjoy {
         Credentials.getOrNull<String>("webhook_url")?.let { WebhookUtils.init(it) }
 
         shardManager = DefaultShardManagerBuilder.createLight(Credentials.token).apply {
+            setHttpClient(HttpUtils.client)
             setActivityProvider { Activity.competing("Valorant /help") }
             setEventManagerProvider {
                 val executor = Utils.newCoroutineDispatcher("event-manager-worker-%d", 4, 20, 6L, TimeUnit.MINUTES)
