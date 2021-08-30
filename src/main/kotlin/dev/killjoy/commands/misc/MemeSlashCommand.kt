@@ -16,9 +16,7 @@
 package dev.killjoy.commands.misc
 
 import dev.killjoy.Launcher
-import dev.killjoy.apis.memes.RedditMemes
 import dev.killjoy.extensions.jda.setDefaultColor
-import dev.killjoy.utils.Emojis
 import tv.blademaker.slash.api.AbstractSlashCommand
 import tv.blademaker.slash.api.SlashCommandContext
 

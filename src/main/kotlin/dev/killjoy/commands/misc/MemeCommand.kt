@@ -17,7 +17,6 @@ package dev.killjoy.commands.misc
 
 
 import dev.killjoy.Launcher
-import dev.killjoy.apis.memes.RedditMemes
 import dev.killjoy.extensions.jda.setDefaultColor
 import dev.killjoy.framework.Category
 import dev.killjoy.framework.CommandContext

@@ -17,7 +17,6 @@
 
 package dev.killjoy.utils
 
-import dev.killjoy.Launcher
 import dev.killjoy.Versions
 import dev.killjoy.extensions.capital
 import dev.killjoy.framework.CommandContext
