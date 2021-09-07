@@ -12,17 +12,17 @@ plugins {
     idea
 }
 
-val jdaVersion = "4.3.0_310"
-val exposedVersion = "0.33.1"
+val jdaVersion = "4.3.0_323"
+val exposedVersion = "0.34.1"
 val ktorVersion = "1.6.3"
-val coroutinesVersion = "1.5.1"
+val coroutinesVersion = "1.5.2"
 val logbackVersion = "1.2.5"
-val prometheusVersion = "0.11.0"
+val prometheusVersion = "0.12.0"
 val sentryVersion = "5.1.2"
 val commonsLang = "3.12.0"
 
 group = "dev.killjoy"
-val versionObj = Version(0, 15, 9)
+val versionObj = Version(0, 15, 10)
 version = versionObj.build()
 
 repositories {
@@ -80,7 +80,7 @@ dependencies {
     implementation("org.jsoup:jsoup:1.14.2")
 
     //Cache
-    implementation("org.redisson:redisson:3.16.1") {
+    implementation("org.redisson:redisson:3.16.2") {
         exclude(module = "byte-buddy")
         exclude(module = "jodd-bean")
         exclude(module = "cache-api")
