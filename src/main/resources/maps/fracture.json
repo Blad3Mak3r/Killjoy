@@ -1,0 +1,9 @@
+{
+  "name": "fracture",
+  "description": {
+    "en": "A top secret research facility split apart by a failed radianite experiment. With defender options as divided as the map, the choice is yours: meet the attackers on their own turf or batten down the hatches to weather the assault.",
+    "es": "Una instalación de investigación de alto secreto que quedó dividida tras un experimento fallido relacionado con la radianita. Al igual que el mapa, las opciones de los defensores son muy variadas, así que la decisión queda en tus manos: ve a buscar a los atacantes a su territorio o atrinchérate y aguanta el asalto."
+  },
+  "minimap": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/blt6145fdc7dffa2f5f/6131c5e985514a6ee3fac889/Fracture_Map_Website_Asset.jpg",
+  "image_url": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/blt1a720126e3713bba/6131bf518e16ab655b34901a/Fracture_Screenshot-8.jpg"
+}
