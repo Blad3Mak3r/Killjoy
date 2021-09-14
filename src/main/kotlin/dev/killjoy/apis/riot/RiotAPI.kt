@@ -30,7 +30,7 @@ import org.slf4j.LoggerFactory
 
 object RiotAPI {
 
-    const val CURRENT_ACT_ID = "2a27e5d2-4d30-c9e2-b15a-93b8909a442c"   // Episode 2 (Act 1) TODO(Waiting for valorant fix)
+    const val CURRENT_ACT_ID = "4cb622e1-4244-6da3-7276-8daaf1c01be2"   // Episode 3 (Act 2)
     private val LOGGER = LoggerFactory.getLogger(RiotAPI::class.java)
 
     object LeaderboardsAPI {
