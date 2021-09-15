@@ -2,4 +2,4 @@ build:
 	gradlew clean shadowJar
 
 docker:
-	docker build . -t blademaker/killjoy:latest
+	cd docker && docker-compose -p "killjoy-dev-environment" -f development.yml up -d

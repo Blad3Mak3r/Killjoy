@@ -1,0 +1,35 @@
+version: "3.9"
+
+services:
+  cache:
+    image: redis:alpine
+    hostname: killjoy_cache
+    restart: on-failure
+    healthcheck:
+      test: [ "CMD", "redis-cli","ping" ]
+    ports:
+      - 6379:6379
+    volumes:
+      - killjoy-dev-cache:/data
+
+  db:
+    image: postgres:alpine
+    hostname: killjoy_db
+    restart: on-failure
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: killjoy
+      POSTGRES_PASSWORD: killjoy
+      POSTGRES_DB: killjoy
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - killjoy-dev-data:/var/lib/postgresql/data
+
+volumes:
+  killjoy-dev-data: { }
+  killjoy-dev-cache: { }
