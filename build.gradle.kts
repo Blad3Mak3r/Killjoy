@@ -13,7 +13,7 @@ plugins {
 }
 
 val jdaVersion = "4.3.0_323"
-val exposedVersion = "0.34.1"
+val exposedVersion = "0.34.2"
 val ktorVersion = "1.6.3"
 val coroutinesVersion = "1.5.2"
 val logbackVersion = "1.2.5"
