@@ -30,6 +30,8 @@ repositories {
     maven("https://m2.dv8tion.net/releases")
     maven("https://dl.bintray.com/kotlin/kotlinx")
     maven("https://jitpack.io")
+
+    maven("https://maven.pkg.github.com/Blad3Mak3r/Slash")
 }
 
 dependencies {
@@ -47,6 +49,7 @@ dependencies {
     implementation("net.dv8tion:JDA:$jdaVersion") { exclude(module = "opus-java") }
     implementation("ch.qos.logback:logback-classic:$logbackVersion")
     implementation("io.sentry:sentry:$sentryVersion")
+    implementation("tv.blademaker:slash:1.1")
     implementation("com.github.minndevelopment:jda-ktx:d460e2a")
 
     //Database

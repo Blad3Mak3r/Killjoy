@@ -39,13 +39,10 @@ import dev.killjoy.valorant.arsenal.ValorantWeapon
 import dev.killjoy.valorant.map.ValorantMap
 import dev.killjoy.webhook.WebhookUtils
 import dev.minn.jda.ktx.CoroutineEventManager
-import dev.minn.jda.ktx.listener
 import io.sentry.Sentry
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import net.dv8tion.jda.api.entities.Activity
-import net.dv8tion.jda.api.events.GenericEvent
-import net.dv8tion.jda.api.events.interaction.SlashCommandEvent
 import net.dv8tion.jda.api.requests.RestAction
 import net.dv8tion.jda.api.sharding.DefaultShardManagerBuilder
 import net.dv8tion.jda.api.sharding.ShardManager
@@ -54,11 +51,9 @@ import net.dv8tion.jda.api.utils.Compression
 import net.dv8tion.jda.api.utils.MemberCachePolicy
 import net.dv8tion.jda.api.utils.cache.CacheFlag
 import net.hugebot.ratelimiter.RateLimiter
-import okhttp3.OkHttp
-import okhttp3.OkHttpClient
 import org.slf4j.LoggerFactory
-import tv.blademaker.slash.api.handler.DefaultSlashCommandHandler
-import tv.blademaker.slash.api.handler.SlashCommandHandler
+import tv.blademaker.slash.api.DefaultSlashCommandClient
+import tv.blademaker.slash.api.SlashCommandClient
 import java.util.*
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.TimeoutException
@@ -85,7 +80,7 @@ object Launcher : Killjoy {
     lateinit var commandRegistry: CommandRegistry
         private set
 
-    lateinit var slashCommandHandler: SlashCommandHandler
+    lateinit var slashCommandHandler: SlashCommandClient
         private set
 
     lateinit var cooldownManager: CooldownManager
@@ -150,7 +145,7 @@ object Launcher : Killjoy {
         maps = Loaders.loadMaps()
 
         commandRegistry = CommandRegistry()
-        slashCommandHandler = DefaultSlashCommandHandler("dev.killjoy.commands")
+        slashCommandHandler = DefaultSlashCommandClient("dev.killjoy.commands")
 
         cooldownManager = CooldownManager(15, TimeUnit.SECONDS)
 
@@ -173,6 +168,8 @@ object Launcher : Killjoy {
             disableIntents(Intents.allIntents)
             enableIntents(Intents.enabledIntents)
 
+            addEventListeners(MainListener)
+
             enableCache(CacheFlag.MEMBER_OVERRIDES)
             disableCache(
                 CacheFlag.VOICE_STATE,
@@ -189,13 +186,6 @@ object Launcher : Killjoy {
 
             setShardingStrategy(shardingStrategy)
         }.build()
-
-        shardManager.listener<GenericEvent> { event ->
-            when (event) {
-                is SlashCommandEvent -> slashCommandHandler.onSlashCommandEvent(event)
-                else -> MainListener.onEvent(event)
-            }
-        }
 
         Runtime.getRuntime().addShutdownHook(Thread {
             Thread.currentThread().name = "shutdown-thread"

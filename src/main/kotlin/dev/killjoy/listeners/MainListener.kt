@@ -28,6 +28,7 @@ import net.dv8tion.jda.api.Permission
 import net.dv8tion.jda.api.events.*
 import net.dv8tion.jda.api.events.guild.GuildJoinEvent
 import net.dv8tion.jda.api.events.guild.GuildLeaveEvent
+import net.dv8tion.jda.api.events.interaction.SlashCommandEvent
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
 import net.dv8tion.jda.api.hooks.EventListener
 import net.dv8tion.jda.api.requests.restaction.MessageAction
@@ -37,6 +38,8 @@ import java.time.OffsetDateTime
 object MainListener : EventListener {
     override fun onEvent(event: GenericEvent) {
         when (event) {
+            is SlashCommandEvent -> Launcher.slashCommandHandler.onSlashCommandEvent(event)
+
             is GuildJoinEvent -> onGuildJoin(event)
             is GuildLeaveEvent -> onGuildLeave(event)
 
