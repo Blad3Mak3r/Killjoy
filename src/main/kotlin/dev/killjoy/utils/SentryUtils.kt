@@ -17,6 +17,8 @@ package dev.killjoy.utils
 
 import dev.killjoy.Credentials
 import dev.killjoy.Versions
+import dev.killjoy.extensions.slash.reply
+import dev.killjoy.extensions.slash.send
 import dev.killjoy.framework.CommandContext
 import dev.killjoy.framework.abs.Command
 import dev.killjoy.framework.abs.SubCommand

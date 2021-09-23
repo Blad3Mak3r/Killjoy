@@ -16,12 +16,13 @@
 package dev.killjoy.commands.game
 
 import dev.killjoy.Launcher
+import dev.killjoy.extensions.slash.sendNotFound
 import dev.killjoy.i18n.i18nCommand
-import tv.blademaker.slash.api.AbstractSlashCommand
+import tv.blademaker.slash.api.BaseSlashCommand
 import tv.blademaker.slash.api.SlashCommandContext
 
 @Suppress("unused")
-class ArsenalSlashCommand : AbstractSlashCommand("arsenal") {
+class ArsenalSlashCommand : BaseSlashCommand("arsenal") {
 
     override suspend fun handle(ctx: SlashCommandContext) {
         ctx.event.deferReply().queue()

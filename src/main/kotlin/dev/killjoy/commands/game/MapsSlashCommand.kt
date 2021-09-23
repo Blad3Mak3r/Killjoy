@@ -19,12 +19,13 @@ import dev.killjoy.Launcher
 import dev.killjoy.apis.news.NewsRetriever
 import dev.killjoy.extensions.capital
 import dev.killjoy.extensions.jda.supportedLocale
+import dev.killjoy.extensions.slash.sendNotFound
 import dev.killjoy.i18n.i18nCommand
-import tv.blademaker.slash.api.AbstractSlashCommand
+import tv.blademaker.slash.api.BaseSlashCommand
 import tv.blademaker.slash.api.SlashCommandContext
 
 @Suppress("unused")
-class MapsSlashCommand : AbstractSlashCommand("maps") {
+class MapsSlashCommand : BaseSlashCommand("maps") {
 
     override suspend fun handle(ctx: SlashCommandContext) {
         ctx.event.deferReply().queue()

@@ -16,16 +16,17 @@
 package dev.killjoy.commands.game
 
 import dev.killjoy.Launcher
+import dev.killjoy.extensions.slash.sendNotFound
 import dev.killjoy.i18n.I18nKey
 import dev.killjoy.i18n.i18n
-import tv.blademaker.slash.api.AbstractSlashCommand
+import tv.blademaker.slash.api.BaseSlashCommand
 import tv.blademaker.slash.api.SlashCommandContext
-import tv.blademaker.slash.api.annotations.SlashSubCommand
+import tv.blademaker.slash.api.annotations.SlashCommandOption
 
 @Suppress("unused")
-class AbilitySlashCommand : AbstractSlashCommand("ability") {
+class AbilitySlashCommand : BaseSlashCommand("ability") {
 
-    @SlashSubCommand("info")
+    @SlashCommandOption("info")
     override suspend fun handle(ctx: SlashCommandContext) {
 
         val option = ctx.getOption("name")!!.asString

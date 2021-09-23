@@ -16,12 +16,13 @@
 package dev.killjoy.commands.info
 
 import dev.killjoy.extensions.jda.await
+import dev.killjoy.extensions.slash.send
 import dev.killjoy.utils.Emojis
-import tv.blademaker.slash.api.AbstractSlashCommand
+import tv.blademaker.slash.api.BaseSlashCommand
 import tv.blademaker.slash.api.SlashCommandContext
 
 @Suppress("unused")
-class PingSlashCommand : AbstractSlashCommand("ping") {
+class PingSlashCommand : BaseSlashCommand("ping") {
 
     override suspend fun handle(ctx: SlashCommandContext) {
         ctx.acknowledge(true).queue()

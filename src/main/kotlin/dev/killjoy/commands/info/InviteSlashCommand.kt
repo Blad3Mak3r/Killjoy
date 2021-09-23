@@ -17,11 +17,11 @@ package dev.killjoy.commands.info
 
 import dev.killjoy.INVITE_URL
 import dev.killjoy.i18n.i18nCommand
-import tv.blademaker.slash.api.AbstractSlashCommand
+import tv.blademaker.slash.api.BaseSlashCommand
 import tv.blademaker.slash.api.SlashCommandContext
 
 @Suppress("unused")
-class InviteSlashCommand : AbstractSlashCommand("invite") {
+class InviteSlashCommand : BaseSlashCommand("invite") {
 
     override suspend fun handle(ctx: SlashCommandContext) {
         val content = ctx.i18nCommand("invite.message", INVITE_URL)

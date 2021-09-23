@@ -28,10 +28,10 @@ import dev.killjoy.i18n.i18nCommand
 import net.dv8tion.jda.api.entities.Guild
 import net.dv8tion.jda.api.interactions.components.ActionRow
 import net.dv8tion.jda.api.interactions.components.Button
-import tv.blademaker.slash.api.AbstractSlashCommand
+import tv.blademaker.slash.api.BaseSlashCommand
 import tv.blademaker.slash.api.SlashCommandContext
 
-class HelpSlashCommand : AbstractSlashCommand("help") {
+class HelpSlashCommand : BaseSlashCommand("help") {
 
     override suspend fun handle(ctx: SlashCommandContext) {
         ctx.replyEmbed {

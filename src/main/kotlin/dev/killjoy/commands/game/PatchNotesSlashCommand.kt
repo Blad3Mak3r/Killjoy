@@ -18,11 +18,11 @@ package dev.killjoy.commands.game
 import dev.killjoy.apis.news.PatchNotesAPI
 import dev.killjoy.extensions.jda.supportedLocale
 import dev.killjoy.i18n.i18nCommand
-import tv.blademaker.slash.api.AbstractSlashCommand
+import tv.blademaker.slash.api.BaseSlashCommand
 import tv.blademaker.slash.api.SlashCommandContext
 
 @Suppress("unused")
-class PatchNotesSlashCommand : AbstractSlashCommand("patchnotes") {
+class PatchNotesSlashCommand : BaseSlashCommand("patchnotes") {
 
     override suspend fun handle(ctx: SlashCommandContext) {
         ctx.acknowledge().queue()

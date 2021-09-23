@@ -31,13 +31,13 @@ import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.entities.MessageEmbed
 import net.dv8tion.jda.api.events.interaction.ButtonClickEvent
 import org.slf4j.LoggerFactory
-import tv.blademaker.slash.api.AbstractSlashCommand
+import tv.blademaker.slash.api.BaseSlashCommand
 import tv.blademaker.slash.api.SlashCommandContext
 import java.util.concurrent.atomic.AtomicBoolean
 import kotlin.math.ceil
 
 @Suppress("unused")
-class AgentsSlashCommand : AbstractSlashCommand("agents") {
+class AgentsSlashCommand : BaseSlashCommand("agents") {
 
     override suspend fun handle(ctx: SlashCommandContext) {
 

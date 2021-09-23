@@ -33,16 +33,16 @@ import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.entities.MessageEmbed
 import net.dv8tion.jda.api.events.interaction.ButtonClickEvent
 import org.slf4j.LoggerFactory
-import tv.blademaker.slash.api.AbstractSlashCommand
+import tv.blademaker.slash.api.BaseSlashCommand
 import tv.blademaker.slash.api.SlashCommandContext
-import tv.blademaker.slash.api.annotations.SlashSubCommand
+import tv.blademaker.slash.api.annotations.SlashCommandOption
 import java.util.concurrent.atomic.AtomicBoolean
 import kotlin.math.ceil
 
 @Suppress("unused")
-class AbilitiesSlashCommand : AbstractSlashCommand("abilities") {
+class AbilitiesSlashCommand : BaseSlashCommand("abilities") {
 
-    @SlashSubCommand("all")
+    @SlashCommandOption("all")
     override suspend fun handle(ctx: SlashCommandContext) {
 
         val interactionID = ctx.hook.interaction.id

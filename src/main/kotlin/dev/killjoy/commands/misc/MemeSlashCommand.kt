@@ -17,11 +17,11 @@ package dev.killjoy.commands.misc
 
 import dev.killjoy.Launcher
 import dev.killjoy.extensions.jda.setDefaultColor
-import tv.blademaker.slash.api.AbstractSlashCommand
+import tv.blademaker.slash.api.BaseSlashCommand
 import tv.blademaker.slash.api.SlashCommandContext
 
 @Suppress("unused")
-class MemeSlashCommand : AbstractSlashCommand("meme") {
+class MemeSlashCommand : BaseSlashCommand("meme") {
 
     override suspend fun handle(ctx: SlashCommandContext) {
         ctx.acknowledge().queue()

@@ -17,13 +17,14 @@ package dev.killjoy.commands.game
 
 import dev.killjoy.Launcher
 import dev.killjoy.apis.riot.entities.Region
+import dev.killjoy.extensions.slash.sendNotFound
 import dev.killjoy.i18n.i18nCommand
-import tv.blademaker.slash.api.AbstractSlashCommand
+import tv.blademaker.slash.api.BaseSlashCommand
 import tv.blademaker.slash.api.SlashCommandContext
 import java.time.Instant
 
 @Suppress("unused", "DuplicatedCode")
-class TopSlashCommand : AbstractSlashCommand("top") {
+class TopSlashCommand : BaseSlashCommand("top") {
 
     override suspend fun handle(ctx: SlashCommandContext) {
         val option = ctx.getOption("region")!!.asString.uppercase()

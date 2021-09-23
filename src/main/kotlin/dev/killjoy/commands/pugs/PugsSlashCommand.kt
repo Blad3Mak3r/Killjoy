@@ -20,19 +20,20 @@ import dev.killjoy.database.enums.ClosePugResult
 import dev.killjoy.database.enums.CreatePugResult
 import dev.killjoy.database.enums.JoinPugResult
 import dev.killjoy.database.enums.LeavePugResult
+import dev.killjoy.extensions.slash.send
 import dev.killjoy.i18n.i18nCommand
 import dev.killjoy.utils.Emojis
 import net.dv8tion.jda.api.Permission
-import tv.blademaker.slash.api.AbstractSlashCommand
+import tv.blademaker.slash.api.BaseSlashCommand
 import tv.blademaker.slash.api.SlashCommandContext
 import tv.blademaker.slash.api.annotations.Permissions
-import tv.blademaker.slash.api.annotations.SlashSubCommand
-import tv.blademaker.slash.utils.SlashUtils.asEphemeral
+import tv.blademaker.slash.api.annotations.SlashCommandOption
+import tv.blademaker.slash.extensions.asEphemeral
 
 @Suppress("unused")
-class PugsSlashCommand : AbstractSlashCommand("pugs") {
+class PugsSlashCommand : BaseSlashCommand("pugs") {
 
-    @SlashSubCommand("current")
+    @SlashCommandOption("current")
     suspend fun current(ctx: SlashCommandContext) {
         ctx.acknowledge().queue()
         val pug = Launcher.database.pugs.findByGuild(ctx.guild)
@@ -41,7 +42,7 @@ class PugsSlashCommand : AbstractSlashCommand("pugs") {
         ctx.send(pug.asEmbed(ctx.guild)).queue()
     }
 
-    @SlashSubCommand("join")
+    @SlashCommandOption("join")
     suspend fun join(ctx: SlashCommandContext) {
         ctx.acknowledge().queue()
         when (Launcher.database.pugs.joinPug(ctx.guild, ctx.author)) {
@@ -60,7 +61,7 @@ class PugsSlashCommand : AbstractSlashCommand("pugs") {
         }
     }
 
-    @SlashSubCommand("leave")
+    @SlashCommandOption("leave")
     suspend fun leave(ctx: SlashCommandContext) {
         ctx.acknowledge().queue()
 
@@ -80,7 +81,7 @@ class PugsSlashCommand : AbstractSlashCommand("pugs") {
     }
 
     @Permissions(user = [Permission.MANAGE_SERVER])
-    @SlashSubCommand("teams")
+    @SlashCommandOption("teams")
     suspend fun teams(ctx: SlashCommandContext) {
         ctx.acknowledge().queue()
 
@@ -109,7 +110,7 @@ class PugsSlashCommand : AbstractSlashCommand("pugs") {
     }
 
     @Permissions(user = [Permission.MANAGE_SERVER])
-    @SlashSubCommand("create")
+    @SlashCommandOption("create")
     suspend fun create(ctx: SlashCommandContext) {
         ctx.acknowledge().queue()
 
@@ -127,7 +128,7 @@ class PugsSlashCommand : AbstractSlashCommand("pugs") {
     }
 
     @Permissions(user = [Permission.MANAGE_SERVER])
-    @SlashSubCommand("close")
+    @SlashCommandOption("close")
     suspend fun close(ctx: SlashCommandContext) {
         ctx.acknowledge().queue()
 

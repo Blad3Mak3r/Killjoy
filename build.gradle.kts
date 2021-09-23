@@ -31,7 +31,14 @@ repositories {
     maven("https://dl.bintray.com/kotlin/kotlinx")
     maven("https://jitpack.io")
 
-    maven("https://maven.pkg.github.com/Blad3Mak3r/Slash")
+    maven {
+        url = uri("https://maven.pkg.github.com/Blad3Mak3r/Slash")
+        credentials {
+            username = "blad3mak3r"
+            // This KEY only allow read package permissions
+            password = "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"
+        }
+    }
 }
 
 dependencies {
@@ -49,8 +56,8 @@ dependencies {
     implementation("net.dv8tion:JDA:$jdaVersion") { exclude(module = "opus-java") }
     implementation("ch.qos.logback:logback-classic:$logbackVersion")
     implementation("io.sentry:sentry:$sentryVersion")
-    implementation("tv.blademaker:slash:1.1")
     implementation("com.github.minndevelopment:jda-ktx:d460e2a")
+    implementation("tv.blademaker:slash:1.2.2")
 
     //Database
     implementation("com.zaxxer:HikariCP:5.0.0")

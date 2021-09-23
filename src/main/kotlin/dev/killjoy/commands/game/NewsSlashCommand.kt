@@ -20,11 +20,11 @@ import dev.killjoy.extensions.jda.setDefaultColor
 import dev.killjoy.extensions.jda.supportedLocale
 import dev.killjoy.i18n.i18nCommand
 import net.dv8tion.jda.api.EmbedBuilder
-import tv.blademaker.slash.api.AbstractSlashCommand
+import tv.blademaker.slash.api.BaseSlashCommand
 import tv.blademaker.slash.api.SlashCommandContext
 
 @Suppress("unused")
-class NewsSlashCommand : AbstractSlashCommand("news") {
+class NewsSlashCommand : BaseSlashCommand("news") {
 
     override suspend fun handle(ctx: SlashCommandContext) {
         val isCached = Launcher.cache.news.exists(ctx.guild.supportedLocale)
