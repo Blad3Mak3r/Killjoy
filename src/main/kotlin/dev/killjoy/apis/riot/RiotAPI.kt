@@ -30,19 +30,19 @@ import org.slf4j.LoggerFactory
 
 object RiotAPI {
 
-    const val CURRENT_ACT_ID = "4cb622e1-4244-6da3-7276-8daaf1c01be2"   // Episode 3 (Act 2)
+    const val CURRENT_ACT_ID = "a16955a5-4ad0-f761-5e9e-389df1c892fb"   // Episode 3 (Act 3)
     private val LOGGER = LoggerFactory.getLogger(RiotAPI::class.java)
 
     object LeaderboardsAPI {
-        private fun buildURL(region: Region, actID: String): String {
-            return "https://dgxfkpkb4zk5c.cloudfront.net/leaderboards/affinity/${region.name.lowercase()}/queue/competitive/act/$actID?startIndex=0&size=10"
+        private fun buildURL(region: Region): String {
+            return "https://dgxfkpkb4zk5c.cloudfront.net/leaderboards/affinity/${region.name.lowercase()}/queue/competitive/act/$CURRENT_ACT_ID?startIndex=0&size=10"
         }
 
         suspend fun top10(region: Region): RankedPlayerList {
             LOGGER.info("Retrieving fresh leaderboards for ${region.name.uppercase()}")
 
             val req = HttpUtils.await(JSONObject::class.java) {
-                url(buildURL(region, CURRENT_ACT_ID))
+                url(buildURL(region))
             }
             val content = req.content
 

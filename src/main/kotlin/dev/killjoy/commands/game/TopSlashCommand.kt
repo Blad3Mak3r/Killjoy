@@ -44,7 +44,7 @@ class TopSlashCommand : AbstractSlashCommand("top") {
                 addField("` ${player.leaderboardRank} ` ${player.fullNameTag}", content, false)
             }
             setTimestamp(Instant.ofEpochMilli(leaderboard.updatedAt))
-            setFooter(ctx.i18nCommand("top.footer", 3, 1))
+            setFooter(ctx.i18nCommand("top.footer", 3, 3))
         }.queue()
     }
 }

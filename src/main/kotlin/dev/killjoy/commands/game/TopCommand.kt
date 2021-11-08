@@ -52,7 +52,7 @@ class TopCommand : Command() {
                 addField("` ${player.leaderboardRank} ` ${player.fullNameTag}", content, false)
             }
             setTimestamp(Instant.ofEpochMilli(playersList.updatedAt))
-            setFooter(ctx.guild.i18nCommand("top.footer", 3, 1))
+            setFooter(ctx.guild.i18nCommand("top.footer", 3, 3))
         }.queue()
     }
 
