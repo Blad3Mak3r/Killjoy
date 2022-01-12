@@ -8,15 +8,15 @@
     "fr": "Chamber",
     "it": "Chamber"
   },
-  "api_name": "rift",
+  "api_name": "deadeye",
   "origin": ":flag_fr: France",
-  "avatar": "https://i.imgur.com/4WsVJ4G.jpg",
+  "avatar": "https://i.imgur.com/5fGKYtY.jpg",
   "role": "Sentinel",
   "bio": {
-    "en": "Ghanaian Agent Astra harnesses the energies of the cosmos to reshape battlefields to her whim. With full command of her astral form and a talent for deep strategic foresight, she's always eons ahead of her enemy's next move.",
-    "es": "Astra, la agente ghanesa, controla las energías del cosmos para dar forma al campo de batalla a su antojo. Con pleno dominio de su forma astral y un gran talento para la anticipación estratégica, siempre va eones por delante de los movimientos de sus enemigos.",
-    "fr": "L'agent ghanéen Astra canalise les énergies du cosmos pour façonner le champ de bataille à sa convenance. Avec une maîtrise complète de sa forme astrale et un talent pour la planification stratégique, elle a toujours une large avance sur ses ennemis.",
-    "it": "Astra, la viaggiatrice astrale ghanese, sfrutta le energie del cosmo per plasmare a piacimento il campo di battaglia. Grazie alla completa padronanza della sua forma astrale e a una lungimiranza strategica quasi soprannaturale, è sempre eoni avanti rispetto alla prossima mossa del nemico."
+    "en": "Well dressed and well armed, French weapons designer Chamber expels aggressors with deadly precision. He leverages his custom arsenal to hold the line and pick off enemies from afar, with a contingency built for every plan.",
+    "es": "Chamber, el diseñador de armas francés, siempre bien vestido y bien pertrechado y expulsa a los agresores con precisión letal. Aprovecha su arsenal personalizado para repeler, eliminar enemigos a distancia y crear la contingencia perfecta para cada plan.",
+    "fr": "Aussi classe que bien équipé, le concepteur d'armes Chamber repousse les assaillants avec une précision mortelle. Il met à profit son arsenal bien particulier pour tenir sa position et éliminer les ennemis de loin en prévoyant une solution aux défis posés par chaque stratégie.",
+    "it": "Chamber, progettista di armi francese agghindato e armato di tutto punto, è un agente capace di togliere di mezzo gli avversari con precisione letale. Questo Guardiano sfrutta il suo arsenale personalizzato per mantenere la posizione ed eliminare i nemici da lontano, creando la strategia perfetta per ogni occasione."
   },
   "gender": "Male",
   "affiliation": "Valorant Protocol",
@@ -29,20 +29,20 @@
         "it": "q"
       },
       "name": {
-        "en": "Nova Pulse",
-        "es": "Pulso nova",
-        "fr": "Impulsion Nova",
-        "it": "Nova pulsante"
+        "en": "HEADHUNTER",
+        "es": "CAZADOR DE CABEZAS",
+        "fr": "CHASSEUR DE TÊTES",
+        "it": "CACCIATORE DI TESTE"
       },
       "info": {
-        "en": "Place Stars in Astral Form (X)\n\nACTIVATE a Star to detonate a Nova Pulse. The Nova Pulse charges briefly then strikes, concussing all players in its area.",
-        "es": "Coloca estrellas en Forma astral (X).\n \nACTIVA una estrella para detonar un Pulso nova. El Pulso nova se carga brevemente y explota, lo que aturde a todos los jugadores en la zona.",
-        "fr": "Placez des étoiles sous sa forme astrale (X)\n  \n ACTIVEZ une étoile pour faire exploser une Impulsion Nova. L'Impulsion Nova se charge brièvement avant de détonner, désorientant tous les joueurs dans son rayon d'effet.",
-        "it": "Piazza le stelle mentre sei in forma astrale (X)\n \n ATTIVA una stella per fare esplodere una Nova pulsante. La Nova pulsante si carica brevemente e poi colpisce, stordendo tutti gli agenti nella sua area."
+        "en": "ACTIVATE to equip a heavy pistol.\n\nALT FIRE with the pistol equipped to aim down sights.",
+        "es": "ACTÍVALA para equipar una pistola pesada.\n\nUtiliza el botón de modo de DISPARO ALTERNATIVO para apuntar con la mira.",
+        "fr": "ACTIVEZ pour équiper un gros calibre.\n\nFaites un TIR SECONDAIRE avec le pistolet équipé pour utiliser le viseur.",
+        "it": "ATTIVA per equipaggiare una pistola pesante. Usa il FUOCO ALTERNATIVO con la pistola equipaggiata per prendere la mira."
       },
-      "iconUrl": "https://i.imgur.com/RJlQxY8.png",
-      "preview": "https://i.imgur.com/quG5Wmy.gif",
-      "cost": "25s Cooldown"
+      "iconUrl": "https://i.imgur.com/geBTHbf.png",
+      "preview": "https://i.imgur.com/njBwBwx.gif",
+      "cost": "100"
     },
     {
       "button": {
@@ -52,20 +52,20 @@
         "it": "e"
       },
       "name": {
-        "en": "Nebula",
-        "es": "Nebulosa",
-        "fr": "Nébuleuse",
-        "it": "Nebulosa"
+        "en": "RENDEZVOUS",
+        "es": "RENDEZ-VOUS",
+        "fr": "RENDEZ-VOUS",
+        "it": "RENDEZ-VOUS"
       },
       "info": {
-        "en": "Place Stars in Astral Form (X)\n\nACTIVATE a Star to transform it into a Nebula (smoke).\n\nUse (F) on a Star to Dissipate it, returning the star to be placed in a new location after a delay.\n\nDissipate briefly forms a fake Nebula at the Star’s location before returning.",
-        "es": "Coloca estrellas en Forma astral (X).\n \n ACTIVA una estrella para transformarla en una Nebulosa (humo).\n \n Usa (F) en una estrella para disiparla, lo que recupera la estrella para poder volver a colocarla tras un tiempo.\n \n Disipar una estrella crea una breve Nebulosa falsa en su ubicación antes de recuperarla.",
-        "fr": "Placez des étoiles sous sa forme astrale (X)\n  \n ACTIVEZ une étoile pour la transformer en Nébuleuse (fumée).\n \n Utilisez (F) sur une étoile pour la dissiper, ce qui vous permettra de la replacer à un autre endroit après un délai.\n  \n Dissipation forme brièvement une fausse nébuleuse à l'emplacement de l'étoile avant de la rappeler.",
-        "it": "Piazza le stelle mentre sei in forma astrale (X)\n \n ATTIVA una stella per trasformarla in una Nebulosa che agisce come un fumogeno.\n \n Usa (F) su una stella per dissolverla e renderla nuovamente disponibile da piazzare altrove dopo un certo periodo.\n \n Prima di rientrare, Dissoluzione forma brevemente una finta Nebulosa nella posizione della stella."
+        "en": "PLACE two teleport anchors.\n\nWhile on the ground and in range of an anchor, REACTIVATE to quickly teleport to the other anchor. Anchors can be picked up to be REDEPLOYED.",
+        "es": "COLOCA dos anclajes de teleportación.\n\nMientras estén en el suelo y al alcance, REACTIVA la habilidad para teleportarte rápidamente al otro anclaje. Los anclajes se pueden recoger para VOLVER A COLOCARLOS.",
+        "fr": "PLACEZ deux balises de téléportation.\n\nQuand vous vous trouvez sur le sol à portée d'une balise, RÉACTIVEZ pour vous téléporter rapidement vers l'autre balise. Les balises peuvent être ramassées pour être REDÉPLOYÉES.",
+        "it": "PIAZZA due nodi di teletrasporto.\n\nQuando sei a terra e a portata di un nodo, RIATTIVA l'abilità per teletrasportarti velocemente sull'altro nodo. I nodi possono essere raccolti per RIUTILIZZARLI."
       },
-      "iconUrl": "https://i.imgur.com/BNwDNWe.png",
-      "preview": "https://i.imgur.com/xjVb7ns.gif",
-      "cost": "15s Cooldown"
+      "iconUrl": "https://i.imgur.com/tgbQpco.png",
+      "preview": "https://i.imgur.com/6WJZ629.gif",
+      "cost": "20s Cooldown"
     },
     {
       "button": {
@@ -75,20 +75,20 @@
         "it": "c"
       },
       "name": {
-        "en": "Gravity Well",
-        "es": "Pozo gravitatorio",
-        "fr": "Puits de gravité",
-        "it": "Pozzo gravitazionale"
+        "en": "TRADEMARK",
+        "es": "MARCA REGISTRADA",
+        "fr": "MARQUE DÉPOSÉE",
+        "it": "MARCHIO DI FABBRICA"
       },
       "info": {
-        "en": "Place Stars in Astral Form (X)\n\nACTIVATE a Star to form a Gravity Well. Players in the area are pulled toward the center before it explodes, making all players still trapped inside fragile.",
-        "es": "Coloca estrellas en Forma astral (X).\n \n ACTIVA una estrella para crear un Pozo gravitatorio. Atrae hacia el centro a todos los jugadores en la zona antes de que explote, lo que causa que todos los jugadores atrapados en el interior se vuelvan frágiles.",
-        "fr": "Placez des étoiles sous sa forme astrale (X)\n  \n ACTIVEZ une étoile pour former un Puits de gravité. Les joueurs dans la zone sont attirés vers le centre avant qu'il n'explose, ce qui applique l'altération d'état Fragile à tous les joueurs.",
-        "it": "Piazza le stelle mentre sei in forma astrale (X)\n \n ATTIVA una stella per creare un Pozzo gravitazionale. Gli agenti nell'area vengono attirati verso il centro che poi collassa in un'esplosione, rendendo Vulnerabili tutti quelli ancora intrappolati all'interno."
+        "en": "PLACE a trap that scans for enemies.\n\nWhen a visible enemy comes in range, the trap counts down and then destabilizes the terrain around them, creating a lingering field that slows players caught inside of it.",
+        "es": "COLOCA una trampa que rastrea a enemigos.\n\nCuando un enemigo visible entra en el alcance, la trampa inicia una cuenta atrás y, a continuación, desestabiliza el terreno a su alrededor, lo que crea un campo persistente que ralentiza a los jugadores que se encuentren en su interior.",
+        "fr": "POSEZ un piège qui détecte les ennemis. Quand un ennemi devient visible à portée, le piège déclenche un compte à rebours avant d'ébranler le terrain autour de lui, créant un champ persistant qui ralentit les joueurs qui s'y trouvent.",
+        "it": "PIAZZA una trappola che scansiona l'area in cerca di nemici. Quando un nemico visibile entra nel raggio di rilevazione, la trappola avvia un conto alla rovescia al termine del quale destabilizza il terreno intorno al bersaglio, creando un campo persistente che rallenta i giocatori al suo interno."
       },
-      "iconUrl": "https://i.imgur.com/BTyTuvu.png",
-      "preview": "https://i.imgur.com/vctcNKM.gif",
-      "cost": "4"
+      "iconUrl": "https://i.imgur.com/KNDL7Ug.png",
+      "preview": "https://i.imgur.com/Vir56gB.gif",
+      "cost": "150"
     },
     {
       "button": {
@@ -98,20 +98,20 @@
         "it": "x"
       },
       "name": {
-        "en": "Astral Form / Cosmic Divide",
-        "es": "Forma astral / Separación cósmica",
-        "fr": "Forme astrale / Division cosmique",
-        "it": "Forma astrale/Divisione cosmica"
+        "en": "TOUR DE FORCE",
+        "es": "TOUR DE FORCE",
+        "fr": "TOUR DE FORCE",
+        "it": "TOUR DE FORCE"
       },
       "info": {
-        "en": "ACTIVATE (X) to enter Astral Form where you can place Stars with PRIMARY FIRE. Stars can be reactivated later, transforming them into a Nova Pulse, Nebula, or Gravity Well.\n\nWhen Cosmic Divide is charged, use SECONDARY FIRE in Astral Form to begin aiming it, then PRIMARY FIRE to select two locations. An infinite Cosmic Divide connects the two points you select. Cosmic Divide blocks bullets and heavily dampens audio.",
-        "es": "ACTIVA (X) para entrar en Forma astral y poder colocar estrellas con el DISPARO PRINCIPAL. Las estrellas se pueden reactivar más tarde para transformarlas en un Pulso nova, una Nebulosa o un Pozo gravitatorio.\n \n Cuando Separación cósmica está cargada, usa el DISPARO SECUNDARIO en Forma astral para empezar a apuntar y, a continuación, el DISPARO PRINCIPAL para elegir dos ubicaciones. Se creará una Separación cósmica infinita que conecte los dos puntos. Separación cósmica bloquea las balas y atenúa en gran medida los sonidos.",
-        "fr": "ACTIVEZ (X) pour passer en forme astrale, ce qui permet de placer des étoiles avec votre TIR PRINCIPAL. Les étoiles peuvent être activées plus tard pour être transformées en Impulsion Nova, en Nébuleuse ou en Puits de gravité.\n  \n Lorsque Division cosmique est chargée, utilisez le TIR SECONDAIRE en forme astrale pour ajuster votre visée, puis le TIR PRINCIPAL pour choisir deux emplacements. Une Division cosmique infinie reliera alors les deux emplacements sélectionnés. Division cosmique bloque les balles et étouffe fortement les sons.",
-        "it": "ATTIVA (X) per entrare in forma astrale, in cui puoi piazzare stelle con il FUOCO PRIMARIO. Le stelle possono essere attivate in un secondo momento e trasformate alternativamente in Nova pulsante, Nebulosa o Pozzo gravitazionale.\n \n Quando Divisione cosmica è carica, usa il FUOCO SECONDARIO mentre sei in Forma astrale per cominciare a mirare, poi usa il FUOCO PRIMARIO per scegliere due posizioni. Una Divisione cosmica infinita collegherà i due punti selezionati. Divisione cosmica blocca i proiettili e attutisce notevolmente i suoni."
+        "en": "ACTIVATE to summon a powerful, custom sniper rifle that will kill an enemy with any direct hit. Killing an enemy creates a lingering field that slows players caught inside of it.",
+        "es": "ACTÍVALA para sacar un poderoso rifle de francotirador personalizado que mata a los enemigos con cualquier impacto directo. Matar a un enemigo genera un campo persistente que ralentiza a los jugadores que se encuentren en su interior",
+        "fr": "ACTIVEZ pour matérialiser un puissant fusil de sniper personnalisé qui tue l'ennemi en un coup. Tuer un ennemi crée un champ persistant qui ralentit les joueurs qui s'y trouvent.",
+        "it": "ATTIVA per imbracciare un potente fucile di precisione personalizzato che uccide un nemico se lo colpisce direttamente. Uccidere un nemico crea un campo persistente che rallenta i giocatori al suo interno."
       },
-      "iconUrl": "https://i.imgur.com/3huGL7Q.png",
-      "preview": "https://i.imgur.com/TOcXnmC.gif",
-      "cost": "1 Free/150 | ••••••• 7"
+      "iconUrl": "https://i.imgur.com/q2Zoj4L.png",
+      "preview": "https://i.imgur.com/IhfdjOq.gif",
+      "cost": "••••••• 7"
     }
   ]
 }
