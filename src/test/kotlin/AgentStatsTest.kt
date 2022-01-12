@@ -21,7 +21,7 @@ class AgentStatsTest {
 
     @Test
     fun `Retrieve agent stats`() {
-        val expected = 16
+        val expected = 18
         val result = runBlocking { RiotAPI.AgentStatsAPI.getAgentStatsAsync().await() }
 
         assert(result.isNotEmpty()) { "Result is empty." }

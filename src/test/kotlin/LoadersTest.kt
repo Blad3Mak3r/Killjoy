@@ -20,14 +20,14 @@ class LoadersTest {
 
     @Test
     fun `Load agents`() {
-        val expected = 17
+        val expected = 18
         val result = Loaders.loadAgents()
         assert(result.size == expected) { "Agents size is not equal to expected" }
     }
 
     @Test
     fun `Load maps`() {
-        val expected = 6
+        val expected = 7
         val result = Loaders.loadMaps()
         assert(result.size == expected) { "Maps size is not equal to expected" }
     }

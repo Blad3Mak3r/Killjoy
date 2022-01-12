@@ -1,0 +1,117 @@
+{
+  "id": "BB2A4828-46EB-8CD1-E765-15848195D751",
+  "number": 18,
+  "name": "Neon",
+  "locatedNames": {
+    "en": "Neon",
+    "es": "Neon",
+    "fr": "Neon",
+    "it": "Neon"
+  },
+  "api_name": "sprinter",
+  "origin": ":flag_ph: Philippines",
+  "avatar": "https://i.imgur.com/uYJeLWq.jpg",
+  "role": "Duelist",
+  "bio": {
+    "en": "Filipino Agent Neon surges forward at shocking speeds, discharging bursts of bioelectric radiance as fast as her body generates it. She races ahead to catch enemies off guard, then strikes them down quicker than lightning.",
+    "es": "Neon, una agente filipina, se lanza hacia la batalla a una velocidad trepidante, disparando descargas bioeléctricas tan rápido como las genera su cuerpo. Se adelanta para pillar a sus enemigos desprevenidos y acaba con ellos más rápido que una bala.",
+    "fr": "L'agent philippin, Neon, s'élance vers l'avant à une vitesse fulgurante, libérant de grosses décharges de radiance biomagnétique générées frénétiquement par son corps. Elle se lance à la poursuite des ennemis qui n'ont pas le temps de s'y préparer et les élimine aussi vite que l'éclair.",
+    "it": "Neon, la scheggia delle Filippine, scatta in avanti a velocità supersoniche, emettendo scariche di bioelettricità generate dal suo corpo. Questo agente coglie i nemici di sorpresa con la sua rapidità, e poi li colpisce più veloce di un fulmine."
+  },
+  "gender": "Female",
+  "affiliation": "K/SEC",
+  "skills": [
+    {
+      "button": {
+        "en": "q",
+        "es": "q",
+        "fr": "a",
+        "it": "q"
+      },
+      "name": {
+        "en": "RELAY BOLT",
+        "es": "EXPLOSIÓN DE RELÉ",
+        "fr": "ÉCLAIR RELAIS",
+        "it": "SAETTA RELÈ"
+      },
+      "info": {
+        "en": "INSTANTLY throw an energy bolt that bounces once. Upon hitting each surface, the bolt electrifies the ground below with a concussive blast.",
+        "es": "Lanza INSTANTÁNEAMENTE un rayo de energía que rebota una vez. Al golpear cada superficie, el rayo electrifica el suelo bajo ella con una explosión aturdidora.",
+        "fr": "Lancez INSTANTANÉMENT un éclair d'énergie qui rebondit une fois. Chaque fois qu'il rencontre une surface, l'éclair électrifie le sol en dessous avec un coup de jus.",
+        "it": "Lancia ALL'ISTANTE una saetta che rimbalza una volta. Quando colpisce una superficie, la saetta elettrizza il terreno sottostante con una scarica stordente."
+      },
+      "iconUrl": "https://i.imgur.com/EqNsQUl.png",
+      "preview": "https://i.imgur.com/MzCPpK7.gif",
+      "cost": "200 (x2)"
+    },
+    {
+      "button": {
+        "en": "e",
+        "es": "e",
+        "fr": "e",
+        "it": "e"
+      },
+      "name": {
+        "en": "HIGH GEAR",
+        "es": "A TODA MÁQUINA",
+        "fr": "VITESSE SUPÉRIEURE",
+        "it": "PARTENZA IN QUARTA"
+      },
+      "info": {
+        "en": "INSTANTLY channel Neon’s power for increased speed. When charged, ALT FIRE to trigger an electric slide. Slide charge resets every two kills.",
+        "es": "Canaliza INSTANTÁNEAMENTE el poder de Neon para aumentar su velocidad. Cuando esté cargada, utilizad el DISPARO ALTERNATIVO para activar un deslizador eléctrico. La carga del deslizador se reinicia con cada dos asesinatos.",
+        "fr": "Chargez INSTANTANÉMENT le pouvoir de Neon pour décupler sa vitesse. À la fin du chargement, utilisez TIR SECONDAIRE pour déclencher une glissade électrique. Vous regagnez une charge de glissade toutes les deux éliminations.",
+        "it": "Canalizza ALL'ISTANTE l'energia di Neon per aumentare la velocità. Quando è carica, usa il FUOCO ALTERNATIVO per attivare una scivolata elettrica. La carica della scivolata si ripristina ogni due uccisioni."
+      },
+      "iconUrl": "https://i.imgur.com/ohd2aa1.png",
+      "preview": "https://i.imgur.com/tOPg4O7.gif",
+      "cost": "2 Kills"
+    },
+    {
+      "button": {
+        "en": "c",
+        "es": "c",
+        "fr": "c",
+        "it": "c"
+      },
+      "name": {
+        "en": "FAST LANE",
+        "es": "CARRIL RÁPIDO",
+        "fr": "VOIE RAPIDE",
+        "it": "CORSIA DI SORPASSO"
+      },
+      "info": {
+        "en": "FIRE two energy lines forward on the ground that extend a short distance or until they hit a surface. The lines rise into walls of static electricity that block vision and damage enemies passing through them.",
+        "es": "DISPARA dos líneas de energía hacia delante por el suelo. Dichas líneas se desplazan una corta distancia o hasta chocar contra algún obstáculo. Entonces, las líneas se alzan para convertirse en muros de energía estática que bloquean la visión e infligen daño a los enemigos que los atraviesan.",
+        "fr": "TIREZ deux lignes d'énergie dans le sol devant vous qui parcourent une courte distance ou jusqu'à frapper une surface. Elles s'élèvent alors en murs d'électricité statique qui bloquent la vision et infligent des dégâts aux ennemis qui les traversent.",
+        "it": "SPARA per proiettare in avanti sul terreno due archi elettrici che si estendono per una breve distanza o finché non colpiscono una superficie. Gli archi elettrici diventano muri di elettricità statica che bloccano la visione e danneggiano i nemici che li attraversano."
+      },
+      "iconUrl": "https://i.imgur.com/LJGk61f.png",
+      "preview": "https://i.imgur.com/pdOPntw.gif",
+      "cost": "300"
+    },
+    {
+      "button": {
+        "en": "x",
+        "es": "x",
+        "fr": "x",
+        "it": "x"
+      },
+      "name": {
+        "en": "OVERDRIVE",
+        "es": "SOBRECARGA",
+        "fr": "ULTRA-VITESSE",
+        "it": "SOVRACCARICO"
+      },
+      "info": {
+        "en": "Unleash Neon’s full power and speed for a short duration. FIRE to channel the power into a deadly lightning beam with high movement accuracy. The duration resets on each kill.",
+        "es": "Neon desata todo su poder y velocidad durante un breve periodo de tiempo. DISPARAD para canalizar su poder en un mortífero rayo móvil y preciso. Su duración se reinicia con cada asesinato.",
+        "fr": "Libérez toute la puissance et la vitesse de Neon pendant un court instant. TIREZ pour canaliser son pouvoir en un rayon électrique mortel à grande précision. Chaque élimination réinitialise sa durée.",
+        "it": "Scatena al massimo la velocità e l'energia di Neon per un breve periodo. SPARA per canalizzare l'energia in un letale raggio elettrico che rimane preciso anche in movimento. La durata si ripristina a ogni uccisione."
+      },
+      "iconUrl": "https://i.imgur.com/2PBFmPV.png",
+      "preview": "https://i.imgur.com/aIDNoF1.gif",
+      "cost": "••••••• 7 Points"
+    }
+  ]
+}
