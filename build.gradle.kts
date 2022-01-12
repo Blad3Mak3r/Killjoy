@@ -13,12 +13,12 @@ plugins {
 }
 
 val jdaVersion = "4.3.0_323"
-val exposedVersion = "0.34.1"
-val ktorVersion = "1.6.3"
-val coroutinesVersion = "1.5.2"
-val logbackVersion = "1.2.5"
-val prometheusVersion = "0.12.0"
-val sentryVersion = "5.1.2"
+val exposedVersion = "0.36.1"
+val ktorVersion = "1.6.7"
+val coroutinesVersion = "1.6.0"
+val logbackVersion = "1.2.10"
+val prometheusVersion = "0.14.1"
+val sentryVersion = "5.5.1"
 val commonsLang = "3.12.0"
 
 group = "dev.killjoy"
@@ -41,13 +41,13 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:$coroutinesVersion")
 
     //Reflections
-    implementation("org.reflections:reflections:0.9.12")
+    implementation("org.reflections:reflections:0.10.2")
 
     //JDA
     implementation("net.dv8tion:JDA:$jdaVersion") { exclude(module = "opus-java") }
     implementation("ch.qos.logback:logback-classic:$logbackVersion")
     implementation("io.sentry:sentry:$sentryVersion")
-    implementation("com.github.minndevelopment:jda-ktx:d460e2a")
+    implementation("com.github.minndevelopment:jda-ktx:0.8.3-alpha.2")
 
     //Database
     implementation("com.zaxxer:HikariCP:5.0.0")
@@ -58,14 +58,13 @@ dependencies {
     implementation("org.jetbrains.exposed:exposed-java-time:$exposedVersion")
 
     //Webhooks
-    implementation("club.minnced:discord-webhooks:0.5.8")
+    implementation("club.minnced:discord-webhooks:0.7.4")
 
     //HugeBot dependencies
     implementation("net.hugebot:RateLimiter:1.1")
-    implementation("com.github.killjoybot:Valorant.API:0.1")
 
     //HTTP Clients
-    implementation("com.squareup.okhttp3:okhttp:4.9.1")
+    implementation("com.squareup.okhttp3:okhttp:4.9.3")
 
     //Prometheus
     implementation("io.ktor:ktor-server-netty:$ktorVersion")
@@ -75,12 +74,12 @@ dependencies {
 
     //Config
     implementation("com.typesafe:config:1.4.1")
-    implementation("org.json:json:20210307")
+    implementation("org.json:json:20211205")
     implementation("com.xenomachina:kotlin-argparser:2.0.7")
-    implementation("org.jsoup:jsoup:1.14.2")
+    implementation("org.jsoup:jsoup:1.14.3")
 
     //Cache
-    implementation("org.redisson:redisson:3.16.2") {
+    implementation("org.redisson:redisson:3.16.7") {
         exclude(module = "byte-buddy")
         exclude(module = "jodd-bean")
         exclude(module = "cache-api")
