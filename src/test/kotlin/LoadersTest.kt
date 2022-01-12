@@ -20,7 +20,7 @@ class LoadersTest {
 
     @Test
     fun `Load agents`() {
-        val expected = 16
+        val expected = 17
         val result = Loaders.loadAgents()
         assert(result.size == expected) { "Agents size is not equal to expected" }
     }
