@@ -8,7 +8,7 @@ services:
     healthcheck:
       test: [ "CMD", "redis-cli","ping" ]
     ports:
-      - 6379:6379
+      - "6379:6379"
     volumes:
       - killjoy-dev-cache:/data
 
@@ -17,7 +17,7 @@ services:
     hostname: killjoy_db
     restart: on-failure
     ports:
-      - 5432:5432
+      - "5432:5432"
     environment:
       POSTGRES_USER: killjoy
       POSTGRES_PASSWORD: killjoy
