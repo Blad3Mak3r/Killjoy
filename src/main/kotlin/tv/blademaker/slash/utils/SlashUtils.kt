@@ -24,7 +24,7 @@ import net.dv8tion.jda.api.requests.RestAction
 import net.dv8tion.jda.api.requests.restaction.WebhookMessageAction
 import net.dv8tion.jda.api.requests.restaction.interactions.ReplyAction
 import org.reflections.Reflections
-import org.reflections.scanners.SubTypesScanner
+import org.reflections.scanners.Scanners
 import org.slf4j.LoggerFactory
 import tv.blademaker.slash.api.AbstractSlashCommand
 import tv.blademaker.slash.api.SlashCommandContext
@@ -86,7 +86,7 @@ object SlashUtils {
     }
 
     fun discoverSlashCommands(packageName: String): List<AbstractSlashCommand> {
-        val classes = Reflections(packageName, SubTypesScanner())
+        val classes = Reflections(packageName, Scanners.SubTypes)
             .getSubTypesOf(AbstractSlashCommand::class.java)
             .filter { !Modifier.isAbstract(it.modifiers) && AbstractSlashCommand::class.java.isAssignableFrom(it) }
 

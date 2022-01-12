@@ -22,7 +22,7 @@ import dev.killjoy.valorant.map.ValorantMap
 import org.json.JSONObject
 import org.reflections.Reflections
 import org.reflections.ReflectionsException
-import org.reflections.scanners.ResourcesScanner
+import org.reflections.scanners.Scanners
 import org.slf4j.LoggerFactory
 
 
@@ -49,7 +49,7 @@ object Loaders {
     private fun <T : ValorantEntity> loadValorantEntities(clazz: Class<T>, resourcePath: String, sort: Boolean = true): List<T> {
         val entities = mutableListOf<T>()
 
-        val resources = Reflections(resourcePath, ResourcesScanner())
+        val resources = Reflections(resourcePath, Scanners.Resources)
             .getResources(".*\\.json".toPattern())
             .map { "/$it" }
 
