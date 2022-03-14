@@ -18,7 +18,7 @@ val ktorVersion = "1.6.7"
 val coroutinesVersion = "1.6.0"
 val logbackVersion = "1.2.10"
 val prometheusVersion = "0.14.1"
-val sentryVersion = "5.5.1"
+val sentryVersion = "5.6.3"
 val commonsLang = "3.12.0"
 
 group = "dev.killjoy"
