@@ -4,7 +4,7 @@ import org.gradle.language.jvm.tasks.ProcessResources
 import org.apache.tools.ant.filters.ReplaceTokens
 
 plugins {
-    kotlin("jvm") version "1.5.30"
+    kotlin("jvm") version "1.6.21"
     id("com.github.johnrengelman.shadow") version "7.0.0"
 
     application
