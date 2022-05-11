@@ -47,7 +47,7 @@ dependencies {
     implementation("net.dv8tion:JDA:$jdaVersion") { exclude(module = "opus-java") }
     implementation("ch.qos.logback:logback-classic:$logbackVersion")
     implementation("io.sentry:sentry:$sentryVersion")
-    implementation("com.github.minndevelopment:jda-ktx:d460e2a")
+    implementation("com.github.minndevelopment:jda-ktx:0.9.1-alpha.11")
 
     //Database
     implementation("com.zaxxer:HikariCP:5.0.0")
