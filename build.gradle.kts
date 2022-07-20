@@ -58,7 +58,7 @@ dependencies {
     implementation("org.jetbrains.exposed:exposed-java-time:$exposedVersion")
 
     //Webhooks
-    implementation("club.minnced:discord-webhooks:0.8.0")
+    implementation("club.minnced:discord-webhooks:0.8.2")
 
     //HugeBot dependencies
     implementation("net.hugebot:RateLimiter:1.1")
