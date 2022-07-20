@@ -16,7 +16,6 @@
 package dev.killjoy.apis.memes
 
 import dev.killjoy.utils.HttpUtils
-import io.ktor.util.*
 import org.json.JSONObject
 import org.slf4j.LoggerFactory
 import kotlin.random.Random
@@ -29,7 +28,7 @@ object RedditMemes {
             val json = doRequest(subreddit)
             Meme.buildFromJson(json)
         } catch (e: Throwable) {
-            logger.error(e)
+            logger.error(e.message, e)
             null
         }
     }

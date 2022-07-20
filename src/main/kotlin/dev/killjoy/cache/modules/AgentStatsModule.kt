@@ -21,6 +21,7 @@ import dev.killjoy.cache.RedisCache
 import dev.killjoy.extensions.redisson.awaitSuspend
 import io.sentry.Sentry
 import org.redisson.api.RedissonClient
+import java.time.Instant
 import java.util.concurrent.TimeUnit
 
 class AgentStatsModule(
@@ -50,7 +51,7 @@ class AgentStatsModule(
     private fun set(stats: Map<String, AgentStats>) {
         bucket.putAllAsync(stats)
             .thenCompose {
-                bucket.expireAsync(expirationTTL, expirationTTLUnit)
+                bucket.expireAsync(Instant.now().plusSeconds(3600))
             }
             .thenAccept {
                 if (it) {

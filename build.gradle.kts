@@ -4,8 +4,8 @@ import org.gradle.language.jvm.tasks.ProcessResources
 import org.apache.tools.ant.filters.ReplaceTokens
 
 plugins {
-    kotlin("jvm") version "1.5.30"
-    id("com.github.johnrengelman.shadow") version "7.0.0"
+    kotlin("jvm") version "1.7.0"
+    id("com.github.johnrengelman.shadow") version "7.1.2"
 
     application
     java
@@ -13,12 +13,12 @@ plugins {
 }
 
 val jdaVersion = "4.3.0_323"
-val exposedVersion = "0.36.1"
-val ktorVersion = "1.6.7"
-val coroutinesVersion = "1.6.0"
-val logbackVersion = "1.2.10"
+val exposedVersion = "0.38.2"
+val ktorVersion = "2.0.2"
+val coroutinesVersion = "1.6.2"
+val logbackVersion = "1.2.11"
 val prometheusVersion = "0.14.1"
-val sentryVersion = "5.5.1"
+val sentryVersion = "6.0.0"
 val commonsLang = "3.12.0"
 
 group = "dev.killjoy"
@@ -34,9 +34,9 @@ repositories {
 
 dependencies {
     //Kotlin
-    implementation(kotlin("stdlib", "1.5.30"))
-    implementation(kotlin("serialization", "1.5.30"))
-    implementation(kotlin("reflect", "1.5.30"))
+    implementation(kotlin("stdlib", "1.7.0"))
+    implementation(kotlin("serialization", "1.7.0"))
+    implementation(kotlin("reflect", "1.7.0"))
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:$coroutinesVersion")
 
@@ -58,13 +58,13 @@ dependencies {
     implementation("org.jetbrains.exposed:exposed-java-time:$exposedVersion")
 
     //Webhooks
-    implementation("club.minnced:discord-webhooks:0.7.4")
+    implementation("club.minnced:discord-webhooks:0.8.0")
 
     //HugeBot dependencies
     implementation("net.hugebot:RateLimiter:1.1")
 
     //HTTP Clients
-    implementation("com.squareup.okhttp3:okhttp:4.9.3")
+    implementation("com.squareup.okhttp3:okhttp:4.10.0")
 
     //Prometheus
     implementation("io.ktor:ktor-server-netty:$ktorVersion")
@@ -73,13 +73,13 @@ dependencies {
     implementation("io.prometheus:simpleclient_common:$prometheusVersion")
 
     //Config
-    implementation("com.typesafe:config:1.4.1")
-    implementation("org.json:json:20211205")
+    implementation("com.typesafe:config:1.4.2")
+    implementation("org.json:json:20220320")
     implementation("com.xenomachina:kotlin-argparser:2.0.7")
     implementation("org.jsoup:jsoup:1.14.3")
 
     //Cache
-    implementation("org.redisson:redisson:3.16.7") {
+    implementation("org.redisson:redisson:3.17.3") {
         exclude(module = "byte-buddy")
         exclude(module = "jodd-bean")
         exclude(module = "cache-api")

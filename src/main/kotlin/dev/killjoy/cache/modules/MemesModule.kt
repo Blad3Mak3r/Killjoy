@@ -21,6 +21,7 @@ import dev.killjoy.cache.RedisCache
 import dev.killjoy.extensions.redisson.awaitSuspend
 import io.sentry.Sentry
 import org.redisson.api.RedissonClient
+import java.time.Instant
 import java.util.concurrent.TimeUnit
 
 class MemesModule(
@@ -50,7 +51,7 @@ class MemesModule(
         val bucket = getBucket(subreddit)
         bucket.addAllAsync(memes)
             .thenCompose {
-                bucket.expireAsync(expirationTTL, expirationTTLUnit)
+                bucket.expireAsync(Instant.now().plusSeconds(600))
             }
             .thenAccept {
                 RedisCache.logger.info("Successfully cached a total of ${memes.size} memes from $subreddit")

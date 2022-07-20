@@ -21,6 +21,7 @@ import dev.killjoy.cache.RedisCache
 import dev.killjoy.extensions.redisson.awaitSuspend
 import io.sentry.Sentry
 import org.redisson.api.RedissonClient
+import java.time.Instant
 import java.util.*
 import java.util.concurrent.TimeUnit
 
@@ -51,7 +52,7 @@ class NewsModule(
         val rList = getLocatedList(locale)
         rList.addAllAsync(list)
             .thenCompose {
-                rList.expireAsync(expirationTTL, expirationTTLUnit)
+                rList.expireAsync(Instant.now().plusSeconds(1800))
             }
             .thenAccept {
                 if (it) {
