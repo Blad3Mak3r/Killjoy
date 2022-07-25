@@ -79,7 +79,7 @@ dependencies {
     implementation("org.jsoup:jsoup:1.14.3")
 
     //Cache
-    implementation("org.redisson:redisson:3.17.3") {
+    implementation("org.redisson:redisson:3.17.5") {
         exclude(module = "byte-buddy")
         exclude(module = "jodd-bean")
         exclude(module = "cache-api")
