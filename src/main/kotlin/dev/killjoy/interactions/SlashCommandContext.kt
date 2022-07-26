@@ -35,24 +35,21 @@ class SlashCommandContext(
     private val ack = AtomicBoolean(false)
     private val ephemeral = AtomicBoolean(false)
 
-    private val isAcknowledged = ack.get()
-
     fun setEphemeral(ephemeral: Boolean) {
         this.ephemeral.set(ephemeral)
     }
 
     suspend fun acknowledge() {
-        if (!isAcknowledged) {
+        if (this.ack.compareAndSet(false, true)) {
             call.respondText(buildJsonObject {
                 put("type", InteractionResponseType.DeferredChannelMessageWithSource.type)
                 if (ephemeral.get()) put("flags", 64)
             }.toString(), ContentType.Application.Json)
-            this.ack.set(true)
         }
     }
 
     suspend fun respond(content: String) {
-        if (isAcknowledged) {
+        if (this.ack.compareAndSet(false, true)) {
             rest.interaction.createFollowupMessage(interaction.applicationId, interaction.token) {
                 this.content = content
             }
@@ -64,12 +61,11 @@ class SlashCommandContext(
                     if (ephemeral.get()) put("flags", 64)
                 })
             }.toString(), ContentType.Application.Json)
-            this.ack.set(true)
         }
     }
 
     suspend fun respondEmbed(embed: EmbedBuilder.() -> Unit) {
-        if (isAcknowledged) {
+        if (this.ack.compareAndSet(false, true)) {
             rest.interaction.createFollowupMessage(interaction.applicationId, interaction.token) {
                 this.embed(embed)
             }
@@ -83,7 +79,6 @@ class SlashCommandContext(
                     })
                 })
             }.toString(), ContentType.Application.Json)
-            this.ack.set(true)
         }
     }
 
