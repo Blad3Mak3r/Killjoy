@@ -37,8 +37,8 @@ class InteractionsHandler(private val rest: RestClient) {
     suspend fun onCommand(call: ApplicationCall, interaction: DiscordInteraction) {
         val ctx = SlashCommandContext(call, rest, interaction)
 
-        ctx.setEphemeral(true)
-        ctx.respond("Interactions working as expected...\n```json\n${Json.encodeToString(interaction.data)}\n```")
+        ctx.acknowledge()
+        ctx.respond("Interactions working as expected... ``${ctx.commandPath}``\n```json\n${Json.encodeToString(interaction.data)}\n```")
     }
 
     suspend fun onComponent(call: ApplicationCall, interaction: DiscordInteraction) {

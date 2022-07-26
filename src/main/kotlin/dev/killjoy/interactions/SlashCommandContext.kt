@@ -19,6 +19,7 @@ import dev.kord.common.entity.DiscordInteraction
 import dev.kord.common.entity.InteractionResponseType
 import dev.kord.rest.builder.message.EmbedBuilder
 import dev.kord.rest.builder.message.create.embed
+import dev.kord.rest.builder.message.modify.embed
 import dev.kord.rest.service.RestClient
 import io.ktor.http.*
 import io.ktor.server.application.*
@@ -52,10 +53,7 @@ class SlashCommandContext(
 
     suspend fun respond(content: String) {
         if (this.ack.compareAndSet(false, true)) {
-            rest.interaction.createFollowupMessage(interaction.applicationId, interaction.token) {
-                this.content = content
-            }
-        } else {
+            println("a")
             call.respondText(buildJsonObject {
                 put("type", InteractionResponseType.ChannelMessageWithSource.type)
                 put("data", buildJsonObject {
@@ -63,15 +61,16 @@ class SlashCommandContext(
                     if (ephemeral.get()) put("flags", 64)
                 })
             }.toString(), ContentType.Application.Json)
+        } else {
+            println("b")
+            rest.interaction.createFollowupMessage(interaction.applicationId, interaction.token) {
+                this.content = content
+            }
         }
     }
 
     suspend fun respondEmbed(embed: EmbedBuilder.() -> Unit) {
         if (this.ack.compareAndSet(false, true)) {
-            rest.interaction.createFollowupMessage(interaction.applicationId, interaction.token) {
-                this.embed(embed)
-            }
-        } else {
             val dEmbed = Json.encodeToJsonElement(EmbedBuilder().apply(embed).toRequest()).jsonObject
             call.respondText(buildJsonObject {
                 put("type", InteractionResponseType.ChannelMessageWithSource.type)
@@ -81,6 +80,10 @@ class SlashCommandContext(
                     })
                 })
             }.toString(), ContentType.Application.Json)
+        } else {
+            rest.interaction.createFollowupMessage(interaction.applicationId, interaction.token) {
+                this.embed(embed)
+            }
         }
     }
 

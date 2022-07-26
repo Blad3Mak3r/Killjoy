@@ -105,13 +105,13 @@ fun main(/*_args: Array<String>*/) {
 
     Credentials.getOrNull<String>("webhook_url")?.let { WebhookUtils.init(it) }
 
-    server.start()
-
     Runtime.getRuntime().addShutdownHook(Thread {
         Thread.currentThread().name = "shutdown-thread"
 
         shutdown(0)
     })
+
+    server.start(true)
 }
 
 private fun shutdown(code: Int) {
