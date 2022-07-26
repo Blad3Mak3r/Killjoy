@@ -25,48 +25,38 @@ import dev.killjoy.cache.RedisCache
 import dev.killjoy.database.Database
 import dev.killjoy.database.DatabaseConnection
 import dev.killjoy.database.buildDatabaseConnection
-import dev.killjoy.extensions.jda.Intents
 import dev.killjoy.extensions.jda.isInt
-import dev.killjoy.framework.CommandRegistry
 import dev.killjoy.i18n.I18n
-import dev.killjoy.listeners.MainListener
+import dev.killjoy.interactions.InteractionsHandler
+import dev.killjoy.interactions.InteractionsVerifier
+import dev.killjoy.interactions.installDiscordInteractions
 import dev.killjoy.prometheus.Prometheus
 import dev.killjoy.utils.*
-import dev.killjoy.utils.ShardingStrategy.Companion.setShardingStrategy
 import dev.killjoy.valorant.agent.AgentAbility
 import dev.killjoy.valorant.agent.ValorantAgent
 import dev.killjoy.valorant.arsenal.ValorantWeapon
 import dev.killjoy.valorant.map.ValorantMap
 import dev.killjoy.webhook.WebhookUtils
-import dev.minn.jda.ktx.CoroutineEventManager
-import dev.minn.jda.ktx.listener
+import dev.kord.common.entity.DiscordApplication
+import dev.kord.common.entity.Snowflake
+import dev.kord.rest.service.RestClient
+import io.ktor.server.engine.*
+import io.ktor.server.netty.*
+import io.ktor.server.routing.*
 import io.sentry.Sentry
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.SupervisorJob
-import net.dv8tion.jda.api.entities.Activity
-import net.dv8tion.jda.api.events.GenericEvent
-import net.dv8tion.jda.api.events.interaction.SlashCommandEvent
 import net.dv8tion.jda.api.requests.RestAction
-import net.dv8tion.jda.api.sharding.DefaultShardManagerBuilder
-import net.dv8tion.jda.api.sharding.ShardManager
-import net.dv8tion.jda.api.utils.ChunkingFilter
-import net.dv8tion.jda.api.utils.Compression
-import net.dv8tion.jda.api.utils.MemberCachePolicy
-import net.dv8tion.jda.api.utils.cache.CacheFlag
 import net.hugebot.ratelimiter.RateLimiter
-import okhttp3.OkHttp
-import okhttp3.OkHttpClient
 import org.slf4j.LoggerFactory
-import tv.blademaker.slash.api.handler.DefaultSlashCommandHandler
-import tv.blademaker.slash.api.handler.SlashCommandHandler
 import java.util.*
 import java.util.concurrent.TimeUnit
-import java.util.concurrent.TimeoutException
 import javax.security.auth.login.LoginException
 import kotlin.properties.Delegates
 
 @Suppress("MemberVisibilityCanBePrivate", "SpellCheckingInspection")
 object Launcher : Killjoy {
+
+    var application: DiscordApplication? = null
+        private set
 
     lateinit var database: Database
         private set
@@ -74,21 +64,7 @@ object Launcher : Killjoy {
     lateinit var cache: RedisCache
         private set
 
-    lateinit var shardingStrategy: ShardingStrategy
-        private set
-
-    private lateinit var shardManager: ShardManager
-
     var pid by Delegates.notNull<Long>()
-        private set
-
-    lateinit var commandRegistry: CommandRegistry
-        private set
-
-    lateinit var slashCommandHandler: SlashCommandHandler
-        private set
-
-    lateinit var cooldownManager: CooldownManager
         private set
 
     lateinit var agents: List<ValorantAgent>
@@ -98,6 +74,12 @@ object Launcher : Killjoy {
         private set
 
     lateinit var maps: List<ValorantMap>
+        private set
+
+    lateinit var server: NettyApplicationEngine
+        private set
+
+    lateinit var keyVerifier: InteractionsVerifier
         private set
 
     val rateLimiter: RateLimiter = RateLimiter.Builder()
@@ -110,16 +92,6 @@ object Launcher : Killjoy {
     @Throws(LoginException::class, ConfigException::class)
     fun init(args: ApplicationArguments) {
         pid = ProcessHandle.current().pid()
-
-        shardingStrategy = ShardingStrategy.create(args)
-
-        RestAction.setPassContext(false)
-        RestAction.setDefaultTimeout(7, TimeUnit.SECONDS)
-        RestAction.setDefaultFailure {
-            if (it !is TimeoutException) {
-                RESTACTION_DEFAULT_FAILURE.accept(it)
-            }
-        }
 
         Utils.printBanner(pid, log)
 
@@ -137,10 +109,21 @@ object Launcher : Killjoy {
                 this.address = RedisCache.buildUrl()
                 this.password = Credentials.getOrNull<String>("redis.pass")
                 this.database = Credentials.getOrDefault("redis.db", 0)
-                this.clientName = "killjoy-node-#${shardingStrategy.nodeID}"
-                this.connectionMinimumIdleSize = shardingStrategy.shardsPerNode
+                this.clientName = "killjoy-interactions"
             }
         )
+
+        keyVerifier = InteractionsVerifier(Credentials["discord.publicKey"])
+
+        val kord = RestClient(Credentials.token)
+
+        val interactionsHandler = InteractionsHandler(kord)
+
+        server = embeddedServer(Netty, host = "0.0.0.0", port = 2550) {
+            routing {
+                installDiscordInteractions(handler = interactionsHandler, Credentials.publicKey)
+            }
+        }
 
         I18n.init()
 
@@ -149,53 +132,11 @@ object Launcher : Killjoy {
         arsenal = Loaders.loadArsenal()
         maps = Loaders.loadMaps()
 
-        commandRegistry = CommandRegistry()
-        slashCommandHandler = DefaultSlashCommandHandler("dev.killjoy.commands")
-
-        cooldownManager = CooldownManager(15, TimeUnit.SECONDS)
-
         if (Credentials.getOrDefault("prometheus.enabled", false)) {
             Prometheus()
         }
 
         Credentials.getOrNull<String>("webhook_url")?.let { WebhookUtils.init(it) }
-
-        shardManager = DefaultShardManagerBuilder.createLight(Credentials.token).apply {
-            setHttpClient(HttpUtils.client)
-            setActivityProvider { Activity.competing("Valorant /help") }
-            setEventManagerProvider {
-                val executor = Utils.newCoroutineDispatcher("event-manager-worker-%d", 4, 20, 6L, TimeUnit.MINUTES)
-                CoroutineEventManager(CoroutineScope(executor + SupervisorJob()))
-            }
-
-            setCompression(Compression.ZLIB)
-
-            disableIntents(Intents.allIntents)
-            enableIntents(Intents.enabledIntents)
-
-            enableCache(CacheFlag.MEMBER_OVERRIDES)
-            disableCache(
-                CacheFlag.VOICE_STATE,
-                CacheFlag.ACTIVITY,
-                CacheFlag.EMOTE,
-                CacheFlag.CLIENT_STATUS,
-                CacheFlag.ONLINE_STATUS,
-                CacheFlag.ROLE_TAGS
-            )
-
-            setBulkDeleteSplittingEnabled(false)
-            setChunkingFilter(ChunkingFilter.NONE)
-            setMemberCachePolicy(MemberCachePolicy.NONE)
-
-            setShardingStrategy(shardingStrategy)
-        }.build()
-
-        shardManager.listener<GenericEvent> { event ->
-            when (event) {
-                is SlashCommandEvent -> slashCommandHandler.onSlashCommandEvent(event)
-                else -> MainListener.onEvent(event)
-            }
-        }
 
         Runtime.getRuntime().addShutdownHook(Thread {
             Thread.currentThread().name = "shutdown-thread"
@@ -216,25 +157,15 @@ object Launcher : Killjoy {
         try {
             log.info("Shutting down Killjoy with code $code...")
 
-            commandRegistry.shutdown()
             WebhookUtils.shutdown()
             HttpUtils.shutdown()
 
-            for (jda in shardManager.shardCache) {
-                shardManager.shutdown(jda.shardInfo.shardId)
-            }
-
-            shardManager.shutdown()
             cache.shutdown()
         } catch (e: Exception) {
             Sentry.captureException(e)
             log.error("Exception shutting down Killjoy.", e)
             Runtime.getRuntime().halt(code)
         }
-    }
-
-    override fun getShardManager(): ShardManager {
-        return shardManager
     }
 
     override fun getDatabaseConnection(): DatabaseConnection {
@@ -283,6 +214,14 @@ object Launcher : Killjoy {
 
     override suspend fun getMeme(subreddit: String): Meme {
         return cache.memes.get(subreddit)
+    }
+
+    suspend fun getApplicationId(kord: RestClient): Snowflake {
+        if (application == null) {
+            application = kord.application.getCurrentApplicationInfo()
+        }
+
+        return application!!.id
     }
 
     private val log = LoggerFactory.getLogger(Launcher::class.java)

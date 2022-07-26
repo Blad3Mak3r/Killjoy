@@ -93,5 +93,7 @@ object Credentials {
     }
 
     // Base config
-    val token: String = get("token")
+    val token: String = get("discord.token")
+    val applicationId: String = get("discord.applicationId")
+    val publicKey: String = get("discord.publicKey")
 }

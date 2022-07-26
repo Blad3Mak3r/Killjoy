@@ -5,6 +5,7 @@ import org.apache.tools.ant.filters.ReplaceTokens
 
 plugins {
     kotlin("jvm") version "1.7.0"
+    kotlin("plugin.serialization") version "1.7.0"
     id("com.github.johnrengelman.shadow") version "7.1.2"
 
     application
@@ -66,8 +67,11 @@ dependencies {
     //HTTP Clients
     implementation("com.squareup.okhttp3:okhttp:4.10.0")
 
-    //Prometheus
+    // Interactions
     implementation("io.ktor:ktor-server-netty:$ktorVersion")
+    implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
+    implementation("dev.kord:kord-rest:0.8.0-M15")
+
     implementation("io.prometheus:simpleclient:$prometheusVersion")
     implementation("io.prometheus:simpleclient_hotspot:$prometheusVersion")
     implementation("io.prometheus:simpleclient_common:$prometheusVersion")
@@ -128,7 +132,7 @@ tasks {
     }
 
     withType<KotlinCompile> {
-        kotlinOptions.jvmTarget = "11"
+        kotlinOptions.jvmTarget = "18"
     }
 
     register<GenerateAgentsContent>("generateAgentsContent")
