@@ -47,6 +47,7 @@ class SlashCommandContext(
                 put("type", InteractionResponseType.DeferredChannelMessageWithSource.type)
                 if (ephemeral.get()) put("flags", 64)
             }.toString(), ContentType.Application.Json)
+            this.ack.set(true)
         }
     }
 
@@ -63,6 +64,7 @@ class SlashCommandContext(
                     if (ephemeral.get()) put("flags", 64)
                 })
             }.toString(), ContentType.Application.Json)
+            this.ack.set(true)
         }
     }
 
@@ -81,6 +83,7 @@ class SlashCommandContext(
                     })
                 })
             }.toString(), ContentType.Application.Json)
+            this.ack.set(true)
         }
     }
 
