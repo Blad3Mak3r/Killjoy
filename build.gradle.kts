@@ -80,7 +80,7 @@ dependencies {
     implementation("com.typesafe:config:1.4.2")
     implementation("org.json:json:20220320")
     implementation("com.xenomachina:kotlin-argparser:2.0.7")
-    implementation("org.jsoup:jsoup:1.14.3")
+    implementation("org.jsoup:jsoup:1.15.2")
 
     //Cache
     implementation("org.redisson:redisson:3.17.3") {
