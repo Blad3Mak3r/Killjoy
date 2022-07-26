@@ -60,6 +60,7 @@ class SlashCommandContext(
                 put("type", InteractionResponseType.ChannelMessageWithSource.type)
                 put("data", buildJsonObject {
                     put("content", content)
+                    if (ephemeral.get()) put("flags", 64)
                 })
             }.toString(), ContentType.Application.Json)
         }
