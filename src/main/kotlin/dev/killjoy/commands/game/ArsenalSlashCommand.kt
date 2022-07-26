@@ -15,7 +15,8 @@
 
 package dev.killjoy.commands.game
 
-import dev.killjoy.Launcher
+import dev.killjoy.getArsenal
+import dev.killjoy.getWeapon
 import dev.killjoy.i18n.i18nCommand
 import tv.blademaker.slash.api.AbstractSlashCommand
 import tv.blademaker.slash.api.SlashCommandContext
@@ -29,7 +30,7 @@ class ArsenalSlashCommand : AbstractSlashCommand("arsenal") {
         val selection = ctx.getOption("weapon")?.asString
 
         if (selection == null) {
-            val arsenal = Launcher.arsenal
+            val arsenal = getArsenal()
 
             ctx.sendEmbed {
                 setTitle(ctx.i18nCommand("arsenal.title"))
@@ -38,7 +39,7 @@ class ArsenalSlashCommand : AbstractSlashCommand("arsenal") {
                 }
             }.queue()
         } else {
-            val weapon = Launcher.getWeapon(selection)
+            val weapon = getWeapon(selection)
                 ?: return ctx.sendNotFound(ctx.i18nCommand("arsenal.notFound")).queue()
 
             ctx.send(weapon.asEmbed(ctx.guild)).queue()

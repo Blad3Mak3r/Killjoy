@@ -15,59 +15,25 @@
 
 package dev.killjoy.prometheus
 
-import dev.killjoy.Credentials
 import io.ktor.server.application.*
-import io.ktor.server.engine.*
-import io.ktor.server.netty.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import io.prometheus.client.CollectorRegistry
 import io.prometheus.client.exporter.common.TextFormat
 import io.prometheus.client.hotspot.DefaultExports
-import org.slf4j.LoggerFactory
 import java.io.StringWriter
 
-class Prometheus {
+private val registry = CollectorRegistry.defaultRegistry
+private fun exposePrometheusMetrics(): String {
+    val writer = StringWriter()
+    TextFormat.write004(writer, registry.metricFamilySamples())
+    return writer.toString()
+}
 
-    private val registry = CollectorRegistry.defaultRegistry
-    private val engine: NettyApplicationEngine
-
-    private val host = Credentials.getOrDefault("prometheus.host", "localhost")
-    private val port = Credentials.getOrDefault("prometheus.port", 8080)
-
-    init {
-        logger.info("Starting Netty/Prometheus server...")
-        engine = embeddedServer(Netty, port, host) {
-            routing {
-                get("/ping") {
-                    call.respondText("Ok")
-                }
-                get("/") {
-                    call.respondText(exposePrometheusMetrics())
-                }
-                get("/metrics") {
-                    call.respondText(exposePrometheusMetrics())
-                }
-            }
-        }
-
-        engine.addShutdownHook {
-            logger.info("Shutting down Netty/Prometheus server...")
-            engine.stop(1000, 1000)
-        }
-
-        engine.start(false)
-
-        DefaultExports.initialize()
+fun Routing.installPrometheus() {
+    get("/metrics") {
+        call.respondText(exposePrometheusMetrics())
     }
 
-    private fun exposePrometheusMetrics(): String {
-        val writer = StringWriter()
-        TextFormat.write004(writer, registry.metricFamilySamples())
-        return writer.toString()
-    }
-
-    companion object {
-        private val logger = LoggerFactory.getLogger(Prometheus::class.java)
-    }
+    DefaultExports.initialize()
 }

@@ -15,8 +15,8 @@
 
 package dev.killjoy.commands.game
 
-import dev.killjoy.Launcher
 import dev.killjoy.apis.riot.entities.Region
+import dev.killjoy.getLeaderboard
 import dev.killjoy.i18n.i18nCommand
 import tv.blademaker.slash.api.AbstractSlashCommand
 import tv.blademaker.slash.api.SlashCommandContext
@@ -33,7 +33,7 @@ class TopSlashCommand : AbstractSlashCommand("top") {
 
         ctx.event.deferReply().queue()
 
-        val leaderboard = Launcher.getLeaderboard(region)
+        val leaderboard = getLeaderboard(region)
         val players = leaderboard.players
 
         ctx.sendEmbed {

@@ -15,9 +15,9 @@
 
 package dev.killjoy.commands.game
 
-import dev.killjoy.Launcher
 import dev.killjoy.extensions.jda.setDefaultColor
 import dev.killjoy.extensions.jda.supportedLocale
+import dev.killjoy.getCache
 import dev.killjoy.i18n.i18nCommand
 import net.dv8tion.jda.api.EmbedBuilder
 import tv.blademaker.slash.api.AbstractSlashCommand
@@ -27,11 +27,11 @@ import tv.blademaker.slash.api.SlashCommandContext
 class NewsSlashCommand : AbstractSlashCommand("news") {
 
     override suspend fun handle(ctx: SlashCommandContext) {
-        val isCached = Launcher.cache.news.exists(ctx.guild.supportedLocale)
+        val isCached = getCache().news.exists(ctx.guild.supportedLocale)
 
         if (!isCached) ctx.acknowledge().queue()
 
-        val latestNews = Launcher.getNews(ctx.guild.supportedLocale)
+        val latestNews = dev.killjoy.getNews(ctx.guild.supportedLocale)
 
         val embed = EmbedBuilder().run {
             setDefaultColor()

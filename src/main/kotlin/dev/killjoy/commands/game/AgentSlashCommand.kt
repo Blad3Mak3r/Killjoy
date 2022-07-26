@@ -15,7 +15,9 @@
 
 package dev.killjoy.commands.game
 
-import dev.killjoy.Launcher
+import dev.killjoy.getAgent
+import dev.killjoy.getAgents
+import dev.killjoy.getCache
 import dev.killjoy.i18n.i18nCommand
 import dev.killjoy.utils.Algorithms
 import dev.killjoy.valorant.agent.ValorantAgent
@@ -35,13 +37,13 @@ class AgentSlashCommand : AbstractSlashCommand("agent") {
 
         val agentName = ctx.getOption("name")!!.asString
 
-        if (!Launcher.cache.agentStats.exists()) ctx.acknowledge().queue()
+        if (!getCache().agentStats.exists()) ctx.acknowledge().queue()
 
         val agent = findAgent(agentName)
 
         if (agent != null) return send(agent.asEmbed(ctx.guild).build())
 
-        val similar = Algorithms.dictionarySimilar(agentName, Launcher.agents.map { it.name })
+        val similar = Algorithms.dictionarySimilar(agentName, getAgents().map { it.name })
 
         if (similar.isEmpty()) return sendAgentNotFound(ctx, agentName)
 
@@ -60,7 +62,7 @@ class AgentSlashCommand : AbstractSlashCommand("agent") {
         }
 
         private fun findAgent(input: String): ValorantAgent? {
-            return Launcher.getAgent(input)
+            return getAgent(input)
         }
 
         private fun normalizeList(list: List<String>): String {

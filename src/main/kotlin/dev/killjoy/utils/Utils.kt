@@ -22,6 +22,8 @@ import dev.killjoy.extensions.capital
 import dev.killjoy.framework.CommandContext
 import dev.killjoy.framework.abs.Command
 import dev.killjoy.framework.abs.SubCommand
+import dev.kord.common.KordConstants
+import dev.kord.common.annotation.KordExperimental
 import io.sentry.Sentry
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.asCoroutineDispatcher
@@ -65,6 +67,7 @@ object Utils {
         }
     }
 
+    @OptIn(KordExperimental::class)
     fun printBanner(pid: Long, logger: Logger) {
         val content = """
             Starting Killjoy with PID $pid
@@ -80,7 +83,7 @@ object Utils {
             • Killjoy Version    :   ${Versions.KILLJOY}
             • Build Number       :   ${Versions.BUILD_NUMBER}
             • Commit             :   ${Versions.COMMIT}
-            • JDA Version        :   ${Versions.JDA}
+            • Kord Version       :   ${KordConstants.KORD_VERSION}
             =========================================================================
         """.trimIndent()
 
@@ -125,7 +128,7 @@ object Utils {
 
         @JvmStatic
         fun getSubCommand(invoke: String, subCommands: List<SubCommand>): SubCommand? {
-            if (subCommands.isNullOrEmpty()) return null
+            if (subCommands.isEmpty()) return null
 
             for (scmd in subCommands) {
                 if (scmd.props.name == invoke.lowercase()) return scmd

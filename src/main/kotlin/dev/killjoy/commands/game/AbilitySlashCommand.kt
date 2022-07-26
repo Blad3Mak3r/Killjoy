@@ -15,7 +15,7 @@
 
 package dev.killjoy.commands.game
 
-import dev.killjoy.Launcher
+import dev.killjoy.getAbility
 import dev.killjoy.i18n.I18nKey
 import dev.killjoy.i18n.i18n
 import tv.blademaker.slash.api.AbstractSlashCommand
@@ -30,7 +30,7 @@ class AbilitySlashCommand : AbstractSlashCommand("ability") {
 
         val option = ctx.getOption("name")!!.asString
 
-        Launcher.getAbility(option)?.also { ctx.reply(it.asEmbed(ctx.guild)).queue() }
+        getAbility(option)?.also { ctx.reply(it.asEmbed(ctx.guild)).queue() }
             ?: return ctx.sendNotFound(ctx.i18n(I18nKey.ABILITY_NOT_FOUND, option)).queue()
     }
 

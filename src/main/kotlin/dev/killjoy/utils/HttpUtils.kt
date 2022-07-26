@@ -2,7 +2,6 @@
 
 package dev.killjoy.utils
 
-import dev.killjoy.Launcher
 import dev.killjoy.extensions.okhttp.submit
 import kotlinx.coroutines.future.await
 import okhttp3.*

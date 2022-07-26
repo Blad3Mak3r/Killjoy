@@ -30,6 +30,7 @@ import kotlinx.serialization.json.int
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
 import mu.KotlinLogging
+import org.slf4j.LoggerFactory
 
 val JSON = Json {
     ignoreUnknownKeys = true
@@ -39,7 +40,7 @@ fun Routing.installDiscordInteractions(handler: InteractionsHandler, publicKey: 
 
     val verifier = InteractionsVerifier(publicKey)
 
-    val log = KotlinLogging.logger {  }
+    val log = KotlinLogging.logger(LoggerFactory.getLogger("Interactions"))
 
     post(path) {
         val signature = call.request.header("X-Signature-Ed25519")

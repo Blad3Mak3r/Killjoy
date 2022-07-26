@@ -15,10 +15,11 @@
 
 package dev.killjoy.commands.game
 
-import dev.killjoy.Launcher
 import dev.killjoy.apis.news.NewsRetriever
 import dev.killjoy.extensions.capital
 import dev.killjoy.extensions.jda.supportedLocale
+import dev.killjoy.getMap
+import dev.killjoy.getMaps
 import dev.killjoy.i18n.i18nCommand
 import tv.blademaker.slash.api.AbstractSlashCommand
 import tv.blademaker.slash.api.SlashCommandContext
@@ -36,12 +37,12 @@ class MapsSlashCommand : AbstractSlashCommand("maps") {
         if (selection == null) {
             ctx.sendEmbed {
                 setTitle(ctx.i18nCommand("maps.header"), mapsUrl)
-                for (map in Launcher.maps) {
+                for (map in getMaps()) {
                     addField(map.name.capital(), map.description(ctx.guild), false)
                 }
             }.queue()
         } else {
-            val map = Launcher.getMap(selection)
+            val map = getMap(selection)
                 ?: return ctx.sendNotFound(ctx.i18nCommand("maps.notFound", selection)).queue()
 
             ctx.sendEmbed {

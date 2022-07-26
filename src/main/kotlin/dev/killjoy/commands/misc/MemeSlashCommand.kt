@@ -15,8 +15,8 @@
 
 package dev.killjoy.commands.misc
 
-import dev.killjoy.Launcher
 import dev.killjoy.extensions.jda.setDefaultColor
+import dev.killjoy.getCache
 import tv.blademaker.slash.api.AbstractSlashCommand
 import tv.blademaker.slash.api.SlashCommandContext
 
@@ -28,7 +28,7 @@ class MemeSlashCommand : AbstractSlashCommand("meme") {
 
         val subreddit = ctx.getOption("subreddit")!!.asString
 
-        val meme = Launcher.cache.memes.get(subreddit)
+        val meme = getCache().memes.get(subreddit)
 
         ctx.sendEmbed {
             setTitle(meme.title, meme.permanentLink)

@@ -17,11 +17,11 @@
 
 package dev.killjoy.commands.game
 
-import dev.killjoy.Launcher
 import dev.killjoy.extensions.info
 import dev.killjoy.extensions.jda.betterString
 import dev.killjoy.extensions.jda.ktx.await
 import dev.killjoy.extensions.jda.setDefaultColor
+import dev.killjoy.getAgents
 import dev.killjoy.i18n.i18nCommand
 import dev.killjoy.utils.ParseUtils
 import dev.killjoy.utils.paginationButtons
@@ -43,7 +43,7 @@ class AgentsSlashCommand : AbstractSlashCommand("agents") {
 
         val interactionID = ctx.hook.interaction.id
 
-        val agents = Launcher.agents.sortedBy { it.name }
+        val agents = getAgents().sortedBy { it.name }
 
         val page = ctx.getOption("page")?.asString?.toInt() ?: 1
         val totalPages = ceil((agents.size.toFloat() / MAX_AGENTS_PER_PAGE.toFloat())).toInt()

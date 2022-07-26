@@ -15,11 +15,11 @@
 
 package dev.killjoy.commands.pugs
 
-import dev.killjoy.Launcher
 import dev.killjoy.database.enums.ClosePugResult
 import dev.killjoy.database.enums.CreatePugResult
 import dev.killjoy.database.enums.JoinPugResult
 import dev.killjoy.database.enums.LeavePugResult
+import dev.killjoy.getDatabase
 import dev.killjoy.i18n.i18nCommand
 import dev.killjoy.utils.Emojis
 import net.dv8tion.jda.api.Permission
@@ -35,7 +35,7 @@ class PugsSlashCommand : AbstractSlashCommand("pugs") {
     @SlashSubCommand("current")
     suspend fun current(ctx: SlashCommandContext) {
         ctx.acknowledge().queue()
-        val pug = Launcher.database.pugs.findByGuild(ctx.guild)
+        val pug = getDatabase().pugs.findByGuild(ctx.guild)
             ?: return ctx.send(Emojis.NoEntry, notActivePug(ctx)).setEphemeral(true).queue()
 
         ctx.send(pug.asEmbed(ctx.guild)).queue()
@@ -44,7 +44,7 @@ class PugsSlashCommand : AbstractSlashCommand("pugs") {
     @SlashSubCommand("join")
     suspend fun join(ctx: SlashCommandContext) {
         ctx.acknowledge().queue()
-        when (Launcher.database.pugs.joinPug(ctx.guild, ctx.author)) {
+        when (getDatabase().pugs.joinPug(ctx.guild, ctx.author)) {
             JoinPugResult.CantJoin -> {
                 ctx.send(Emojis.NoEntry, ctx.i18nCommand("pugs.join.cantJoin")).asEphemeral().queue()
             }
@@ -64,7 +64,7 @@ class PugsSlashCommand : AbstractSlashCommand("pugs") {
     suspend fun leave(ctx: SlashCommandContext) {
         ctx.acknowledge().queue()
 
-        when (Launcher.database.pugs.leavePug(ctx.guild, ctx.author)) {
+        when (getDatabase().pugs.leavePug(ctx.guild, ctx.author)) {
             LeavePugResult.CantLeft ->
                 ctx.send(Emojis.NoEntry, ctx.i18nCommand("pugs.leave.cantLeft")).asEphemeral().queue()
 
@@ -84,7 +84,7 @@ class PugsSlashCommand : AbstractSlashCommand("pugs") {
     suspend fun teams(ctx: SlashCommandContext) {
         ctx.acknowledge().queue()
 
-        val pug = Launcher.database.pugs.findByGuild(ctx.guild)
+        val pug = getDatabase().pugs.findByGuild(ctx.guild)
             ?: return ctx.send(Emojis.NoEntry, notActivePug(ctx)).queue()
 
         val players = pug.taggedPlayers
@@ -113,7 +113,7 @@ class PugsSlashCommand : AbstractSlashCommand("pugs") {
     suspend fun create(ctx: SlashCommandContext) {
         ctx.acknowledge().queue()
 
-        when (Launcher.database.pugs.create(ctx.guild, ctx.author)) {
+        when (getDatabase().pugs.create(ctx.guild, ctx.author)) {
             CreatePugResult.Opened ->
                 ctx.send(Emojis.Success, ctx.i18nCommand("pugs.create.opened")).queue()
 
@@ -131,7 +131,7 @@ class PugsSlashCommand : AbstractSlashCommand("pugs") {
     suspend fun close(ctx: SlashCommandContext) {
         ctx.acknowledge().queue()
 
-        when (Launcher.database.pugs.close(ctx.guild)) {
+        when (getDatabase().pugs.close(ctx.guild)) {
             ClosePugResult.CantClose ->
                 ctx.send(Emojis.NoEntry, ctx.i18nCommand("pugs.close.cantClose")).setEphemeral(true).queue()
             ClosePugResult.Closed ->

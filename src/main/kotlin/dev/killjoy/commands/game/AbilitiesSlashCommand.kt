@@ -17,11 +17,11 @@
 
 package dev.killjoy.commands.game
 
-import dev.killjoy.Launcher
 import dev.killjoy.extensions.info
 import dev.killjoy.extensions.jda.betterString
 import dev.killjoy.extensions.jda.ktx.await
 import dev.killjoy.extensions.jda.setDefaultColor
+import dev.killjoy.getAbilities
 import dev.killjoy.i18n.I18nKey
 import dev.killjoy.i18n.i18n
 import dev.killjoy.i18n.i18nCommand
@@ -47,7 +47,7 @@ class AbilitiesSlashCommand : AbstractSlashCommand("abilities") {
 
         val interactionID = ctx.hook.interaction.id
 
-        val abilities = Launcher.getAbilities().sortedBy { it.name(ctx.guild) }
+        val abilities = getAbilities().sortedBy { it.name(ctx.guild) }
 
         val page = ctx.getOption("page")?.asString?.toInt() ?: 1
         val totalPages = ceil((abilities.size.toFloat() / MAX_ABILITIES_PER_PAGE.toFloat())).toInt()

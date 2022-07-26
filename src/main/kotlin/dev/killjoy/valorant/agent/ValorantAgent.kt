@@ -17,10 +17,10 @@
 
 package dev.killjoy.valorant.agent
 
-import dev.killjoy.Launcher
 import dev.killjoy.extensions.jda.isUrl
 import dev.killjoy.extensions.jda.setDefaultColor
 import dev.killjoy.extensions.jda.supportedLocale
+import dev.killjoy.getCache
 import dev.killjoy.i18n.I18nKey
 import dev.killjoy.i18n.i18n
 import dev.killjoy.i18n.i18nCommand
@@ -62,7 +62,7 @@ class ValorantAgent(json: JSONObject) : ValorantEntity {
     }
 
     suspend fun asEmbed(guild: Guild): EmbedBuilder {
-        val stats = Launcher.cache.agentStats.get(name.lowercase())
+        val stats = getCache().agentStats.get(name.lowercase())
 
         val statistics = if (stats == null) guild.i18n(I18nKey.NOT_AVAILABLE_AT_THE_MOMENT)
         else MessageFormat.format(buildStats(guild), stats.pickRate, stats.winRate, stats.kdaPerMatch, stats.kdaPerRound, stats.avgDamage, stats.avgScore)

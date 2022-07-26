@@ -15,8 +15,6 @@
 
 package dev.killjoy
 
-import com.typesafe.config.ConfigException
-import com.xenomachina.argparser.ArgParser
 import dev.killjoy.apis.memes.Meme
 import dev.killjoy.apis.news.ValorantNew
 import dev.killjoy.apis.riot.entities.RankedPlayerList
@@ -24,76 +22,122 @@ import dev.killjoy.apis.riot.entities.Region
 import dev.killjoy.cache.RedisCache
 import dev.killjoy.database.Database
 import dev.killjoy.database.DatabaseConnection
-import dev.killjoy.database.buildDatabaseConnection
-import dev.killjoy.extensions.jda.isInt
+import dev.killjoy.extensions.isInt
 import dev.killjoy.i18n.I18n
 import dev.killjoy.interactions.InteractionsHandler
 import dev.killjoy.interactions.InteractionsVerifier
 import dev.killjoy.interactions.installDiscordInteractions
-import dev.killjoy.prometheus.Prometheus
+import dev.killjoy.prometheus.installPrometheus
 import dev.killjoy.utils.*
 import dev.killjoy.valorant.agent.AgentAbility
 import dev.killjoy.valorant.agent.ValorantAgent
 import dev.killjoy.valorant.arsenal.ValorantWeapon
 import dev.killjoy.valorant.map.ValorantMap
 import dev.killjoy.webhook.WebhookUtils
-import dev.kord.common.entity.DiscordApplication
-import dev.kord.common.entity.Snowflake
 import dev.kord.rest.service.RestClient
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
 import io.ktor.server.routing.*
 import io.sentry.Sentry
-import net.dv8tion.jda.api.requests.RestAction
-import net.hugebot.ratelimiter.RateLimiter
 import org.slf4j.LoggerFactory
 import java.util.*
-import java.util.concurrent.TimeUnit
-import javax.security.auth.login.LoginException
 import kotlin.properties.Delegates
 
-@Suppress("MemberVisibilityCanBePrivate", "SpellCheckingInspection")
+private val log = LoggerFactory.getLogger("Main")
+
+private lateinit var database: Database
+
+private lateinit var cache: RedisCache
+
+var pid by Delegates.notNull<Long>()
+    private set
+
+private lateinit var agents: List<ValorantAgent>
+
+private lateinit var arsenal: List<ValorantWeapon>
+
+private lateinit var maps: List<ValorantMap>
+
+private lateinit var server: NettyApplicationEngine
+
+private lateinit var keyVerifier: InteractionsVerifier
+
+fun main(/*_args: Array<String>*/) {
+    //val args = ArgParser(_args).parseInto(::ApplicationArguments)
+
+    pid = ProcessHandle.current().pid()
+    Utils.printBanner(pid, log)
+
+    SentryUtils.init()
+
+    /*cache = RedisCache.createSingleServer(
+            {
+                this.nettyThreads = 5
+                this.threads = 1
+            },
+            {
+                this.address = RedisCache.buildUrl()
+                this.password = Credentials.getOrNull<String>("redis.pass")
+                this.database = Credentials.getOrDefault("redis.db", 0)
+                this.clientName = "killjoy-interactions"
+            }
+        )*/
+
+    keyVerifier = InteractionsVerifier(Credentials["discord.publicKey"])
+
+    val kord = RestClient(Credentials.token)
+
+    val interactionsHandler = InteractionsHandler(kord)
+
+    server = embeddedServer(Netty, host = "0.0.0.0", port = 2550) {
+        routing {
+            installDiscordInteractions(handler = interactionsHandler, Credentials.publicKey)
+            installPrometheus()
+        }
+    }
+
+    I18n.init()
+
+    // Load entities after banner
+    agents = Loaders.loadAgents()
+    arsenal = Loaders.loadArsenal()
+    maps = Loaders.loadMaps()
+
+    Credentials.getOrNull<String>("webhook_url")?.let { WebhookUtils.init(it) }
+
+    server.start()
+
+    Runtime.getRuntime().addShutdownHook(Thread {
+        Thread.currentThread().name = "shutdown-thread"
+
+        shutdown(0)
+    })
+}
+
+private fun shutdown(code: Int) {
+    try {
+        log.info("Shutting down Killjoy with code $code...")
+
+        WebhookUtils.shutdown()
+        HttpUtils.shutdown()
+
+        server.stop()
+        //cache.shutdown()
+    } catch (e: Exception) {
+        Sentry.captureException(e)
+        log.error("Exception shutting down Killjoy.", e)
+        Runtime.getRuntime().halt(code)
+    }
+}
+
+/*@Suppress("MemberVisibilityCanBePrivate", "SpellCheckingInspection")
 object Launcher : Killjoy {
-
-    lateinit var database: Database
-        private set
-
-    lateinit var cache: RedisCache
-        private set
-
-    var pid by Delegates.notNull<Long>()
-        private set
-
-    lateinit var agents: List<ValorantAgent>
-        private set
-
-    lateinit var arsenal: List<ValorantWeapon>
-        private set
-
-    lateinit var maps: List<ValorantMap>
-        private set
-
-    lateinit var server: NettyApplicationEngine
-        private set
-
-    lateinit var keyVerifier: InteractionsVerifier
-        private set
-
-    val rateLimiter: RateLimiter = RateLimiter.Builder()
-        .setQuota(20)
-        .setExpirationTime(1, TimeUnit.MINUTES)
-        .build()
-
-    private val RESTACTION_DEFAULT_FAILURE = RestAction.getDefaultFailure()
 
     @Throws(LoginException::class, ConfigException::class)
     fun init(args: ApplicationArguments) {
-        pid = ProcessHandle.current().pid()
 
-        Utils.printBanner(pid, log)
 
         //Initialize sentry
-        SentryUtils.init()
 
         //database = buildDatabaseConnection()
 
@@ -152,25 +196,8 @@ object Launcher : Killjoy {
         init(parsedArgs)
     }
 
-    override fun shutdown(code: Int) {
-        try {
-            log.info("Shutting down Killjoy with code $code...")
-
-            WebhookUtils.shutdown()
-            HttpUtils.shutdown()
-
-            server.stop()
-            //cache.shutdown()
-        } catch (e: Exception) {
-            Sentry.captureException(e)
-            log.error("Exception shutting down Killjoy.", e)
-            Runtime.getRuntime().halt(code)
-        }
-    }
-
     override fun getDatabaseConnection(): DatabaseConnection {
-        throw NotImplementedError()
-        //return database.connection
+        return database.connection
     }
 
     override fun getAgent(input: String): ValorantAgent? {
@@ -206,19 +233,67 @@ object Launcher : Killjoy {
     }
 
     override suspend fun getLeaderboard(region: Region): RankedPlayerList {
-        throw NotImplementedError()
-        //return cache.leaderboards.get(region)
+        return cache.leaderboards.get(region)
     }
 
     override suspend fun getNews(locale: Locale): List<ValorantNew> {
-        throw NotImplementedError()
-        //return cache.news.get(locale)
+        return cache.news.get(locale)
     }
 
     override suspend fun getMeme(subreddit: String): Meme {
-        throw NotImplementedError()
-        //return cache.memes.get(subreddit)
+        return cache.memes.get(subreddit)
     }
 
     private val log = LoggerFactory.getLogger(Launcher::class.java)
 }
+*/
+
+fun getAgent(input: String): ValorantAgent? {
+    return if (input.isInt) agents.find { it.number == input.toInt() }
+    else agents.find { it.name.equals(input, true) }
+}
+
+fun getWeapon(name: String): ValorantWeapon? {
+    return arsenal.find { it.names.any { w -> w.equals(name, true) } }
+}
+
+fun getMap(name: String): ValorantMap? {
+    return maps.find { it.name.equals(name, true) }
+}
+
+fun getAbilities(agentName: String): List<AgentAbility> {
+    return getAgent(agentName)?.abilities ?: emptyList()
+}
+
+fun getAbilities(): List<AgentAbility> {
+    return agents.map { it.abilities }.reduce { acc, list -> acc + list }
+}
+
+fun getAbility(name: String): AgentAbility? {
+    val n = name.lowercase()
+    return getAbilities().find {
+        it.name.containsValue(n) || it.name.containsValue(n.replace("_", " "))
+    }
+}
+
+suspend fun getLeaderboard(region: Region): RankedPlayerList {
+    return cache.leaderboards.get(region)
+}
+
+suspend fun getNews(locale: Locale): List<ValorantNew> {
+    return cache.news.get(locale)
+}
+
+suspend fun getMeme(subreddit: String): Meme {
+    return cache.memes.get(subreddit)
+}
+
+fun getAgents() = agents
+
+fun getArsenal() = arsenal
+
+fun getCache() = cache
+
+fun getDatabase() = database
+
+fun getMaps() = maps
