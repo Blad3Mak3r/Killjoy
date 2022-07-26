@@ -30,11 +30,6 @@ class DebugSlashCommand : AbstractSlashCommand("debug") {
 
         ctx.replyMessage {
             appendLine("**Server**: ``$guild``")
-            appendLine("**Current Shard:** ``[${ctx.jda.shardInfo.shardId}/${Launcher.getShardManager().shardsTotal}]``")
-            appendLine("**Current Shard Servers:** ``${Launcher.getGuildsByShard(ctx.jda.shardInfo.shardId)}``")
-            appendLine("**Current Shard Members:** ``${Launcher.getTotalMembersByShard(ctx.jda.shardInfo.shardId)}``")
-            appendLine("**Current Node Servers:** ``${Launcher.getTotalGuilds()}``")
-            appendLine("**Current Node Members:** ``${Launcher.getTotalMembers()}``")
             appendLine("**Uptime:** ``$uptime``")
             appendLine()
             appendLine("__**• • • • Versions • • • •**__")

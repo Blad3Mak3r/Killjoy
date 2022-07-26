@@ -31,6 +31,10 @@ import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
 import mu.KotlinLogging
 
+val JSON = Json {
+    ignoreUnknownKeys = true
+}
+
 fun Routing.installDiscordInteractions(handler: InteractionsHandler, publicKey: String, path: String = "/interactions") {
 
     val verifier = InteractionsVerifier(publicKey)
@@ -52,7 +56,7 @@ fun Routing.installDiscordInteractions(handler: InteractionsHandler, publicKey: 
 
         log.debug { "Payload: $text" }
 
-        val parsed = Json.parseToJsonElement(text).jsonObject
+        val parsed = JSON.parseToJsonElement(text).jsonObject
 
         val type = parsed["type"]!!.jsonPrimitive.int
 
@@ -71,19 +75,19 @@ fun Routing.installDiscordInteractions(handler: InteractionsHandler, publicKey: 
         when (type) {
             InteractionType.Ping.type -> handler.onPing(call)
             InteractionType.ApplicationCommand.type -> {
-                val interaction = Json.decodeFromString<DiscordInteraction>(text)
+                val interaction = JSON.decodeFromString<DiscordInteraction>(text)
                 handler.onCommand(call, interaction)
             }
             InteractionType.Component.type -> {
-                val interaction = Json.decodeFromString<DiscordInteraction>(text)
+                val interaction = JSON.decodeFromString<DiscordInteraction>(text)
                 handler.onComponent(call, interaction)
             }
             InteractionType.AutoComplete.type -> {
-                val interaction = Json.decodeFromString<DiscordInteraction>(text)
+                val interaction = JSON.decodeFromString<DiscordInteraction>(text)
                 handler.onAutocomplete(call, interaction)
             }
             InteractionType.ModalSubmit.type -> {
-                val interaction = Json.decodeFromString<DiscordInteraction>(text)
+                val interaction = JSON.decodeFromString<DiscordInteraction>(text)
                 handler.onModalSubmit(call, interaction)
             }
         }

@@ -40,8 +40,6 @@ object MainListener : EventListener {
             is GuildJoinEvent -> onGuildJoin(event)
             is GuildLeaveEvent -> onGuildLeave(event)
 
-            is GuildMessageReceivedEvent -> onGuildMessageReceived(event)
-
             is ReadyEvent -> onReady(event)
             is DisconnectEvent -> onDisconnect(event)
             is ResumedEvent -> onResumed(event)
@@ -95,11 +93,6 @@ object MainListener : EventListener {
         WebhookUtils.sendLeaveGuild(event.guild)
         Launcher.database.postShardStats(event.jda)
         Metrics.updateShardStats(event.jda)
-    }
-
-    private fun onGuildMessageReceived(event: GuildMessageReceivedEvent) {
-        Launcher.commandRegistry.onGuildMessageReceived(event)
-        Metrics.increaseMessageEvents(event.jda)
     }
 
     /**

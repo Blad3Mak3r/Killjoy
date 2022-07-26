@@ -55,9 +55,6 @@ import kotlin.properties.Delegates
 @Suppress("MemberVisibilityCanBePrivate", "SpellCheckingInspection")
 object Launcher : Killjoy {
 
-    var application: DiscordApplication? = null
-        private set
-
     lateinit var database: Database
         private set
 
@@ -98,9 +95,9 @@ object Launcher : Killjoy {
         //Initialize sentry
         SentryUtils.init()
 
-        database = buildDatabaseConnection()
+        //database = buildDatabaseConnection()
 
-        cache = RedisCache.createSingleServer(
+        /*cache = RedisCache.createSingleServer(
             {
                 this.nettyThreads = 5
                 this.threads = 1
@@ -111,7 +108,7 @@ object Launcher : Killjoy {
                 this.database = Credentials.getOrDefault("redis.db", 0)
                 this.clientName = "killjoy-interactions"
             }
-        )
+        )*/
 
         keyVerifier = InteractionsVerifier(Credentials["discord.publicKey"])
 
@@ -143,6 +140,8 @@ object Launcher : Killjoy {
 
             shutdown(0)
         })
+
+        server.start(true)
     }
 
     @JvmStatic
@@ -160,7 +159,8 @@ object Launcher : Killjoy {
             WebhookUtils.shutdown()
             HttpUtils.shutdown()
 
-            cache.shutdown()
+            server.stop()
+            //cache.shutdown()
         } catch (e: Exception) {
             Sentry.captureException(e)
             log.error("Exception shutting down Killjoy.", e)
@@ -169,7 +169,8 @@ object Launcher : Killjoy {
     }
 
     override fun getDatabaseConnection(): DatabaseConnection {
-        return database.connection
+        throw NotImplementedError()
+        //return database.connection
     }
 
     override fun getAgent(input: String): ValorantAgent? {
@@ -205,23 +206,18 @@ object Launcher : Killjoy {
     }
 
     override suspend fun getLeaderboard(region: Region): RankedPlayerList {
-        return cache.leaderboards.get(region)
+        throw NotImplementedError()
+        //return cache.leaderboards.get(region)
     }
 
     override suspend fun getNews(locale: Locale): List<ValorantNew> {
-        return cache.news.get(locale)
+        throw NotImplementedError()
+        //return cache.news.get(locale)
     }
 
     override suspend fun getMeme(subreddit: String): Meme {
-        return cache.memes.get(subreddit)
-    }
-
-    suspend fun getApplicationId(kord: RestClient): Snowflake {
-        if (application == null) {
-            application = kord.application.getCurrentApplicationInfo()
-        }
-
-        return application!!.id
+        throw NotImplementedError()
+        //return cache.memes.get(subreddit)
     }
 
     private val log = LoggerFactory.getLogger(Launcher::class.java)

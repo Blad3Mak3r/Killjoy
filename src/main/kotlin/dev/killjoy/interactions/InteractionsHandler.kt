@@ -15,40 +15,18 @@
 
 package dev.killjoy.interactions
 
-import dev.killjoy.Launcher
 import dev.kord.common.entity.DiscordInteraction
 import dev.kord.common.entity.InteractionResponseType
 import dev.kord.rest.service.RestClient
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.response.*
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
 
-class InteractionsHandler(private val kord: RestClient) {
-
-    private suspend fun acknowledge(call: ApplicationCall, ephemeral: Boolean = false): Unit {
-        call.respondText(buildJsonObject {
-            put("type", InteractionResponseType.DeferredChannelMessageWithSource.type)
-            if (ephemeral) put("flags", 64)
-        }.toString(), ContentType.Application.Json)
-    }
-
-    private suspend fun reply(call: ApplicationCall, content: String, ephemeral: Boolean = false){
-        call.respondText(buildJsonObject {
-            put("type", InteractionResponseType.ChannelMessageWithSource.type)
-            put("data", buildJsonObject {
-                put("content", content)
-            })
-            if (ephemeral) put("flags", 64)
-        }.toString(), ContentType.Application.Json)
-    }
-
-    private suspend fun followUpMessage(interaction: DiscordInteraction, content: String) {
-        kord.interaction.createFollowupMessage(interaction.applicationId, interaction.token) {
-            this.content = content
-        }
-    }
+class InteractionsHandler(private val rest: RestClient) {
 
     suspend fun onPing(call: ApplicationCall) {
         call.respondText(buildJsonObject {
@@ -57,8 +35,10 @@ class InteractionsHandler(private val kord: RestClient) {
     }
 
     suspend fun onCommand(call: ApplicationCall, interaction: DiscordInteraction) {
-        acknowledge(call, true)
-        followUpMessage(interaction, "Interactions working as expected!")
+        val ctx = SlashCommandContext(call, rest, interaction)
+
+        ctx.setEphemeral(true)
+        ctx.respond("Interactions working as expected...\n```json\n${Json.encodeToString(interaction.data)}\n```")
     }
 
     suspend fun onComponent(call: ApplicationCall, interaction: DiscordInteraction) {
