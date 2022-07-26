@@ -35,6 +35,8 @@ class SlashCommandContext(
     private val ack = AtomicBoolean(false)
     private val ephemeral = AtomicBoolean(false)
 
+    val commandPath = parseCommandPath(interaction)
+
     fun setEphemeral(ephemeral: Boolean) {
         this.ephemeral.set(ephemeral)
     }
