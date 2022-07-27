@@ -19,7 +19,6 @@ import dev.kord.common.entity.DiscordInteraction
 import dev.kord.common.entity.InteractionResponseType
 import dev.kord.rest.builder.message.EmbedBuilder
 import dev.kord.rest.builder.message.create.embed
-import dev.kord.rest.builder.message.modify.embed
 import dev.kord.rest.service.RestClient
 import io.ktor.http.*
 import io.ktor.server.application.*
@@ -30,13 +29,16 @@ import java.util.concurrent.atomic.AtomicBoolean
 class SlashCommandContext(
     private val call: ApplicationCall,
     private val rest: RestClient,
-    val interaction: DiscordInteraction
+    val interaction: DiscordInteraction,
 ) {
+
+    val path = parseCommandPath(interaction)
+    private val options = parseCommandOptions(interaction)
 
     private val ack = AtomicBoolean(false)
     private val ephemeral = AtomicBoolean(false)
 
-    val commandPath = parseCommandPath(interaction)
+    fun getOptionByName(name: String) = options.find { it.name == name }
 
     fun setEphemeral(ephemeral: Boolean) {
         this.ephemeral.set(ephemeral)

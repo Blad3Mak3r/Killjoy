@@ -2,6 +2,8 @@ package dev.killjoy.interactions
 
 import dev.kord.common.entity.*
 
+private val EmptyOptions = emptyList<Option>()
+
 fun parseCommandPath(interaction: DiscordInteraction): String {
     return buildString {
         append(interaction.data.name.value!!)
@@ -25,4 +27,26 @@ private fun getSubCommand(interaction: DiscordInteraction): SubCommand? {
 
 private fun getSubCommand(group: CommandGroup): SubCommand? {
     return group.options.value?.find { it.type == ApplicationCommandOptionType.SubCommand }
+}
+
+fun parseCommandOptions(interaction: DiscordInteraction): List<Option> {
+    val group = getSubCommandGroup(interaction)
+
+    if (group != null) {
+        val subCommand = getSubCommand(group)
+
+        return if (subCommand != null) {
+            subCommand.options.value ?: EmptyOptions
+        } else {
+            group.options.value ?: EmptyOptions
+        }
+    }
+
+    val subCommand = getSubCommand(interaction)
+
+    if (subCommand != null) {
+        return subCommand.options.value ?: EmptyOptions
+    }
+
+    return interaction.data.options.value ?: EmptyOptions
 }
