@@ -51,7 +51,7 @@ dependencies {
     implementation("com.github.minndevelopment:jda-ktx:d460e2a")
 
     //Database
-    implementation("com.zaxxer:HikariCP:5.0.0")
+    implementation("com.zaxxer:HikariCP:5.0.1")
     runtimeOnly("com.impossibl.pgjdbc-ng:pgjdbc-ng:0.8.9")
     implementation("org.jetbrains.exposed:exposed-core:$exposedVersion")
     implementation("org.jetbrains.exposed:exposed-dao:$exposedVersion")
